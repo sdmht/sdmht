@@ -1,0 +1,673 @@
+{
+  "skeleton": {
+    "hash": "EjfqXpiIgxRIj0LAWFg74LAQisk",
+    "spine": "3.8",
+    "width": 320.0000305175781,
+    "height": 299
+  },
+  "bones": [
+    {
+      "name": "root",
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "guang",
+      "parent": "root",
+      "x": 3.5000009536743164,
+      "y": 18.999977111816406,
+      "scaleX": 0.447451114654541,
+      "scaleY": 0.447451114654541,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "shouji",
+      "parent": "root",
+      "x": 0.5000005960464478,
+      "y": 14.000038146972656,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    }
+  ],
+  "slots": [
+    {
+      "name": "resource/attack-shouji0001",
+      "bone": "shouji",
+      "attachment": "resource/attack-shouji0014",
+      "blend": "normal"
+    },
+    {
+      "name": "resource/attack-guang",
+      "bone": "guang",
+      "attachment": "resource/attack-guang",
+      "blend": "additive"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "resource/attack-shouji0001": {
+          "resource/attack-shouji0001": {
+            "type": "region",
+            "name": "resource/attack-shouji0001",
+            "path": "resource/attack-shouji0001",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0002": {
+            "type": "region",
+            "name": "resource/attack-shouji0002",
+            "path": "resource/attack-shouji0002",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0003": {
+            "type": "region",
+            "name": "resource/attack-shouji0003",
+            "path": "resource/attack-shouji0003",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0004": {
+            "type": "region",
+            "name": "resource/attack-shouji0004",
+            "path": "resource/attack-shouji0004",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0005": {
+            "type": "region",
+            "name": "resource/attack-shouji0005",
+            "path": "resource/attack-shouji0005",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0006": {
+            "type": "region",
+            "name": "resource/attack-shouji0006",
+            "path": "resource/attack-shouji0006",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0007": {
+            "type": "region",
+            "name": "resource/attack-shouji0007",
+            "path": "resource/attack-shouji0007",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0008": {
+            "type": "region",
+            "name": "resource/attack-shouji0008",
+            "path": "resource/attack-shouji0008",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0009": {
+            "type": "region",
+            "name": "resource/attack-shouji0009",
+            "path": "resource/attack-shouji0009",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0010": {
+            "type": "region",
+            "name": "resource/attack-shouji0010",
+            "path": "resource/attack-shouji0010",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0011": {
+            "type": "region",
+            "name": "resource/attack-shouji0011",
+            "path": "resource/attack-shouji0011",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0012": {
+            "type": "region",
+            "name": "resource/attack-shouji0012",
+            "path": "resource/attack-shouji0012",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0013": {
+            "type": "region",
+            "name": "resource/attack-shouji0013",
+            "path": "resource/attack-shouji0013",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0014": {
+            "type": "region",
+            "name": "resource/attack-shouji0014",
+            "path": "resource/attack-shouji0014",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0015": {
+            "type": "region",
+            "name": "resource/attack-shouji0015",
+            "path": "resource/attack-shouji0015",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0016": {
+            "type": "region",
+            "name": "resource/attack-shouji0016",
+            "path": "resource/attack-shouji0016",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          },
+          "resource/attack-shouji0017": {
+            "type": "region",
+            "name": "resource/attack-shouji0017",
+            "path": "resource/attack-shouji0017",
+            "rotation": 0,
+            "x": -1.0132789611816406e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 320,
+            "height": 299,
+            "color": "ffffffff"
+          }
+        },
+        "resource/attack-guang": {
+          "resource/attack-guang": {
+            "type": "region",
+            "name": "resource/attack-guang",
+            "path": "resource/attack-guang",
+            "rotation": 0,
+            "x": 2.0000295639038086,
+            "y": -13,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 297,
+            "height": 274,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "idle": {
+      "slots": {
+        "resource/attack-guang": {
+          "color": [
+            {
+              "time": 0.31049057841300964,
+              "color": "ffffffff"
+            },
+            {
+              "time": 0.4239145815372467,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "resource/attack-guang"
+            },
+            {
+              "time": 0.6345159411430359,
+              "name": "resource/attack-guang"
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": "resource/attack-guang"
+            }
+          ]
+        },
+        "resource/attack-shouji0001": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "resource/attack-shouji0001"
+            },
+            {
+              "time": 0.03376975283026695,
+              "name": "resource/attack-shouji0002"
+            },
+            {
+              "time": 0.0675395056605339,
+              "name": "resource/attack-shouji0003"
+            },
+            {
+              "time": 0.10130926221609116,
+              "name": "resource/attack-shouji0004"
+            },
+            {
+              "time": 0.1350790113210678,
+              "name": "resource/attack-shouji0005"
+            },
+            {
+              "time": 0.1690145879983902,
+              "name": "resource/attack-shouji0006"
+            },
+            {
+              "time": 0.20438359677791595,
+              "name": "resource/attack-shouji0007"
+            },
+            {
+              "time": 0.23975257575511932,
+              "name": "resource/attack-shouji0008"
+            },
+            {
+              "time": 0.2751215994358063,
+              "name": "resource/attack-shouji0009"
+            },
+            {
+              "time": 0.31049057841300964,
+              "name": "resource/attack-shouji0010"
+            },
+            {
+              "time": 0.34728172421455383,
+              "name": "resource/attack-shouji0011"
+            },
+            {
+              "time": 0.38559818267822266,
+              "name": "resource/attack-shouji0012"
+            },
+            {
+              "time": 0.4239145815372467,
+              "name": "resource/attack-shouji0013"
+            },
+            {
+              "time": 0.46223101019859314,
+              "name": "resource/attack-shouji0014"
+            },
+            {
+              "time": 0.5005474090576172,
+              "name": "resource/attack-shouji0015"
+            },
+            {
+              "time": 0.5446394085884094,
+              "name": "resource/attack-shouji0016"
+            },
+            {
+              "time": 0.5904524326324463,
+              "name": "resource/attack-shouji0017"
+            },
+            {
+              "time": 0.6345159411430359,
+              "name": null
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "shouji": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6345159411430359,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6345159411430359,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6345159411430359,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6345159411430359,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "guang": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6345159411430359,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6345159411430359,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1
+            },
+            {
+              "time": 0.31049057841300964,
+              "x": 2.3139021396636963,
+              "y": 2.3139021396636963
+            },
+            {
+              "time": 0.6345159411430359,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6345159411430359,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "root": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6345159411430359,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": -1.83050537109375,
+              "y": -16.47442626953125,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6345159411430359,
+              "x": -1.83050537109375,
+              "y": -16.47442626953125,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": -1.83050537109375,
+              "y": -16.47442626953125
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 2.517765998840332,
+              "y": 2.517765998840332,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6345159411430359,
+              "x": 2.517765998840332,
+              "y": 2.517765998840332,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 2.517765998840332,
+              "y": 2.517765998840332
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6345159411430359,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        },
+        {
+          "offsets": [],
+          "time": 0.6345159411430359
+        },
+        {
+          "offsets": [],
+          "time": 0.6666666865348816
+        }
+      ]
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

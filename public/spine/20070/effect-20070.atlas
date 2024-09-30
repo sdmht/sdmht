@@ -1,0 +1,118 @@
+
+effect-20070.webp
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+0
+  rotate: false
+  xy: 170, 443
+  size: 89, 64
+  orig: 89, 64
+  offset: 0, 0
+  index: -1
+1
+  rotate: true
+  xy: 2, 166
+  size: 89, 64
+  orig: 89, 64
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 170, 377
+  size: 89, 64
+  orig: 89, 64
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 261, 443
+  size: 89, 64
+  orig: 89, 64
+  offset: 0, 0
+  index: -1
+as0
+  rotate: false
+  xy: 2, 425
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+as1
+  rotate: false
+  xy: 2, 341
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+as2
+  rotate: false
+  xy: 86, 425
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+as3
+  rotate: false
+  xy: 2, 257
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+as4
+  rotate: false
+  xy: 86, 341
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+zz0
+  rotate: false
+  xy: 86, 284
+  size: 80, 55
+  orig: 80, 55
+  offset: 0, 0
+  index: -1
+zz1
+  rotate: true
+  xy: 2, 84
+  size: 80, 55
+  orig: 80, 55
+  offset: 0, 0
+  index: -1
+zz2
+  rotate: false
+  xy: 261, 386
+  size: 80, 55
+  orig: 80, 55
+  offset: 0, 0
+  index: -1
+zz3
+  rotate: false
+  xy: 352, 452
+  size: 80, 55
+  orig: 80, 55
+  offset: 0, 0
+  index: -1
+zz4
+  rotate: true
+  xy: 2, 2
+  size: 80, 55
+  orig: 80, 55
+  offset: 0, 0
+  index: -1
+zz5
+  rotate: false
+  xy: 170, 320
+  size: 80, 55
+  orig: 80, 55
+  offset: 0, 0
+  index: -1
+zz6
+  rotate: false
+  xy: 168, 263
+  size: 80, 55
+  orig: 80, 55
+  offset: 0, 0
+  index: -1

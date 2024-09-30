@@ -1,0 +1,125 @@
+
+10109.webp
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+侧发
+  rotate: true
+  xy: 1081, 342
+  size: 167, 295
+  orig: 167, 295
+  offset: 0, 0
+  index: -1
+前发
+  rotate: false
+  xy: 441, 120
+  size: 157, 157
+  orig: 157, 194
+  offset: 0, 37
+  index: -1
+右手
+  rotate: true
+  xy: 1379, 323
+  size: 186, 217
+  orig: 186, 217
+  offset: 0, 0
+  index: -1
+右眉毛
+  rotate: true
+  xy: 1599, 323
+  size: 21, 27
+  orig: 21, 27
+  offset: 0, 0
+  index: -1
+右眼
+  rotate: false
+  xy: 1957, 260
+  size: 28, 47
+  orig: 28, 47
+  offset: 0, 0
+  index: -1
+后发1
+  rotate: false
+  xy: 1791, 411
+  size: 252, 98
+  orig: 252, 98
+  offset: 0, 0
+  index: -1
+后发2
+  rotate: false
+  xy: 3, 31
+  size: 420, 190
+  orig: 420, 190
+  offset: 0, 0
+  index: -1
+后发3
+  rotate: false
+  xy: 3, 224
+  size: 435, 285
+  orig: 435, 285
+  offset: 0, 0
+  index: -1
+后发_0
+  rotate: false
+  xy: 1791, 251
+  size: 163, 157
+  orig: 163, 163
+  offset: 0, 6
+  index: -1
+嘴巴
+  rotate: true
+  xy: 3, 3
+  size: 25, 29
+  orig: 25, 29
+  offset: 0, 0
+  index: -1
+图层1
+  rotate: true
+  xy: 441, 280
+  size: 229, 323
+  orig: 249, 323
+  offset: 0, 0
+  index: -1
+太阳
+  rotate: false
+  xy: 1599, 347
+  size: 189, 162
+  orig: 189, 162
+  offset: 0, 0
+  index: -1
+头花
+  rotate: true
+  xy: 767, 200
+  size: 130, 145
+  orig: 130, 145
+  offset: 0, 0
+  index: -1
+左手
+  rotate: false
+  xy: 767, 333
+  size: 311, 176
+  orig: 311, 177
+  offset: 0, 0
+  index: -1
+左眉毛
+  rotate: true
+  xy: 1957, 310
+  size: 98, 42
+  orig: 98, 42
+  offset: 0, 0
+  index: -1
+左眼
+  rotate: false
+  xy: 915, 291
+  size: 45, 39
+  orig: 49, 39
+  offset: 0, 0
+  index: -1
+脸
+  rotate: false
+  xy: 601, 132
+  size: 140, 145
+  orig: 140, 145
+  offset: 0, 0
+  index: -1

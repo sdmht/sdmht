@@ -1,0 +1,13 @@
+/* app global css */
+html,
+body,
+#q-app {
+  height: 100%;
+  width: 100%;
+}
+body {
+  overflow-y: hidden;
+}
+#q-app {
+  overflow-x: hidden;
+}

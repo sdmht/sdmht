@@ -1,0 +1,132 @@
+
+effect-20025.webp
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+resource/0
+  rotate: true
+  xy: 529, 63
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+resource/1
+  rotate: true
+  xy: 586, 63
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+resource/2
+  rotate: true
+  xy: 643, 63
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+resource/3
+  rotate: true
+  xy: 700, 63
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+resource/4
+  rotate: true
+  xy: 757, 63
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+resource/5
+  rotate: true
+  xy: 814, 63
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+resource/6
+  rotate: true
+  xy: 871, 63
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+resource/7
+  rotate: true
+  xy: 928, 63
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+resource/8
+  rotate: true
+  xy: 127, 2
+  size: 54, 55
+  orig: 54, 55
+  offset: 0, 0
+  index: -1
+resource/shoujix_015
+  rotate: true
+  xy: 63, 17
+  size: 46, 62
+  orig: 64, 81
+  offset: 18, 9
+  index: -1
+resource/shoujix_016
+  rotate: true
+  xy: 63, 65
+  size: 52, 80
+  orig: 64, 81
+  offset: 12, 0
+  index: -1
+resource/shoujix_017
+  rotate: false
+  xy: 2, 39
+  size: 59, 78
+  orig: 64, 81
+  offset: 5, 1
+  index: -1
+resource/shoujix_018
+  rotate: false
+  xy: 145, 58
+  size: 64, 59
+  orig: 64, 81
+  offset: 0, 10
+  index: -1
+resource/shoujix_019
+  rotate: false
+  xy: 211, 58
+  size: 63, 59
+  orig: 64, 81
+  offset: 0, 10
+  index: -1
+resource/ss0
+  rotate: true
+  xy: 467, 64
+  size: 53, 60
+  orig: 53, 60
+  offset: 0, 0
+  index: -1
+resource/ss1
+  rotate: true
+  xy: 276, 61
+  size: 56, 62
+  orig: 56, 62
+  offset: 0, 0
+  index: -1
+resource/ss2
+  rotate: true
+  xy: 340, 62
+  size: 55, 61
+  orig: 55, 61
+  offset: 0, 0
+  index: -1
+resource/ss3
+  rotate: true
+  xy: 403, 65
+  size: 52, 62
+  orig: 52, 62
+  offset: 0, 0
+  index: -1

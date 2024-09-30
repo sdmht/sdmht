@@ -1,0 +1,173 @@
+{
+  "type": "Live2D Physics",
+  "physics_hair": [
+    {
+      "label": "HAIR SIDE L",
+      "setup": {
+        "length": 0.16,
+        "regist": 0.47,
+        "mass": 0.17
+      },
+      "src": [
+        {
+          "id": "PARAM_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.007,
+          "weight": 0.5
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_HAIR_SIDE_00",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.5
+        }
+      ]
+    },
+    {
+      "label": "HAIR SIDE R",
+      "setup": {
+        "length": 0.16,
+        "regist": 0.47,
+        "mass": 0.18
+      },
+      "src": [
+        {
+          "id": "PARAM_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.008,
+          "weight": 0.5
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_HAIR_SIDE_01",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.5
+        }
+      ]
+    },
+    {
+      "label": "HAIR BACK",
+      "setup": {
+        "length": 0.17,
+        "regist": 0.5,
+        "mass": 0.19
+      },
+      "src": [
+        {
+          "id": "PARAM_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.003,
+          "weight": 0.7
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_HAIR_BACK_00",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.7
+        }
+      ]
+    },
+    {
+      "label": "HAIR BACK 01",
+      "setup": {
+        "length": 0.16,
+        "regist": 0.5,
+        "mass": 0.18
+      },
+      "src": [
+        {
+          "id": "PARAM_HAIR_BACK_00",
+          "ptype": "x",
+          "scale": 0.05,
+          "weight": 0.7
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_HAIR_BACK_01",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.7
+        }
+      ]
+    },
+    {
+      "label": "HAIR FRONT",
+      "setup": {
+        "length": 0.18,
+        "regist": 0.47,
+        "mass": 0.19
+      },
+      "src": [
+        {
+          "id": "PARAM_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.007,
+          "weight": 0.5
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_HAIR_FRONT",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.5
+        }
+      ]
+    },
+    {
+      "label": "BUST X",
+      "setup": {
+        "length": 0.16,
+        "regist": 0.5,
+        "mass": 0.21
+      },
+      "src": [
+        {
+          "id": "PARAM_BODY_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.04,
+          "weight": 0.7
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_BUST_X",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.7
+        }
+      ]
+    },
+    {
+      "label": "BUST Y",
+      "setup": {
+        "length": 0.19,
+        "regist": 0.5,
+        "mass": 0.23
+      },
+      "src": [
+        {
+          "id": "PARAM_BODY_ANGLE_Y",
+          "ptype": "x",
+          "scale": 0.05,
+          "weight": 0.7
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_BUST_Y",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.7
+        }
+      ]
+    }
+  ]
+}

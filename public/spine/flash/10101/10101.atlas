@@ -1,0 +1,223 @@
+
+10101.webp
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+上臂-右
+  rotate: false
+  xy: 372, 152
+  size: 105, 103
+  orig: 105, 103
+  offset: 0, 0
+  index: -1
+上臂-左
+  rotate: false
+  xy: 286, 32
+  size: 58, 99
+  orig: 58, 99
+  offset: 0, 0
+  index: -1
+下身
+  rotate: false
+  xy: 498, 216
+  size: 175, 141
+  orig: 175, 141
+  offset: 0, 0
+  index: -1
+后发
+  rotate: false
+  xy: 3, 244
+  size: 320, 264
+  orig: 320, 264
+  offset: 0, 0
+  index: -1
+嘴
+  rotate: true
+  xy: 759, 360
+  size: 23, 19
+  orig: 23, 19
+  offset: 0, 0
+  index: -1
+外衣
+  rotate: false
+  xy: 326, 258
+  size: 169, 250
+  orig: 169, 250
+  offset: 0, 0
+  index: -1
+外衣1
+  rotate: false
+  xy: 286, 134
+  size: 83, 107
+  orig: 83, 107
+  offset: 0, 0
+  index: -1
+外衣2
+  rotate: false
+  xy: 906, 183
+  size: 61, 47
+  orig: 61, 47
+  offset: 0, 0
+  index: -1
+头
+  rotate: false
+  xy: 915, 270
+  size: 97, 113
+  orig: 97, 113
+  offset: 0, 0
+  index: -1
+头发
+  rotate: false
+  xy: 789, 243
+  size: 123, 140
+  orig: 123, 140
+  offset: 0, 0
+  index: -1
+头发细节
+  rotate: false
+  xy: 3, 20
+  size: 280, 221
+  orig: 280, 221
+  offset: 0, 0
+  index: -1
+小臂-右
+  rotate: true
+  xy: 676, 190
+  size: 167, 110
+  orig: 167, 110
+  offset: 0, 0
+  index: -1
+小臂-左
+  rotate: false
+  xy: 789, 133
+  size: 114, 107
+  orig: 114, 107
+  offset: 0, 0
+  index: -1
+汗
+  rotate: false
+  xy: 781, 362
+  size: 5, 7
+  orig: 5, 7
+  offset: 0, 0
+  index: -1
+汗1
+  rotate: false
+  xy: 480, 239
+  size: 7, 16
+  orig: 7, 16
+  offset: 0, 0
+  index: -1
+汗2
+  rotate: false
+  xy: 781, 372
+  size: 5, 11
+  orig: 5, 11
+  offset: 0, 0
+  index: -1
+牙齿
+  rotate: true
+  xy: 326, 244
+  size: 11, 6
+  orig: 11, 6
+  offset: 0, 0
+  index: -1
+眉毛
+  rotate: true
+  xy: 347, 65
+  size: 66, 16
+  orig: 66, 16
+  offset: 0, 0
+  index: -1
+眼球-右
+  rotate: true
+  xy: 3, 3
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+眼球-左
+  rotate: false
+  xy: 967, 386
+  size: 14, 18
+  orig: 14, 18
+  offset: 0, 0
+  index: -1
+眼白-右
+  rotate: false
+  xy: 970, 209
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+眼白-左
+  rotate: false
+  xy: 970, 185
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+眼线-右
+  rotate: false
+  xy: 984, 387
+  size: 23, 17
+  orig: 23, 17
+  offset: 0, 0
+  index: -1
+眼线-左
+  rotate: true
+  xy: 996, 244
+  size: 23, 19
+  orig: 23, 19
+  offset: 0, 0
+  index: -1
+眼镜
+  rotate: false
+  xy: 915, 233
+  size: 78, 34
+  orig: 78, 34
+  offset: 0, 0
+  index: -1
+红晕
+  rotate: true
+  xy: 967, 407
+  size: 101, 48
+  orig: 101, 48
+  offset: 0, 0
+  index: -1
+脖子
+  rotate: false
+  xy: 906, 145
+  size: 49, 35
+  orig: 49, 35
+  offset: 0, 0
+  index: -1
+舌头
+  rotate: true
+  xy: 347, 42
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+衬衫
+  rotate: true
+  xy: 759, 386
+  size: 122, 205
+  orig: 122, 205
+  offset: 0, 0
+  index: -1
+裤子
+  rotate: false
+  xy: 498, 360
+  size: 258, 148
+  orig: 258, 148
+  offset: 0, 0
+  index: -1
+鼻子
+  rotate: true
+  xy: 1018, 506
+  size: 2, 3
+  orig: 2, 3
+  offset: 0, 0
+  index: -1

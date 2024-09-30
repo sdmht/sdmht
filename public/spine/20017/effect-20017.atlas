@@ -1,0 +1,97 @@
+
+effect-20017.webp
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baodian_06
+  rotate: true
+  xy: 2, 2
+  size: 50, 60
+  orig: 104, 100
+  offset: 29, 21
+  index: -1
+baodian_07
+  rotate: false
+  xy: 324, 62
+  size: 92, 91
+  orig: 104, 100
+  offset: 6, 2
+  index: -1
+baodian_08
+  rotate: false
+  xy: 418, 68
+  size: 63, 85
+  orig: 104, 100
+  offset: 21, 6
+  index: -1
+baodian_09
+  rotate: true
+  xy: 828, 182
+  size: 72, 84
+  orig: 104, 100
+  offset: 16, 7
+  index: -1
+baodian_10
+  rotate: false
+  xy: 746, 177
+  size: 80, 77
+  orig: 104, 100
+  offset: 13, 9
+  index: -1
+baodian_11
+  rotate: false
+  xy: 573, 172
+  size: 86, 82
+  orig: 104, 100
+  offset: 11, 7
+  index: -1
+baodian_12
+  rotate: false
+  xy: 661, 171
+  size: 83, 83
+  orig: 104, 100
+  offset: 17, 5
+  index: -1
+baodian_13
+  rotate: false
+  xy: 485, 167
+  size: 86, 87
+  orig: 104, 100
+  offset: 16, 3
+  index: -1
+xx0
+  rotate: false
+  xy: 2, 155
+  size: 159, 99
+  orig: 159, 99
+  offset: 0, 0
+  index: -1
+xx1
+  rotate: false
+  xy: 2, 54
+  size: 159, 99
+  orig: 159, 99
+  offset: 0, 0
+  index: -1
+xx2
+  rotate: false
+  xy: 163, 155
+  size: 159, 99
+  orig: 159, 99
+  offset: 0, 0
+  index: -1
+xx3
+  rotate: false
+  xy: 163, 54
+  size: 159, 99
+  orig: 159, 99
+  offset: 0, 0
+  index: -1
+xx4
+  rotate: false
+  xy: 324, 155
+  size: 159, 99
+  orig: 159, 99
+  offset: 0, 0
+  index: -1

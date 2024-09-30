@@ -1,0 +1,660 @@
+{
+  "skeleton": {
+    "hash": "miKSVQGymP7JRH6OdnE5ZbWME4M",
+    "spine": "3.8",
+    "width": 741.983642578125,
+    "height": 659.2003173828125
+  },
+  "bones": [
+    {
+      "name": "root",
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "ff00d9ff"
+    },
+    {
+      "name": "effect",
+      "parent": "root",
+      "x": -630.3623657226562,
+      "y": -152.11703491210938,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "ff00d9ff"
+    },
+    {
+      "name": "guang",
+      "parent": "effect",
+      "x": 631.328125,
+      "y": 263.0613708496094,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "ff00d9ff"
+    },
+    {
+      "name": "shouji",
+      "parent": "effect",
+      "x": 635.5507202148438,
+      "y": 159.8203125,
+      "scaleX": 3.0660479068756104,
+      "scaleY": 3.0660479068756104,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "ff00d9ff"
+    }
+  ],
+  "slots": [
+    {
+      "name": "attack/guang_007",
+      "bone": "guang",
+      "attachment": "attack/guang_007",
+      "blend": "normal"
+    },
+    {
+      "name": "attack/shouji_007",
+      "bone": "shouji",
+      "attachment": "attack/shouji_001",
+      "blend": "additive"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "attack/guang_007": {
+          "attack/guang_007": {
+            "type": "region",
+            "name": "attack/guang_007",
+            "path": "attack/guang_007",
+            "rotation": 0,
+            "x": 0,
+            "y": 2.16107177734375,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 373,
+            "height": 330,
+            "color": "ffffffff"
+          }
+        },
+        "attack/shouji_007": {
+          "attack/shouji_001": {
+            "type": "region",
+            "name": "attack/shouji_001",
+            "path": "attack/shouji_001",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_002": {
+            "type": "region",
+            "name": "attack/shouji_002",
+            "path": "attack/shouji_002",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_003": {
+            "type": "region",
+            "name": "attack/shouji_003",
+            "path": "attack/shouji_003",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_004": {
+            "type": "region",
+            "name": "attack/shouji_004",
+            "path": "attack/shouji_004",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_005": {
+            "type": "region",
+            "name": "attack/shouji_005",
+            "path": "attack/shouji_005",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_006": {
+            "type": "region",
+            "name": "attack/shouji_006",
+            "path": "attack/shouji_006",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_007": {
+            "type": "region",
+            "name": "attack/shouji_007",
+            "path": "attack/shouji_007",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_008": {
+            "type": "region",
+            "name": "attack/shouji_008",
+            "path": "attack/shouji_008",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_009": {
+            "type": "region",
+            "name": "attack/shouji_009",
+            "path": "attack/shouji_009",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_010": {
+            "type": "region",
+            "name": "attack/shouji_010",
+            "path": "attack/shouji_010",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_011": {
+            "type": "region",
+            "name": "attack/shouji_011",
+            "path": "attack/shouji_011",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_012": {
+            "type": "region",
+            "name": "attack/shouji_012",
+            "path": "attack/shouji_012",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_013": {
+            "type": "region",
+            "name": "attack/shouji_013",
+            "path": "attack/shouji_013",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "attack/shouji_014": {
+            "type": "region",
+            "name": "attack/shouji_014",
+            "path": "attack/shouji_014",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 242,
+            "height": 215,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "idle": {
+      "slots": {
+        "attack/guang_007": {
+          "color": [
+            {
+              "time": 0.04008467495441437,
+              "color": "ffffffff"
+            },
+            {
+              "time": 0.32067739963531494,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.04008467495441437,
+              "name": "attack/guang_007"
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": "attack/guang_007"
+            }
+          ]
+        },
+        "attack/shouji_007": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.04008467495441437,
+              "name": "attack/shouji_001"
+            },
+            {
+              "time": 0.08016934990882874,
+              "name": "attack/shouji_002"
+            },
+            {
+              "time": 0.1202540248632431,
+              "name": "attack/shouji_003"
+            },
+            {
+              "time": 0.16033869981765747,
+              "name": "attack/shouji_004"
+            },
+            {
+              "time": 0.20042338967323303,
+              "name": "attack/shouji_005"
+            },
+            {
+              "time": 0.2405080497264862,
+              "name": "attack/shouji_006"
+            },
+            {
+              "time": 0.28059273958206177,
+              "name": "attack/shouji_007"
+            },
+            {
+              "time": 0.32067739963531494,
+              "name": "attack/shouji_008"
+            },
+            {
+              "time": 0.3607620894908905,
+              "name": "attack/shouji_009"
+            },
+            {
+              "time": 0.40084677934646606,
+              "name": "attack/shouji_010"
+            },
+            {
+              "time": 0.44093143939971924,
+              "name": "attack/shouji_011"
+            },
+            {
+              "time": 0.4810160994529724,
+              "name": "attack/shouji_012"
+            },
+            {
+              "time": 0.5211007595062256,
+              "name": "attack/shouji_013"
+            },
+            {
+              "time": 0.5611854791641235,
+              "name": "attack/shouji_014"
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": "attack/shouji_014"
+            }
+          ]
+        }
+      },
+      "bones": {
+        "root": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "effect": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "shouji": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.04008467495441437,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.04008467495441437,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.04008467495441437,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.04008467495441437,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "guang": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.32067739963531494,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            },
+            {
+              "time": 0.04008467495441437,
+              "x": -4.322021484375,
+              "y": -88.60101318359375
+            },
+            {
+              "time": 0.32067739963531494,
+              "x": 0,
+              "y": -71.31292724609375,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": -71.31292724609375
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1
+            },
+            {
+              "time": 0.04008467495441437,
+              "x": 1.8891680240631104,
+              "y": 1.8891680240631104
+            },
+            {
+              "time": 0.32067739963531494,
+              "x": 2.2683799266815186,
+              "y": 2.2683799266815186,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 2.2683799266815186,
+              "y": 2.2683799266815186
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.32067739963531494,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        },
+        {
+          "offsets": [],
+          "time": 0.6666666865348816
+        }
+      ]
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

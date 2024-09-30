@@ -1,0 +1,385 @@
+{
+  "skeleton": {
+    "hash": "yIIgS4b3fqi82V+T+pCaSqcWVWg",
+    "spine": "3.8",
+    "width": 293.0000305175781,
+    "height": 273
+  },
+  "bones": [
+    {
+      "name": "root",
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "shouji",
+      "parent": "root",
+      "x": 40.0460090637207,
+      "y": -2.8921594619750977,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    }
+  ],
+  "slots": [
+    {
+      "name": "resource/attack-baokai0001",
+      "bone": "shouji",
+      "attachment": "resource/attack-baokai0001",
+      "blend": "additive"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "resource/attack-baokai0001": {
+          "resource/attack-baokai0001": {
+            "type": "region",
+            "name": "resource/attack-baokai0001",
+            "path": "resource/attack-baokai0001",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 293,
+            "height": 273,
+            "color": "ffffffff"
+          },
+          "resource/attack-baokai0002": {
+            "type": "region",
+            "name": "resource/attack-baokai0002",
+            "path": "resource/attack-baokai0002",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 293,
+            "height": 273,
+            "color": "ffffffff"
+          },
+          "resource/attack-baokai0003": {
+            "type": "region",
+            "name": "resource/attack-baokai0003",
+            "path": "resource/attack-baokai0003",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 293,
+            "height": 273,
+            "color": "ffffffff"
+          },
+          "resource/attack-baokai0004": {
+            "type": "region",
+            "name": "resource/attack-baokai0004",
+            "path": "resource/attack-baokai0004",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 293,
+            "height": 273,
+            "color": "ffffffff"
+          },
+          "resource/attack-baokai0005": {
+            "type": "region",
+            "name": "resource/attack-baokai0005",
+            "path": "resource/attack-baokai0005",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 293,
+            "height": 273,
+            "color": "ffffffff"
+          },
+          "resource/attack-baokai0006": {
+            "type": "region",
+            "name": "resource/attack-baokai0006",
+            "path": "resource/attack-baokai0006",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 293,
+            "height": 273,
+            "color": "ffffffff"
+          },
+          "resource/attack-baokai0007": {
+            "type": "region",
+            "name": "resource/attack-baokai0007",
+            "path": "resource/attack-baokai0007",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 293,
+            "height": 273,
+            "color": "ffffffff"
+          },
+          "resource/attack-baokai0008": {
+            "type": "region",
+            "name": "resource/attack-baokai0008",
+            "path": "resource/attack-baokai0008",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 293,
+            "height": 273,
+            "color": "ffffffff"
+          },
+          "resource/attack-baokai0009": {
+            "type": "region",
+            "name": "resource/attack-baokai0009",
+            "path": "resource/attack-baokai0009",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 293,
+            "height": 273,
+            "color": "ffffffff"
+          },
+          "resource/attack-baokai0010": {
+            "type": "region",
+            "name": "resource/attack-baokai0010",
+            "path": "resource/attack-baokai0010",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 293,
+            "height": 273,
+            "color": "ffffffff"
+          },
+          "resource/attack-baokai0011": {
+            "type": "region",
+            "name": "resource/attack-baokai0011",
+            "path": "resource/attack-baokai0011",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 293,
+            "height": 273,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "idle": {
+      "slots": {
+        "resource/attack-baokai0001": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.48295673727989197,
+              "color": "ffffffff"
+            },
+            {
+              "time": 0.6666666865348816,
+              "color": "ffffff00"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "resource/attack-baokai0001"
+            },
+            {
+              "time": 0.060369592159986496,
+              "name": "resource/attack-baokai0002"
+            },
+            {
+              "time": 0.12073918431997299,
+              "name": "resource/attack-baokai0003"
+            },
+            {
+              "time": 0.1811087727546692,
+              "name": "resource/attack-baokai0004"
+            },
+            {
+              "time": 0.24147836863994598,
+              "name": "resource/attack-baokai0005"
+            },
+            {
+              "time": 0.3018479645252228,
+              "name": "resource/attack-baokai0006"
+            },
+            {
+              "time": 0.3622175455093384,
+              "name": "resource/attack-baokai0007"
+            },
+            {
+              "time": 0.422587126493454,
+              "name": "resource/attack-baokai0008"
+            },
+            {
+              "time": 0.48295673727989197,
+              "name": "resource/attack-baokai0009"
+            },
+            {
+              "time": 0.5433263182640076,
+              "name": "resource/attack-baokai0010"
+            },
+            {
+              "time": 0.6036959290504456,
+              "name": "resource/attack-baokai0011"
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "shouji": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "root": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 2.9405057430267334,
+              "y": 2.9405057430267334,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 2.9405057430267334,
+              "y": 2.9405057430267334
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {}
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

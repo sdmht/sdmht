@@ -1,0 +1,258 @@
+
+22067.webp
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bajian0
+  rotate: false
+  xy: 387, 345
+  size: 68, 23
+  orig: 68, 23
+  offset: 0, 0
+  index: -1
+bajian1
+  rotate: false
+  xy: 305, 340
+  size: 80, 28
+  orig: 80, 28
+  offset: 0, 0
+  index: -1
+bajian2
+  rotate: false
+  xy: 2, 2
+  size: 75, 29
+  orig: 75, 29
+  offset: 0, 0
+  index: -1
+bajian3
+  rotate: true
+  xy: 481, 445
+  size: 65, 27
+  orig: 65, 27
+  offset: 0, 0
+  index: -1
+bajian4
+  rotate: false
+  xy: 232, 298
+  size: 63, 26
+  orig: 63, 26
+  offset: 0, 0
+  index: -1
+xx0
+  rotate: false
+  xy: 82, 203
+  size: 25, 41
+  orig: 25, 41
+  offset: 0, 0
+  index: -1
+xx1
+  rotate: false
+  xy: 82, 160
+  size: 25, 41
+  orig: 25, 41
+  offset: 0, 0
+  index: -1
+xx2
+  rotate: false
+  xy: 82, 117
+  size: 25, 41
+  orig: 25, 41
+  offset: 0, 0
+  index: -1
+xx3
+  rotate: false
+  xy: 82, 74
+  size: 25, 41
+  orig: 25, 41
+  offset: 0, 0
+  index: -1
+xx4
+  rotate: true
+  xy: 137, 282
+  size: 25, 41
+  orig: 25, 41
+  offset: 0, 0
+  index: -1
+xx5
+  rotate: true
+  xy: 180, 282
+  size: 25, 41
+  orig: 25, 41
+  offset: 0, 0
+  index: -1
+xx6
+  rotate: false
+  xy: 82, 31
+  size: 25, 41
+  orig: 25, 41
+  offset: 0, 0
+  index: -1
+xx7
+  rotate: true
+  xy: 135, 255
+  size: 25, 41
+  orig: 25, 41
+  offset: 0, 0
+  index: -1
+zx0
+  rotate: false
+  xy: 2, 246
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+zx1
+  rotate: false
+  xy: 2, 175
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+zx10
+  rotate: false
+  xy: 392, 370
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+zx11
+  rotate: false
+  xy: 152, 309
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+zx2
+  rotate: false
+  xy: 2, 104
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+zx3
+  rotate: false
+  xy: 2, 33
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+zx4
+  rotate: false
+  xy: 241, 441
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+zx5
+  rotate: false
+  xy: 321, 441
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+zx6
+  rotate: false
+  xy: 401, 441
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+zx7
+  rotate: false
+  xy: 152, 380
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+zx8
+  rotate: false
+  xy: 232, 370
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+zx9
+  rotate: false
+  xy: 312, 370
+  size: 78, 69
+  orig: 78, 69
+  offset: 0, 0
+  index: -1
+发动
+  rotate: false
+  xy: 82, 284
+  size: 53, 23
+  orig: 53, 23
+  offset: 0, 0
+  index: -1
+右耳1
+  rotate: true
+  xy: 232, 326
+  size: 42, 71
+  orig: 42, 71
+  offset: 0, 0
+  index: -1
+头
+  rotate: false
+  xy: 2, 414
+  size: 138, 96
+  orig: 138, 96
+  offset: 0, 0
+  index: -1
+头毛
+  rotate: false
+  xy: 178, 259
+  size: 26, 21
+  orig: 26, 21
+  offset: 0, 0
+  index: -1
+尾巴
+  rotate: false
+  xy: 82, 246
+  size: 32, 36
+  orig: 32, 36
+  offset: 0, 0
+  index: -1
+左耳1
+  rotate: false
+  xy: 95, 333
+  size: 55, 79
+  orig: 55, 79
+  offset: 0, 0
+  index: -1
+正常表情
+  rotate: false
+  xy: 95, 309
+  size: 55, 22
+  orig: 55, 22
+  offset: 0, 0
+  index: -1
+红晕
+  rotate: true
+  xy: 116, 242
+  size: 40, 17
+  orig: 40, 17
+  offset: 0, 0
+  index: -1
+蓄力
+  rotate: false
+  xy: 305, 314
+  size: 59, 24
+  orig: 59, 24
+  offset: 0, 0
+  index: -1
+被击
+  rotate: false
+  xy: 142, 451
+  size: 97, 59
+  orig: 97, 59
+  offset: 0, 0
+  index: -1
+身体
+  rotate: false
+  xy: 2, 317
+  size: 91, 95
+  orig: 91, 95
+  offset: 0, 0
+  index: -1

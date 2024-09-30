@@ -1,0 +1,104 @@
+
+effect-20076.webp
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+0
+  rotate: true
+  xy: 63, 93
+  size: 47, 48
+  orig: 47, 48
+  offset: 0, 0
+  index: -1
+1
+  rotate: false
+  xy: 120, 144
+  size: 51, 48
+  orig: 52, 48
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 65, 143
+  size: 52, 49
+  orig: 55, 49
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 3, 78
+  size: 53, 49
+  orig: 55, 49
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 122, 195
+  size: 53, 49
+  orig: 55, 49
+  offset: 2, 0
+  index: -1
+5
+  rotate: false
+  xy: 3, 26
+  size: 53, 49
+  orig: 55, 49
+  offset: 2, 0
+  index: -1
+6
+  rotate: false
+  xy: 65, 195
+  size: 54, 49
+  orig: 54, 49
+  offset: 0, 0
+  index: -1
+7
+  rotate: false
+  xy: 178, 195
+  size: 53, 49
+  orig: 54, 49
+  offset: 0, 0
+  index: -1
+aa0
+  rotate: false
+  xy: 3, 3
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+aa1
+  rotate: true
+  xy: 59, 15
+  size: 30, 32
+  orig: 30, 33
+  offset: 0, 0
+  index: -1
+aa2
+  rotate: false
+  xy: 59, 48
+  size: 44, 42
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+aa3
+  rotate: false
+  xy: 174, 144
+  size: 50, 48
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+aa4
+  rotate: false
+  xy: 3, 130
+  size: 57, 55
+  orig: 57, 56
+  offset: 0, 1
+  index: -1
+aa5
+  rotate: false
+  xy: 3, 188
+  size: 59, 56
+  orig: 59, 58
+  offset: 0, 2
+  index: -1

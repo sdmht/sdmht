@@ -1,0 +1,90 @@
+
+effect-20056.webp
+size: 128,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/daji1
+  rotate: false
+  xy: 2, 194
+  size: 53, 51
+  orig: 53, 51
+  offset: 0, 0
+  index: -1
+images/daji2
+  rotate: false
+  xy: 2, 141
+  size: 53, 51
+  orig: 53, 51
+  offset: 0, 0
+  index: -1
+images/daji3
+  rotate: false
+  xy: 57, 194
+  size: 53, 51
+  orig: 53, 51
+  offset: 0, 0
+  index: -1
+images/daji4
+  rotate: false
+  xy: 2, 88
+  size: 53, 51
+  orig: 53, 51
+  offset: 0, 0
+  index: -1
+images/daji5
+  rotate: false
+  xy: 57, 141
+  size: 53, 51
+  orig: 53, 51
+  offset: 0, 0
+  index: -1
+images/daji6
+  rotate: false
+  xy: 2, 35
+  size: 53, 51
+  orig: 53, 51
+  offset: 0, 0
+  index: -1
+images/daji7
+  rotate: false
+  xy: 57, 88
+  size: 53, 51
+  orig: 53, 51
+  offset: 0, 0
+  index: -1
+images/shandian1
+  rotate: false
+  xy: 2, 2
+  size: 36, 31
+  orig: 36, 31
+  offset: 0, 0
+  index: -1
+images/shandian3
+  rotate: false
+  xy: 57, 55
+  size: 36, 31
+  orig: 36, 31
+  offset: 0, 0
+  index: -1
+images/shandian4
+  rotate: true
+  xy: 95, 50
+  size: 36, 31
+  orig: 36, 31
+  offset: 0, 0
+  index: -1
+images/shandian5
+  rotate: false
+  xy: 57, 22
+  size: 36, 31
+  orig: 36, 31
+  offset: 0, 0
+  index: -1
+images/shandian6
+  rotate: true
+  xy: 95, 12
+  size: 36, 31
+  orig: 36, 31
+  offset: 0, 0
+  index: -1

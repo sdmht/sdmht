@@ -1,0 +1,160 @@
+
+effect-24009.webp
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+a0
+  rotate: false
+  xy: 323, 171
+  size: 92, 73
+  orig: 92, 73
+  offset: 0, 0
+  index: -1
+a1
+  rotate: false
+  xy: 417, 171
+  size: 92, 73
+  orig: 92, 73
+  offset: 0, 0
+  index: -1
+a2
+  rotate: false
+  xy: 511, 171
+  size: 92, 73
+  orig: 92, 73
+  offset: 0, 0
+  index: -1
+a3
+  rotate: false
+  xy: 605, 171
+  size: 92, 73
+  orig: 92, 73
+  offset: 0, 0
+  index: -1
+att0
+  rotate: false
+  xy: 699, 180
+  size: 77, 64
+  orig: 77, 64
+  offset: 0, 0
+  index: -1
+att1
+  rotate: false
+  xy: 778, 180
+  size: 77, 64
+  orig: 77, 64
+  offset: 0, 0
+  index: -1
+att2
+  rotate: false
+  xy: 857, 180
+  size: 77, 64
+  orig: 77, 64
+  offset: 0, 0
+  index: -1
+att3
+  rotate: false
+  xy: 936, 180
+  size: 77, 64
+  orig: 77, 64
+  offset: 0, 0
+  index: -1
+att4
+  rotate: false
+  xy: 323, 105
+  size: 77, 64
+  orig: 77, 64
+  offset: 0, 0
+  index: -1
+att5
+  rotate: false
+  xy: 402, 105
+  size: 77, 64
+  orig: 77, 64
+  offset: 0, 0
+  index: -1
+att6
+  rotate: false
+  xy: 481, 105
+  size: 77, 64
+  orig: 77, 64
+  offset: 0, 0
+  index: -1
+h1
+  rotate: false
+  xy: 560, 106
+  size: 69, 63
+  orig: 69, 63
+  offset: 0, 0
+  index: -1
+h2
+  rotate: false
+  xy: 631, 106
+  size: 66, 63
+  orig: 66, 63
+  offset: 0, 0
+  index: -1
+h3
+  rotate: false
+  xy: 699, 115
+  size: 59, 63
+  orig: 59, 63
+  offset: 0, 0
+  index: -1
+h4
+  rotate: true
+  xy: 818, 132
+  size: 46, 63
+  orig: 46, 63
+  offset: 0, 0
+  index: -1
+h5
+  rotate: true
+  xy: 883, 132
+  size: 46, 63
+  orig: 46, 63
+  offset: 0, 0
+  index: -1
+q1
+  rotate: false
+  xy: 2, 109
+  size: 105, 135
+  orig: 105, 135
+  offset: 0, 0
+  index: -1
+q2
+  rotate: false
+  xy: 109, 109
+  size: 105, 135
+  orig: 105, 135
+  offset: 0, 0
+  index: -1
+q3
+  rotate: true
+  xy: 2, 2
+  size: 105, 135
+  orig: 105, 135
+  offset: 0, 0
+  index: -1
+q4
+  rotate: false
+  xy: 216, 109
+  size: 105, 135
+  orig: 105, 135
+  offset: 0, 0
+  index: -1
+q5
+  rotate: true
+  xy: 139, 2
+  size: 105, 135
+  orig: 105, 135
+  offset: 0, 0
+  index: -1
+tf0
+  rotate: false
+  xy: 760, 122
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1

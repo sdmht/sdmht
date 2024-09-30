@@ -1,0 +1,146 @@
+
+10003.webp
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+侧发右
+  rotate: false
+  xy: 3, 3
+  size: 37, 46
+  orig: 37, 46
+  offset: 0, 0
+  index: -1
+侧发左
+  rotate: true
+  xy: 1359, 349
+  size: 32, 59
+  orig: 33, 63
+  offset: 1, 1
+  index: -1
+前发
+  rotate: true
+  xy: 1565, 364
+  size: 140, 180
+  orig: 141, 180
+  offset: 0, 0
+  index: -1
+右手
+  rotate: false
+  xy: 279, 48
+  size: 179, 120
+  orig: 179, 120
+  offset: 0, 0
+  index: -1
+右眉
+  rotate: false
+  xy: 1748, 368
+  size: 20, 5
+  orig: 20, 5
+  offset: 0, 0
+  index: -1
+右眼
+  rotate: false
+  xy: 862, 152
+  size: 27, 26
+  orig: 27, 26
+  offset: 0, 0
+  index: -1
+右腿
+  rotate: false
+  xy: 1359, 384
+  size: 203, 120
+  orig: 207, 120
+  offset: 0, 0
+  index: -1
+右裙摆
+  rotate: false
+  xy: 522, 139
+  size: 186, 96
+  orig: 189, 98
+  offset: 1, 0
+  index: -1
+后发
+  rotate: false
+  xy: 856, 304
+  size: 283, 200
+  orig: 287, 201
+  offset: 2, 1
+  index: -1
+嘴巴
+  rotate: false
+  xy: 993, 277
+  size: 29, 24
+  orig: 29, 24
+  offset: 0, 0
+  index: -1
+左手
+  rotate: true
+  xy: 711, 114
+  size: 121, 148
+  orig: 123, 148
+  offset: 1, 0
+  index: -1
+左眉
+  rotate: true
+  xy: 1142, 305
+  size: 20, 22
+  orig: 20, 22
+  offset: 0, 0
+  index: -1
+左眼
+  rotate: false
+  xy: 461, 129
+  size: 37, 39
+  orig: 37, 39
+  offset: 0, 0
+  index: -1
+左腿
+  rotate: false
+  xy: 1931, 381
+  size: 114, 123
+  orig: 114, 123
+  offset: 0, 0
+  index: -1
+左裙摆
+  rotate: false
+  xy: 3, 52
+  size: 273, 116
+  orig: 273, 116
+  offset: 0, 0
+  index: -1
+披风前
+  rotate: false
+  xy: 1748, 376
+  size: 180, 128
+  orig: 180, 128
+  offset: 0, 0
+  index: -1
+披风后
+  rotate: false
+  xy: 3, 171
+  size: 516, 333
+  orig: 516, 333
+  offset: 0, 0
+  index: -1
+脸
+  rotate: false
+  xy: 862, 181
+  size: 128, 120
+  orig: 129, 123
+  offset: 1, 1
+  index: -1
+角
+  rotate: false
+  xy: 522, 238
+  size: 331, 266
+  orig: 332, 268
+  offset: 1, 0
+  index: -1
+身体
+  rotate: true
+  xy: 1142, 328
+  size: 176, 214
+  orig: 177, 214
+  offset: 1, 0
+  index: -1

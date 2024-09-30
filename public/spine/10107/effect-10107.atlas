@@ -1,0 +1,104 @@
+
+effect-10107.webp
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+a0
+  rotate: false
+  xy: 3, 303
+  size: 85, 98
+  orig: 85, 98
+  offset: 0, 0
+  index: -1
+a1
+  rotate: false
+  xy: 3, 202
+  size: 85, 98
+  orig: 85, 98
+  offset: 0, 0
+  index: -1
+a2
+  rotate: false
+  xy: 91, 303
+  size: 85, 98
+  orig: 85, 98
+  offset: 0, 0
+  index: -1
+a3
+  rotate: false
+  xy: 3, 101
+  size: 85, 98
+  orig: 85, 98
+  offset: 0, 0
+  index: -1
+a4
+  rotate: false
+  xy: 91, 202
+  size: 85, 98
+  orig: 85, 98
+  offset: 0, 0
+  index: -1
+a5
+  rotate: false
+  xy: 179, 303
+  size: 85, 98
+  orig: 85, 98
+  offset: 0, 0
+  index: -1
+df0
+  rotate: false
+  xy: 3, 52
+  size: 57, 46
+  orig: 57, 46
+  offset: 0, 0
+  index: -1
+df1
+  rotate: false
+  xy: 91, 153
+  size: 57, 46
+  orig: 57, 46
+  offset: 0, 0
+  index: -1
+df2
+  rotate: false
+  xy: 179, 254
+  size: 57, 46
+  orig: 57, 46
+  offset: 0, 0
+  index: -1
+df3
+  rotate: false
+  xy: 267, 355
+  size: 57, 46
+  orig: 57, 46
+  offset: 0, 0
+  index: -1
+df4
+  rotate: false
+  xy: 3, 3
+  size: 57, 46
+  orig: 57, 46
+  offset: 0, 0
+  index: -1
+df5
+  rotate: false
+  xy: 91, 104
+  size: 57, 46
+  orig: 57, 46
+  offset: 0, 0
+  index: -1
+df6
+  rotate: false
+  xy: 179, 205
+  size: 57, 46
+  orig: 57, 46
+  offset: 0, 0
+  index: -1
+df7
+  rotate: false
+  xy: 267, 306
+  size: 57, 46
+  orig: 57, 46
+  offset: 0, 0
+  index: -1

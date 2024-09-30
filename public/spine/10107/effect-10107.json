@@ -1,0 +1,497 @@
+{
+  "skeleton": {
+    "hash": "dEgvuuP9hKFHfUUEgu+6yRtEEjo",
+    "spine": "3.8",
+    "width": 417.26727294921875,
+    "height": 398.08050537109375
+  },
+  "bones": [
+    {
+      "name": "root",
+      "rotation": -0.24176788330078125,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "a0",
+      "parent": "root",
+      "rotation": 0.24176786839962006,
+      "x": 0.873046875,
+      "y": -2.4805450439453125,
+      "length": 41.603858947753906,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "df0",
+      "parent": "root",
+      "rotation": 90.24176788330078,
+      "x": -6.73358154296875,
+      "y": -4.137447357177734,
+      "scaleX": 1.840010643005371,
+      "scaleY": 1.840010643005371,
+      "length": 32.41501235961914,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    }
+  ],
+  "slots": [
+    {
+      "name": "df0",
+      "bone": "df0",
+      "attachment": "df0",
+      "blend": "additive"
+    },
+    {
+      "name": "a0",
+      "bone": "a0",
+      "attachment": "a0",
+      "blend": "additive"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "df0": {
+          "df0": {
+            "type": "region",
+            "name": "df0",
+            "path": "df0",
+            "rotation": -90.24176025390625,
+            "x": 6.2933855056762695,
+            "y": -3.623790740966797,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 226,
+            "height": 184,
+            "color": "ffffffff"
+          },
+          "df1": {
+            "type": "region",
+            "name": "df1",
+            "path": "df1",
+            "rotation": -90.24176025390625,
+            "x": 6.2933855056762695,
+            "y": -3.623790740966797,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 226,
+            "height": 184,
+            "color": "ffffffff"
+          },
+          "df2": {
+            "type": "region",
+            "name": "df2",
+            "path": "df2",
+            "rotation": -90.24176025390625,
+            "x": 6.2933855056762695,
+            "y": -3.623790740966797,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 226,
+            "height": 184,
+            "color": "ffffffff"
+          },
+          "df3": {
+            "type": "region",
+            "name": "df3",
+            "path": "df3",
+            "rotation": -90.24176025390625,
+            "x": 6.2933855056762695,
+            "y": -3.623790740966797,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 226,
+            "height": 184,
+            "color": "ffffffff"
+          },
+          "df4": {
+            "type": "region",
+            "name": "df4",
+            "path": "df4",
+            "rotation": -90.24176025390625,
+            "x": 6.2933855056762695,
+            "y": -3.623790740966797,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 226,
+            "height": 184,
+            "color": "ffffffff"
+          },
+          "df5": {
+            "type": "region",
+            "name": "df5",
+            "path": "df5",
+            "rotation": -90.24176025390625,
+            "x": 6.2933855056762695,
+            "y": -3.623790740966797,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 226,
+            "height": 184,
+            "color": "ffffffff"
+          },
+          "df6": {
+            "type": "region",
+            "name": "df6",
+            "path": "df6",
+            "rotation": -90.24176025390625,
+            "x": 6.2933855056762695,
+            "y": -3.623790740966797,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 226,
+            "height": 184,
+            "color": "ffffffff"
+          },
+          "df7": {
+            "type": "region",
+            "name": "df7",
+            "path": "df7",
+            "rotation": -90.24176025390625,
+            "x": 6.2933855056762695,
+            "y": -3.623790740966797,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 226,
+            "height": 184,
+            "color": "ffffffff"
+          }
+        },
+        "a0": {
+          "a0": {
+            "type": "region",
+            "name": "a0",
+            "path": "a0",
+            "rotation": -0.24176783859729767,
+            "x": -29.7596492767334,
+            "y": 41.66526794433594,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 339,
+            "height": 391,
+            "color": "ffffffff"
+          },
+          "a1": {
+            "type": "region",
+            "name": "a1",
+            "path": "a1",
+            "rotation": -0.24176783859729767,
+            "x": -29.7596492767334,
+            "y": 41.66526794433594,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 339,
+            "height": 391,
+            "color": "ffffffff"
+          },
+          "a2": {
+            "type": "region",
+            "name": "a2",
+            "path": "a2",
+            "rotation": -0.24176783859729767,
+            "x": -29.7596492767334,
+            "y": 41.66526794433594,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 339,
+            "height": 391,
+            "color": "ffffffff"
+          },
+          "a3": {
+            "type": "region",
+            "name": "a3",
+            "path": "a3",
+            "rotation": -0.24176783859729767,
+            "x": -29.7596492767334,
+            "y": 41.66526794433594,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 339,
+            "height": 391,
+            "color": "ffffffff"
+          },
+          "a4": {
+            "type": "region",
+            "name": "a4",
+            "path": "a4",
+            "rotation": -0.24176783859729767,
+            "x": -29.7596492767334,
+            "y": 41.66526794433594,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 339,
+            "height": 391,
+            "color": "ffffffff"
+          },
+          "a5": {
+            "type": "region",
+            "name": "a5",
+            "path": "a5",
+            "rotation": -0.24176783859729767,
+            "x": -29.7596492767334,
+            "y": 41.66526794433594,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 339,
+            "height": 391,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "idle": {
+      "slots": {
+        "a0": {
+          "attachment": [
+            {
+              "time": 0.06666667014360428,
+              "name": "a1"
+            },
+            {
+              "time": 0.13282981514930725,
+              "name": "a2"
+            },
+            {
+              "time": 0.19924472272396088,
+              "name": "a3"
+            },
+            {
+              "time": 0.2656596302986145,
+              "name": "a4"
+            },
+            {
+              "time": 0.33207452297210693,
+              "name": "a5"
+            },
+            {
+              "time": 0.39848944544792175,
+              "name": null
+            }
+          ]
+        },
+        "df0": {
+          "attachment": [
+            {
+              "time": 0.06666667014360428,
+              "name": "df1"
+            },
+            {
+              "time": 0.13282981514930725,
+              "name": "df2"
+            },
+            {
+              "time": 0.19924472272396088,
+              "name": "df3"
+            },
+            {
+              "time": 0.2656596302986145,
+              "name": "df4"
+            },
+            {
+              "time": 0.33207452297210693,
+              "name": "df5"
+            },
+            {
+              "time": 0.39848944544792175,
+              "name": "df6"
+            },
+            {
+              "time": 0.4649043381214142,
+              "name": "df7"
+            },
+            {
+              "time": 0.5333333611488342,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "root": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1.6657135486602783,
+              "y": 1.6657135486602783,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "x": 1.6657135486602783,
+              "y": 1.6657135486602783
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "df0": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "a0": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {}
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

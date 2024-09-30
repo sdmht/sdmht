@@ -1,0 +1,230 @@
+
+10004.webp
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+侧发B右
+  rotate: false
+  xy: 773, 183
+  size: 72, 129
+  orig: 72, 129
+  offset: 0, 0
+  index: -1
+侧发B左
+  rotate: false
+  xy: 1534, 672
+  size: 58, 127
+  orig: 58, 127
+  offset: 0, 0
+  index: -1
+前发A
+  rotate: true
+  xy: 982, 479
+  size: 59, 73
+  orig: 59, 73
+  offset: 0, 0
+  index: -1
+前发A右
+  rotate: false
+  xy: 3, 3
+  size: 294, 176
+  orig: 294, 176
+  offset: 0, 0
+  index: -1
+前发A左
+  rotate: true
+  xy: 873, 473
+  size: 65, 106
+  orig: 65, 106
+  offset: 0, 0
+  index: -1
+前带子
+  rotate: true
+  xy: 860, 667
+  size: 143, 331
+  orig: 143, 331
+  offset: 0, 0
+  index: -1
+右手
+  rotate: false
+  xy: 1621, 788
+  size: 302, 222
+  orig: 305, 222
+  offset: 0, 0
+  index: -1
+右眉
+  rotate: true
+  xy: 1595, 773
+  size: 26, 14
+  orig: 26, 14
+  offset: 0, 0
+  index: -1
+右眼
+  rotate: false
+  xy: 852, 457
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+右眼线
+  rotate: false
+  xy: 760, 124
+  size: 21, 29
+  orig: 21, 29
+  offset: 0, 0
+  index: -1
+右袖
+  rotate: true
+  xy: 1926, 735
+  size: 275, 91
+  orig: 275, 91
+  offset: 0, 0
+  index: -1
+后发
+  rotate: false
+  xy: 300, 30
+  size: 310, 197
+  orig: 310, 197
+  offset: 0, 0
+  index: -1
+嘴
+  rotate: true
+  xy: 2020, 980
+  size: 30, 24
+  orig: 30, 24
+  offset: 0, 0
+  index: -1
+大球
+  rotate: false
+  xy: 3, 182
+  size: 290, 291
+  orig: 290, 291
+  offset: 0, 0
+  index: -1
+头
+  rotate: false
+  xy: 1420, 660
+  size: 111, 139
+  orig: 111, 139
+  offset: 0, 0
+  index: -1
+小球
+  rotate: false
+  xy: 1275, 658
+  size: 142, 141
+  orig: 142, 141
+  offset: 0, 0
+  index: -1
+左手
+  rotate: false
+  xy: 296, 230
+  size: 319, 243
+  orig: 321, 243
+  offset: 2, 0
+  index: -1
+左眉
+  rotate: false
+  xy: 300, 7
+  size: 33, 20
+  orig: 33, 20
+  offset: 0, 0
+  index: -1
+左眼
+  rotate: false
+  xy: 773, 156
+  size: 28, 24
+  orig: 28, 24
+  offset: 0, 0
+  index: -1
+左眼线
+  rotate: true
+  xy: 1158, 630
+  size: 34, 32
+  orig: 34, 32
+  offset: 0, 0
+  index: -1
+左袖
+  rotate: false
+  xy: 860, 813
+  size: 435, 197
+  orig: 435, 197
+  offset: 0, 0
+  index: -1
+帽子
+  rotate: true
+  xy: 748, 482
+  size: 178, 122
+  orig: 178, 122
+  offset: 0, 0
+  index: -1
+披风
+  rotate: false
+  xy: 3, 663
+  size: 854, 347
+  orig: 854, 347
+  offset: 0, 0
+  index: -1
+腰带
+  rotate: false
+  xy: 873, 609
+  size: 282, 55
+  orig: 282, 55
+  offset: 0, 0
+  index: -1
+衣服前
+  rotate: false
+  xy: 3, 476
+  size: 742, 184
+  orig: 742, 184
+  offset: 0, 0
+  index: -1
+补充发
+  rotate: false
+  xy: 1089, 556
+  size: 78, 50
+  orig: 78, 50
+  offset: 0, 0
+  index: -1
+裙子
+  rotate: true
+  xy: 618, 156
+  size: 317, 152
+  orig: 317, 152
+  offset: 0, 0
+  index: -1
+裙子-里
+  rotate: true
+  xy: 773, 315
+  size: 164, 76
+  orig: 164, 76
+  offset: 0, 0
+  index: -1
+裙子B
+  rotate: false
+  xy: 873, 541
+  size: 213, 65
+  orig: 213, 65
+  offset: 0, 0
+  index: -1
+身体
+  rotate: true
+  xy: 1298, 802
+  size: 208, 320
+  orig: 208, 320
+  offset: 0, 0
+  index: -1
+身体-里
+  rotate: true
+  xy: 1194, 666
+  size: 144, 78
+  orig: 144, 78
+  offset: 0, 0
+  index: -1
+马尾
+  rotate: true
+  xy: 613, 18
+  size: 135, 144
+  orig: 135, 144
+  offset: 0, 0
+  index: -1

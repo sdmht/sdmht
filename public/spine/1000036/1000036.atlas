@@ -1,0 +1,552 @@
+
+1000036.webp
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+attack
+  rotate: true
+  xy: 560, 165
+  size: 34, 26
+  orig: 34, 26
+  offset: 0, 0
+  index: -1
+fa1
+  rotate: false
+  xy: 371, 189
+  size: 79, 65
+  orig: 79, 65
+  offset: 0, 0
+  index: -1
+fa2
+  rotate: false
+  xy: 2, 128
+  size: 98, 126
+  orig: 98, 126
+  offset: 0, 0
+  index: -1
+hurt
+  rotate: false
+  xy: 917, 95
+  size: 33, 25
+  orig: 33, 25
+  offset: 0, 0
+  index: -1
+idle
+  rotate: false
+  xy: 845, 95
+  size: 34, 25
+  orig: 34, 25
+  offset: 0, 0
+  index: -1
+share/SS0
+  rotate: true
+  xy: 812, 160
+  size: 41, 36
+  orig: 41, 36
+  offset: 0, 0
+  index: -1
+share/SS1
+  rotate: true
+  xy: 938, 155
+  size: 41, 36
+  orig: 41, 36
+  offset: 0, 0
+  index: -1
+share/SS2
+  rotate: false
+  xy: 976, 125
+  size: 41, 36
+  orig: 41, 36
+  offset: 0, 0
+  index: -1
+share/b0
+  rotate: false
+  xy: 848, 122
+  size: 36, 31
+  orig: 36, 31
+  offset: 0, 0
+  index: -1
+share/b1
+  rotate: false
+  xy: 886, 122
+  size: 36, 31
+  orig: 36, 31
+  offset: 0, 0
+  index: -1
+share/b2
+  rotate: false
+  xy: 924, 122
+  size: 36, 31
+  orig: 36, 31
+  offset: 0, 0
+  index: -1
+share/b3
+  rotate: false
+  xy: 560, 88
+  size: 36, 31
+  orig: 36, 31
+  offset: 0, 0
+  index: -1
+share/b4
+  rotate: false
+  xy: 632, 94
+  size: 36, 31
+  orig: 36, 31
+  offset: 0, 0
+  index: -1
+share/b5
+  rotate: false
+  xy: 670, 94
+  size: 36, 31
+  orig: 36, 31
+  offset: 0, 0
+  index: -1
+share/bn1
+  rotate: true
+  xy: 724, 165
+  size: 36, 42
+  orig: 36, 42
+  offset: 0, 0
+  index: -1
+share/bn2
+  rotate: false
+  xy: 634, 170
+  size: 43, 41
+  orig: 43, 41
+  offset: 0, 0
+  index: -1
+share/bn3
+  rotate: true
+  xy: 186, 36
+  size: 44, 42
+  orig: 44, 42
+  offset: 0, 0
+  index: -1
+share/bn4
+  rotate: false
+  xy: 588, 171
+  size: 44, 40
+  orig: 44, 40
+  offset: 0, 0
+  index: -1
+share/df0
+  rotate: false
+  xy: 963, 207
+  size: 59, 47
+  orig: 59, 47
+  offset: 0, 0
+  index: -1
+share/df1
+  rotate: false
+  xy: 663, 213
+  size: 63, 41
+  orig: 63, 41
+  offset: 0, 0
+  index: -1
+share/df10
+  rotate: false
+  xy: 768, 160
+  size: 42, 41
+  orig: 42, 41
+  offset: 0, 0
+  index: -1
+share/df11
+  rotate: false
+  xy: 728, 203
+  size: 62, 51
+  orig: 62, 51
+  offset: 0, 0
+  index: -1
+share/df2
+  rotate: false
+  xy: 524, 201
+  size: 62, 53
+  orig: 62, 53
+  offset: 0, 0
+  index: -1
+share/df3
+  rotate: false
+  xy: 792, 203
+  size: 57, 51
+  orig: 57, 51
+  offset: 0, 0
+  index: -1
+share/df4
+  rotate: false
+  xy: 313, 168
+  size: 55, 47
+  orig: 55, 47
+  offset: 0, 0
+  index: -1
+share/df5
+  rotate: true
+  xy: 426, 135
+  size: 52, 37
+  orig: 52, 37
+  offset: 0, 0
+  index: -1
+share/df6
+  rotate: false
+  xy: 465, 142
+  size: 50, 52
+  orig: 50, 52
+  offset: 0, 0
+  index: -1
+share/df7
+  rotate: true
+  xy: 89, 25
+  size: 46, 51
+  orig: 46, 51
+  offset: 0, 0
+  index: -1
+share/df8
+  rotate: false
+  xy: 123, 80
+  size: 51, 48
+  orig: 51, 48
+  offset: 0, 0
+  index: -1
+share/df9
+  rotate: true
+  xy: 176, 82
+  size: 46, 45
+  orig: 46, 45
+  offset: 0, 0
+  index: -1
+share/gh3
+  rotate: true
+  xy: 102, 192
+  size: 62, 134
+  orig: 62, 134
+  offset: 0, 0
+  index: -1
+share/gh4
+  rotate: true
+  xy: 102, 145
+  size: 45, 131
+  orig: 45, 131
+  offset: 0, 0
+  index: -1
+share/gh5
+  rotate: true
+  xy: 238, 217
+  size: 37, 131
+  orig: 37, 131
+  offset: 0, 0
+  index: -1
+share/gh6
+  rotate: true
+  xy: 102, 130
+  size: 13, 101
+  orig: 13, 101
+  offset: 0, 0
+  index: -1
+share/hha10001
+  rotate: true
+  xy: 850, 155
+  size: 41, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+share/hha10002
+  rotate: true
+  xy: 894, 155
+  size: 41, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+share/hha10003
+  rotate: false
+  xy: 976, 163
+  size: 41, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+share/hha10004
+  rotate: false
+  xy: 517, 152
+  size: 41, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+share/hha10005
+  rotate: false
+  xy: 517, 108
+  size: 41, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+share/hha10006
+  rotate: false
+  xy: 560, 121
+  size: 41, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+share/hha10007
+  rotate: true
+  xy: 632, 127
+  size: 41, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+share/hha10008
+  rotate: true
+  xy: 676, 127
+  size: 41, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+share/hha10009
+  rotate: true
+  xy: 142, 33
+  size: 45, 42
+  orig: 45, 42
+  offset: 0, 0
+  index: -1
+share/hha10010
+  rotate: true
+  xy: 720, 122
+  size: 41, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+share/hha10011
+  rotate: true
+  xy: 764, 117
+  size: 41, 42
+  orig: 41, 42
+  offset: 0, 0
+  index: -1
+share/q0
+  rotate: true
+  xy: 2, 24
+  size: 102, 85
+  orig: 102, 85
+  offset: 0, 0
+  index: -1
+share/q1
+  rotate: true
+  xy: 452, 196
+  size: 58, 70
+  orig: 58, 70
+  offset: 0, 0
+  index: -1
+share/q2
+  rotate: false
+  xy: 235, 146
+  size: 58, 37
+  orig: 58, 37
+  offset: 0, 0
+  index: -1
+share/tf0
+  rotate: false
+  xy: 851, 198
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+share/yy0
+  rotate: false
+  xy: 808, 128
+  size: 38, 30
+  orig: 38, 30
+  offset: 0, 0
+  index: -1
+share/yy1
+  rotate: false
+  xy: 708, 96
+  size: 36, 24
+  orig: 36, 24
+  offset: 0, 0
+  index: -1
+share/yy2
+  rotate: false
+  xy: 603, 135
+  size: 27, 34
+  orig: 27, 34
+  offset: 0, 0
+  index: -1
+share/yy3
+  rotate: true
+  xy: 271, 118
+  size: 26, 22
+  orig: 26, 22
+  offset: 0, 0
+  index: -1
+share/yy4
+  rotate: false
+  xy: 603, 100
+  size: 27, 33
+  orig: 27, 33
+  offset: 0, 0
+  index: -1
+share/yy5
+  rotate: false
+  xy: 154, 2
+  size: 28, 29
+  orig: 28, 29
+  offset: 0, 0
+  index: -1
+share/yy6
+  rotate: false
+  xy: 679, 170
+  size: 43, 41
+  orig: 43, 41
+  offset: 0, 0
+  index: -1
+share/yy7
+  rotate: false
+  xy: 243, 117
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+stored
+  rotate: false
+  xy: 311, 142
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+storing
+  rotate: false
+  xy: 881, 95
+  size: 34, 25
+  orig: 34, 25
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 909, 198
+  size: 52, 56
+  orig: 52, 56
+  offset: 0, 0
+  index: -1
+youshou
+  rotate: true
+  xy: 228, 130
+  size: 13, 9
+  orig: 13, 9
+  offset: 0, 0
+  index: -1
+zuoshou
+  rotate: true
+  xy: 746, 92
+  size: 9, 15
+  orig: 9, 15
+  offset: 0, 0
+  index: -1
+因陀罗探险家/bao
+  rotate: false
+  xy: 746, 103
+  size: 15, 17
+  orig: 15, 17
+  offset: 0, 0
+  index: -1
+因陀罗探险家/datui_L
+  rotate: false
+  xy: 223, 95
+  size: 18, 33
+  orig: 18, 33
+  offset: 0, 0
+  index: -1
+因陀罗探险家/datui_R
+  rotate: true
+  xy: 808, 108
+  size: 18, 35
+  orig: 18, 35
+  offset: 0, 0
+  index: -1
+因陀罗探险家/shangb_L
+  rotate: false
+  xy: 295, 157
+  size: 14, 26
+  orig: 14, 26
+  offset: 0, 0
+  index: -1
+因陀罗探险家/shangbi_R
+  rotate: true
+  xy: 347, 147
+  size: 19, 21
+  orig: 19, 21
+  offset: 0, 0
+  index: -1
+因陀罗探险家/shenti
+  rotate: false
+  xy: 89, 73
+  size: 32, 53
+  orig: 32, 53
+  offset: 0, 0
+  index: -1
+因陀罗探险家/waitao_C
+  rotate: true
+  xy: 370, 139
+  size: 48, 54
+  orig: 48, 54
+  offset: 0, 0
+  index: -1
+因陀罗探险家/waiyi_L
+  rotate: true
+  xy: 2, 2
+  size: 20, 58
+  orig: 20, 58
+  offset: 0, 0
+  index: -1
+因陀罗探险家/waiyi_R
+  rotate: true
+  xy: 62, 2
+  size: 20, 53
+  orig: 20, 53
+  offset: 0, 0
+  index: -1
+因陀罗探险家/xiaobi_L
+  rotate: true
+  xy: 763, 97
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+因陀罗探险家/xiaobi_R
+  rotate: false
+  xy: 205, 130
+  size: 21, 13
+  orig: 21, 13
+  offset: 0, 0
+  index: -1
+因陀罗探险家/xiaobi_R-B
+  rotate: true
+  xy: 243, 95
+  size: 20, 24
+  orig: 20, 24
+  offset: 0, 0
+  index: -1
+因陀罗探险家/xiaotui_R
+  rotate: true
+  xy: 117, 2
+  size: 21, 35
+  orig: 21, 35
+  offset: 0, 0
+  index: -1
+因陀罗探险家/zt-x
+  rotate: true
+  xy: 465, 121
+  size: 19, 34
+  orig: 19, 34
+  offset: 0, 0
+  index: -1
+因陀罗探险家/帽子A
+  rotate: false
+  xy: 588, 213
+  size: 73, 41
+  orig: 73, 41
+  offset: 0, 0
+  index: -1
+因陀罗探险家/帽子B
+  rotate: false
+  xy: 238, 185
+  size: 73, 30
+  orig: 73, 30
+  offset: 0, 0
+  index: -1

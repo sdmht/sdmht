@@ -1,0 +1,181 @@
+
+10107.webp
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+侧发
+  rotate: false
+  xy: 315, 163
+  size: 43, 66
+  orig: 43, 66
+  offset: 0, 0
+  index: -1
+侧发2
+  rotate: true
+  xy: 1647, 358
+  size: 38, 99
+  orig: 38, 99
+  offset: 0, 0
+  index: -1
+侧发3
+  rotate: true
+  xy: 1749, 363
+  size: 33, 52
+  orig: 33, 52
+  offset: 0, 0
+  index: -1
+前发
+  rotate: false
+  xy: 1826, 375
+  size: 135, 126
+  orig: 135, 126
+  offset: 0, 0
+  index: -1
+右手
+  rotate: true
+  xy: 3, 13
+  size: 139, 179
+  orig: 139, 179
+  offset: 0, 0
+  index: -1
+右手指
+  rotate: false
+  xy: 361, 167
+  size: 38, 25
+  orig: 38, 25
+  offset: 0, 0
+  index: -1
+右眉毛
+  rotate: false
+  xy: 3, 3
+  size: 25, 7
+  orig: 25, 7
+  offset: 0, 0
+  index: -1
+右眼
+  rotate: false
+  xy: 410, 202
+  size: 30, 27
+  orig: 30, 27
+  offset: 0, 0
+  index: -1
+右腿
+  rotate: false
+  xy: 1504, 352
+  size: 140, 149
+  orig: 146, 152
+  offset: 6, 0
+  index: -1
+后发
+  rotate: true
+  xy: 185, 14
+  size: 138, 130
+  orig: 138, 130
+  offset: 0, 0
+  index: -1
+呆毛
+  rotate: false
+  xy: 1964, 429
+  size: 58, 72
+  orig: 58, 72
+  offset: 0, 0
+  index: -1
+嘴
+  rotate: false
+  xy: 2024, 403
+  size: 21, 23
+  orig: 21, 23
+  offset: 0, 0
+  index: -1
+头发左
+  rotate: true
+  xy: 1026, 332
+  size: 169, 186
+  orig: 169, 186
+  offset: 0, 0
+  index: -1
+左手
+  rotate: false
+  xy: 1366, 341
+  size: 135, 160
+  orig: 135, 160
+  offset: 0, 0
+  index: -1
+左手指
+  rotate: false
+  xy: 1964, 376
+  size: 57, 50
+  orig: 57, 50
+  offset: 0, 0
+  index: -1
+左眉毛
+  rotate: false
+  xy: 443, 206
+  size: 22, 23
+  orig: 22, 24
+  offset: 0, 1
+  index: -1
+左眼
+  rotate: false
+  xy: 361, 195
+  size: 46, 34
+  orig: 46, 34
+  offset: 0, 0
+  index: -1
+左腿
+  rotate: true
+  xy: 811, 336
+  size: 165, 212
+  orig: 165, 212
+  offset: 0, 0
+  index: -1
+枪
+  rotate: false
+  xy: 528, 321
+  size: 280, 180
+  orig: 280, 180
+  offset: 0, 0
+  index: -1
+缎带
+  rotate: false
+  xy: 3, 155
+  size: 309, 346
+  orig: 309, 346
+  offset: 0, 0
+  index: -1
+脸
+  rotate: false
+  xy: 741, 213
+  size: 98, 105
+  orig: 98, 105
+  offset: 0, 0
+  index: -1
+角
+  rotate: false
+  xy: 1647, 399
+  size: 176, 102
+  orig: 177, 102
+  offset: 1, 0
+  index: -1
+身体
+  rotate: false
+  xy: 315, 232
+  size: 210, 269
+  orig: 210, 270
+  offset: 0, 1
+  index: -1
+身体2
+  rotate: false
+  xy: 528, 235
+  size: 210, 83
+  orig: 210, 84
+  offset: 0, 1
+  index: -1
+辫子右
+  rotate: false
+  xy: 1215, 333
+  size: 148, 168
+  orig: 148, 168
+  offset: 0, 0
+  index: -1

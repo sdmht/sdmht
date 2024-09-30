@@ -1,0 +1,118 @@
+
+effect-24022.webp
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/d6
+  rotate: false
+  xy: 94, 70
+  size: 67, 56
+  orig: 67, 56
+  offset: 0, 0
+  index: -1
+images/d7
+  rotate: false
+  xy: 163, 70
+  size: 67, 56
+  orig: 67, 56
+  offset: 0, 0
+  index: -1
+images/d8
+  rotate: false
+  xy: 232, 70
+  size: 67, 56
+  orig: 67, 56
+  offset: 0, 0
+  index: -1
+images/d9
+  rotate: false
+  xy: 301, 70
+  size: 67, 56
+  orig: 67, 56
+  offset: 0, 0
+  index: -1
+images/guangyun
+  rotate: false
+  xy: 2, 36
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+images/wargolem_cannon_impact_a_sheet_blue_bright_001
+  rotate: true
+  xy: 2, 2
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+images/wargolem_cannon_impact_a_sheet_blue_bright_002
+  rotate: true
+  xy: 68, 2
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+images/wargolem_cannon_impact_a_sheet_blue_bright_003
+  rotate: true
+  xy: 94, 36
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+images/wargolem_cannon_impact_a_sheet_blue_bright_004
+  rotate: true
+  xy: 134, 2
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+images/wargolem_cannon_impact_a_sheet_blue_bright_005
+  rotate: true
+  xy: 160, 36
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+images/xc0
+  rotate: false
+  xy: 281, 52
+  size: 26, 16
+  orig: 26, 16
+  offset: 0, 0
+  index: -1
+images/xc1
+  rotate: false
+  xy: 226, 44
+  size: 53, 24
+  orig: 53, 24
+  offset: 0, 0
+  index: -1
+images/xc2
+  rotate: false
+  xy: 370, 89
+  size: 50, 37
+  orig: 50, 37
+  offset: 0, 0
+  index: -1
+images/xc3
+  rotate: false
+  xy: 422, 90
+  size: 48, 36
+  orig: 48, 36
+  offset: 0, 0
+  index: -1
+images/xc4
+  rotate: true
+  xy: 472, 81
+  size: 45, 34
+  orig: 45, 34
+  offset: 0, 0
+  index: -1
+images/xc5
+  rotate: true
+  xy: 200, 3
+  size: 31, 30
+  orig: 31, 30
+  offset: 0, 0
+  index: -1

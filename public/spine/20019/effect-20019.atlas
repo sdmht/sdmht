@@ -1,0 +1,111 @@
+
+effect-20019.webp
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+qw0
+  rotate: false
+  xy: 317, 17
+  size: 46, 47
+  orig: 46, 47
+  offset: 0, 0
+  index: -1
+qw1
+  rotate: true
+  xy: 424, 67
+  size: 59, 62
+  orig: 59, 62
+  offset: 0, 0
+  index: -1
+qw2
+  rotate: false
+  xy: 136, 2
+  size: 59, 62
+  orig: 59, 62
+  offset: 0, 0
+  index: -1
+qw3
+  rotate: true
+  xy: 293, 66
+  size: 60, 64
+  orig: 60, 64
+  offset: 0, 0
+  index: -1
+qw4
+  rotate: true
+  xy: 359, 67
+  size: 59, 63
+  orig: 59, 63
+  offset: 0, 0
+  index: -1
+shoujilizi_007
+  rotate: false
+  xy: 412, 37
+  size: 28, 28
+  orig: 31, 34
+  offset: 3, 0
+  index: -1
+shoujilizi_009
+  rotate: false
+  xy: 365, 20
+  size: 45, 45
+  orig: 48, 52
+  offset: 3, 0
+  index: -1
+shoujilizi_011
+  rotate: false
+  xy: 2, 2
+  size: 53, 55
+  orig: 55, 60
+  offset: 2, 0
+  index: -1
+shoujilizi_013
+  rotate: false
+  xy: 197, 7
+  size: 60, 61
+  orig: 60, 64
+  offset: 0, 0
+  index: -1
+shoujilizi_015
+  rotate: false
+  xy: 2, 59
+  size: 66, 67
+  orig: 72, 78
+  offset: 2, 5
+  index: -1
+shoujilizi_017
+  rotate: true
+  xy: 148, 70
+  size: 56, 71
+  orig: 72, 78
+  offset: 11, 3
+  index: -1
+shoujilizi_019
+  rotate: true
+  xy: 70, 69
+  size: 57, 76
+  orig: 72, 78
+  offset: 11, 0
+  index: -1
+shoujilizi_021
+  rotate: true
+  xy: 221, 74
+  size: 52, 70
+  orig: 72, 78
+  offset: 17, 0
+  index: -1
+shoujilizi_023
+  rotate: true
+  xy: 70, 33
+  size: 34, 64
+  orig: 72, 78
+  offset: 19, 6
+  index: -1
+tf0
+  rotate: false
+  xy: 259, 8
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,991 @@
+{
+  "skeleton": {
+    "hash": "6TAk+5JHIjAAonTk4CZgr9BXB/c",
+    "spine": "3.8",
+    "width": 475.0000305175781,
+    "height": 475.0000915527344
+  },
+  "bones": [
+    {
+      "name": "root",
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "bone49",
+      "parent": "root",
+      "rotation": 90,
+      "x": -2.247327211080119e-5,
+      "length": 35.56927490234375,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "bone59",
+      "parent": "root",
+      "rotation": 89.54757690429688,
+      "x": -2.1305215341271833e-5,
+      "length": 24.43230628967285,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "bone61",
+      "parent": "root",
+      "rotation": 88.7606201171875,
+      "x": -1.006658021651674e-5,
+      "length": 31.738555908203125,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    }
+  ],
+  "slots": [
+    {
+      "name": "texiao/tx_xl0001",
+      "bone": "bone49",
+      "attachment": "texiao/tx_xl0020",
+      "blend": "additive"
+    },
+    {
+      "name": "texiao/tx_dise",
+      "bone": "bone59",
+      "attachment": "texiao/tx_dise",
+      "blend": "additive"
+    },
+    {
+      "name": "texiao/tx_shouji0001",
+      "bone": "bone61",
+      "attachment": "texiao/tx_shouji0009",
+      "blend": "additive"
+    },
+    {
+      "name": "texiao/tx_shouji14",
+      "bone": "bone61",
+      "attachment": "texiao/tx_shouji0009",
+      "blend": "additive"
+    },
+    {
+      "name": "texiao/tx_shouji15",
+      "bone": "bone61",
+      "attachment": "texiao/tx_shouji0009",
+      "blend": "additive"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "texiao/tx_xl0001": {
+          "texiao/tx_xl0001": {
+            "type": "region",
+            "name": "texiao/tx_xl0001",
+            "path": "texiao/tx_xl0001",
+            "rotation": -90,
+            "x": -3.813019275665283,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0002": {
+            "type": "region",
+            "name": "texiao/tx_xl0002",
+            "path": "texiao/tx_xl0002",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0003": {
+            "type": "region",
+            "name": "texiao/tx_xl0003",
+            "path": "texiao/tx_xl0003",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0004": {
+            "type": "region",
+            "name": "texiao/tx_xl0004",
+            "path": "texiao/tx_xl0004",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0005": {
+            "type": "region",
+            "name": "texiao/tx_xl0005",
+            "path": "texiao/tx_xl0005",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0006": {
+            "type": "region",
+            "name": "texiao/tx_xl0006",
+            "path": "texiao/tx_xl0006",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0007": {
+            "type": "region",
+            "name": "texiao/tx_xl0007",
+            "path": "texiao/tx_xl0007",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0008": {
+            "type": "region",
+            "name": "texiao/tx_xl0008",
+            "path": "texiao/tx_xl0008",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0009": {
+            "type": "region",
+            "name": "texiao/tx_xl0009",
+            "path": "texiao/tx_xl0009",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0010": {
+            "type": "region",
+            "name": "texiao/tx_xl0010",
+            "path": "texiao/tx_xl0010",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0011": {
+            "type": "region",
+            "name": "texiao/tx_xl0011",
+            "path": "texiao/tx_xl0011",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0012": {
+            "type": "region",
+            "name": "texiao/tx_xl0012",
+            "path": "texiao/tx_xl0012",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0013": {
+            "type": "region",
+            "name": "texiao/tx_xl0013",
+            "path": "texiao/tx_xl0013",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0014": {
+            "type": "region",
+            "name": "texiao/tx_xl0014",
+            "path": "texiao/tx_xl0014",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0015": {
+            "type": "region",
+            "name": "texiao/tx_xl0015",
+            "path": "texiao/tx_xl0015",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0016": {
+            "type": "region",
+            "name": "texiao/tx_xl0016",
+            "path": "texiao/tx_xl0016",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0017": {
+            "type": "region",
+            "name": "texiao/tx_xl0017",
+            "path": "texiao/tx_xl0017",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0018": {
+            "type": "region",
+            "name": "texiao/tx_xl0018",
+            "path": "texiao/tx_xl0018",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0019": {
+            "type": "region",
+            "name": "texiao/tx_xl0019",
+            "path": "texiao/tx_xl0019",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          },
+          "texiao/tx_xl0020": {
+            "type": "region",
+            "name": "texiao/tx_xl0020",
+            "path": "texiao/tx_xl0020",
+            "rotation": -90,
+            "x": -3.81298828125,
+            "y": -7.62603759765625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 143,
+            "height": 156,
+            "color": "ffffffff"
+          }
+        },
+        "texiao/tx_dise": {
+          "texiao/tx_dise": {
+            "type": "region",
+            "name": "texiao/tx_dise",
+            "path": "texiao/tx_dise",
+            "rotation": -89.54756927490234,
+            "x": 0,
+            "y": -1.52587890625e-5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 256,
+            "height": 256,
+            "color": "ffffffff"
+          }
+        },
+        "texiao/tx_shouji0001": {
+          "texiao/tx_shouji0001": {
+            "type": "region",
+            "name": "texiao/tx_shouji0001",
+            "path": "texiao/tx_shouji0001",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0002": {
+            "type": "region",
+            "name": "texiao/tx_shouji0002",
+            "path": "texiao/tx_shouji0002",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0003": {
+            "type": "region",
+            "name": "texiao/tx_shouji0003",
+            "path": "texiao/tx_shouji0003",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0004": {
+            "type": "region",
+            "name": "texiao/tx_shouji0004",
+            "path": "texiao/tx_shouji0004",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0005": {
+            "type": "region",
+            "name": "texiao/tx_shouji0005",
+            "path": "texiao/tx_shouji0005",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0006": {
+            "type": "region",
+            "name": "texiao/tx_shouji0006",
+            "path": "texiao/tx_shouji0006",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0007": {
+            "type": "region",
+            "name": "texiao/tx_shouji0007",
+            "path": "texiao/tx_shouji0007",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0008": {
+            "type": "region",
+            "name": "texiao/tx_shouji0008",
+            "path": "texiao/tx_shouji0008",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0009": {
+            "type": "region",
+            "name": "texiao/tx_shouji0009",
+            "path": "texiao/tx_shouji0009",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          }
+        },
+        "texiao/tx_shouji14": {
+          "texiao/tx_shouji0001": {
+            "type": "region",
+            "name": "texiao/tx_shouji0001",
+            "path": "texiao/tx_shouji0001",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0002": {
+            "type": "region",
+            "name": "texiao/tx_shouji0002",
+            "path": "texiao/tx_shouji0002",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0003": {
+            "type": "region",
+            "name": "texiao/tx_shouji0003",
+            "path": "texiao/tx_shouji0003",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0004": {
+            "type": "region",
+            "name": "texiao/tx_shouji0004",
+            "path": "texiao/tx_shouji0004",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0005": {
+            "type": "region",
+            "name": "texiao/tx_shouji0005",
+            "path": "texiao/tx_shouji0005",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0006": {
+            "type": "region",
+            "name": "texiao/tx_shouji0006",
+            "path": "texiao/tx_shouji0006",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0007": {
+            "type": "region",
+            "name": "texiao/tx_shouji0007",
+            "path": "texiao/tx_shouji0007",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0008": {
+            "type": "region",
+            "name": "texiao/tx_shouji0008",
+            "path": "texiao/tx_shouji0008",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0009": {
+            "type": "region",
+            "name": "texiao/tx_shouji0009",
+            "path": "texiao/tx_shouji0009",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          }
+        },
+        "texiao/tx_shouji15": {
+          "texiao/tx_shouji0001": {
+            "type": "region",
+            "name": "texiao/tx_shouji0001",
+            "path": "texiao/tx_shouji0001",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0002": {
+            "type": "region",
+            "name": "texiao/tx_shouji0002",
+            "path": "texiao/tx_shouji0002",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0003": {
+            "type": "region",
+            "name": "texiao/tx_shouji0003",
+            "path": "texiao/tx_shouji0003",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0004": {
+            "type": "region",
+            "name": "texiao/tx_shouji0004",
+            "path": "texiao/tx_shouji0004",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0005": {
+            "type": "region",
+            "name": "texiao/tx_shouji0005",
+            "path": "texiao/tx_shouji0005",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0006": {
+            "type": "region",
+            "name": "texiao/tx_shouji0006",
+            "path": "texiao/tx_shouji0006",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0007": {
+            "type": "region",
+            "name": "texiao/tx_shouji0007",
+            "path": "texiao/tx_shouji0007",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0008": {
+            "type": "region",
+            "name": "texiao/tx_shouji0008",
+            "path": "texiao/tx_shouji0008",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          },
+          "texiao/tx_shouji0009": {
+            "type": "region",
+            "name": "texiao/tx_shouji0009",
+            "path": "texiao/tx_shouji0009",
+            "rotation": -88.76062774658203,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 475,
+            "height": 475,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "idle": {
+      "slots": {
+        "texiao/tx_dise": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff",
+              "curve": 0.07370002567768097,
+              "c2": 0.678260862827301,
+              "c3": 0.75,
+              "c4": 1
+            },
+            {
+              "time": 0.6666666865348816,
+              "color": "ffffff00"
+            }
+          ]
+        },
+        "texiao/tx_shouji0001": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.044467125087976456,
+              "name": "texiao/tx_shouji0002"
+            },
+            {
+              "time": 0.08893425017595291,
+              "name": "texiao/tx_shouji0003"
+            },
+            {
+              "time": 0.13333334028720856,
+              "name": "texiao/tx_shouji0004"
+            },
+            {
+              "time": 0.17786850035190582,
+              "name": "texiao/tx_shouji0005"
+            },
+            {
+              "time": 0.22233562171459198,
+              "name": "texiao/tx_shouji0006"
+            },
+            {
+              "time": 0.2666666805744171,
+              "name": "texiao/tx_shouji0007"
+            },
+            {
+              "time": 0.3112698495388031,
+              "name": "texiao/tx_shouji0008"
+            },
+            {
+              "time": 0.35573700070381165,
+              "name": "texiao/tx_shouji0009"
+            },
+            {
+              "time": 0.4000000059604645,
+              "name": null
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": null
+            }
+          ]
+        },
+        "texiao/tx_shouji14": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.044467125087976456,
+              "name": "texiao/tx_shouji0002"
+            },
+            {
+              "time": 0.08893425017595291,
+              "name": "texiao/tx_shouji0003"
+            },
+            {
+              "time": 0.13333334028720856,
+              "name": "texiao/tx_shouji0004"
+            },
+            {
+              "time": 0.17786850035190582,
+              "name": "texiao/tx_shouji0005"
+            },
+            {
+              "time": 0.22233562171459198,
+              "name": "texiao/tx_shouji0006"
+            },
+            {
+              "time": 0.2666666805744171,
+              "name": "texiao/tx_shouji0007"
+            },
+            {
+              "time": 0.3112698495388031,
+              "name": "texiao/tx_shouji0008"
+            },
+            {
+              "time": 0.35573700070381165,
+              "name": "texiao/tx_shouji0009"
+            },
+            {
+              "time": 0.4000000059604645,
+              "name": null
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": null
+            }
+          ]
+        },
+        "texiao/tx_shouji15": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.044467125087976456,
+              "name": "texiao/tx_shouji0002"
+            },
+            {
+              "time": 0.08893425017595291,
+              "name": "texiao/tx_shouji0003"
+            },
+            {
+              "time": 0.13333334028720856,
+              "name": "texiao/tx_shouji0004"
+            },
+            {
+              "time": 0.17786850035190582,
+              "name": "texiao/tx_shouji0005"
+            },
+            {
+              "time": 0.22233562171459198,
+              "name": "texiao/tx_shouji0006"
+            },
+            {
+              "time": 0.2666666805744171,
+              "name": "texiao/tx_shouji0007"
+            },
+            {
+              "time": 0.3112698495388031,
+              "name": "texiao/tx_shouji0008"
+            },
+            {
+              "time": 0.35573700070381165,
+              "name": "texiao/tx_shouji0009"
+            },
+            {
+              "time": 0.4000000059604645,
+              "name": null
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": null
+            }
+          ]
+        },
+        "texiao/tx_xl0001": {
+          "color": [
+            {
+              "time": 0,
+              "color": "ffffffff",
+              "curve": "stepped"
+            },
+            {
+              "time": 0.22233562171459198,
+              "color": "ffffffff"
+            },
+            {
+              "time": 0.6666666865348816,
+              "color": "ffffff00"
+            }
+          ]
+        }
+      },
+      "bones": {
+        "bone59": {
+          "scale": [
+            {
+              "time": 0,
+              "x": 0.3642868995666504,
+              "y": 0.3642868995666504,
+              "curve": 0,
+              "c2": 0.782608687877655,
+              "c3": 0.75,
+              "c4": 1
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1.425238847732544,
+              "y": 1.425238847732544
+            }
+          ]
+        },
+        "bone49": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": -146.43035888671875,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": -146.43035888671875
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": 0.06417029350996017,
+              "c2": 0.4956521689891815,
+              "c3": 0.5069919228553772,
+              "c4": 1
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 2.469578981399536,
+              "y": 2.469578981399536
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

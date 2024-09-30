@@ -1,0 +1,286 @@
+
+10005.webp
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 1062, 654
+  size: 115, 70
+  orig: 115, 70
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 1180, 680
+  size: 55, 44
+  orig: 55, 44
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 637, 273
+  size: 145, 196
+  orig: 145, 196
+  offset: 0, 0
+  index: -1
+4
+  rotate: true
+  xy: 894, 670
+  size: 219, 165
+  orig: 223, 165
+  offset: 0, 0
+  index: -1
+5
+  rotate: true
+  xy: 1536, 743
+  size: 156, 97
+  orig: 156, 97
+  offset: 0, 0
+  index: -1
+6
+  rotate: true
+  xy: 331, 292
+  size: 331, 303
+  orig: 331, 303
+  offset: 0, 0
+  index: -1
+7
+  rotate: false
+  xy: 3, 235
+  size: 325, 388
+  orig: 325, 388
+  offset: 0, 0
+  index: -1
+上臂-Y
+  rotate: false
+  xy: 793, 492
+  size: 91, 192
+  orig: 92, 192
+  offset: 0, 0
+  index: -1
+前发
+  rotate: false
+  xy: 887, 531
+  size: 158, 136
+  orig: 158, 136
+  offset: 0, 0
+  index: -1
+右手
+  rotate: true
+  xy: 478, 628
+  size: 56, 76
+  orig: 56, 76
+  offset: 0, 0
+  index: -1
+右眼
+  rotate: false
+  xy: 272, 44
+  size: 38, 28
+  orig: 38, 28
+  offset: 0, 0
+  index: -1
+嘴
+  rotate: false
+  xy: 1936, 893
+  size: 28, 20
+  orig: 28, 20
+  offset: 0, 0
+  index: -1
+外套背面
+  rotate: false
+  xy: 1062, 727
+  size: 223, 168
+  orig: 223, 168
+  offset: 0, 0
+  index: -1
+头
+  rotate: false
+  xy: 1404, 764
+  size: 129, 135
+  orig: 129, 135
+  offset: 0, 0
+  index: -1
+头饰
+  rotate: false
+  xy: 331, 248
+  size: 62, 41
+  orig: 62, 41
+  offset: 0, 0
+  index: -1
+头饰2
+  rotate: false
+  xy: 1404, 714
+  size: 61, 47
+  orig: 61, 47
+  offset: 0, 0
+  index: -1
+小臂-Y
+  rotate: false
+  xy: 272, 75
+  size: 83, 157
+  orig: 83, 157
+  offset: 0, 0
+  index: -1
+小臂-Z
+  rotate: false
+  xy: 1936, 916
+  size: 90, 105
+  orig: 91, 105
+  offset: 0, 0
+  index: -1
+左手
+  rotate: false
+  xy: 1636, 829
+  size: 42, 70
+  orig: 42, 70
+  offset: 0, 0
+  index: -1
+左眼
+  rotate: false
+  xy: 1636, 799
+  size: 21, 27
+  orig: 21, 27
+  offset: 0, 0
+  index: -1
+带子-Z
+  rotate: false
+  xy: 637, 472
+  size: 153, 212
+  orig: 153, 212
+  offset: 0, 0
+  index: -1
+带子2-Y
+  rotate: true
+  xy: 1684, 893
+  size: 128, 249
+  orig: 128, 249
+  offset: 0, 0
+  index: -1
+带子2-Z
+  rotate: true
+  xy: 1288, 709
+  size: 186, 113
+  orig: 186, 113
+  offset: 0, 0
+  index: -1
+手套边右
+  rotate: false
+  xy: 1048, 535
+  size: 46, 40
+  orig: 46, 40
+  offset: 0, 0
+  index: -1
+手套边左
+  rotate: false
+  xy: 3, 3
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
+毗湿奴带子2-L
+  rotate: false
+  xy: 1053, 898
+  size: 320, 123
+  orig: 320, 123
+  offset: 0, 0
+  index: -1
+毗湿奴带子y
+  rotate: true
+  xy: 478, 892
+  size: 129, 572
+  orig: 131, 582
+  offset: 0, 10
+  index: -1
+毗湿奴的链子
+  rotate: false
+  xy: 1048, 578
+  size: 114, 73
+  orig: 114, 73
+  offset: 0, 0
+  index: -1
+环-Y
+  rotate: false
+  xy: 785, 442
+  size: 13, 27
+  orig: 13, 27
+  offset: 0, 0
+  index: -1
+环-Z
+  rotate: true
+  xy: 793, 472
+  size: 17, 24
+  orig: 17, 24
+  offset: 0, 0
+  index: -1
+眉毛
+  rotate: false
+  xy: 887, 499
+  size: 59, 29
+  orig: 59, 29
+  offset: 0, 0
+  index: -1
+蓝珠子-Y
+  rotate: false
+  xy: 1468, 746
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+蓝珠子-Z
+  rotate: false
+  xy: 396, 274
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+裙子
+  rotate: false
+  xy: 3, 43
+  size: 266, 189
+  orig: 270, 189
+  offset: 3, 0
+  index: -1
+裙子2
+  rotate: false
+  xy: 1376, 902
+  size: 305, 119
+  orig: 305, 119
+  offset: 0, 0
+  index: -1
+裙摆-L
+  rotate: false
+  xy: 478, 687
+  size: 413, 202
+  orig: 413, 202
+  offset: 0, 0
+  index: -1
+身体(2)
+  rotate: false
+  xy: 3, 626
+  size: 472, 395
+  orig: 472, 395
+  offset: 0, 0
+  index: -1
+镯子右
+  rotate: false
+  xy: 557, 658
+  size: 36, 26
+  orig: 36, 26
+  offset: 0, 0
+  index: -1
+镯子左
+  rotate: false
+  xy: 44, 13
+  size: 28, 27
+  orig: 28, 27
+  offset: 0, 0
+  index: -1
+饰品2
+  rotate: true
+  xy: 2029, 1001
+  size: 20, 15
+  orig: 20, 15
+  offset: 0, 0
+  index: -1

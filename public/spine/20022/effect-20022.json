@@ -1,0 +1,1053 @@
+{
+  "skeleton": {
+    "hash": "Mw5VkoBxkNWbFlGT5jl5HWHZado",
+    "spine": "3.8",
+    "width": 665.6067504882812,
+    "height": 677.9327392578125
+  },
+  "bones": [
+    {
+      "name": "root",
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "bone",
+      "parent": "root",
+      "x": 0.74090576171875,
+      "y": 7.455131530761719,
+      "scaleX": 3.081512451171875,
+      "scaleY": 3.081512451171875,
+      "length": 61.22354507446289,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "bone2",
+      "parent": "root",
+      "rotation": 90,
+      "x": 3.537200927734375,
+      "y": -4.142547607421875,
+      "scaleX": 2.659179925918579,
+      "scaleY": 2.659179925918579,
+      "length": 82.6751937866211,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    }
+  ],
+  "slots": [
+    {
+      "name": "0",
+      "bone": "bone",
+      "attachment": "0",
+      "blend": "additive"
+    },
+    {
+      "name": "1",
+      "bone": "bone",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "2",
+      "bone": "bone",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "3",
+      "bone": "bone",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "4",
+      "bone": "bone",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "5",
+      "bone": "bone",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "6",
+      "bone": "bone",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "7",
+      "bone": "bone",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "8",
+      "bone": "bone",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "attack_shouji_008",
+      "bone": "bone2",
+      "attachment": "attack_shouji_008",
+      "blend": "additive"
+    },
+    {
+      "name": "attack_shouji_009",
+      "bone": "bone2",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "attack_shouji_010",
+      "bone": "bone2",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "attack_shouji_011",
+      "bone": "bone2",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "attack_shouji_012",
+      "bone": "bone2",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "attack_shouji_013",
+      "bone": "bone2",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "attack_shouji_014",
+      "bone": "bone2",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "attack_shouji_015",
+      "bone": "bone2",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "attack_shouji_016",
+      "bone": "bone2",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "attack_shouji_017",
+      "bone": "bone2",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "attack_shouji_018",
+      "bone": "bone2",
+      "attachment": null,
+      "blend": "additive"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "0": {
+          "0": {
+            "type": "region",
+            "name": "0",
+            "path": "0",
+            "rotation": 0,
+            "x": -4.4339599609375,
+            "y": 16.257965087890625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 220,
+            "color": "ffffffff"
+          }
+        },
+        "1": {
+          "1": {
+            "type": "region",
+            "name": "1",
+            "path": "1",
+            "rotation": 0,
+            "x": -4.4339599609375,
+            "y": 16.257965087890625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 220,
+            "color": "ffffffff"
+          }
+        },
+        "2": {
+          "2": {
+            "type": "region",
+            "name": "2",
+            "path": "2",
+            "rotation": 0,
+            "x": -4.4339599609375,
+            "y": 16.257965087890625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 220,
+            "color": "ffffffff"
+          }
+        },
+        "3": {
+          "3": {
+            "type": "region",
+            "name": "3",
+            "path": "3",
+            "rotation": 0,
+            "x": -4.4339599609375,
+            "y": 16.257965087890625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 220,
+            "color": "ffffffff"
+          }
+        },
+        "4": {
+          "4": {
+            "type": "region",
+            "name": "4",
+            "path": "4",
+            "rotation": 0,
+            "x": -4.4339599609375,
+            "y": 16.257965087890625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 220,
+            "color": "ffffffff"
+          }
+        },
+        "5": {
+          "5": {
+            "type": "region",
+            "name": "5",
+            "path": "5",
+            "rotation": 0,
+            "x": -4.4339599609375,
+            "y": 16.257965087890625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 220,
+            "color": "ffffffff"
+          }
+        },
+        "6": {
+          "6": {
+            "type": "region",
+            "name": "6",
+            "path": "6",
+            "rotation": 0,
+            "x": -4.4339599609375,
+            "y": 16.257965087890625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 220,
+            "color": "ffffffff"
+          }
+        },
+        "7": {
+          "7": {
+            "type": "region",
+            "name": "7",
+            "path": "7",
+            "rotation": 0,
+            "x": -4.4339599609375,
+            "y": 16.257965087890625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 220,
+            "color": "ffffffff"
+          }
+        },
+        "8": {
+          "8": {
+            "type": "region",
+            "name": "8",
+            "path": "8",
+            "rotation": 0,
+            "x": -4.4339599609375,
+            "y": 16.257965087890625,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 220,
+            "color": "ffffffff"
+          }
+        },
+        "attack_shouji_008": {
+          "attack_shouji_008": {
+            "type": "region",
+            "name": "attack_shouji_008",
+            "path": "attack_shouji_008",
+            "rotation": -90,
+            "x": 4.4157891273498535,
+            "y": -9.567502975463867,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 208,
+            "height": 205,
+            "color": "ffffffff"
+          }
+        },
+        "attack_shouji_009": {
+          "attack_shouji_009": {
+            "type": "region",
+            "name": "attack_shouji_009",
+            "path": "attack_shouji_009",
+            "rotation": -90,
+            "x": 4.4157891273498535,
+            "y": -9.567502975463867,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 208,
+            "height": 205,
+            "color": "ffffffff"
+          }
+        },
+        "attack_shouji_010": {
+          "attack_shouji_010": {
+            "type": "region",
+            "name": "attack_shouji_010",
+            "path": "attack_shouji_010",
+            "rotation": -90,
+            "x": 4.4157891273498535,
+            "y": -9.567502975463867,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 208,
+            "height": 205,
+            "color": "ffffffff"
+          }
+        },
+        "attack_shouji_011": {
+          "attack_shouji_011": {
+            "type": "region",
+            "name": "attack_shouji_011",
+            "path": "attack_shouji_011",
+            "rotation": -90,
+            "x": 4.4157891273498535,
+            "y": -9.567502975463867,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 208,
+            "height": 205,
+            "color": "ffffffff"
+          }
+        },
+        "attack_shouji_012": {
+          "attack_shouji_012": {
+            "type": "region",
+            "name": "attack_shouji_012",
+            "path": "attack_shouji_012",
+            "rotation": -90,
+            "x": 4.4157891273498535,
+            "y": -9.567502975463867,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 208,
+            "height": 205,
+            "color": "ffffffff"
+          }
+        },
+        "attack_shouji_013": {
+          "attack_shouji_013": {
+            "type": "region",
+            "name": "attack_shouji_013",
+            "path": "attack_shouji_013",
+            "rotation": -90,
+            "x": 4.4157891273498535,
+            "y": -9.567502975463867,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 208,
+            "height": 205,
+            "color": "ffffffff"
+          }
+        },
+        "attack_shouji_014": {
+          "attack_shouji_014": {
+            "type": "region",
+            "name": "attack_shouji_014",
+            "path": "attack_shouji_014",
+            "rotation": -90,
+            "x": 4.4157891273498535,
+            "y": -9.567502975463867,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 208,
+            "height": 205,
+            "color": "ffffffff"
+          }
+        },
+        "attack_shouji_015": {
+          "attack_shouji_015": {
+            "type": "region",
+            "name": "attack_shouji_015",
+            "path": "attack_shouji_015",
+            "rotation": -90,
+            "x": 4.4157891273498535,
+            "y": -9.567502975463867,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 208,
+            "height": 205,
+            "color": "ffffffff"
+          }
+        },
+        "attack_shouji_016": {
+          "attack_shouji_016": {
+            "type": "region",
+            "name": "attack_shouji_016",
+            "path": "attack_shouji_016",
+            "rotation": -90,
+            "x": 4.4157891273498535,
+            "y": -9.567502975463867,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 208,
+            "height": 205,
+            "color": "ffffffff"
+          }
+        },
+        "attack_shouji_017": {
+          "attack_shouji_017": {
+            "type": "region",
+            "name": "attack_shouji_017",
+            "path": "attack_shouji_017",
+            "rotation": -90,
+            "x": 4.4157891273498535,
+            "y": -9.567502975463867,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 208,
+            "height": 205,
+            "color": "ffffffff"
+          }
+        },
+        "attack_shouji_018": {
+          "attack_shouji_018": {
+            "type": "region",
+            "name": "attack_shouji_018",
+            "path": "attack_shouji_018",
+            "rotation": -90,
+            "x": 4.4157891273498535,
+            "y": -9.567502975463867,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 208,
+            "height": 205,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "idle": {
+      "slots": {
+        "0": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "0"
+            },
+            {
+              "time": 0.06666667014360428,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "1": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.06666667014360428,
+              "name": "1"
+            },
+            {
+              "time": 0.13333334028720856,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "2": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.13333334028720856,
+              "name": "2"
+            },
+            {
+              "time": 0.20000000298023224,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "3": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.20000000298023224,
+              "name": "3"
+            },
+            {
+              "time": 0.2666666805744171,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "4": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.2666666805744171,
+              "name": "4"
+            },
+            {
+              "time": 0.3333333432674408,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "5": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.3333333432674408,
+              "name": "5"
+            },
+            {
+              "time": 0.4000000059604645,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "6": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.4000000059604645,
+              "name": "6"
+            },
+            {
+              "time": 0.46666666865348816,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "7": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.46666666865348816,
+              "name": "7"
+            },
+            {
+              "time": 0.5333333611488342,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "8": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.5333333611488342,
+              "name": "8"
+            },
+            {
+              "time": 0.6000000238418579,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "attack_shouji_008": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "attack_shouji_008"
+            },
+            {
+              "time": 0.06666667014360428,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "attack_shouji_009": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.06666667014360428,
+              "name": "attack_shouji_009"
+            },
+            {
+              "time": 0.13333334028720856,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "attack_shouji_010": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.13333334028720856,
+              "name": "attack_shouji_010"
+            },
+            {
+              "time": 0.20000000298023224,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "attack_shouji_011": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.20000000298023224,
+              "name": "attack_shouji_011"
+            },
+            {
+              "time": 0.2666666805744171,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "attack_shouji_012": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.2666666805744171,
+              "name": "attack_shouji_012"
+            },
+            {
+              "time": 0.3333333432674408,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "attack_shouji_013": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.3333333432674408,
+              "name": "attack_shouji_013"
+            },
+            {
+              "time": 0.4000000059604645,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "attack_shouji_014": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.4000000059604645,
+              "name": "attack_shouji_014"
+            },
+            {
+              "time": 0.46666666865348816,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "attack_shouji_015": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.46666666865348816,
+              "name": "attack_shouji_015"
+            },
+            {
+              "time": 0.5333333611488342,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "attack_shouji_016": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.5333333611488342,
+              "name": "attack_shouji_016"
+            },
+            {
+              "time": 0.6000000238418579,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "attack_shouji_017": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.6000000238418579,
+              "name": "attack_shouji_017"
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": null
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        },
+        "attack_shouji_018": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": "attack_shouji_018"
+            },
+            {
+              "time": 0.7333333492279053,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "root": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7333333492279053,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7333333492279053,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 2.3150126934051514,
+              "y": 2.3150126934051514,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7333333492279053,
+              "x": 2.3150126934051514,
+              "y": 2.3150126934051514
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7333333492279053,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "bone": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7333333492279053,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7333333492279053,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 0.46752414107322693,
+              "y": 0.46752414107322693,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7333333492279053,
+              "x": 0.46752414107322693,
+              "y": 0.46752414107322693
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0.6000000238418579,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7333333492279053,
+              "x": 0,
+              "y": 0.6000000238418579
+            }
+          ]
+        },
+        "bone2": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7333333492279053,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7333333492279053,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 0.497092068195343,
+              "y": 0.497092068195343,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7333333492279053,
+              "x": 0.497092068195343,
+              "y": 0.497092068195343
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.7333333492279053,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        },
+        {
+          "offsets": [],
+          "time": 0.7333333492279053
+        }
+      ]
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

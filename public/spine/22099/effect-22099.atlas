@@ -1,0 +1,83 @@
+
+effect-22099.webp
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+resource/attack-baokai_006
+  rotate: false
+  xy: 613, 61
+  size: 65, 65
+  orig: 79, 82
+  offset: 5, 10
+  index: -1
+resource/attack-baokai_007
+  rotate: false
+  xy: 680, 61
+  size: 65, 65
+  orig: 79, 82
+  offset: 5, 10
+  index: -1
+resource/attack-baokai_008
+  rotate: false
+  xy: 158, 52
+  size: 74, 74
+  orig: 79, 82
+  offset: 1, 5
+  index: -1
+resource/attack-baokai_009
+  rotate: false
+  xy: 234, 52
+  size: 74, 74
+  orig: 79, 82
+  offset: 1, 5
+  index: -1
+resource/attack-baokai_010
+  rotate: false
+  xy: 2, 51
+  size: 76, 75
+  orig: 79, 82
+  offset: 1, 4
+  index: -1
+resource/attack-baokai_011
+  rotate: false
+  xy: 80, 51
+  size: 76, 75
+  orig: 79, 82
+  offset: 1, 4
+  index: -1
+resource/attack-baokai_012
+  rotate: true
+  xy: 463, 55
+  size: 71, 72
+  orig: 79, 82
+  offset: 1, 6
+  index: -1
+resource/attack-baokai_013
+  rotate: true
+  xy: 388, 55
+  size: 71, 73
+  orig: 79, 82
+  offset: 1, 5
+  index: -1
+resource/attack-baokai_014
+  rotate: true
+  xy: 537, 58
+  size: 68, 74
+  orig: 79, 82
+  offset: 1, 3
+  index: -1
+resource/attack-baokai_015
+  rotate: true
+  xy: 310, 55
+  size: 71, 76
+  orig: 79, 82
+  offset: 1, 2
+  index: -1
+resource/attack-baokaiquan01_007
+  rotate: false
+  xy: 613, 2
+  size: 57, 57
+  orig: 60, 60
+  offset: 1, 1
+  index: -1

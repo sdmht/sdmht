@@ -1,0 +1,83 @@
+
+effect-20057.webp
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+c0
+  rotate: false
+  xy: 308, 3
+  size: 64, 49
+  orig: 64, 49
+  offset: 0, 0
+  index: -1
+c1
+  rotate: false
+  xy: 444, 8
+  size: 63, 52
+  orig: 63, 52
+  offset: 0, 0
+  index: -1
+c2
+  rotate: false
+  xy: 379, 3
+  size: 63, 55
+  orig: 63, 55
+  offset: 0, 0
+  index: -1
+c3
+  rotate: true
+  xy: 443, 62
+  size: 63, 54
+  orig: 63, 54
+  offset: 0, 0
+  index: -1
+hg0
+  rotate: false
+  xy: 379, 60
+  size: 62, 65
+  orig: 62, 65
+  offset: 0, 0
+  index: -1
+hg1
+  rotate: false
+  xy: 308, 54
+  size: 69, 71
+  orig: 69, 71
+  offset: 0, 0
+  index: -1
+hg2
+  rotate: false
+  xy: 234, 51
+  size: 72, 74
+  orig: 72, 74
+  offset: 0, 0
+  index: -1
+hg3
+  rotate: false
+  xy: 158, 50
+  size: 74, 75
+  orig: 74, 75
+  offset: 0, 0
+  index: -1
+hg4
+  rotate: false
+  xy: 81, 49
+  size: 75, 76
+  orig: 75, 76
+  offset: 0, 0
+  index: -1
+hg5
+  rotate: false
+  xy: 2, 47
+  size: 77, 78
+  orig: 77, 78
+  offset: 0, 0
+  index: -1
+hg6
+  rotate: false
+  xy: 81, 2
+  size: 49, 45
+  orig: 49, 45
+  offset: 0, 0
+  index: -1

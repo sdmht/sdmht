@@ -1,0 +1,241 @@
+{
+  "skeleton": {
+    "hash": "Btrw2csNdTIIQi6W/XIXnUanjN4",
+    "spine": "3.8",
+    "width": 518.0656127929688,
+    "height": 380.4543762207031
+  },
+  "bones": [
+    {
+      "name": "root",
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "sss0",
+      "parent": "root",
+      "x": 11.911396026611328,
+      "y": 16.651458740234375,
+      "scaleX": 4.04738712310791,
+      "scaleY": 4.04738712310791,
+      "length": 32.249027252197266,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    }
+  ],
+  "slots": [
+    {
+      "name": "sss0",
+      "bone": "sss0",
+      "attachment": "sss0",
+      "blend": "additive"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "sss0": {
+          "sss0": {
+            "type": "region",
+            "name": "sss0",
+            "path": "sss0",
+            "rotation": 0,
+            "x": 1.1444091796875e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 128,
+            "height": 94,
+            "color": "ffffffff"
+          },
+          "sss1": {
+            "type": "region",
+            "name": "sss1",
+            "path": "sss1",
+            "rotation": 0,
+            "x": 24.913402557373047,
+            "y": -3.050593614578247,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 222,
+            "height": 155,
+            "color": "ffffffff"
+          },
+          "sss2": {
+            "type": "region",
+            "name": "sss2",
+            "path": "sss2",
+            "rotation": 0,
+            "x": 17.032638549804688,
+            "y": -3.5590262413024902,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 219,
+            "height": 169,
+            "color": "ffffffff"
+          },
+          "sss3": {
+            "type": "region",
+            "name": "sss3",
+            "path": "sss3",
+            "rotation": 0,
+            "x": 14.998881340026855,
+            "y": -4.321690082550049,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 185,
+            "height": 145,
+            "color": "ffffffff"
+          },
+          "sss4": {
+            "type": "region",
+            "name": "sss4",
+            "path": "sss4",
+            "rotation": 0,
+            "x": 3.5590813159942627,
+            "y": 0.2542293071746826,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 160,
+            "height": 139,
+            "color": "ffffffff"
+          },
+          "sss5": {
+            "type": "region",
+            "name": "sss5",
+            "path": "sss5",
+            "rotation": 0,
+            "x": 4.830163955688477,
+            "y": -2.033737897872925,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 164,
+            "height": 121,
+            "color": "ffffffff"
+          },
+          "sss6": {
+            "type": "region",
+            "name": "sss6",
+            "path": "sss6",
+            "rotation": 0,
+            "x": 2.796403169631958,
+            "y": -6.101221561431885,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 124,
+            "height": 110,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "idle": {
+      "slots": {
+        "sss0": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "sss0"
+            },
+            {
+              "time": 0.08074817061424255,
+              "name": "sss1"
+            },
+            {
+              "time": 0.1614963412284851,
+              "name": "sss2"
+            },
+            {
+              "time": 0.24224449694156647,
+              "name": "sss3"
+            },
+            {
+              "time": 0.3229926824569702,
+              "name": "sss4"
+            },
+            {
+              "time": 0.40374085307121277,
+              "name": "sss5"
+            },
+            {
+              "time": 0.48448899388313293,
+              "name": "sss6"
+            },
+            {
+              "time": 0.5652371644973755,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "root": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6333333253860474,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

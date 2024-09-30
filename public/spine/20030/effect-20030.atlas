@@ -1,0 +1,118 @@
+
+effect-20030.webp
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bn0
+  rotate: false
+  xy: 366, 79
+  size: 39, 41
+  orig: 39, 41
+  offset: 0, 0
+  index: -1
+bn1
+  rotate: false
+  xy: 407, 79
+  size: 39, 41
+  orig: 39, 41
+  offset: 0, 0
+  index: -1
+bn2
+  rotate: false
+  xy: 448, 79
+  size: 39, 41
+  orig: 39, 41
+  offset: 0, 0
+  index: -1
+bn3
+  rotate: true
+  xy: 366, 38
+  size: 39, 41
+  orig: 39, 41
+  offset: 0, 0
+  index: -1
+bn4
+  rotate: true
+  xy: 409, 38
+  size: 39, 41
+  orig: 39, 41
+  offset: 0, 0
+  index: -1
+bn5
+  rotate: false
+  xy: 452, 36
+  size: 39, 41
+  orig: 39, 41
+  offset: 0, 0
+  index: -1
+bn6
+  rotate: true
+  xy: 285, 19
+  size: 39, 41
+  orig: 39, 41
+  offset: 0, 0
+  index: -1
+bn7
+  rotate: true
+  xy: 140, 2
+  size: 39, 41
+  orig: 39, 41
+  offset: 0, 0
+  index: -1
+shouji op_011
+  rotate: true
+  xy: 285, 60
+  size: 60, 79
+  orig: 74, 89
+  offset: 7, 3
+  index: -1
+shouji op_012
+  rotate: true
+  xy: 285, 60
+  size: 60, 79
+  orig: 74, 89
+  offset: 7, 3
+  index: -1
+shouji op_013
+  rotate: false
+  xy: 2, 31
+  size: 66, 89
+  orig: 74, 89
+  offset: 4, 0
+  index: -1
+shouji op_014
+  rotate: false
+  xy: 2, 31
+  size: 66, 89
+  orig: 74, 89
+  offset: 4, 0
+  index: -1
+shouji op_015
+  rotate: false
+  xy: 70, 33
+  size: 68, 87
+  orig: 74, 89
+  offset: 3, 0
+  index: -1
+shouji op_016
+  rotate: false
+  xy: 214, 44
+  size: 69, 76
+  orig: 74, 89
+  offset: 2, 4
+  index: -1
+shouji op_017
+  rotate: false
+  xy: 214, 44
+  size: 69, 76
+  orig: 74, 89
+  offset: 2, 4
+  index: -1
+shouji op_018
+  rotate: false
+  xy: 140, 43
+  size: 72, 77
+  orig: 74, 89
+  offset: 1, 4
+  index: -1

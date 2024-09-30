@@ -1,0 +1,880 @@
+{
+  "skeleton": {
+    "hash": "XIQASyGQ888oFIH7kR9AblytTCs",
+    "spine": "3.8",
+    "width": 642.4273681640625,
+    "height": 642.42724609375
+  },
+  "bones": [
+    {
+      "name": "root",
+      "inheritRotation": true,
+      "inheritScale": true
+    },
+    {
+      "name": "bone",
+      "parent": "root",
+      "rotation": 88.18171691894531,
+      "x": -0.9999534487724304,
+      "y": 18.000011444091797,
+      "scaleX": 1.0707120895385742,
+      "scaleY": 1.0707120895385742,
+      "length": 63.03171157836914,
+      "inheritRotation": true,
+      "inheritScale": true
+    },
+    {
+      "name": "bone2",
+      "parent": "root",
+      "rotation": 1.6365783214569092,
+      "x": -1.0000061988830566,
+      "y": 12.00004768371582,
+      "scaleX": 3.689312219619751,
+      "scaleY": 3.689312219619751,
+      "length": 35.014251708984375,
+      "inheritRotation": true,
+      "inheritScale": true
+    },
+    {
+      "name": "t9",
+      "parent": "root",
+      "rotation": 90,
+      "x": 3.059967041015625,
+      "y": -5.053009033203125,
+      "scaleX": 1.9704513549804688,
+      "scaleY": 1.9704513549804688,
+      "length": 62.1024169921875,
+      "inheritRotation": true,
+      "inheritScale": true
+    }
+  ],
+  "slots": [
+    {
+      "name": "guangqiu1",
+      "bone": "bone",
+      "attachment": "guangqiu1",
+      "blend": "additive"
+    },
+    {
+      "name": "j10",
+      "bone": "bone2",
+      "attachment": "j5",
+      "blend": "additive"
+    },
+    {
+      "name": "t9",
+      "bone": "t9",
+      "attachment": "t7",
+      "blend": "additive"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "guangqiu1": {
+          "guangqiu1": {
+            "type": "region",
+            "name": "guangqiu1",
+            "path": "guangqiu1",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu2": {
+            "type": "region",
+            "name": "guangqiu2",
+            "path": "guangqiu2",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu3": {
+            "type": "region",
+            "name": "guangqiu3",
+            "path": "guangqiu3",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu4": {
+            "type": "region",
+            "name": "guangqiu4",
+            "path": "guangqiu4",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu5": {
+            "type": "region",
+            "name": "guangqiu5",
+            "path": "guangqiu5",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu6": {
+            "type": "region",
+            "name": "guangqiu6",
+            "path": "guangqiu6",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu7": {
+            "type": "region",
+            "name": "guangqiu7",
+            "path": "guangqiu7",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu8": {
+            "type": "region",
+            "name": "guangqiu8",
+            "path": "guangqiu8",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu9": {
+            "type": "region",
+            "name": "guangqiu9",
+            "path": "guangqiu9",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu10": {
+            "type": "region",
+            "name": "guangqiu10",
+            "path": "guangqiu10",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu11": {
+            "type": "region",
+            "name": "guangqiu11",
+            "path": "guangqiu11",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu12": {
+            "type": "region",
+            "name": "guangqiu12",
+            "path": "guangqiu12",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu13": {
+            "type": "region",
+            "name": "guangqiu13",
+            "path": "guangqiu13",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          },
+          "guangqiu14": {
+            "type": "region",
+            "name": "guangqiu14",
+            "path": "guangqiu14",
+            "rotation": -88.18170928955078,
+            "x": 0,
+            "y": 7.152557373046875e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 600,
+            "height": 600,
+            "color": "ffffffff"
+          }
+        },
+        "j10": {
+          "j5": {
+            "type": "region",
+            "name": "j5",
+            "path": "j5",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          },
+          "j6": {
+            "type": "region",
+            "name": "j6",
+            "path": "j6",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          },
+          "j7": {
+            "type": "region",
+            "name": "j7",
+            "path": "j7",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          },
+          "j8": {
+            "type": "region",
+            "name": "j8",
+            "path": "j8",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          },
+          "j9": {
+            "type": "region",
+            "name": "j9",
+            "path": "j9",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          },
+          "j10": {
+            "type": "region",
+            "name": "j10",
+            "path": "j10",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          },
+          "j11": {
+            "type": "region",
+            "name": "j11",
+            "path": "j11",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          },
+          "j12": {
+            "type": "region",
+            "name": "j12",
+            "path": "j12",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          },
+          "j13": {
+            "type": "region",
+            "name": "j13",
+            "path": "j13",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          },
+          "j14": {
+            "type": "region",
+            "name": "j14",
+            "path": "j14",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          },
+          "j15": {
+            "type": "region",
+            "name": "j15",
+            "path": "j15",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          },
+          "j16": {
+            "type": "region",
+            "name": "j16",
+            "path": "j16",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          },
+          "j17": {
+            "type": "region",
+            "name": "j17",
+            "path": "j17",
+            "rotation": -1.6365782022476196,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 148,
+            "height": 129,
+            "color": "ffffffff"
+          }
+        },
+        "t9": {
+          "t7": {
+            "type": "region",
+            "name": "t7",
+            "path": "t7",
+            "rotation": -90,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "t8": {
+            "type": "region",
+            "name": "t8",
+            "path": "t8",
+            "rotation": -90,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "t9": {
+            "type": "region",
+            "name": "t9",
+            "path": "t9",
+            "rotation": -90,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "t10": {
+            "type": "region",
+            "name": "t10",
+            "path": "t10",
+            "rotation": -90,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 215,
+            "color": "ffffffff"
+          },
+          "t11": {
+            "type": "region",
+            "name": "t11",
+            "path": "t11",
+            "rotation": -90,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 216,
+            "height": 215,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "idle": {
+      "slots": {
+        "guangqiu1": {
+          "color": [
+            {
+              "time": 0,
+              "color": "fffafcff"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "guangqiu1"
+            },
+            {
+              "time": 0.04266084358096123,
+              "name": "guangqiu2"
+            },
+            {
+              "time": 0.08532168716192245,
+              "name": "guangqiu3"
+            },
+            {
+              "time": 0.12798254191875458,
+              "name": "guangqiu4"
+            },
+            {
+              "time": 0.1706433743238449,
+              "name": "guangqiu5"
+            },
+            {
+              "time": 0.21330422163009644,
+              "name": "guangqiu6"
+            },
+            {
+              "time": 0.25596508383750916,
+              "name": "guangqiu7"
+            },
+            {
+              "time": 0.2986259162425995,
+              "name": "guangqiu8"
+            },
+            {
+              "time": 0.3412867486476898,
+              "name": "guangqiu9"
+            },
+            {
+              "time": 0.38394758105278015,
+              "name": "guangqiu10"
+            },
+            {
+              "time": 0.42660844326019287,
+              "name": "guangqiu11"
+            },
+            {
+              "time": 0.4692692756652832,
+              "name": "guangqiu12"
+            },
+            {
+              "time": 0.5119301676750183,
+              "name": "guangqiu13"
+            },
+            {
+              "time": 0.5545910000801086,
+              "name": "guangqiu14"
+            },
+            {
+              "time": 0.6000000238418579,
+              "name": null
+            }
+          ]
+        },
+        "j10": {
+          "attachment": [
+            {
+              "time": 0.04266084358096123,
+              "name": "j5"
+            },
+            {
+              "time": 0.08532168716192245,
+              "name": "j6"
+            },
+            {
+              "time": 0.12798254191875458,
+              "name": "j7"
+            },
+            {
+              "time": 0.1706433743238449,
+              "name": "j8"
+            },
+            {
+              "time": 0.21330422163009644,
+              "name": "j9"
+            },
+            {
+              "time": 0.25596508383750916,
+              "name": "j10"
+            },
+            {
+              "time": 0.2986259162425995,
+              "name": "j11"
+            },
+            {
+              "time": 0.3412867486476898,
+              "name": "j12"
+            },
+            {
+              "time": 0.38394758105278015,
+              "name": "j13"
+            },
+            {
+              "time": 0.42660844326019287,
+              "name": "j14"
+            },
+            {
+              "time": 0.4692692756652832,
+              "name": "j15"
+            },
+            {
+              "time": 0.5119301676750183,
+              "name": "j16"
+            },
+            {
+              "time": 0.5545910000801086,
+              "name": "j17"
+            },
+            {
+              "time": 0.6000000238418579,
+              "name": null
+            }
+          ]
+        },
+        "t9": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "t7"
+            },
+            {
+              "time": 0.09359452873468399,
+              "name": "t8"
+            },
+            {
+              "time": 0.18718905746936798,
+              "name": "t9"
+            },
+            {
+              "time": 0.28078359365463257,
+              "name": "t10"
+            },
+            {
+              "time": 0.37437811493873596,
+              "name": "t11"
+            },
+            {
+              "time": 0.4692692756652832,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "bone": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "bone2": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 9.5367431640625e-7,
+              "y": 20.868070602416992,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 9.5367431640625e-7,
+              "y": 20.868070602416992
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1.0331989526748657,
+              "y": 1.0331989526748657,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1.0331989526748657,
+              "y": 1.0331989526748657
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "t9": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 2.0921311378479004,
+              "y": 2.0921311378479004,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 2.0921311378479004,
+              "y": 2.0921311378479004
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "root": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {}
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

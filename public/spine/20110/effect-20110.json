@@ -1,0 +1,765 @@
+{
+  "skeleton": {
+    "hash": "WR8H8g4GzCNtUG9zG7trjCJfDKE",
+    "spine": "3.8",
+    "width": 530.7349243164062,
+    "height": 412.7937316894531
+  },
+  "bones": [
+    {
+      "name": "root",
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "resource/baodian_006",
+      "parent": "root",
+      "rotation": 360,
+      "x": -12.084136962890625,
+      "y": 1.5642242431640625,
+      "scaleX": 1.9022752046585083,
+      "scaleY": 1.9022752046585083,
+      "length": 36.77803039550781,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    }
+  ],
+  "slots": [
+    {
+      "name": "resource/baodian_006",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_007",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_008",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_009",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_010",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_011",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_012",
+      "bone": "resource/baodian_006",
+      "attachment": "resource/baodian_012",
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_013",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_014",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_015",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_016",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_017",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_018",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_019",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_020",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "resource/baodian_021",
+      "bone": "resource/baodian_006",
+      "attachment": null,
+      "blend": "additive"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "resource/baodian_006": {
+          "resource/baodian_006": {
+            "type": "region",
+            "name": "resource/baodian_006",
+            "path": "resource/baodian_006",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 173,
+            "height": 115,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_007": {
+          "resource/baodian_007": {
+            "type": "region",
+            "name": "resource/baodian_007",
+            "path": "resource/baodian_007",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 165,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_008": {
+          "resource/baodian_008": {
+            "type": "region",
+            "name": "resource/baodian_008",
+            "path": "resource/baodian_008",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 223,
+            "height": 177,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_009": {
+          "resource/baodian_009": {
+            "type": "region",
+            "name": "resource/baodian_009",
+            "path": "resource/baodian_009",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 241,
+            "height": 183,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_010": {
+          "resource/baodian_010": {
+            "type": "region",
+            "name": "resource/baodian_010",
+            "path": "resource/baodian_010",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 259,
+            "height": 195,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_011": {
+          "resource/baodian_011": {
+            "type": "region",
+            "name": "resource/baodian_011",
+            "path": "resource/baodian_011",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 263,
+            "height": 207,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_012": {
+          "resource/baodian_012": {
+            "type": "region",
+            "name": "resource/baodian_012",
+            "path": "resource/baodian_012",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 279,
+            "height": 217,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_013": {
+          "resource/baodian_013": {
+            "type": "region",
+            "name": "resource/baodian_013",
+            "path": "resource/baodian_013",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 233,
+            "height": 223,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_014": {
+          "resource/baodian_014": {
+            "type": "region",
+            "name": "resource/baodian_014",
+            "path": "resource/baodian_014",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 217,
+            "height": 211,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_015": {
+          "resource/baodian_015": {
+            "type": "region",
+            "name": "resource/baodian_015",
+            "path": "resource/baodian_015",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 249,
+            "height": 231,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_016": {
+          "resource/baodian_016": {
+            "type": "region",
+            "name": "resource/baodian_016",
+            "path": "resource/baodian_016",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 267,
+            "height": 253,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_017": {
+          "resource/baodian_017": {
+            "type": "region",
+            "name": "resource/baodian_017",
+            "path": "resource/baodian_017",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 275,
+            "height": 285,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_018": {
+          "resource/baodian_018": {
+            "type": "region",
+            "name": "resource/baodian_018",
+            "path": "resource/baodian_018",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 247,
+            "height": 311,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_019": {
+          "resource/baodian_019": {
+            "type": "region",
+            "name": "resource/baodian_019",
+            "path": "resource/baodian_019",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 265,
+            "height": 331,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_020": {
+          "resource/baodian_020": {
+            "type": "region",
+            "name": "resource/baodian_020",
+            "path": "resource/baodian_020",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 281,
+            "height": 347,
+            "color": "ffffffff"
+          }
+        },
+        "resource/baodian_021": {
+          "resource/baodian_021": {
+            "type": "region",
+            "name": "resource/baodian_021",
+            "path": "resource/baodian_021",
+            "rotation": -1.0017911336035468e-5,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 293,
+            "height": 303,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "idle": {
+      "slots": {
+        "resource/baodian_006": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "resource/baodian_006"
+            },
+            {
+              "time": 0.04166591167449951,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_007": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.04166591167449951,
+              "name": "resource/baodian_007"
+            },
+            {
+              "time": 0.08333182334899902,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_008": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.08333182334899902,
+              "name": "resource/baodian_008"
+            },
+            {
+              "time": 0.12499773502349854,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_009": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.12499773502349854,
+              "name": "resource/baodian_009"
+            },
+            {
+              "time": 0.1666666716337204,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_010": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.1666666716337204,
+              "name": "resource/baodian_010"
+            },
+            {
+              "time": 0.20832954347133636,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_011": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.20832954347133636,
+              "name": "resource/baodian_011"
+            },
+            {
+              "time": 0.24999547004699707,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_012": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.24999547004699707,
+              "name": "resource/baodian_012"
+            },
+            {
+              "time": 0.2916613817214966,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_013": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.2916613817214966,
+              "name": "resource/baodian_013"
+            },
+            {
+              "time": 0.3333333432674408,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_014": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.3333333432674408,
+              "name": "resource/baodian_014"
+            },
+            {
+              "time": 0.3749932050704956,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_015": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.3749932050704956,
+              "name": "resource/baodian_015"
+            },
+            {
+              "time": 0.41665908694267273,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_016": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.41665908694267273,
+              "name": "resource/baodian_016"
+            },
+            {
+              "time": 0.45832502841949463,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_017": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.45832502841949463,
+              "name": "resource/baodian_017"
+            },
+            {
+              "time": 0.5,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_018": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.5,
+              "name": "resource/baodian_018"
+            },
+            {
+              "time": 0.5416568517684937,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_019": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.5416568517684937,
+              "name": "resource/baodian_019"
+            },
+            {
+              "time": 0.5833227634429932,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_020": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.5833227634429932,
+              "name": "resource/baodian_020"
+            },
+            {
+              "time": 0.6249886751174927,
+              "name": null
+            }
+          ]
+        },
+        "resource/baodian_021": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 0.6249886751174927,
+              "name": "resource/baodian_021"
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "resource/baodian_006": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1.3852115869522095,
+              "y": 1.3852115869522095,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1.3852115869522095,
+              "y": 1.3852115869522095
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "root": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

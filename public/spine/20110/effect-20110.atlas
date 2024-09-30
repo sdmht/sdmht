@@ -1,0 +1,118 @@
+
+effect-20110.webp
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+resource/baodian_006
+  rotate: false
+  xy: 216, 56
+  size: 29, 27
+  orig: 43, 29
+  offset: 14, 0
+  index: -1
+resource/baodian_007
+  rotate: false
+  xy: 176, 32
+  size: 37, 38
+  orig: 51, 41
+  offset: 13, 3
+  index: -1
+resource/baodian_008
+  rotate: true
+  xy: 130, 28
+  size: 42, 43
+  orig: 56, 44
+  offset: 14, 1
+  index: -1
+resource/baodian_009
+  rotate: true
+  xy: 207, 206
+  size: 47, 46
+  orig: 60, 46
+  offset: 13, 0
+  index: -1
+resource/baodian_010
+  rotate: false
+  xy: 202, 142
+  size: 51, 47
+  orig: 65, 49
+  offset: 14, 0
+  index: -1
+resource/baodian_011
+  rotate: false
+  xy: 69, 10
+  size: 54, 50
+  orig: 66, 52
+  offset: 12, 0
+  index: -1
+resource/baodian_012
+  rotate: false
+  xy: 69, 63
+  size: 58, 52
+  orig: 70, 54
+  offset: 12, 0
+  index: -1
+resource/baodian_013
+  rotate: false
+  xy: 135, 73
+  size: 54, 52
+  orig: 58, 56
+  offset: 4, 0
+  index: -1
+resource/baodian_014
+  rotate: true
+  xy: 202, 86
+  size: 53, 49
+  orig: 54, 53
+  offset: 0, 0
+  index: -1
+resource/baodian_015
+  rotate: false
+  xy: 72, 118
+  size: 60, 57
+  orig: 62, 58
+  offset: 2, 0
+  index: -1
+resource/baodian_016
+  rotate: false
+  xy: 136, 128
+  size: 63, 61
+  orig: 67, 63
+  offset: 4, 2
+  index: -1
+resource/baodian_017
+  rotate: false
+  xy: 3, 14
+  size: 63, 69
+  orig: 69, 71
+  offset: 6, 2
+  index: -1
+resource/baodian_018
+  rotate: false
+  xy: 72, 178
+  size: 61, 75
+  orig: 62, 78
+  offset: 0, 3
+  index: -1
+resource/baodian_019
+  rotate: false
+  xy: 3, 86
+  size: 63, 80
+  orig: 66, 83
+  offset: 0, 3
+  index: -1
+resource/baodian_020
+  rotate: false
+  xy: 3, 169
+  size: 66, 84
+  orig: 70, 87
+  offset: 0, 3
+  index: -1
+resource/baodian_021
+  rotate: false
+  xy: 136, 192
+  size: 68, 61
+  orig: 73, 76
+  offset: 0, 0
+  index: -1

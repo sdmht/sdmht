@@ -1,0 +1,399 @@
+{
+  "skeleton": {
+    "hash": "cEuZg2ol9ZNP/Dy0ILyN0SMRO3c",
+    "spine": "3.8",
+    "width": 387.97894287109375,
+    "height": 363.0528869628906
+  },
+  "bones": [
+    {
+      "name": "root",
+      "scaleX": 1.083739995956421,
+      "scaleY": 1.083739995956421,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "shouji",
+      "parent": "root",
+      "x": -0.5000144243240356,
+      "y": 18.999984741210938,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    }
+  ],
+  "slots": [
+    {
+      "name": "resource/baodian0001",
+      "bone": "shouji",
+      "attachment": "resource/baodian0003",
+      "blend": "normal"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "resource/baodian0001": {
+          "resource/baodian0001": {
+            "type": "region",
+            "name": "resource/baodian0001",
+            "path": "resource/baodian0001",
+            "rotation": 0,
+            "x": -8.344650268554688e-7,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 358,
+            "height": 335,
+            "color": "ffffffff"
+          },
+          "resource/baodian0002": {
+            "type": "region",
+            "name": "resource/baodian0002",
+            "path": "resource/baodian0002",
+            "rotation": 0,
+            "x": -8.344650268554688e-7,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 358,
+            "height": 335,
+            "color": "ffffffff"
+          },
+          "resource/baodian0003": {
+            "type": "region",
+            "name": "resource/baodian0003",
+            "path": "resource/baodian0003",
+            "rotation": 0,
+            "x": -8.344650268554688e-7,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 358,
+            "height": 335,
+            "color": "ffffffff"
+          },
+          "resource/baodian0004": {
+            "type": "region",
+            "name": "resource/baodian0004",
+            "path": "resource/baodian0004",
+            "rotation": 0,
+            "x": -8.344650268554688e-7,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 358,
+            "height": 335,
+            "color": "ffffffff"
+          },
+          "resource/baodian0005": {
+            "type": "region",
+            "name": "resource/baodian0005",
+            "path": "resource/baodian0005",
+            "rotation": 0,
+            "x": -8.344650268554688e-7,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 358,
+            "height": 335,
+            "color": "ffffffff"
+          },
+          "resource/baodian0006": {
+            "type": "region",
+            "name": "resource/baodian0006",
+            "path": "resource/baodian0006",
+            "rotation": 0,
+            "x": -8.344650268554688e-7,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 358,
+            "height": 335,
+            "color": "ffffffff"
+          },
+          "resource/baodian0007": {
+            "type": "region",
+            "name": "resource/baodian0007",
+            "path": "resource/baodian0007",
+            "rotation": 0,
+            "x": -8.344650268554688e-7,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 358,
+            "height": 335,
+            "color": "ffffffff"
+          },
+          "resource/baodian0008": {
+            "type": "region",
+            "name": "resource/baodian0008",
+            "path": "resource/baodian0008",
+            "rotation": 0,
+            "x": -8.344650268554688e-7,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 358,
+            "height": 335,
+            "color": "ffffffff"
+          },
+          "resource/baodian0009": {
+            "type": "region",
+            "name": "resource/baodian0009",
+            "path": "resource/baodian0009",
+            "rotation": 0,
+            "x": -8.344650268554688e-7,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 358,
+            "height": 335,
+            "color": "ffffffff"
+          },
+          "resource/baodian0010": {
+            "type": "region",
+            "name": "resource/baodian0010",
+            "path": "resource/baodian0010",
+            "rotation": 0,
+            "x": -8.344650268554688e-7,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 358,
+            "height": 335,
+            "color": "ffffffff"
+          },
+          "resource/baodian0011": {
+            "type": "region",
+            "name": "resource/baodian0011",
+            "path": "resource/baodian0011",
+            "rotation": 0,
+            "x": -8.344650268554688e-7,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 358,
+            "height": 335,
+            "color": "ffffffff"
+          },
+          "resource/baodian0012": {
+            "type": "region",
+            "name": "resource/baodian0012",
+            "path": "resource/baodian0012",
+            "rotation": 0,
+            "x": -8.344650268554688e-7,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 358,
+            "height": 335,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "idle": {
+      "slots": {
+        "resource/baodian0001": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "resource/baodian0001"
+            },
+            {
+              "time": 0.05228764936327934,
+              "name": "resource/baodian0002"
+            },
+            {
+              "time": 0.10000000149011612,
+              "name": "resource/baodian0003"
+            },
+            {
+              "time": 0.14845040440559387,
+              "name": "resource/baodian0004"
+            },
+            {
+              "time": 0.19863490760326385,
+              "name": "resource/baodian0005"
+            },
+            {
+              "time": 0.24671630561351776,
+              "name": "resource/baodian0006"
+            },
+            {
+              "time": 0.30114778876304626,
+              "name": "resource/baodian0007"
+            },
+            {
+              "time": 0.3646604120731354,
+              "name": "resource/baodian0008"
+            },
+            {
+              "time": 0.42256179451942444,
+              "name": "resource/baodian0009"
+            },
+            {
+              "time": 0.4864234924316406,
+              "name": "resource/baodian0010"
+            },
+            {
+              "time": 0.5481821298599243,
+              "name": "resource/baodian0011"
+            },
+            {
+              "time": 0.6099405884742737,
+              "name": "resource/baodian0012"
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "shouji": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "root": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1.8536155223846436,
+              "y": 1.8536155223846436,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1.8536155223846436,
+              "y": 1.8536155223846436
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        },
+        {
+          "offsets": [],
+          "time": 0.6666666865348816
+        }
+      ]
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,153 @@
+
+effect-1000025.webp
+size: 2048,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+as0
+  rotate: false
+  xy: 1922, 8
+  size: 73, 73
+  orig: 83, 83
+  offset: 5, 5
+  index: -1
+as1
+  rotate: true
+  xy: 1721, 28
+  size: 109, 93
+  orig: 119, 121
+  offset: 2, 19
+  index: -1
+as2
+  rotate: true
+  xy: 1615, 13
+  size: 119, 103
+  orig: 136, 140
+  offset: 9, 27
+  index: -1
+as3
+  rotate: false
+  xy: 1477, 22
+  size: 135, 110
+  orig: 148, 150
+  offset: 6, 29
+  index: -1
+as4
+  rotate: false
+  xy: 1008, 48
+  size: 67, 68
+  orig: 80, 82
+  offset: 7, 5
+  index: -1
+gf0
+  rotate: false
+  xy: 1100, 121
+  size: 205, 99
+  orig: 205, 99
+  offset: 0, 0
+  index: -1
+gf1
+  rotate: false
+  xy: 3, 113
+  size: 224, 107
+  orig: 224, 107
+  offset: 0, 0
+  index: -1
+gf2
+  rotate: false
+  xy: 3, 3
+  size: 224, 107
+  orig: 224, 107
+  offset: 0, 0
+  index: -1
+gf3
+  rotate: false
+  xy: 230, 113
+  size: 224, 107
+  orig: 224, 107
+  offset: 0, 0
+  index: -1
+gf4
+  rotate: false
+  xy: 230, 3
+  size: 218, 107
+  orig: 218, 107
+  offset: 0, 0
+  index: -1
+gf5
+  rotate: false
+  xy: 457, 113
+  size: 218, 107
+  orig: 218, 107
+  offset: 0, 0
+  index: -1
+gf6
+  rotate: false
+  xy: 451, 4
+  size: 217, 106
+  orig: 217, 106
+  offset: 0, 0
+  index: -1
+gf7
+  rotate: false
+  xy: 678, 114
+  size: 212, 106
+  orig: 212, 106
+  offset: 0, 0
+  index: -1
+gf8
+  rotate: false
+  xy: 893, 119
+  size: 204, 101
+  orig: 204, 101
+  offset: 0, 0
+  index: -1
+gg0
+  rotate: true
+  xy: 1817, 8
+  size: 73, 102
+  orig: 73, 102
+  offset: 0, 0
+  index: -1
+gg1
+  rotate: true
+  xy: 1308, 126
+  size: 94, 166
+  orig: 94, 166
+  offset: 0, 0
+  index: -1
+gg2
+  rotate: true
+  xy: 1477, 135
+  size: 85, 173
+  orig: 85, 173
+  offset: 0, 0
+  index: -1
+gg3
+  rotate: true
+  xy: 1653, 140
+  size: 80, 174
+  orig: 80, 174
+  offset: 0, 0
+  index: -1
+gg4
+  rotate: true
+  xy: 1830, 150
+  size: 70, 172
+  orig: 70, 172
+  offset: 0, 0
+  index: -1
+gg5
+  rotate: true
+  xy: 1830, 84
+  size: 63, 161
+  orig: 63, 161
+  offset: 0, 0
+  index: -1
+tf0
+  rotate: false
+  xy: 893, 4
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,22 @@
+{
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.fixAll": "always"
+  },
+  "editor.formatOnType": true,
+  "files.autoSave": "off",
+  "[ignore][dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "git.ignoreLimitWarning": true,
+  "javascript.format.semicolons": "remove",
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
+}

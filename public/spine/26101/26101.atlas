@@ -1,0 +1,307 @@
+
+26101.webp
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+po0
+  rotate: true
+  xy: 406, 165
+  size: 74, 96
+  orig: 74, 96
+  offset: 0, 0
+  index: -1
+po1
+  rotate: false
+  xy: 551, 778
+  size: 74, 96
+  orig: 74, 96
+  offset: 0, 0
+  index: -1
+po2
+  rotate: true
+  xy: 720, 816
+  size: 74, 96
+  orig: 74, 96
+  offset: 0, 0
+  index: -1
+po3
+  rotate: true
+  xy: 891, 808
+  size: 74, 96
+  orig: 74, 96
+  offset: 0, 0
+  index: -1
+po4
+  rotate: true
+  xy: 627, 735
+  size: 74, 96
+  orig: 74, 96
+  offset: 0, 0
+  index: -1
+po5
+  rotate: false
+  xy: 551, 680
+  size: 74, 96
+  orig: 74, 96
+  offset: 0, 0
+  index: -1
+po6
+  rotate: true
+  xy: 627, 659
+  size: 74, 96
+  orig: 74, 96
+  offset: 0, 0
+  index: -1
+po7
+  rotate: true
+  xy: 725, 660
+  size: 74, 96
+  orig: 74, 96
+  offset: 0, 0
+  index: -1
+po8
+  rotate: true
+  xy: 860, 732
+  size: 74, 96
+  orig: 74, 96
+  offset: 0, 0
+  index: -1
+po9
+  rotate: true
+  xy: 823, 656
+  size: 74, 96
+  orig: 74, 96
+  offset: 0, 0
+  index: -1
+q0
+  rotate: false
+  xy: 229, 716
+  size: 184, 133
+  orig: 184, 133
+  offset: 0, 0
+  index: -1
+q1
+  rotate: false
+  xy: 2, 459
+  size: 200, 190
+  orig: 200, 190
+  offset: 0, 0
+  index: -1
+q2
+  rotate: false
+  xy: 229, 851
+  size: 187, 171
+  orig: 187, 171
+  offset: 0, 0
+  index: -1
+q3
+  rotate: false
+  xy: 2, 300
+  size: 186, 157
+  orig: 186, 157
+  offset: 0, 0
+  index: -1
+q4
+  rotate: false
+  xy: 418, 876
+  size: 156, 146
+  orig: 156, 146
+  offset: 0, 0
+  index: -1
+storing-juqi_00
+  rotate: true
+  xy: 229, 590
+  size: 124, 146
+  orig: 144, 156
+  offset: 0, 10
+  index: -1
+storing-juqi_02
+  rotate: false
+  xy: 132, 154
+  size: 116, 144
+  orig: 146, 145
+  offset: 0, 1
+  index: -1
+storing-juqi_04
+  rotate: false
+  xy: 377, 583
+  size: 109, 131
+  orig: 148, 134
+  offset: 0, 3
+  index: -1
+storing-juqi_06
+  rotate: false
+  xy: 398, 329
+  size: 103, 123
+  orig: 149, 131
+  offset: 0, 8
+  index: -1
+storing-juqi_08
+  rotate: false
+  xy: 418, 760
+  size: 131, 114
+  orig: 143, 115
+  offset: 0, 1
+  index: -1
+storing-juqi_10
+  rotate: false
+  xy: 269, 31
+  size: 125, 135
+  orig: 144, 158
+  offset: 0, 0
+  index: -1
+storing-juqi_12
+  rotate: false
+  xy: 347, 454
+  size: 119, 127
+  orig: 145, 142
+  offset: 0, 0
+  index: -1
+storing-juqi_14
+  rotate: true
+  xy: 147, 12
+  size: 140, 120
+  orig: 140, 126
+  offset: 0, 0
+  index: -1
+storing-juqi_16
+  rotate: false
+  xy: 204, 447
+  size: 141, 141
+  orig: 142, 144
+  offset: 1, 3
+  index: -1
+storing-juqi_18
+  rotate: true
+  xy: 891, 884
+  size: 138, 131
+  orig: 144, 152
+  offset: 0, 17
+  index: -1
+storing-juqi_20
+  rotate: true
+  xy: 740, 892
+  size: 130, 149
+  orig: 146, 155
+  offset: 0, 6
+  index: -1
+右上臂
+  rotate: false
+  xy: 627, 811
+  size: 91, 81
+  orig: 91, 81
+  offset: 0, 0
+  index: -1
+右小臂
+  rotate: false
+  xy: 250, 168
+  size: 77, 136
+  orig: 77, 136
+  offset: 0, 0
+  index: -1
+右手
+  rotate: false
+  xy: 921, 648
+  size: 74, 82
+  orig: 74, 82
+  offset: 0, 0
+  index: -1
+左上臂
+  rotate: true
+  xy: 725, 736
+  size: 78, 92
+  orig: 78, 92
+  offset: 0, 0
+  index: -1
+左小臂
+  rotate: false
+  xy: 325, 315
+  size: 71, 130
+  orig: 71, 130
+  offset: 0, 0
+  index: -1
+左手
+  rotate: false
+  xy: 468, 502
+  size: 76, 79
+  orig: 76, 79
+  offset: 0, 0
+  index: -1
+攻击表情
+  rotate: false
+  xy: 2, 136
+  size: 128, 162
+  orig: 128, 162
+  offset: 0, 0
+  index: -1
+树干
+  rotate: false
+  xy: 2, 651
+  size: 225, 371
+  orig: 225, 371
+  offset: 0, 0
+  index: -1
+树精tui0
+  rotate: false
+  xy: 396, 92
+  size: 103, 71
+  orig: 133, 88
+  offset: 15, 8
+  index: -1
+树精tui1
+  rotate: true
+  xy: 329, 204
+  size: 109, 75
+  orig: 143, 104
+  offset: 16, 6
+  index: -1
+树精tui2
+  rotate: false
+  xy: 406, 241
+  size: 92, 86
+  orig: 120, 100
+  offset: 11, 14
+  index: -1
+树精tui3
+  rotate: false
+  xy: 396, 15
+  size: 99, 75
+  orig: 167, 123
+  offset: 24, 28
+  index: -1
+正常表情
+  rotate: true
+  xy: 2, 6
+  size: 128, 143
+  orig: 128, 143
+  offset: 0, 0
+  index: -1
+火1
+  rotate: false
+  xy: 818, 818
+  size: 71, 72
+  orig: 71, 72
+  offset: 0, 0
+  index: -1
+火2
+  rotate: false
+  xy: 819, 736
+  size: 39, 80
+  orig: 39, 80
+  offset: 0, 0
+  index: -1
+蓄力表情
+  rotate: true
+  xy: 576, 894
+  size: 128, 162
+  orig: 128, 162
+  offset: 0, 0
+  index: -1
+被击表情
+  rotate: false
+  xy: 190, 306
+  size: 133, 139
+  orig: 133, 139
+  offset: 0, 0
+  index: -1

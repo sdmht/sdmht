@@ -1,0 +1,231 @@
+{
+  "skeleton": {
+    "hash": "smzrAsypj13q+3mVPR9GTg/mx0w",
+    "spine": "3.8",
+    "width": 164.00001525878906,
+    "height": 127
+  },
+  "bones": [
+    {
+      "name": "root",
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "骨骼",
+      "parent": "root",
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    }
+  ],
+  "slots": [
+    {
+      "name": "shouji__00000",
+      "bone": "骨骼",
+      "attachment": "shouji__00000",
+      "blend": "additive"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "shouji__00000": {
+          "shouji__00000": {
+            "type": "region",
+            "name": "shouji__00000",
+            "path": "shouji__00000",
+            "rotation": 0,
+            "x": -1.9232998056395445e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 164,
+            "height": 127,
+            "color": "ffffffff"
+          },
+          "shouji__00001": {
+            "type": "region",
+            "name": "shouji__00001",
+            "path": "shouji__00001",
+            "rotation": 0,
+            "x": -1.9232998056395445e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 164,
+            "height": 127,
+            "color": "ffffffff"
+          },
+          "shouji__00002": {
+            "type": "region",
+            "name": "shouji__00002",
+            "path": "shouji__00002",
+            "rotation": 0,
+            "x": -1.9232998056395445e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 164,
+            "height": 127,
+            "color": "ffffffff"
+          },
+          "shouji__00003": {
+            "type": "region",
+            "name": "shouji__00003",
+            "path": "shouji__00003",
+            "rotation": 0,
+            "x": -1.9232998056395445e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 164,
+            "height": 127,
+            "color": "ffffffff"
+          },
+          "shouji__00004": {
+            "type": "region",
+            "name": "shouji__00004",
+            "path": "shouji__00004",
+            "rotation": 0,
+            "x": -1.9232998056395445e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 164,
+            "height": 127,
+            "color": "ffffffff"
+          },
+          "shouji__00005": {
+            "type": "region",
+            "name": "shouji__00005",
+            "path": "shouji__00005",
+            "rotation": 0,
+            "x": -1.9232998056395445e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 164,
+            "height": 127,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "idle": {
+      "slots": {
+        "shouji__00000": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "shouji__00000"
+            },
+            {
+              "time": 0.10000000149011612,
+              "name": "shouji__00001"
+            },
+            {
+              "time": 0.20000000298023224,
+              "name": "shouji__00002"
+            },
+            {
+              "time": 0.30000001192092896,
+              "name": "shouji__00003"
+            },
+            {
+              "time": 0.4000000059604645,
+              "name": "shouji__00004"
+            },
+            {
+              "time": 0.5,
+              "name": "shouji__00005"
+            },
+            {
+              "time": 0.6000000238418579,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "骨骼": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 5,
+              "y": 5,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "x": 5,
+              "y": 5
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0,
+              "curve": "stepped"
+            },
+            {
+              "time": 0.6000000238418579,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {}
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

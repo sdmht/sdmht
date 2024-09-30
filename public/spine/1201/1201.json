@@ -1,0 +1,959 @@
+{
+  "skeleton": {
+    "hash": "F6golHMlQ7DBfbNwd6wCJEYGXxA",
+    "spine": "3.8",
+    "width": 457.1666259765625,
+    "height": 457.16656494140625
+  },
+  "bones": [
+    {
+      "name": "root",
+      "scaleX": 1.7000000476837158,
+      "scaleY": 1.7000000476837158,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "Recruit",
+      "parent": "root",
+      "x": -11.67431640625,
+      "y": 250.63818359375,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "Effect-A",
+      "parent": "Recruit",
+      "x": 8.839898109436035,
+      "y": -124.71852111816406,
+      "scaleX": 1.322250485420227,
+      "scaleY": 1.322250485420227,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "Effect-B",
+      "parent": "Recruit",
+      "x": 7.050896644592285,
+      "y": -82.96446228027344,
+      "scaleX": 1.7317826747894287,
+      "scaleY": 1.7317826747894287,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "Effect-D",
+      "parent": "Recruit",
+      "x": 7.050957679748535,
+      "y": -120.15538024902344,
+      "scaleX": 1.3446074724197388,
+      "scaleY": 1.3446074724197388,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    }
+  ],
+  "slots": [
+    {
+      "name": "地图物件-补给2",
+      "bone": "Recruit",
+      "attachment": "地图物件-补给2",
+      "blend": "normal"
+    },
+    {
+      "name": "zz0",
+      "bone": "Effect-A",
+      "color": "9df3ffff",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "ddd0",
+      "bone": "Effect-B",
+      "attachment": null,
+      "blend": "additive"
+    },
+    {
+      "name": "A",
+      "bone": "Effect-D",
+      "color": "007fff66",
+      "attachment": "A",
+      "blend": "additive"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "地图物件-补给2": {
+          "地图物件-补给2": {
+            "type": "region",
+            "name": "地图物件-补给2",
+            "path": "地图物件-补给2",
+            "rotation": 0,
+            "x": 5.6350250244140625,
+            "y": -122.843017578125,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 200,
+            "height": 200,
+            "color": "ffffffff"
+          }
+        },
+        "zz0": {
+          "zz0": {
+            "type": "region",
+            "name": "zz0",
+            "path": "zz0",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 498,
+            "height": 500,
+            "color": "ffffffff"
+          },
+          "zz1": {
+            "type": "region",
+            "name": "zz1",
+            "path": "zz1",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 498,
+            "height": 500,
+            "color": "ffffffff"
+          },
+          "zz2": {
+            "type": "region",
+            "name": "zz2",
+            "path": "zz2",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 498,
+            "height": 500,
+            "color": "ffffffff"
+          },
+          "zz3": {
+            "type": "region",
+            "name": "zz3",
+            "path": "zz3",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 498,
+            "height": 500,
+            "color": "ffffffff"
+          },
+          "zz4": {
+            "type": "region",
+            "name": "zz4",
+            "path": "zz4",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 498,
+            "height": 500,
+            "color": "ffffffff"
+          },
+          "zz5": {
+            "type": "region",
+            "name": "zz5",
+            "path": "zz5",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 498,
+            "height": 500,
+            "color": "ffffffff"
+          },
+          "zz6": {
+            "type": "region",
+            "name": "zz6",
+            "path": "zz6",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 498,
+            "height": 500,
+            "color": "ffffffff"
+          },
+          "zz7": {
+            "type": "region",
+            "name": "zz7",
+            "path": "zz7",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 498,
+            "height": 496,
+            "color": "ffffffff"
+          },
+          "zz8": {
+            "type": "region",
+            "name": "zz8",
+            "path": "zz8",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 498,
+            "height": 500,
+            "color": "ffffffff"
+          },
+          "zz9": {
+            "type": "region",
+            "name": "zz9",
+            "path": "zz9",
+            "rotation": 0,
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 498,
+            "height": 500,
+            "color": "ffffffff"
+          }
+        },
+        "ddd0": {
+          "ddd0": {
+            "type": "region",
+            "name": "ddd0",
+            "path": "ddd0",
+            "rotation": 0,
+            "x": -1.1682510375976562e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 240,
+            "height": 180,
+            "color": "ffffffff"
+          },
+          "ddd1": {
+            "type": "region",
+            "name": "ddd1",
+            "path": "ddd1",
+            "rotation": 0,
+            "x": -1.1682510375976562e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 240,
+            "height": 180,
+            "color": "ffffffff"
+          },
+          "ddd2": {
+            "type": "region",
+            "name": "ddd2",
+            "path": "ddd2",
+            "rotation": 0,
+            "x": -1.1682510375976562e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 240,
+            "height": 180,
+            "color": "ffffffff"
+          },
+          "ddd3": {
+            "type": "region",
+            "name": "ddd3",
+            "path": "ddd3",
+            "rotation": 0,
+            "x": -1.1682510375976562e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 240,
+            "height": 180,
+            "color": "ffffffff"
+          },
+          "ddd4": {
+            "type": "region",
+            "name": "ddd4",
+            "path": "ddd4",
+            "rotation": 0,
+            "x": -1.1682510375976562e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 240,
+            "height": 180,
+            "color": "ffffffff"
+          },
+          "ddd5": {
+            "type": "region",
+            "name": "ddd5",
+            "path": "ddd5",
+            "rotation": 0,
+            "x": -1.1682510375976562e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 240,
+            "height": 180,
+            "color": "ffffffff"
+          },
+          "ddd6": {
+            "type": "region",
+            "name": "ddd6",
+            "path": "ddd6",
+            "rotation": 0,
+            "x": -1.1682510375976562e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 240,
+            "height": 180,
+            "color": "ffffffff"
+          },
+          "ddd7": {
+            "type": "region",
+            "name": "ddd7",
+            "path": "ddd7",
+            "rotation": 0,
+            "x": -1.1682510375976562e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 240,
+            "height": 180,
+            "color": "ffffffff"
+          },
+          "ddd8": {
+            "type": "region",
+            "name": "ddd8",
+            "path": "ddd8",
+            "rotation": 0,
+            "x": -1.1682510375976562e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 240,
+            "height": 180,
+            "color": "ffffffff"
+          },
+          "ddd9": {
+            "type": "region",
+            "name": "ddd9",
+            "path": "ddd9",
+            "rotation": 0,
+            "x": -1.1682510375976562e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 240,
+            "height": 180,
+            "color": "ffffffff"
+          },
+          "ddd10": {
+            "type": "region",
+            "name": "ddd10",
+            "path": "ddd10",
+            "rotation": 0,
+            "x": -1.1682510375976562e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 240,
+            "height": 180,
+            "color": "ffffffff"
+          },
+          "ddd11": {
+            "type": "region",
+            "name": "ddd11",
+            "path": "ddd11",
+            "rotation": 0,
+            "x": -1.1682510375976562e-5,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 240,
+            "height": 180,
+            "color": "ffffffff"
+          }
+        },
+        "A": {
+          "A": {
+            "type": "region",
+            "name": "A",
+            "path": "A",
+            "rotation": 0,
+            "x": -4.5299530029296875e-6,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 200,
+            "height": 200,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "attack": {
+      "slots": {
+        "A": {
+          "color": [
+            {
+              "time": 0,
+              "color": "007fff66"
+            },
+            {
+              "time": 0.5,
+              "color": "007fff2a"
+            },
+            {
+              "time": 1,
+              "color": "007fff66"
+            },
+            {
+              "time": 1.5,
+              "color": "007fff2a"
+            },
+            {
+              "time": 2,
+              "color": "007fff66"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "A"
+            },
+            {
+              "time": 2,
+              "name": "A"
+            }
+          ]
+        },
+        "ddd0": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "ddd0"
+            },
+            {
+              "time": 0.05713261663913727,
+              "name": "ddd1"
+            },
+            {
+              "time": 0.11426523327827454,
+              "name": "ddd2"
+            },
+            {
+              "time": 0.1713978499174118,
+              "name": "ddd3"
+            },
+            {
+              "time": 0.22853046655654907,
+              "name": "ddd4"
+            },
+            {
+              "time": 0.28566309809684753,
+              "name": "ddd5"
+            },
+            {
+              "time": 0.3427956998348236,
+              "name": "ddd6"
+            },
+            {
+              "time": 0.4000000059604645,
+              "name": "ddd7"
+            },
+            {
+              "time": 0.45706093311309814,
+              "name": "ddd8"
+            },
+            {
+              "time": 0.514193594455719,
+              "name": "ddd9"
+            },
+            {
+              "time": 0.5713261961936951,
+              "name": "ddd10"
+            },
+            {
+              "time": 0.6284587979316711,
+              "name": "ddd11"
+            },
+            {
+              "time": 0.6855913996696472,
+              "name": "ddd0"
+            },
+            {
+              "time": 0.7427240610122681,
+              "name": "ddd1"
+            },
+            {
+              "time": 0.800000011920929,
+              "name": "ddd2"
+            },
+            {
+              "time": 0.8569892644882202,
+              "name": "ddd3"
+            },
+            {
+              "time": 0.9141218662261963,
+              "name": "ddd4"
+            },
+            {
+              "time": 0.9712544679641724,
+              "name": "ddd5"
+            },
+            {
+              "time": 1.028387188911438,
+              "name": "ddd6"
+            },
+            {
+              "time": 1.085519790649414,
+              "name": "ddd7"
+            },
+            {
+              "time": 1.1426523923873901,
+              "name": "ddd8"
+            },
+            {
+              "time": 1.2000000476837158,
+              "name": "ddd9"
+            },
+            {
+              "time": 1.2569175958633423,
+              "name": "ddd10"
+            },
+            {
+              "time": 1.3140501976013184,
+              "name": "ddd11"
+            },
+            {
+              "time": 1.3711827993392944,
+              "name": "ddd0"
+            },
+            {
+              "time": 1.42831552028656,
+              "name": "ddd1"
+            },
+            {
+              "time": 1.4854481220245361,
+              "name": "ddd2"
+            },
+            {
+              "time": 1.5425807237625122,
+              "name": "ddd3"
+            },
+            {
+              "time": 1.600000023841858,
+              "name": "ddd4"
+            },
+            {
+              "time": 1.6568458080291748,
+              "name": "ddd5"
+            },
+            {
+              "time": 1.7139785289764404,
+              "name": "ddd6"
+            },
+            {
+              "time": 1.7711111307144165,
+              "name": "ddd7"
+            },
+            {
+              "time": 1.8282437324523926,
+              "name": "ddd8"
+            },
+            {
+              "time": 1.8853763341903687,
+              "name": "ddd9"
+            },
+            {
+              "time": 1.9425089359283447,
+              "name": "ddd10"
+            },
+            {
+              "time": 1.9996416568756104,
+              "name": "ddd11"
+            },
+            {
+              "time": 2,
+              "name": "ddd11"
+            }
+          ]
+        },
+        "zz0": {
+          "color": [
+            {
+              "time": 0,
+              "color": "9df3ff98"
+            },
+            {
+              "time": 0.5,
+              "color": "9df3ffff"
+            },
+            {
+              "time": 1,
+              "color": "9df3ff98"
+            },
+            {
+              "time": 1.5,
+              "color": "9df3ffff"
+            },
+            {
+              "time": 2,
+              "color": "9df3ff98"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "zz0"
+            },
+            {
+              "time": 0.06894470751285553,
+              "name": "zz1"
+            },
+            {
+              "time": 0.13788941502571106,
+              "name": "zz2"
+            },
+            {
+              "time": 0.2068341225385666,
+              "name": "zz3"
+            },
+            {
+              "time": 0.2757788300514221,
+              "name": "zz4"
+            },
+            {
+              "time": 0.34472355246543884,
+              "name": "zz5"
+            },
+            {
+              "time": 0.4136682450771332,
+              "name": "zz6"
+            },
+            {
+              "time": 0.4826129674911499,
+              "name": "zz7"
+            },
+            {
+              "time": 0.5515576601028442,
+              "name": "zz8"
+            },
+            {
+              "time": 0.6205023527145386,
+              "name": "zz9"
+            },
+            {
+              "time": 0.6894471049308777,
+              "name": "zz0"
+            },
+            {
+              "time": 0.758391797542572,
+              "name": "zz1"
+            },
+            {
+              "time": 0.8273364901542664,
+              "name": "zz2"
+            },
+            {
+              "time": 0.8962811827659607,
+              "name": "zz3"
+            },
+            {
+              "time": 0.9652259349822998,
+              "name": "zz4"
+            },
+            {
+              "time": 1.0341706275939941,
+              "name": "zz5"
+            },
+            {
+              "time": 1.1031153202056885,
+              "name": "zz6"
+            },
+            {
+              "time": 1.1720600128173828,
+              "name": "zz7"
+            },
+            {
+              "time": 1.2410047054290771,
+              "name": "zz8"
+            },
+            {
+              "time": 1.309949517250061,
+              "name": "zz9"
+            },
+            {
+              "time": 1.3788942098617554,
+              "name": "zz0"
+            },
+            {
+              "time": 1.4478389024734497,
+              "name": "zz1"
+            },
+            {
+              "time": 1.516783595085144,
+              "name": "zz2"
+            },
+            {
+              "time": 1.5857282876968384,
+              "name": "zz3"
+            },
+            {
+              "time": 1.6546729803085327,
+              "name": "zz4"
+            },
+            {
+              "time": 1.723617672920227,
+              "name": "zz5"
+            },
+            {
+              "time": 1.7925623655319214,
+              "name": "zz6"
+            },
+            {
+              "time": 1.8615071773529053,
+              "name": "zz7"
+            },
+            {
+              "time": 1.9304518699645996,
+              "name": "zz8"
+            },
+            {
+              "time": 1.999396562576294,
+              "name": "zz9"
+            },
+            {
+              "time": 2,
+              "name": "zz9"
+            }
+          ]
+        },
+        "地图物件-补给2": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "地图物件-补给2"
+            },
+            {
+              "time": 2,
+              "name": "地图物件-补给2"
+            }
+          ]
+        }
+      },
+      "bones": {
+        "Effect-A": {
+          "scale": [
+            {
+              "time": 0,
+              "x": 0.7763175368309021,
+              "y": 0.7763175368309021
+            },
+            {
+              "time": 0.5,
+              "x": 1.4468809366226196,
+              "y": 1.4468809366226196
+            },
+            {
+              "time": 1,
+              "x": 0.7763175368309021,
+              "y": 0.7763175368309021
+            },
+            {
+              "time": 1.5,
+              "x": 1.4468809366226196,
+              "y": 1.4468809366226196
+            },
+            {
+              "time": 2,
+              "x": 0.7763175368309021,
+              "y": 0.7763175368309021
+            }
+          ]
+        },
+        "Recruit": {
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            },
+            {
+              "time": 0.5,
+              "x": 0,
+              "y": -8.91998291015625
+            },
+            {
+              "time": 1,
+              "x": 0,
+              "y": 0
+            },
+            {
+              "time": 1.5,
+              "x": 0,
+              "y": -8.91998291015625
+            },
+            {
+              "time": 2,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {}
+    },
+    "idle": {
+      "slots": {
+        "A": {
+          "color": [
+            {
+              "time": 0,
+              "color": "007fff66"
+            },
+            {
+              "time": 0.5,
+              "color": "007fff2a"
+            },
+            {
+              "time": 1,
+              "color": "007fff66"
+            },
+            {
+              "time": 1.5,
+              "color": "007fff2a"
+            },
+            {
+              "time": 2,
+              "color": "007fff66"
+            }
+          ],
+          "attachment": [
+            {
+              "time": 0,
+              "name": "A"
+            },
+            {
+              "time": 2,
+              "name": "A"
+            }
+          ]
+        },
+        "ddd0": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 2,
+              "name": null
+            }
+          ]
+        },
+        "zz0": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": null
+            },
+            {
+              "time": 2,
+              "name": null
+            }
+          ]
+        },
+        "地图物件-补给2": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "地图物件-补给2"
+            },
+            {
+              "time": 2,
+              "name": "地图物件-补给2"
+            }
+          ]
+        }
+      },
+      "bones": {
+        "Recruit": {
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            },
+            {
+              "time": 0.5,
+              "x": 0,
+              "y": -8.91998291015625
+            },
+            {
+              "time": 1,
+              "x": 0,
+              "y": 0
+            },
+            {
+              "time": 1.5,
+              "x": 0,
+              "y": -8.91998291015625
+            },
+            {
+              "time": 2,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {}
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

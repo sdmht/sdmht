@@ -1,0 +1,153 @@
+
+22072.webp
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fa1
+  rotate: false
+  xy: 295, 75
+  size: 53, 51
+  orig: 53, 51
+  offset: 0, 0
+  index: -1
+fa3
+  rotate: false
+  xy: 2, 47
+  size: 73, 79
+  orig: 73, 79
+  offset: 0, 0
+  index: -1
+hudiejie
+  rotate: false
+  xy: 102, 25
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+hurt
+  rotate: true
+  xy: 141, 52
+  size: 36, 22
+  orig: 36, 24
+  offset: 0, 0
+  index: -1
+qun
+  rotate: true
+  xy: 77, 37
+  size: 51, 62
+  orig: 51, 62
+  offset: 0, 0
+  index: -1
+qun2
+  rotate: true
+  xy: 350, 78
+  size: 48, 52
+  orig: 48, 52
+  offset: 0, 0
+  index: -1
+shangyi
+  rotate: true
+  xy: 77, 90
+  size: 36, 97
+  orig: 46, 99
+  offset: 0, 2
+  index: -1
+toushi
+  rotate: true
+  xy: 176, 72
+  size: 54, 59
+  orig: 54, 60
+  offset: 0, 1
+  index: -1
+weibo
+  rotate: false
+  xy: 40, 3
+  size: 12, 6
+  orig: 12, 6
+  offset: 0, 0
+  index: -1
+wuguan
+  rotate: false
+  xy: 2, 21
+  size: 36, 24
+  orig: 36, 24
+  offset: 0, 0
+  index: -1
+上臂-右
+  rotate: false
+  xy: 427, 104
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+上臂-左
+  rotate: true
+  xy: 77, 21
+  size: 14, 23
+  orig: 14, 23
+  offset: 0, 0
+  index: -1
+大腿-右
+  rotate: true
+  xy: 2, 2
+  size: 17, 36
+  orig: 17, 36
+  offset: 0, 0
+  index: -1
+大腿-左
+  rotate: false
+  xy: 40, 11
+  size: 18, 34
+  orig: 18, 34
+  offset: 0, 0
+  index: -1
+小腿-右
+  rotate: false
+  xy: 60, 13
+  size: 15, 32
+  orig: 15, 32
+  offset: 0, 0
+  index: -1
+小腿-左
+  rotate: false
+  xy: 404, 94
+  size: 21, 32
+  orig: 21, 32
+  offset: 0, 0
+  index: -1
+小臂-右_拷贝
+  rotate: true
+  xy: 141, 38
+  size: 12, 19
+  orig: 12, 19
+  offset: 0, 0
+  index: -1
+小臂-左
+  rotate: false
+  xy: 445, 107
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+手-右_拷贝
+  rotate: true
+  xy: 165, 73
+  size: 15, 9
+  orig: 15, 9
+  offset: 0, 0
+  index: -1
+手-左
+  rotate: true
+  xy: 404, 82
+  size: 10, 15
+  orig: 11, 15
+  offset: 0, 0
+  index: -1
+脸
+  rotate: true
+  xy: 237, 74
+  size: 52, 56
+  orig: 52, 56
+  offset: 0, 0
+  index: -1

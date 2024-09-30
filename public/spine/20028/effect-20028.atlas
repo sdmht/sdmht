@@ -1,0 +1,132 @@
+
+effect-20028.webp
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+resource/attack-guang
+  rotate: false
+  xy: 664, 59
+  size: 68, 67
+  orig: 74, 69
+  offset: 3, 1
+  index: -1
+resource/attack-shouji0001
+  rotate: false
+  xy: 880, 2
+  size: 61, 64
+  orig: 80, 75
+  offset: 14, 4
+  index: -1
+resource/attack-shouji0002
+  rotate: true
+  xy: 593, 61
+  size: 65, 69
+  orig: 80, 75
+  offset: 11, 2
+  index: -1
+resource/attack-shouji0003
+  rotate: true
+  xy: 444, 59
+  size: 67, 72
+  orig: 80, 75
+  offset: 9, 1
+  index: -1
+resource/attack-shouji0004
+  rotate: false
+  xy: 224, 54
+  size: 68, 72
+  orig: 80, 75
+  offset: 9, 1
+  index: -1
+resource/attack-shouji0005
+  rotate: true
+  xy: 294, 59
+  size: 67, 73
+  orig: 80, 75
+  offset: 9, 0
+  index: -1
+resource/attack-shouji0006
+  rotate: true
+  xy: 369, 59
+  size: 67, 73
+  orig: 80, 75
+  offset: 9, 0
+  index: -1
+resource/attack-shouji0007
+  rotate: true
+  xy: 518, 63
+  size: 63, 73
+  orig: 80, 75
+  offset: 12, 0
+  index: -1
+resource/attack-shouji0008
+  rotate: false
+  xy: 2, 53
+  size: 74, 73
+  orig: 80, 75
+  offset: 3, 0
+  index: -1
+resource/attack-shouji0009
+  rotate: false
+  xy: 78, 54
+  size: 71, 72
+  orig: 80, 75
+  offset: 5, 0
+  index: -1
+resource/attack-shouji0010
+  rotate: false
+  xy: 151, 54
+  size: 71, 72
+  orig: 80, 75
+  offset: 4, 0
+  index: -1
+resource/attack-shouji0011
+  rotate: true
+  xy: 734, 66
+  size: 60, 72
+  orig: 80, 75
+  offset: 12, 0
+  index: -1
+resource/attack-shouji0012
+  rotate: true
+  xy: 518, 2
+  size: 59, 71
+  orig: 80, 75
+  offset: 13, 1
+  index: -1
+resource/attack-shouji0013
+  rotate: true
+  xy: 808, 67
+  size: 59, 70
+  orig: 80, 75
+  offset: 13, 1
+  index: -1
+resource/attack-shouji0014
+  rotate: true
+  xy: 880, 68
+  size: 58, 70
+  orig: 80, 75
+  offset: 13, 1
+  index: -1
+resource/attack-shouji0015
+  rotate: true
+  xy: 591, 2
+  size: 57, 69
+  orig: 80, 75
+  offset: 13, 2
+  index: -1
+resource/attack-shouji0016
+  rotate: true
+  xy: 952, 70
+  size: 56, 68
+  orig: 80, 75
+  offset: 14, 2
+  index: -1
+resource/attack-shouji0017
+  rotate: false
+  xy: 662, 2
+  size: 56, 55
+  orig: 80, 75
+  offset: 14, 15
+  index: -1

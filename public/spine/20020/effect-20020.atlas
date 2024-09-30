@@ -1,0 +1,97 @@
+
+effect-20020.webp
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+resource/attack_shouji_006
+  rotate: false
+  xy: 393, 86
+  size: 75, 74
+  orig: 134, 94
+  offset: 5, 10
+  index: -1
+resource/attack_shouji_007
+  rotate: true
+  xy: 2, 115
+  size: 132, 94
+  orig: 134, 94
+  offset: 0, 0
+  index: -1
+resource/attack_shouji_008
+  rotate: true
+  xy: 98, 115
+  size: 132, 94
+  orig: 134, 94
+  offset: 0, 0
+  index: -1
+resource/attack_shouji_009
+  rotate: true
+  xy: 194, 115
+  size: 132, 94
+  orig: 134, 94
+  offset: 0, 0
+  index: -1
+resource/attack_shouji_010
+  rotate: true
+  xy: 290, 115
+  size: 132, 94
+  orig: 134, 94
+  offset: 0, 0
+  index: -1
+resource/attack_shouji_011
+  rotate: true
+  xy: 219, 12
+  size: 101, 91
+  orig: 134, 94
+  offset: 2, 3
+  index: -1
+resource/attack_shouji_012
+  rotate: false
+  xy: 393, 162
+  size: 95, 85
+  orig: 134, 94
+  offset: 10, 7
+  index: -1
+resource/attack_shouji_013
+  rotate: true
+  xy: 312, 15
+  size: 98, 79
+  orig: 134, 94
+  offset: 11, 9
+  index: -1
+resource/attack_shouji_014
+  rotate: true
+  xy: 139, 10
+  size: 103, 78
+  orig: 134, 94
+  offset: 12, 9
+  index: -1
+resource/attack_shouji_015
+  rotate: true
+  xy: 68, 4
+  size: 109, 69
+  orig: 134, 94
+  offset: 10, 9
+  index: -1
+resource/attack_shouji_016
+  rotate: true
+  xy: 2, 2
+  size: 111, 64
+  orig: 134, 94
+  offset: 9, 14
+  index: -1
+resource/attack_shouji_017
+  rotate: false
+  xy: 453, 23
+  size: 57, 61
+  orig: 134, 94
+  offset: 9, 17
+  index: -1
+resource/attack_shouji_018
+  rotate: false
+  xy: 393, 21
+  size: 58, 63
+  orig: 134, 94
+  offset: 9, 16
+  index: -1

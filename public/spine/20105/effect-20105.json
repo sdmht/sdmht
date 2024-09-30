@@ -1,0 +1,352 @@
+{
+  "skeleton": {
+    "hash": "6rQ0s7ZVNNG8k7kyxl4DqIsWuDw",
+    "spine": "3.8",
+    "width": 498.73175048828125,
+    "height": 442.7765808105469
+  },
+  "bones": [
+    {
+      "name": "root",
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    },
+    {
+      "name": "bone",
+      "parent": "root",
+      "rotation": 87.9546127319336,
+      "x": -0.9999539256095886,
+      "y": 5.769016265869141,
+      "scaleX": 2.43283748626709,
+      "scaleY": 2.43283748626709,
+      "length": 56.035667419433594,
+      "inheritRotation": true,
+      "inheritScale": true,
+      "color": "9b9b9bff"
+    }
+  ],
+  "slots": [
+    {
+      "name": "sanbu1",
+      "bone": "bone",
+      "attachment": "sanbu1",
+      "blend": "additive"
+    }
+  ],
+  "ik": [],
+  "transform": [],
+  "path": [],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "sanbu1": {
+          "sanbu1": {
+            "type": "region",
+            "name": "sanbu1",
+            "path": "sanbu1",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          },
+          "sanbu2": {
+            "type": "region",
+            "name": "sanbu2",
+            "path": "sanbu2",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          },
+          "sanbu3": {
+            "type": "region",
+            "name": "sanbu3",
+            "path": "sanbu3",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          },
+          "sanbu4": {
+            "type": "region",
+            "name": "sanbu4",
+            "path": "sanbu4",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          },
+          "sanbu5": {
+            "type": "region",
+            "name": "sanbu5",
+            "path": "sanbu5",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          },
+          "sanbu6": {
+            "type": "region",
+            "name": "sanbu6",
+            "path": "sanbu6",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          },
+          "sanbu7": {
+            "type": "region",
+            "name": "sanbu7",
+            "path": "sanbu7",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          },
+          "sanbu8": {
+            "type": "region",
+            "name": "sanbu8",
+            "path": "sanbu8",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          },
+          "sanbu9": {
+            "type": "region",
+            "name": "sanbu9",
+            "path": "sanbu9",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          },
+          "sanbu10": {
+            "type": "region",
+            "name": "sanbu10",
+            "path": "sanbu10",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          },
+          "sanbu11": {
+            "type": "region",
+            "name": "sanbu11",
+            "path": "sanbu11",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          },
+          "sanbu12": {
+            "type": "region",
+            "name": "sanbu12",
+            "path": "sanbu12",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          },
+          "sanbu13": {
+            "type": "region",
+            "name": "sanbu13",
+            "path": "sanbu13",
+            "rotation": -87.95460510253906,
+            "x": -1.9073486328125e-6,
+            "y": 9.5367431640625e-7,
+            "scaleX": 1,
+            "scaleY": 1,
+            "width": 205,
+            "height": 182,
+            "color": "ffffffff"
+          }
+        }
+      }
+    }
+  ],
+  "events": {},
+  "eventsName": [],
+  "animations": {
+    "idle": {
+      "slots": {
+        "sanbu1": {
+          "attachment": [
+            {
+              "time": 0,
+              "name": "sanbu1"
+            },
+            {
+              "time": 0.06666667014360428,
+              "name": "sanbu1"
+            },
+            {
+              "time": 0.10000000149011612,
+              "name": "sanbu2"
+            },
+            {
+              "time": 0.1666666716337204,
+              "name": "sanbu3"
+            },
+            {
+              "time": 0.20000000298023224,
+              "name": "sanbu4"
+            },
+            {
+              "time": 0.23333333432674408,
+              "name": "sanbu5"
+            },
+            {
+              "time": 0.30000001192092896,
+              "name": "sanbu6"
+            },
+            {
+              "time": 0.3333333432674408,
+              "name": "sanbu7"
+            },
+            {
+              "time": 0.36666667461395264,
+              "name": "sanbu8"
+            },
+            {
+              "time": 0.4333333373069763,
+              "name": "sanbu9"
+            },
+            {
+              "time": 0.46666666865348816,
+              "name": "sanbu10"
+            },
+            {
+              "time": 0.5333333611488342,
+              "name": "sanbu11"
+            },
+            {
+              "time": 0.5666666626930237,
+              "name": "sanbu12"
+            },
+            {
+              "time": 0.6000000238418579,
+              "name": "sanbu13"
+            },
+            {
+              "time": 0.6666666865348816,
+              "name": null
+            }
+          ]
+        }
+      },
+      "bones": {
+        "bone": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 0.4590972065925598,
+              "y": 0.4590972065925598
+            },
+            {
+              "time": 0.06666667014360428,
+              "x": 0.9175610542297363,
+              "y": 0.9175610542297363
+            },
+            {
+              "time": 0.10000000149011612,
+              "x": 1.0881940126419067,
+              "y": 1.0881940126419067
+            },
+            {
+              "time": 0.6666666865348816,
+              "x": 1.3490358591079712,
+              "y": 1.3490358591079712
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      },
+      "ik": {},
+      "transform": {},
+      "paths": {},
+      "deform": {}
+    },
+    "pseudo_setup_pose": {
+      "bones": {},
+      "slots": {},
+      "ik": {},
+      "ffd": {},
+      "drawOrder": [
+        {
+          "offsets": [],
+          "time": 0
+        }
+      ]
+    }
+  }
+}

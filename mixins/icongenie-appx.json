@@ -1,0 +1,25 @@
+{
+  "params": {
+    "splashscreenIconRatio": 100
+  },
+  "assets": [
+    {
+      "generator": "png",
+      "name": "StoreLogo.png",
+      "folder": "src-electron/appx",
+      "sizes": [50]
+    },
+    {
+      "generator": "png",
+      "name": "Square{size}x{size}Logo.png",
+      "folder": "src-electron/appx",
+      "sizes": [44, 150]
+    },
+    {
+      "generator": "splashscreen",
+      "name": "Wide310x150Logo.png",
+      "folder": "src-electron/appx",
+      "sizes": [[310, 150]]
+    }
+  ]
+}

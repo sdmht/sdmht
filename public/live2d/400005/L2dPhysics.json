@@ -1,0 +1,341 @@
+{
+  "type": "Live2D Physics",
+  "physics_hair": [
+    {
+      "label": "HAIR FRONT",
+      "setup": {
+        "length": 0.13,
+        "regist": 0.5,
+        "mass": 0.15
+      },
+      "src": [
+        {
+          "id": "PARAM_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.01,
+          "weight": 0.7
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_HAIR_FRONT",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.7
+        }
+      ]
+    },
+    {
+      "label": "HAIR SIDE 00",
+      "setup": {
+        "length": 0.16,
+        "regist": 0.5,
+        "mass": 0.18
+      },
+      "src": [
+        {
+          "id": "PARAM_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.01,
+          "weight": 0.7
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_HAIR_SIDE_00",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.6
+        }
+      ]
+    },
+    {
+      "label": "HAIR SIDE 01",
+      "setup": {
+        "length": 0.17,
+        "regist": 0.5,
+        "mass": 0.19
+      },
+      "src": [
+        {
+          "id": "PARAM_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.012,
+          "weight": 0.7
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_HAIR_SIDE_01",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.58
+        }
+      ]
+    },
+    {
+      "label": "HAIR BACK",
+      "setup": {
+        "length": 0.18,
+        "regist": 0.5,
+        "mass": 0.21
+      },
+      "src": [
+        {
+          "id": "PARAM_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.004,
+          "weight": 0.6
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_HAIR_BACK",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.4
+        }
+      ]
+    },
+    {
+      "label": "QUNZI",
+      "setup": {
+        "length": 0.19,
+        "regist": 0.5,
+        "mass": 0.23
+      },
+      "src": [
+        {
+          "id": "PARAM_BODY_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.008,
+          "weight": 0.6
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_QUNZI",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.6
+        }
+      ]
+    },
+    {
+      "label": "XIAOQUNZI",
+      "setup": {
+        "length": 0.17,
+        "regist": 0.5,
+        "mass": 0.2
+      },
+      "src": [
+        {
+          "id": "PARAM_BODY_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.012,
+          "weight": 0.6
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_XIAOQUNZI",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.7
+        }
+      ]
+    },
+    {
+      "label": "XIUZI L U",
+      "setup": {
+        "length": 0.19,
+        "regist": 0.5,
+        "mass": 0.22
+      },
+      "src": [
+        {
+          "id": "PARAM_BODY_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.012,
+          "weight": 0.6
+        },
+        {
+          "id": "PARAM_ARM_L",
+          "ptype": "x",
+          "scale": 0.012,
+          "weight": 0.6
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_XIUZI_L_U",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.7
+        }
+      ]
+    },
+    {
+      "label": "XIUZI L D",
+      "setup": {
+        "length": 0.17,
+        "regist": 0.5,
+        "mass": 0.2
+      },
+      "src": [
+        {
+          "id": "PARAM_BODY_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.01,
+          "weight": 0.6
+        },
+        {
+          "id": "PARAM_ARM_L",
+          "ptype": "x",
+          "scale": 0.01,
+          "weight": 0.6
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_XIUZI_L_D",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.7
+        }
+      ]
+    },
+    {
+      "label": "XIUZI R U",
+      "setup": {
+        "length": 0.19,
+        "regist": 0.5,
+        "mass": 0.22
+      },
+      "src": [
+        {
+          "id": "PARAM_BODY_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.008,
+          "weight": 0.6
+        },
+        {
+          "id": "PARAM_ARM_R",
+          "ptype": "x",
+          "scale": 0.008,
+          "weight": 0.6
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_XIUZI_R_U",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.7
+        }
+      ]
+    },
+    {
+      "label": "XIUZI R D",
+      "setup": {
+        "length": 0.19,
+        "regist": 0.5,
+        "mass": 0.22
+      },
+      "src": [
+        {
+          "id": "PARAM_BODY_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.01,
+          "weight": 0.6
+        },
+        {
+          "id": "PARAM_ARM_R",
+          "ptype": "x",
+          "scale": 0.01,
+          "weight": 0.6
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_XIUZI_R_D",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.7
+        }
+      ]
+    },
+    {
+      "label": "HUA",
+      "setup": {
+        "length": 0.15,
+        "regist": 0.5,
+        "mass": 0.17
+      },
+      "src": [
+        {
+          "id": "PARAM_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.007,
+          "weight": 0.7
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_HUA",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.7
+        }
+      ]
+    },
+    {
+      "label": "BUST X",
+      "setup": {
+        "length": 0.13,
+        "regist": 0.5,
+        "mass": 0.18
+      },
+      "src": [
+        {
+          "id": "PARAM_BODY_ANGLE_X",
+          "ptype": "x",
+          "scale": 0.01,
+          "weight": 0.7
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_BUST_X",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.5
+        }
+      ]
+    },
+    {
+      "label": "BUST Y",
+      "setup": {
+        "length": 0.12,
+        "regist": 0.5,
+        "mass": 0.13
+      },
+      "src": [
+        {
+          "id": "PARAM_BODY_ANGLE_Y",
+          "ptype": "x",
+          "scale": 0.015,
+          "weight": 0.7
+        }
+      ],
+      "targets": [
+        {
+          "id": "PARAM_BUST_Y",
+          "ptype": "angle",
+          "scale": 0.022,
+          "weight": 0.7
+        }
+      ]
+    }
+  ]
+}

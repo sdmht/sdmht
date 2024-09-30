@@ -1,0 +1,104 @@
+
+effect-20047.webp
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+resource/shouji0001
+  rotate: false
+  xy: 923, 86
+  size: 40, 40
+  orig: 97, 96
+  offset: 27, 24
+  index: -1
+resource/shouji0002
+  rotate: false
+  xy: 878, 84
+  size: 43, 42
+  orig: 97, 96
+  offset: 28, 22
+  index: -1
+resource/shouji0003
+  rotate: false
+  xy: 828, 76
+  size: 48, 50
+  orig: 97, 96
+  offset: 25, 17
+  index: -1
+resource/shouji0004
+  rotate: false
+  xy: 765, 63
+  size: 61, 63
+  orig: 97, 96
+  offset: 22, 10
+  index: -1
+resource/shouji0005
+  rotate: false
+  xy: 395, 42
+  size: 81, 84
+  orig: 97, 96
+  offset: 11, 4
+  index: -1
+resource/shouji0006
+  rotate: false
+  xy: 299, 30
+  size: 94, 96
+  orig: 97, 96
+  offset: 3, 0
+  index: -1
+resource/shouji0007
+  rotate: false
+  xy: 2, 30
+  size: 97, 96
+  orig: 97, 96
+  offset: 0, 0
+  index: -1
+resource/shouji0008
+  rotate: false
+  xy: 101, 30
+  size: 97, 96
+  orig: 97, 96
+  offset: 0, 0
+  index: -1
+resource/shouji0009
+  rotate: false
+  xy: 200, 30
+  size: 97, 96
+  orig: 97, 96
+  offset: 0, 0
+  index: -1
+resource/shouji0010
+  rotate: false
+  xy: 694, 60
+  size: 69, 66
+  orig: 97, 96
+  offset: 15, 8
+  index: -1
+resource/shouji0011
+  rotate: false
+  xy: 623, 59
+  size: 69, 67
+  orig: 97, 96
+  offset: 15, 8
+  index: -1
+resource/shouji0012
+  rotate: false
+  xy: 478, 59
+  size: 71, 67
+  orig: 97, 96
+  offset: 14, 8
+  index: -1
+resource/shouji0013
+  rotate: false
+  xy: 551, 58
+  size: 70, 68
+  orig: 97, 96
+  offset: 14, 8
+  index: -1
+resource/tf0
+  rotate: false
+  xy: 694, 2
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
