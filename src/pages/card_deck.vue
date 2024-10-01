@@ -110,6 +110,18 @@
                       scope.opt.技能描述
                     }}</q-item-label
                   >
+                  <q-item-label caption
+                    >消耗：{{ scope.opt.技能消耗 }}；回合最大使用次数：{{
+                      scope.opt.回合最大使用次数
+                    }}；单场最大使用次数：{{
+                      scope.opt.单场最大使用次数
+                    }}</q-item-label
+                  >
+                  <q-item-label caption
+                    >被动：{{ scope.opt.被动技能名称 }}：{{
+                      scope.opt.被动技能描述
+                    }}</q-item-label
+                  >
                 </q-item-section>
               </q-item>
             </template>
@@ -333,11 +345,6 @@ const q = useQuasar()
 
 const 编号卡组列表 = ref<编号卡组类型[]>([])
 
-const _卡组列表 = localStorage.getItem('卡组列表')
-if (_卡组列表) {
-  编号卡组列表.value = JSON.parse(_卡组列表)
-}
-
 const router = useRouter()
 onMounted(() => {
   播放场景背景音乐('main/BGM_day.mp3')
@@ -355,25 +362,50 @@ async function 匹配对手(卡组: 编号卡组类型) {
 
 const 主神列表 = 主神信息列表
   .filter((x) => x.仅系统用 == 0)
-  .reduce((pv, v) => {
-    const 主神信息 = 获得主神信息(v.编号)
-    const 技能信息 = [
-      获得技能信息(主神信息.技能1),
-      获得技能信息(主神信息.技能2),
-      获得技能信息(主神信息.技能3),
-    ]
-    技能信息.forEach((x, i) => {
-      pv.push({
-        主神: v.编号,
-        卡牌名称: v.卡牌名称,
-        美术资源: v.美术资源,
-        主神技能: (i + 1) as 1 | 2 | 3,
-        技能名称: x.技能名称,
-        技能描述: x.技能描述,
+  .reduce(
+    (pv, v) => {
+      const 主神信息 = 获得主神信息(v.编号)
+      const 技能信息 = [
+        获得技能信息(主神信息.技能1),
+        获得技能信息(主神信息.技能2),
+        获得技能信息(主神信息.技能3),
+      ]
+      技能信息.forEach((x, i) => {
+        const 被动技能 = 获得技能信息(
+          typeof x.附带技能 === 'string'
+            ? parseInt(x.附带技能.split(',').at(-1)!)
+            : x.附带技能
+        )
+        pv.push({
+          主神: v.编号,
+          卡牌名称: v.卡牌名称,
+          美术资源: v.美术资源,
+          主神技能: (i + 1) as 1 | 2 | 3,
+          技能名称: x.技能名称,
+          技能描述: x.技能描述,
+          技能消耗: x.消耗,
+          回合最大使用次数: x.回合最大使用次数,
+          单场最大使用次数: x.单场最大使用次数,
+          被动技能名称: 被动技能.技能名称,
+          被动技能描述: 被动技能.技能描述,
+        })
       })
-    })
-    return pv
-  }, [] as { 主神: number; 卡牌名称: string; 美术资源: number; 主神技能: 1 | 2 | 3; 技能名称: string; 技能描述: string }[])
+      return pv
+    },
+    [] as {
+      主神: number
+      卡牌名称: string
+      美术资源: number
+      主神技能: 1 | 2 | 3
+      技能名称: string
+      技能描述: string
+      技能消耗: number
+      回合最大使用次数: number
+      单场最大使用次数: number
+      被动技能名称: string
+      被动技能描述: string
+    }[]
+  )
 const 附属神列表 = 附属神信息列表.filter((x) => x.仅系统用 == 0)
 const 神迹卡列表 = 神迹卡信息列表.filter((x) => x.仅系统用 == 0)
 const 弹幕卡列表 = 弹幕卡信息列表.filter((x) => x.仅系统用 == 0)
@@ -446,6 +478,14 @@ const 卡组 = new 卡组选择类()
 function 保存卡组() {
   localStorage.setItem('卡组列表', JSON.stringify(编号卡组列表.value))
 }
+function 读取卡组() {
+  const _卡组列表 = localStorage.getItem('卡组列表')
+  if (_卡组列表) {
+    编号卡组列表.value = JSON.parse(_卡组列表)
+  }
+}
+读取卡组()
+
 function 创建卡组() {
   if (卡组.卡组) {
     编号卡组列表.value.push(卡组.卡组)
