@@ -1,241 +1,17 @@
 <template>
   <q-list>
-    <q-item clickable v-ripple class="q-pa-lg">
-      <div
-        class="text-h4 full-width text-center"
-        @click="
-          () => {
-            卡组.重置()
-            卡组弹窗 = true
-          }
-        "
-      >
-        创建卡组
-      </div>
-      <q-dialog v-model="卡组弹窗">
-        <q-card class="bg-dark" style="min-width: 500px">
-          <q-form @submit="创建卡组()" @reset="卡组.重置()">
-            <q-card-section>
-              <div class="text-h6">创建卡组</div>
-            </q-card-section>
-            <q-card-section>
-              <q-input
-                v-model="卡组.卡组名.value"
-                label="卡组名称"
-                :rules="[(val) => !!val || '卡组名称不能为空']"
-              />
-              <q-select
-                v-model="卡组.主神.value"
-                :options="主神列表"
-                label="主神"
-                option-label="卡牌名称"
-                map-options
-                :rules="[(val) => !!val || '主神不能为空']"
-              >
-                <template v-slot:option="scope">
-                  <q-item v-bind="scope.itemProps">
-                    <q-item-section avatar>
-                      <img
-                        height="100px"
-                        :src="`character/CharacterHeadL_${scope.opt.美术资源}.webp`"
-                      />
-                    </q-item-section>
-                    <q-item-section>
-                      <q-item-label
-                        >{{ scope.opt.卡牌名称 }}
-                        {{ scope.opt.主神技能 }}</q-item-label
-                      >
-                      <q-item-label
-                        >{{ scope.opt.技能名称 }}：{{
-                          scope.opt.技能描述
-                        }}</q-item-label
-                      >
-                    </q-item-section>
-                  </q-item>
-                </template>
-              </q-select>
-              <q-select
-                v-model="卡组.附属神.value"
-                multiple
-                :options="可选附属神列表"
-                label="附属神"
-                option-label="卡牌名称"
-                option-value="编号"
-                emit-value
-                map-options
-                use-input
-                input-debounce="0"
-                @filter="
-                  (val, update) => {
-                    update(() => {
-                      可选附属神列表 = val
-                        ? 附属神列表.filter(
-                            (v) =>
-                              v.卡牌名称.indexOf(val) > -1 ||
-                              v.描述.indexOf(val) > -1
-                          )
-                        : 附属神列表
-                      可选附属神列表 = 可选附属神列表.sort(
-                        (a, b) => a.品质 - b.品质
-                      )
-                    })
-                  }
-                "
-                :rules="[(val) => val.length == 2 || '附属神数量必须为2']"
-              >
-                <template v-slot:option="scope">
-                  <q-item v-bind="scope.itemProps">
-                    <q-item-section avatar>
-                      <img
-                        height="100px"
-                        :src="`character/CharacterHeadL_${scope.opt.美术资源}.webp`"
-                      />
-                    </q-item-section>
-                    <q-item-section>
-                      <q-item-label>{{ scope.opt.卡牌名称 }}</q-item-label>
-                      <q-item-label caption
-                        >生命值：{{ scope.opt.生命值 }}；攻击力：{{
-                          scope.opt.攻击力
-                        }}；移动力：{{ scope.opt.移动力 }}</q-item-label
-                      >
-                      <q-item-label caption>{{ scope.opt.描述 }}</q-item-label>
-                    </q-item-section>
-                  </q-item>
-                </template>
-              </q-select>
-              <q-select
-                v-model="卡组.神迹卡.value"
-                multiple
-                :options="可选神迹卡列表"
-                label="神迹卡"
-                option-label="卡牌名称"
-                map-options
-                use-input
-                counter
-                input-debounce="0"
-                @filter="
-                  (val, update) => {
-                    update(() => {
-                      更新可选神迹卡列表(
-                        val
-                          ? 神迹卡列表.filter(
-                              (v) =>
-                                v.卡牌名称.indexOf(val) > -1 ||
-                                v.描述.indexOf(val) > -1
-                            )
-                          : 神迹卡列表
-                      )
-                    })
-                  }
-                "
-                reactive-rules
-                :rules="[
-                  () =>
-                    卡组.神迹卡.value.length + 卡组.弹幕卡.value.length == 20 ||
-                    '神迹卡+弹幕卡总数必须为20',
-                ]"
-              >
-                <template v-slot:option="scope">
-                  <q-item v-bind="scope.itemProps">
-                    <q-item-section avatar>
-                      <img
-                        height="100px"
-                        :src="`card/CardL_${scope.opt.美术资源}.webp`"
-                      />
-                    </q-item-section>
-                    <q-item-label>
-                      <q-item-label>{{ scope.opt.卡牌名称 }}</q-item-label>
-                      <q-item-label caption
-                        >品质：{{
-                          { 1: '传说', 2: '稀有', 3: '普通' }[
-                            scope.opt.品质 as number
-                          ]
-                        }}</q-item-label
-                      >
-                      <q-item-label caption
-                        >消耗：{{
-                          获得技能信息(scope.opt.技能).消耗
-                        }}</q-item-label
-                      >
-                      <q-item-label caption>{{ scope.opt.描述 }}</q-item-label>
-                    </q-item-label>
-                  </q-item>
-                </template>
-              </q-select>
-              <q-select
-                v-model="卡组.弹幕卡.value"
-                multiple
-                :options="可选弹幕卡列表"
-                label="弹幕卡"
-                option-label="卡牌名称"
-                map-options
-                use-input
-                counter
-                input-debounce="0"
-                @filter="
-                  (val, update) => {
-                    update(() => {
-                      更新可选弹幕卡列表(
-                        val
-                          ? 弹幕卡列表.filter(
-                              (v) =>
-                                v.卡牌名称.indexOf(val) > -1 ||
-                                v.描述.indexOf(val) > -1
-                            )
-                          : 弹幕卡列表
-                      )
-                    })
-                  }
-                "
-                reactive-rules
-                :rules="[
-                  () =>
-                    卡组.神迹卡.value.length + 卡组.弹幕卡.value.length == 20 ||
-                    '神迹卡+弹幕卡总数必须为20',
-                ]"
-              >
-                <template v-slot:option="scope">
-                  <q-item v-bind="scope.itemProps">
-                    <q-item-section avatar>
-                      <img
-                        height="100px"
-                        :src="`card/CardL_${scope.opt.美术资源}.webp`"
-                      />
-                    </q-item-section>
-                    <q-item-section>
-                      <q-item-label>{{ scope.opt.卡牌名称 }}</q-item-label>
-                      <q-item-label caption
-                        >品质：{{
-                          { 1: '传说', 2: '稀有', 3: '普通' }[
-                            scope.opt.品质 as number
-                          ]
-                        }}</q-item-label
-                      >
-                      <q-item-label caption
-                        >消耗：{{ scope.opt.消耗 }}；攻击力：{{
-                          scope.opt.攻击力
-                        }}；吟唱时间：{{ scope.opt.吟唱时间 }}</q-item-label
-                      >
-                      <q-item-label caption>{{ scope.opt.描述 }}</q-item-label>
-                    </q-item-section>
-                  </q-item>
-                </template>
-              </q-select>
-            </q-card-section>
-            <q-card-actions>
-              <q-btn
-                label="重置"
-                type="reset"
-                color="primary"
-                flat
-                class="q-ml-sm"
-              />
-              <q-space />
-              <q-btn label="保存" type="submit" color="primary" />
-            </q-card-actions>
-          </q-form>
-        </q-card>
-      </q-dialog>
+    <q-item
+      v-ripple
+      class="q-pa-lg"
+      clickable
+      @click="
+        () => {
+          卡组.重置()
+          卡组弹窗 = true
+        }
+      "
+    >
+      <div class="text-h4 full-width text-center">创建卡组</div>
     </q-item>
     <div class="text-center">向左划卡组进入战斗界面</div>
     <template v-for="(卡组, k) in 编号卡组列表" :key="k">
@@ -296,6 +72,228 @@
       </q-slide-item>
     </template>
   </q-list>
+  <q-dialog v-model="卡组弹窗">
+    <q-card class="bg-dark" style="min-width: 500px">
+      <q-form @submit="创建卡组()" @reset="卡组.重置()">
+        <q-card-section>
+          <div class="text-h6">创建卡组</div>
+        </q-card-section>
+        <q-card-section>
+          <q-input
+            v-model="卡组.卡组名.value"
+            label="卡组名称"
+            :rules="[(val) => !!val || '卡组名称不能为空']"
+          />
+          <q-select
+            v-model="卡组.主神.value"
+            :options="主神列表"
+            label="主神"
+            option-label="卡牌名称"
+            map-options
+            :rules="[(val) => !!val || '主神不能为空']"
+          >
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <img
+                    height="80px"
+                    :src="`character/CharacterHeadL_${scope.opt.美术资源}.webp`"
+                  />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label
+                    >{{ scope.opt.卡牌名称 }}
+                    {{ scope.opt.主神技能 }}</q-item-label
+                  >
+                  <q-item-label
+                    >{{ scope.opt.技能名称 }}：{{
+                      scope.opt.技能描述
+                    }}</q-item-label
+                  >
+                </q-item-section>
+              </q-item>
+            </template>
+          </q-select>
+          <q-select
+            v-model="卡组.附属神.value"
+            multiple
+            :options="可选附属神列表"
+            label="附属神"
+            option-label="卡牌名称"
+            option-value="编号"
+            emit-value
+            map-options
+            use-input
+            input-debounce="0"
+            @filter="
+              (val, update) => {
+                update(() => {
+                  可选附属神列表 = val
+                    ? 附属神列表.filter(
+                        (v) =>
+                          v.卡牌名称.indexOf(val) > -1 ||
+                          v.描述.indexOf(val) > -1
+                      )
+                    : 附属神列表
+                  可选附属神列表 = 可选附属神列表.sort(
+                    (a, b) => a.品质 - b.品质
+                  )
+                })
+              }
+            "
+            :rules="[(val) => val.length == 2 || '附属神数量必须为2']"
+          >
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <img
+                    height="80px"
+                    :src="`character/CharacterHeadL_${scope.opt.美术资源}.webp`"
+                  />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.卡牌名称 }}</q-item-label>
+                  <q-item-label caption
+                    >生命值：{{ scope.opt.生命值 }}；攻击力：{{
+                      scope.opt.攻击力
+                    }}；移动力：{{ scope.opt.移动力 }}</q-item-label
+                  >
+                  <q-item-label caption>{{ scope.opt.描述 }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+          </q-select>
+          <q-select
+            v-model="卡组.神迹卡.value"
+            multiple
+            :options="可选神迹卡列表"
+            label="神迹卡"
+            option-label="卡牌名称"
+            map-options
+            use-input
+            counter
+            input-debounce="0"
+            @filter="
+              (val, update) => {
+                update(() => {
+                  更新可选神迹卡列表(
+                    val
+                      ? 神迹卡列表.filter(
+                          (v) =>
+                            v.卡牌名称.indexOf(val) > -1 ||
+                            v.描述.indexOf(val) > -1
+                        )
+                      : 神迹卡列表
+                  )
+                })
+              }
+            "
+            reactive-rules
+            :rules="[
+              () =>
+                卡组.神迹卡.value.length + 卡组.弹幕卡.value.length == 20 ||
+                '神迹卡+弹幕卡总数必须为20',
+            ]"
+          >
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <img
+                    height="80px"
+                    :src="`card/CardL_${scope.opt.美术资源}.webp`"
+                  />
+                </q-item-section>
+                <q-item-label>
+                  <q-item-label>{{ scope.opt.卡牌名称 }}</q-item-label>
+                  <q-item-label caption
+                    >品质：{{
+                      { 1: '传说', 2: '稀有', 3: '普通' }[
+                        scope.opt.品质 as number
+                      ]
+                    }}</q-item-label
+                  >
+                  <q-item-label caption
+                    >消耗：{{ 获得技能信息(scope.opt.技能).消耗 }}</q-item-label
+                  >
+                  <q-item-label caption>{{ scope.opt.描述 }}</q-item-label>
+                </q-item-label>
+              </q-item>
+            </template>
+          </q-select>
+          <q-select
+            v-model="卡组.弹幕卡.value"
+            multiple
+            :options="可选弹幕卡列表"
+            label="弹幕卡"
+            option-label="卡牌名称"
+            map-options
+            use-input
+            counter
+            input-debounce="0"
+            @filter="
+              (val, update) => {
+                update(() => {
+                  更新可选弹幕卡列表(
+                    val
+                      ? 弹幕卡列表.filter(
+                          (v) =>
+                            v.卡牌名称.indexOf(val) > -1 ||
+                            v.描述.indexOf(val) > -1
+                        )
+                      : 弹幕卡列表
+                  )
+                })
+              }
+            "
+            reactive-rules
+            :rules="[
+              () =>
+                卡组.神迹卡.value.length + 卡组.弹幕卡.value.length == 20 ||
+                '神迹卡+弹幕卡总数必须为20',
+            ]"
+          >
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <img
+                    height="80px"
+                    :src="`card/CardL_${scope.opt.美术资源}.webp`"
+                  />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.卡牌名称 }}</q-item-label>
+                  <q-item-label caption
+                    >品质：{{
+                      { 1: '传说', 2: '稀有', 3: '普通' }[
+                        scope.opt.品质 as number
+                      ]
+                    }}</q-item-label
+                  >
+                  <q-item-label caption
+                    >消耗：{{ scope.opt.消耗 }}；攻击力：{{
+                      scope.opt.攻击力
+                    }}；吟唱时间：{{ scope.opt.吟唱时间 }}</q-item-label
+                  >
+                  <q-item-label caption>{{ scope.opt.描述 }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+          </q-select>
+        </q-card-section>
+        <q-card-actions>
+          <q-btn
+            label="重置"
+            type="reset"
+            color="primary"
+            flat
+            class="q-ml-sm"
+          />
+          <q-space />
+          <q-btn label="保存" type="submit" color="primary" />
+        </q-card-actions>
+      </q-form>
+    </q-card>
+  </q-dialog>
 </template>
 <script setup lang="ts">
 import _ from 'lodash'
@@ -370,7 +368,7 @@ function 更新可选神迹卡列表(_神迹卡列表: typeof 神迹卡列表) {
         .filter((x) => x.品质 > 1)
         .map((x) => ({
           ...x,
-          卡牌名称: x.卡牌名称 + '(2)',
+          卡牌名称: x.卡牌名称 + ' 2',
         }))
     )
     .sort((a, b) => a.排序编号 - b.排序编号)
@@ -384,7 +382,7 @@ function 更新可选弹幕卡列表(_弹幕卡列表: typeof 弹幕卡列表) {
         .filter((x) => x.品质 > 1)
         .map((x) => ({
           ...x,
-          卡牌名称: x.卡牌名称 + '(2)',
+          卡牌名称: x.卡牌名称 + ' 2',
         }))
     )
     .sort((a, b) => a.排序编号 - b.排序编号)
@@ -451,8 +449,8 @@ function 复刻卡组(_卡组: 编号卡组类型) {
   卡组.附属神.value = _卡组.附属神
   卡组.神迹卡.value = []
   _卡组.神迹卡.forEach((x) => {
-    const 神迹卡 = 神迹卡列表.find(
-      (y) => y.编号 == x && !_.includes(卡组.神迹卡.value, y)
+    const 神迹卡 = 可选神迹卡列表.value.find(
+      (y) => y.编号 == x && !卡组.神迹卡.value.includes(y)
     )
     if (神迹卡) {
       卡组.神迹卡.value.push(神迹卡)
@@ -460,8 +458,8 @@ function 复刻卡组(_卡组: 编号卡组类型) {
   })
   卡组.弹幕卡.value = []
   _卡组.弹幕卡.forEach((x) => {
-    const 弹幕卡 = 弹幕卡列表.find(
-      (y) => y.编号 == x && !_.includes(卡组.弹幕卡.value, y)
+    const 弹幕卡 = 可选弹幕卡列表.value.find(
+      (y) => y.编号 == x && !卡组.弹幕卡.value.includes(y)
     )
     if (弹幕卡) {
       卡组.弹幕卡.value.push(弹幕卡)
