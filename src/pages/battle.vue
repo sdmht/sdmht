@@ -756,15 +756,23 @@ onMounted(async () => {
     if (d.k == '行动') {
       行动队列类.行动队列.接收(d.v)
     } else if (d.k == '初始数据') {
+      随机类.随机数种子 = 玩家.主神.id + d.v.主神.id
       敌方玩家 = new 玩家类(false, d.v)
 
-      敌方玩家.主神
-        .获得角色(位宽)
-        .then((角色) => 角色层.children[1].addChild(角色))
+      const 角色渲染列表 = []
+      角色渲染列表.push(
+        敌方玩家.主神
+          .获得角色(位宽)
+          .then((角色) => 角色层.children[1].addChild(角色))
+      )
       敌方玩家.我方(附属神类).forEach((附属神) => {
-        附属神.获得角色(位宽).then((角色) => 角色层.children[1].addChild(角色))
+        角色渲染列表.push(
+          附属神
+            .获得角色(位宽)
+            .then((角色) => 角色层.children[1].addChild(角色))
+        )
       })
-      随机类.随机数种子 = 玩家.主神.id + 敌方玩家.主神.id
+      await Promise.all(角色渲染列表)
       if (玩家.主神.id > 敌方玩家.主神.id) {
         玩家.回合开始()
       } else {

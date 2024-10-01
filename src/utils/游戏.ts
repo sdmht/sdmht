@@ -62,7 +62,7 @@ class 基类 extends EventEmitter {
     this.id = 随机类.随机数()
   }
   emit(eventName: string | symbol, ...args: unknown[]): boolean {
-    // console.log(this.constructor.name, eventName, ...args, this)
+    console.log(this.constructor.name, eventName, ...args, this)
     return super.emit(eventName, ...args)
   }
 }
@@ -346,11 +346,11 @@ class 技能类 extends 基类 {
     if (this.选择规则 == '随机') {
       目标列表 = 随机类
         .乱序(目标列表)
-        .sort((a) => (a instanceof 位置类 && a.单位 ? -1 : 1))
+        .sort((a) => (a instanceof 位置类 && a.单位 ? 1 : -1))
         .sort((a) =>
           (a instanceof 位置类 || a instanceof 单位类) && a.迷雾不可被解除
-            ? -1
-            : 1
+            ? 1
+            : -1
         )
         .slice(0, 1)
     }
@@ -789,7 +789,7 @@ class 技能类 extends 基类 {
               v.未完全离场 = true
               const 位置 = 随机类
                 .乱序(v.我方(位置类).filter((l) => !l.单位))
-                .sort((l) => (l.迷雾 ? -1 : 1))[0]
+                .sort((l) => (l.迷雾 ? 1 : -1))[0]
               if (v instanceof 主神类) {
                 v.玩家.主神 = new 主神类(
                   v.玩家,
@@ -1370,10 +1370,12 @@ class 技能类 extends 基类 {
     玩家类.事件.emit('行动点变化', { 变化值: -this.消耗 })
   }
   触发(参数: Record<string, unknown> = {}) {
-    if (this.是否禁止触发()) return
-    this.本回合使用次数++
-    this.使用次数++
-    this.emit('触发', 参数)
+    游戏开始后执行(() => {
+      if (this.是否禁止触发()) return
+      this.本回合使用次数++
+      this.使用次数++
+      this.emit('触发', 参数)
+    })
   }
   是否对敌我方(目标: 目标类) {
     if (this.携带者.是否我方 == 目标.是否我方) {
@@ -2048,7 +2050,7 @@ class 单位类 extends 目标类 {
     const 角色 = new PIXI.Container()
     this.角色 = 角色
     this.更新坐标(位宽)
-    this.获得动画(位宽)
+    await this.获得动画(位宽)
     this.on('变化', () => {
       this.获得动画(位宽)
     })

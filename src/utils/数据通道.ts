@@ -45,7 +45,7 @@ type 数据同步类型 =
 
 class 数据通道类 extends EventEmitter {
   emit(name: string, ...args: unknown[]) {
-    // console.log(name, ...args)
+    console.log(name, ...args)
     // if (!location.protocol.endsWith('s:')) {
     //   Notify.create({
     //     message: name,
