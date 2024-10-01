@@ -289,7 +289,19 @@
             class="q-ml-sm"
           />
           <q-space />
-          <q-btn label="保存" type="submit" color="primary" />
+          <q-btn
+            v-if="卡组.卡组"
+            label="复制卡组码"
+            @click="复制卡组码(卡组.卡组)"
+          />
+          <q-btn v-else label="粘贴卡组码" @click="粘贴卡组码()" />
+          <q-space />
+          <q-btn
+            label="保存"
+            type="submit"
+            color="primary"
+            :disable="!卡组.卡组"
+          />
         </q-card-actions>
       </q-form>
     </q-card>
@@ -297,6 +309,7 @@
 </template>
 <script setup lang="ts">
 import _ from 'lodash'
+import { copyToClipboard, useQuasar } from 'quasar'
 import {
   主神信息列表,
   弹幕卡信息列表,
@@ -306,11 +319,17 @@ import {
   获得附属神信息,
   附属神信息列表,
 } from 'src/utils/信息'
-import { 编号卡组类型, 编号卡组转字符串 } from 'src/utils/卡组'
+import {
+  字符串转编号卡组,
+  编号卡组类型,
+  编号卡组转字符串,
+} from 'src/utils/卡组'
 import { 播放场景背景音乐 } from 'src/utils/播放音频'
 import { 暗色模式 } from 'src/utils/暗色模式'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+
+const q = useQuasar()
 
 const 编号卡组列表 = ref<编号卡组类型[]>([])
 
@@ -466,5 +485,27 @@ function 复刻卡组(_卡组: 编号卡组类型) {
     }
   })
   卡组弹窗.value = true
+}
+function 复制卡组码(_卡组: 编号卡组类型) {
+  copyToClipboard(编号卡组转字符串(_卡组))
+    .then(() => q.notify({ type: 'positive', message: '复制成功' }))
+    .catch((reason) => {
+      q.notify({ type: 'negative', message: '复制失败：' + reason })
+    })
+}
+function 粘贴卡组码() {
+  navigator.clipboard
+    .readText()
+    .then((text) => {
+      try {
+        复刻卡组(字符串转编号卡组(text))
+        q.notify({ type: 'positive', message: '粘贴成功' })
+      } catch (e) {
+        q.notify({ type: 'negative', message: '格式错误：' + e })
+      }
+    })
+    .catch((reason) => {
+      q.notify({ type: 'negative', message: '粘贴失败：' + reason })
+    })
 }
 </script>

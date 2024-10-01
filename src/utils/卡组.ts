@@ -6,20 +6,19 @@ import {
   附属神信息列表,
 } from './信息'
 
-type 编号卡组数据类型 = {
+type 编号卡组类型 = {
+  卡组名: string
   主神: number
   主神技能: 1 | 2 | 3
   附属神: number[]
   弹幕卡: number[]
   神迹卡: number[]
 }
-type 编号卡组类型 = {
-  卡组名: string
-} & 编号卡组数据类型
 
-function 编号卡组转字符串(卡组: 编号卡组数据类型): string {
+function 编号卡组转字符串(卡组: 编号卡组类型): string {
   return btoa(
     JSON.stringify([
+      encodeURIComponent(卡组.卡组名),
       卡组.主神技能,
       卡组.主神 - 10000,
       卡组.附属神.map((x) => x - 20000),
@@ -28,8 +27,9 @@ function 编号卡组转字符串(卡组: 编号卡组数据类型): string {
     ])
   )
 }
-function 字符串转编号卡组(字符串: string): 编号卡组数据类型 {
+function 字符串转编号卡组(字符串: string): 编号卡组类型 {
   const 数据 = JSON.parse(atob(字符串)) as [
+    string,
     1 | 2 | 3,
     number,
     number[],
@@ -37,11 +37,12 @@ function 字符串转编号卡组(字符串: string): 编号卡组数据类型 {
     number[]
   ]
   const 卡组 = {
-    主神技能: 数据[0],
-    主神: 数据[1] + 10000,
-    附属神: 数据[2].map((x) => x + 20000),
-    神迹卡: 数据[3].map((x) => x + 30000),
-    弹幕卡: 数据[4].map((x) => x + 40000),
+    卡组名: decodeURIComponent(数据[0]),
+    主神技能: 数据[1],
+    主神: 数据[2] + 10000,
+    附属神: 数据[3].map((x) => x + 20000),
+    神迹卡: 数据[4].map((x) => x + 30000),
+    弹幕卡: 数据[5].map((x) => x + 40000),
   }
   const 错误列表: string[] = []
   if (卡组.附属神.length != 2) {
@@ -91,4 +92,4 @@ function 字符串转编号卡组(字符串: string): 编号卡组数据类型 {
   return 卡组
 }
 
-export { 字符串转编号卡组, 编号卡组数据类型, 编号卡组类型, 编号卡组转字符串 }
+export { 字符串转编号卡组, 编号卡组类型, 编号卡组转字符串 }

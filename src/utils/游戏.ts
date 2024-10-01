@@ -18,7 +18,7 @@ import {
   附属神皮肤,
 } from './信息'
 import { 加载子画面, 加载神动画 } from './加载动画'
-import { 编号卡组数据类型 } from './卡组'
+import { 编号卡组类型 } from './卡组'
 import {
   播放技能语音,
   播放死亡语音,
@@ -2610,7 +2610,7 @@ class 玩家类 extends 目标类 {
       .filter((x) => !x.已抽到 && !x.已使用 && !x.已弃置)
       .sort((x, y) => x.id - y.id)
   }
-  constructor(是否我方: boolean, 卡组: 编号卡组数据类型 | 初始数据类型) {
+  constructor(是否我方: boolean, 卡组: 编号卡组类型 | 初始数据类型) {
     super(是否我方)
     this.on(
       '抽卡',
