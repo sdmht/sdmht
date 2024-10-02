@@ -2134,6 +2134,7 @@ class 单位类 extends 目标类 {
     攻击力显示.x = 位宽 - 攻击力显示.width
     this.on('攻击力变化时', () => {
       攻击力显示.text = this.攻击力
+      攻击力显示.x = 位宽 - 攻击力显示.width
     })
     角色.addChild(攻击力显示)
     const 圣盾显示 = await 加载子画面('pvp/field/shengdun.webp')
