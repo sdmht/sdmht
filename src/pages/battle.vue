@@ -587,10 +587,20 @@ onMounted(async () => {
           上黑边动画.tilePosition.x += (上黑边动画.width / 宽) * 2 * re
           下黑边动画.tilePosition.x += (下黑边动画.width / 宽) * 2 * re
         })
+        const 神威描述 = new PIXI.Text(
+          `${主神.神威.技能名称}\n${主神.神威.技能描述}`,
+          {
+            fill: 0xffffff,
+            fontSize: 32,
+          }
+        )
+        神威描述.x = (宽 - 神威描述.width) / 2
+        神威描述.y = 高 * 0.6
         神威动画层.addChild(背光动画)
         神威动画层.addChild(上黑边动画)
         神威动画层.addChild(神威动画)
         神威动画层.addChild(下黑边动画)
+        神威动画层.addChild(神威描述)
         播放神威语音(主神.美术资源)
         await 等待(
           神威动画.spineData.findAnimation('newAnimation')?.duration || 3

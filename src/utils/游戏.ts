@@ -258,6 +258,8 @@ class 技能类 extends 基类 {
   选择规则: string
   何时触发: string
   效果描述: string
+  技能名称: string
+  技能描述: string
   触发辅助: number
   选择范围: number
   对敌我方: number
@@ -424,6 +426,8 @@ class 技能类 extends 基类 {
     this.选择规则 = 技能类.技能选择规则[信息.选择规则]
     this.何时触发 = 技能类.技能何时触发[信息.何时触发]
     this.效果描述 = 技能类.技能效果描述[信息.效果类型]
+    this.技能名称 = 信息.技能名称
+    this.技能描述 = 信息.技能描述
     this.触发辅助 = 信息.触发辅助
     this.选择范围 = 信息.选择范围
     this.对敌我方 = 信息.对敌我方
