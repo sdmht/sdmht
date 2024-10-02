@@ -1949,7 +1949,12 @@ class 单位类 extends 目标类 {
       if (v.单位 != undefined) {
         攻击命中的单位列表.push(v.单位)
       }
-      if (this.攻击可解除迷雾 && v.解除迷雾() && v.单位 != undefined) {
+      if (
+        this.攻击可解除迷雾 &&
+        this.弹幕?.是否驱散迷雾 !== false &&
+        v.解除迷雾() &&
+        v.单位 != undefined
+      ) {
         攻击命中并解除迷雾的单位列表.push(v.单位)
       }
     })
