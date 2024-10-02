@@ -344,15 +344,15 @@ class 技能类 extends 基类 {
       return true
     })
     if (this.选择规则 == '随机') {
-      目标列表 = 随机类
-        .乱序(目标列表)
-        .sort((a) => (a instanceof 位置类 && a.单位 ? 1 : -1))
-        .sort((a) =>
+      目标列表 = _.sortBy(
+        _.sortBy(随机类.乱序(目标列表), (a) =>
+          a instanceof 位置类 && a.单位 ? 1 : -1
+        ),
+        (a) =>
           (a instanceof 位置类 || a instanceof 单位类) && a.迷雾不可被解除
             ? 1
             : -1
-        )
-        .slice(0, 1)
+      ).slice(0, 1)
     }
     this._目标列表缓存 = 目标列表
     return 目标列表
@@ -787,9 +787,10 @@ class 技能类 extends 基类 {
           this.目标列表.forEach((v) => {
             if (v instanceof 单位类 && v.生命上限 > 0) {
               v.未完全离场 = true
-              const 位置 = 随机类
-                .乱序(v.我方(位置类).filter((l) => !l.单位))
-                .sort((l) => (l.迷雾 ? 1 : -1))[0]
+              const 位置 = _.sortBy(
+                随机类.乱序(v.我方(位置类).filter((l) => !l.单位)),
+                (l) => (l.迷雾 ? -1 : 1)
+              )[0]
               if (v instanceof 主神类) {
                 v.玩家.主神 = new 主神类(
                   v.玩家,
