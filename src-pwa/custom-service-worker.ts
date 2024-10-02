@@ -5,9 +5,14 @@
  */
 
 declare const self: ServiceWorkerGlobalScope &
-  typeof globalThis & { skipWaiting: () => void };
+  typeof globalThis & { skipWaiting: () => void }
 
-import { precacheAndRoute } from 'workbox-precaching';
+import { precacheAndRoute } from 'workbox-precaching'
 
 // Use with precache injection
-precacheAndRoute(self.__WB_MANIFEST);
+precacheAndRoute(self.__WB_MANIFEST)
+self.addEventListener('message', (event) => {
+  if (event.data === 'SKIP_WAITING') {
+    self.skipWaiting()
+  }
+})
