@@ -3,6 +3,8 @@
     本站为神代梦华谭玩家收集原动画资源后自制复活的仿品，请勿用于商业行为
     <br />
     反馈渠道：QQ群102804509
+    <br />
+    当前版本：{{ packageInfo.version }}
   </div>
   <div
     ref="首页框"
@@ -12,6 +14,7 @@
 
 <script setup lang="ts">
 import { useEventListener } from '@vueuse/core'
+import packageInfo from 'app/package.json'
 import { 创建画框 } from 'src/utils/创建画框'
 import { 加载动画, 加载子画面 } from 'src/utils/加载动画'
 import { 播放场景背景音乐 } from 'src/utils/播放音频'
