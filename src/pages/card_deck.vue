@@ -13,7 +13,7 @@
     >
       <div class="text-h4 full-width text-center">创建卡组</div>
     </q-item>
-    <div class="text-center">向左划卡组进入战斗界面</div>
+    <div class="text-center">卡组向左划进入战斗界面，向右划删除</div>
     <template v-for="(卡组, k) in 编号卡组列表" :key="k">
       <q-slide-item
         :style="`width: ${
