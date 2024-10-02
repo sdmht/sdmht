@@ -88,7 +88,9 @@
             v-model="卡组.主神.value"
             :options="主神列表"
             label="主神"
-            option-label="卡牌名称"
+            :option-label="
+              (主神) => `${主神.卡牌名称}${主神.主神技能}：${主神.技能名称}`
+            "
             map-options
             :rules="[(val) => !!val || '主神不能为空']"
           >
