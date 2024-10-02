@@ -311,12 +311,12 @@ class 技能类 extends 基类 {
           return false
         if (
           this.目标类型.startsWith('编号为选择范围的') &&
-          !(v.编号 !== this.选择范围)
+          v.编号 != this.选择范围
         )
           return false
         if (
           this.目标类型.startsWith('阵营编号为选择范围的') &&
-          !(v.阵营 === this.选择范围)
+          v.阵营 != this.选择范围
         )
           return false
       }
