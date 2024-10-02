@@ -1056,16 +1056,9 @@ onMounted(async () => {
             玩家类.行动点 >= v.消耗
           ) {
             if (v instanceof 弹幕卡类) {
-              q.notify({ message: `使用弹幕卡：${v.卡牌名称}` })
               待装填的弹幕卡.value = v
             } else if (v instanceof 神迹卡类 && v.可使用()) {
-              q.notify({ message: `使用神迹卡：${v.卡牌名称}` })
-              if (v.类型 == '神迹卡') {
-                行动队列类.行动队列.添加(['使用神迹', v.id])
-              } else {
-                // TODO: 秘术卡需要选择携带者
-                // v.使用()
-              }
+              行动队列类.行动队列.添加(['使用神迹', v.id])
             }
           }
         })

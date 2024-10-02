@@ -252,6 +252,7 @@ class 技能类 extends 基类 {
   是否禁用 = false
   编号: number
   父技能?: 技能类
+  子技能列表: 技能类[] = []
   携带者: 单位类
   目标类型: string
   选择规则: string
@@ -497,17 +498,13 @@ class 技能类 extends 基类 {
             行动队列类.行动队列.on('结算', handler)
           })
         }
-        if (选中的目标索引 !== null) {
-          const 选中的目标 = this.目标列表[选中的目标索引] as 目标类
-          this._目标列表缓存 =
-            this.选择范围 && 选中的目标 instanceof 位置类
-              ? 选中的目标
-                  .我方(位置类)
-                  .filter((v) => v.是否在范围内(选中的目标, this.选择范围))
-              : [选中的目标]
-        } else {
-          this._目标列表缓存 = []
-        }
+        const 选中的目标 = this.目标列表[选中的目标索引] as 目标类
+        this._目标列表缓存 =
+          this.选择范围 && 选中的目标 instanceof 位置类
+            ? 选中的目标
+                .我方(位置类)
+                .filter((v) => v.是否在范围内(选中的目标, this.选择范围))
+            : [选中的目标]
       }
 
       switch (this.效果描述) {
@@ -1351,7 +1348,7 @@ class 技能类 extends 基类 {
         break
     }
     this.携带者.技能列表.push(this)
-
+    this.父技能?.子技能列表.push(this)
     this.附带技能.forEach((v) => {
       new 技能类(v, this.携带者, undefined, this)
     })
@@ -1385,6 +1382,10 @@ class 技能类 extends 基类 {
       if (this.对敌我方 == 1) return false
     }
     return true
+  }
+  级联禁用() {
+    this.是否禁用 = true
+    this.子技能列表.forEach((v) => v.级联禁用())
   }
 }
 
@@ -1857,6 +1858,7 @@ class 单位类 extends 目标类 {
       }
       if (this.秘术) {
         this.秘术 = undefined
+        this.emit('秘术变化时')
       }
     })
     this.on('替换弹幕', (参数: { 弹幕卡编号: number }) => {
@@ -2005,6 +2007,10 @@ class 单位类 extends 目标类 {
     this.emit('装填弹幕时')
     this.emit('吟唱时间变化时')
     this.玩家.emit('手牌数量变化时')
+    Notify.create({
+      message: `装填弹幕：${弹幕卡.卡牌名称}`,
+      color: 'primary',
+    })
     return true
   }
   async 获得动画(位宽: number) {
@@ -2524,6 +2530,7 @@ class 弹幕卡类 extends 牌类 {
 }
 class 神迹卡类 extends 牌类 {
   技能编号: number
+  技能!: 技能类
   get 消耗() {
     return Math.max(0, this._消耗 + this.玩家.回合首次神迹卡消耗变化值)
   }
@@ -2571,12 +2578,63 @@ class 神迹卡类 extends 牌类 {
     this.玩家.回合首次神迹卡消耗变化值 = 0
     this.已使用 = true
   }
-  使用() {
+  async 使用() {
     this.玩家.emit('使用神迹卡时', { 神迹卡: this })
     if (this.玩家.无效化下次使用的神迹卡) {
       this.玩家.无效化下次使用的神迹卡 = false
+      Notify.create({
+        message: '争议',
+        color: 'negative',
+      })
+    } else if (this.类型 == '秘术卡') {
+      const 我方单位列表 = this.我方(单位类)
+      let 选中的单位索引: number | null = null
+      if (this.是否我方) {
+        选中的单位索引 = await new Promise<number>((resolve) => {
+          Dialog.create({
+            title: '选择',
+            options: {
+              model: '0',
+              items: 我方单位列表.map((v, i) => ({
+                value: `${i}`,
+                label: v.卡牌名称,
+              })),
+            },
+            cancel: false,
+            persistent: true,
+          }).onOk((v) => {
+            resolve(v)
+          })
+        })
+        行动队列类.行动队列.添加(['选择', this.id, 选中的单位索引])
+      } else {
+        选中的单位索引 = await new Promise<number>((resolve) => {
+          const handler = (是否我方: boolean, 行动: 行动类型) => {
+            if (行动[0] == '选择' && 行动[1] == this.id) {
+              行动队列类.行动队列.removeListener('结算', handler)
+              resolve(行动[2])
+            }
+          }
+          行动队列类.行动队列.on('结算', handler)
+        })
+      }
+      const 选中的单位 = 我方单位列表[选中的单位索引]
+      if (选中的单位.秘术) {
+        选中的单位.秘术.技能.级联禁用()
+      }
+      选中的单位.秘术 = this
+      选中的单位.emit('秘术变化时')
+      this.技能 = new 技能类(this.技能编号, 选中的单位)
+      Notify.create({
+        message: '装填秘术',
+        color: 'primary',
+      })
     } else {
-      new 技能类(this.技能编号, this.玩家.主神)
+      this.技能 = new 技能类(this.技能编号, this.玩家.主神)
+      Notify.create({
+        message: `使用神迹：${this.卡牌名称}`,
+        color: 'primary',
+      })
     }
     this.玩家.emit('手牌数量变化时')
   }
