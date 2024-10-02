@@ -1,3 +1,4 @@
+import * as PXUI from '@pixi/ui'
 import { useTimeoutFn } from '@vueuse/core'
 import 静态文件列表 from 'assets/index.json'
 import EventEmitter from 'events'
@@ -27,6 +28,7 @@ import {
 } from './播放音频'
 import { 初始数据类型, 行动类型 } from './数据通道'
 import { 等待 } from './等待'
+import { 获得资源 } from './美术资源'
 import { 行动队列类 } from './行动队列'
 
 EventEmitter.defaultMaxListeners = 0
@@ -2456,6 +2458,7 @@ class 牌类 extends 目标类 {
   美术资源!: number
   排序编号!: number
   故事?: string
+  卡面?: PXUI.ButtonContainer
   constructor(玩家: 玩家类, 编号: number, 消耗?: number) {
     super(玩家.是否我方)
     this.玩家 = 玩家
@@ -2467,6 +2470,98 @@ class 牌类 extends 目标类 {
       this._消耗 = Math.max(0, this.消耗 + 参数.变化值)
       this.emit('消耗变化时')
     })
+  }
+  async 获得卡面() {
+    if (this.卡面) {
+      return this.卡面
+    }
+    const 图路径 = 获得资源(
+      ['L', 'M', 'S'],
+      (f, i) => f === `card/Card${i}_${this.美术资源}.webp`
+    )
+    if (!图路径) {
+      throw new Error('找不到卡面')
+    }
+    const 卡图 = await 加载子画面(图路径)
+    this.卡面 = new PXUI.ButtonContainer(卡图)
+    const 消耗 = new PIXI.Text(this.消耗, {
+      fill: this.消耗 < this._消耗 ? 0x00ff00 : 0xffffff,
+      fontSize: 卡图.height * 0.1,
+      strokeThickness: 卡图.height * 0.01,
+    })
+    this.on('消耗变化时', () => {
+      消耗.text = this.消耗
+      消耗.style.fill = this.消耗 < this._消耗 ? 0x00ff00 : 0xffffff
+    })
+    this.卡面.addChild(消耗)
+    const 名称 = new PIXI.Text(this.卡牌名称, {
+      fill: 0xffef8c,
+      fontSize: 卡图.height * 0.08,
+      strokeThickness: 卡图.height * 0.008,
+    })
+    名称.x = (卡图.width - 名称.width) / 2
+    this.卡面.addChild(名称)
+    const 描述 = new PIXI.Text(this.描述, {
+      fill: 0xffe4ab,
+      fontSize: 卡图.height * 0.03,
+      strokeThickness: 卡图.height * 0.003,
+      wordWrap: true,
+      wordWrapWidth: 卡图.width,
+      breakWords: true,
+    })
+    描述.x = (卡图.width - 描述.width) / 2
+    描述.y = 卡图.height * 0.75 - 描述.height
+    this.卡面.addChild(描述)
+    if (this.故事) {
+      const 故事 = new PIXI.Text(`——${this.故事}`, {
+        fill: 0xffe4ab,
+        fontSize: 卡图.height * 0.025,
+        strokeThickness: 卡图.height * 0.0025,
+        wordWrap: true,
+        wordWrapWidth: 卡图.width,
+        breakWords: true,
+      })
+      故事.x = 卡图.width - 故事.width
+      故事.y = 描述.y + 描述.height
+      this.卡面.addChild(故事)
+    }
+    if (this instanceof 弹幕卡类) {
+      const 攻击力 = new PIXI.Text(this.攻击力, {
+        fill: 0xfff2ce,
+        stroke: 0xcc7612,
+        fontSize: 卡图.height * 0.1,
+        strokeThickness: 卡图.height * 0.01,
+      })
+      攻击力.y = 卡图.height - 攻击力.height
+      this.on('攻击力变化时', () => {
+        攻击力.text = this.攻击力
+      })
+      this.卡面.addChild(攻击力)
+
+      const 吟唱时间 = new PIXI.Text(this.吟唱时间, {
+        fill: 0xc7e0fe,
+        stroke: 0x16b3d6,
+        fontSize: 卡图.height * 0.1,
+        strokeThickness: 卡图.height * 0.01,
+      })
+      吟唱时间.x = 卡图.width - 吟唱时间.width
+      吟唱时间.y = 卡图.height - 吟唱时间.height
+      this.on('吟唱时间变化时', () => {
+        吟唱时间.text = this.吟唱时间
+      })
+      this.卡面.addChild(吟唱时间)
+
+      const 范围 = new PIXI.Text(this.范围, {
+        fill: 0xffffff,
+        stroke: 0x000000,
+        fontSize: 卡图.height * 0.08,
+        strokeThickness: 卡图.height * 0.008,
+      })
+      范围.x = 卡图.width - 范围.width
+      范围.y = (消耗.y + 消耗.height - 范围.height) / 2
+      this.卡面.addChild(范围)
+    }
+    return this.卡面
   }
 }
 class 弹幕卡类 extends 牌类 {
@@ -2683,7 +2778,18 @@ class 玩家类 extends 目标类 {
   回合数 = 0
   祈愿倒计时 = 0
   祈愿倒计时上限 = 3
-  回合首次神迹卡消耗变化值 = 0
+  _回合首次神迹卡消耗变化值 = 0
+  get 回合首次神迹卡消耗变化值() {
+    return this._回合首次神迹卡消耗变化值
+  }
+  set 回合首次神迹卡消耗变化值(value: number) {
+    this._回合首次神迹卡消耗变化值 = value
+    this.手牌.forEach((l) => {
+      if (l instanceof 神迹卡类) {
+        l.emit('消耗变化时')
+      }
+    })
+  }
   无效化下次使用的神迹卡?: boolean
   get 手牌() {
     return this.我方(牌类)

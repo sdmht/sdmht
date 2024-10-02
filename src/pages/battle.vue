@@ -958,102 +958,28 @@ onMounted(async () => {
     _.throttle(() => {
       手牌栏.removeChildren()
       玩家.手牌.forEach(async (v, i) => {
-        let 图路径 = `card/CardL_${v.美术资源}.webp`
-        if (!静态文件列表.find((v) => v === 图路径)) {
-          图路径 = `card/CardM_${v.美术资源}.webp`
-        }
-        const 卡图 = await 加载子画面(图路径)
-        const 卡面 = new PXUI.ButtonContainer(卡图)
+        const 卡面 = await v.获得卡面()
+        卡面.scale.set(1)
+        const 卡面焦点缩放 = 消耗栏底框.y / 卡面.height
         const 卡面缩放 = Math.min(
           (纵 * 0.6) / 卡面.height,
           宽 / 10 / 卡面.width
         )
-        const 卡面焦点缩放 = 消耗栏底框.y / 卡面.height
         卡面.scale.set(卡面缩放)
-        卡面.x = (宽 - 卡面.width * 玩家.手牌.length) / 2 + 卡面.width * i
-        卡面.y = 消耗栏底框.y - 卡面.height
-        const 原横坐标 = 卡面.x
-        const 原纵坐标 = 卡面.y
-
-        const 消耗 = new PIXI.Text(v.消耗, {
-          fill: v.消耗 < v._消耗 ? 0x00ff00 : 0xffffff,
-          strokeThickness: 位宽 / 10,
-          fontSize: 位宽,
-        })
-        卡面.addChild(消耗)
-
-        const 名称 = new PIXI.Text(v.卡牌名称, {
-          fill: 0xffef8c,
-          strokeThickness: 位宽 / 3 / 10,
-          fontSize: 位宽 / 3,
-        })
-        名称.x = (卡图.width - 名称.width) / 2
-        卡面.addChild(名称)
-
-        const 描述 = new PIXI.Text(v.描述, {
-          fill: 0xffe4ab,
-          strokeThickness: 位宽 / 3 / 10,
-          fontSize: 位宽 / 5,
-          wordWrap: true,
-          wordWrapWidth: 卡图.width,
-          breakWords: true,
-        })
-        描述.x = (卡图.width - 描述.width) / 2
-        描述.y = 卡图.height * 0.75 - 描述.height
-        卡面.addChild(描述)
-
-        if (v.故事) {
-          const 故事 = new PIXI.Text(`——${v.故事}`, {
-            fill: 0xffe4ab,
-            strokeThickness: 位宽 / 3 / 10,
-            fontSize: 位宽 / 6,
-            wordWrap: true,
-            wordWrapWidth: 卡图.width,
-            breakWords: true,
-          })
-          故事.x = 卡图.width - 故事.width
-          故事.y = 卡图.height * 0.83 - 故事.height
-          卡面.addChild(故事)
-        }
-
-        if (v instanceof 弹幕卡类) {
-          const 攻击力 = new PIXI.Text(v.攻击力, {
-            fill: 0xfff2ce,
-            stroke: 0xcc7612,
-            strokeThickness: 位宽 / 10,
-            fontSize: 位宽,
-          })
-          攻击力.y = 卡图.height - 攻击力.height
-          卡面.addChild(攻击力)
-
-          const 吟唱时间 = new PIXI.Text(v.吟唱时间, {
-            fill: 0xc7e0fe,
-            stroke: 0x16b3d6,
-            strokeThickness: 位宽 / 10,
-            fontSize: 位宽,
-          })
-          吟唱时间.x = 卡图.width - 吟唱时间.width
-          吟唱时间.y = 卡图.height - 吟唱时间.height
-          卡面.addChild(吟唱时间)
-
-          const 范围 = new PIXI.Text(v.范围, {
-            fill: 0xffffff,
-            stroke: 0x000000,
-            strokeThickness: 位宽 / 10,
-            fontSize: 位宽 * 0.75,
-          })
-          范围.x = 卡图.width - 范围.width
-          范围.y = (消耗.y + 消耗.height - 范围.height) / 2
-          卡面.addChild(范围)
-        }
-
+        const 原横坐标 =
+          (宽 - 卡面.width * 玩家.手牌.length) / 2 + 卡面.width * i
+        const 原纵坐标 = 消耗栏底框.y - 卡面.height
+        卡面.x = 原横坐标
+        卡面.y = 原纵坐标
+        卡面.onDown.disconnectAll()
         卡面.onDown.connect(() => {
           卡面.scale.set(卡面焦点缩放)
-          卡面.x = (宽 - 卡图.width) / 2
+          卡面.x = (宽 - 卡面.width) / 2
           卡面.y = 0
           卡面.zIndex = 1
           手牌栏.sortChildren()
         })
+        卡面.onUp.disconnectAll()
         卡面.onUp.connect((b, e) => {
           卡面.scale.set(卡面缩放)
           卡面.x = 原横坐标
@@ -1072,6 +998,7 @@ onMounted(async () => {
             }
           }
         })
+        卡面.onOut.disconnectAll()
         卡面.onOut.connect(() => {
           卡面.scale.set(卡面缩放)
           卡面.x = 原横坐标

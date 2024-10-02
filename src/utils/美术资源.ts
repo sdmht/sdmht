@@ -1,8 +1,8 @@
 import 静态文件列表 from 'assets/index.json'
 
 function 获得资源(
-  美术资源: number[],
-  检索函数: (f: string, i: number) => unknown
+  美术资源: unknown[],
+  检索函数: (f: string, i: unknown) => unknown
 ) {
   for (const i of 美术资源) {
     const 索引 = 静态文件列表.findIndex((f) => 检索函数(f, i))

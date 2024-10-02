@@ -99,7 +99,7 @@ async function 播放场景背景音乐(url: string) {
 }
 async function 播放角色背景音乐(美术资源: number[]) {
   const 音频元素 = 获得音频元素('bgm')
-  const 文件 = 获得资源(美术资源, (f, i) => f == `bgm/BGM_character_${i}.mp3`)
+  const 文件 = 获得资源(美术资源, (f, i) => f === `bgm/BGM_character_${i}.mp3`)
   if (文件 && !音频元素.src.endsWith(文件)) {
     音频元素.src = 文件
     音频元素.loop = true
