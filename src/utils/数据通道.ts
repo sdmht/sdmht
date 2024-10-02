@@ -55,12 +55,6 @@ class 数据通道类 extends EventEmitter {
     return super.emit(name, ...args)
   }
 
-  constructor() {
-    super({ captureRejections: true })
-
-    数据通道类.实例列表.push(this)
-  }
-
   连接成功 = false
 
   开始匹配(格: number) {
@@ -205,14 +199,6 @@ class 数据通道类 extends EventEmitter {
     } else {
       this.emit('发送信令', d)
     }
-  }
-
-  static 实例列表: 数据通道类[] = []
-  static 销毁() {
-    数据通道类.实例列表.forEach((数据通道) => {
-      数据通道.emit('销毁')
-    })
-    数据通道类.实例列表 = []
   }
 }
 

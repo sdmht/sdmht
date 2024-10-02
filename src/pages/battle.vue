@@ -1,5 +1,8 @@
 <template>
-  <q-btn class="absolute" to="/">回首页</q-btn>
+  <q-btn-group class="absolute">
+    <q-btn to="/">回首页</q-btn>
+    <q-btn to="/card_deck">回卡组</q-btn>
+  </q-btn-group>
   <div ref="战斗框" class="overflow-hidden full-height full-width"></div>
 </template>
 <script setup lang="ts">
@@ -31,7 +34,6 @@ import {
   玩家类,
   目标类,
   神迹卡类,
-  重置,
   附属神类,
   随机类,
 } from 'src/utils/游戏'
@@ -46,11 +48,7 @@ const q = useQuasar()
 let 强制结束回合: ReturnType<typeof setInterval> | undefined
 onUnmounted(() => {
   clearInterval(强制结束回合)
-  数据通道类.销毁()
-  重置()
-  _.forEach(document.getElementsByTagName('audio'), (e) => {
-    e.pause()
-  })
+  location.reload()
 })
 
 const 背景选项 = [
