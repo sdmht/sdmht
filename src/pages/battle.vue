@@ -606,7 +606,7 @@ onMounted(async () => {
           神威动画.spineData.findAnimation('newAnimation')?.duration || 3
         )
         神威动画层.removeChild(...神威动画层.children)
-        主神.神威.触发()
+        主神.emit('发动神威')
         行动队列类.行动队列.完成渲染()
         return
       }

@@ -1198,7 +1198,13 @@ class 技能类 extends 基类 {
     })
     switch (this.何时触发) {
       case '发动时':
-        if (!神威) this.触发()
+        if (神威) {
+          this.携带者.on('发动神威', () => {
+            this.触发()
+          })
+        } else {
+          this.触发()
+        }
         break
       case '被攻击时':
       case '攻击解除敌方单位迷雾时':
@@ -1354,7 +1360,7 @@ class 技能类 extends 基类 {
     this.携带者.技能列表.push(this)
     this.父技能?.子技能列表.push(this)
     this.附带技能.forEach((v) => {
-      new 技能类(v, this.携带者, undefined, this)
+      new 技能类(v, this.携带者, undefined, this, 神威)
     })
   }
   是否禁止触发() {
