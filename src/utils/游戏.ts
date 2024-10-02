@@ -2105,7 +2105,7 @@ class 单位类 extends 目标类 {
       )
     })
     if (!this.是否我方) {
-      角色.visible = false
+      角色.visible = !this.位置.迷雾
       this.on('移动时', () => {
         角色.visible = !this.位置.迷雾
       })
