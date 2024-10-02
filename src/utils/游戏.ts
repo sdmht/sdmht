@@ -2159,6 +2159,19 @@ class 单位类 extends 目标类 {
     })
     角色.addChild(圣盾显示)
 
+    const 秘术显示 = await 加载子画面('pvp/field/aomi.webp')
+    秘术显示.scale.set((位宽 * 0.25) / 秘术显示.height)
+    秘术显示.y = 位宽 - 秘术显示.height
+    秘术显示.visible = false
+    this.on('秘术变化时', () => {
+      if (this.秘术) {
+        秘术显示.visible = true
+      } else {
+        秘术显示.visible = false
+      }
+    })
+    角色.addChild(秘术显示)
+
     const 护盾值显示 = new PIXI.Text(this.护盾值, {
       fill: 0x818fa9,
       strokeThickness: 5,
