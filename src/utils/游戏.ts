@@ -1720,9 +1720,7 @@ class 单位类 extends 目标类 {
   get 迷雾不可被解除() {
     return this.效果列表.findIndex((x) => x.效果 === '迷雾不可被解除') !== -1
   }
-  get 圣盾() {
-    return this.效果列表.findIndex((x) => x.效果 === '圣盾') !== -1
-  }
+  圣盾 = false
   get 无敌() {
     return this.效果列表.findIndex((x) => x.效果 === '无敌') !== -1
   }
@@ -1758,11 +1756,8 @@ class 单位类 extends 目标类 {
     this.on('受到攻击', (参数: { 攻击自身的单位: 单位类; 伤害值: number }) => {
       let 是否离场 = false
       if (this.圣盾) {
-        this.效果列表.forEach((x) => {
-          if (x.效果 == '圣盾') {
-            x.emit('效果结束')
-          }
-        })
+        this.圣盾 = false
+        this.emit('圣盾变化时')
       } else {
         if (!this.本回合触发过坚壁 && this.坚壁.length) {
           this.本回合触发过坚壁 = true
@@ -1890,6 +1885,7 @@ class 单位类 extends 目标类 {
       })
     })
     this.on('圣盾变化', () => {
+      this.圣盾 = true
       this.emit('圣盾变化时')
     })
     this.on('变化时', () => {
