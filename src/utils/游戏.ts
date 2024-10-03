@@ -1562,6 +1562,9 @@ class 位置类 extends 目标类 {
     this.玩家 = 玩家
     this.行 = 行
     this.列 = 列
+    this.on('迷雾不可被解除变化', () => {
+      this.覆盖迷雾()
+    })
   }
 
   emit(事件名: string, 参数: Record<string, unknown> = {}): boolean {
@@ -1900,6 +1903,9 @@ class 单位类 extends 目标类 {
         this.雷印 = 0
       }
       this.emit('获得雷印时')
+    })
+    this.on('迷雾不可被解除变化', () => {
+      this.位置.覆盖迷雾()
     })
   }
   emit(事件名: string, 参数: Record<string, unknown> = {}): boolean {
