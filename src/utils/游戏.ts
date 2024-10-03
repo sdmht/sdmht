@@ -2061,40 +2061,6 @@ class 单位类 extends 目标类 {
     // 弹幕准备完成 stored
     // 暂停 pseudo_setup_pose
 
-    const 封足显示 = await 加载子画面('pvp/field/fengzu.png')
-    封足显示.scale.set(
-      (位宽 * 1.75) / 封足显示.height,
-      (位宽 * 0.75) / 封足显示.height
-    )
-    封足显示.x = (位宽 - 封足显示.width) / 2
-    封足显示.y = 位宽 * 0.5
-
-    let 封足alphaDirection = 1 // 1 表示逐渐增加，-1 表示逐渐减少
-    setInterval(() => {
-      封足显示.alpha += 0.1 * 封足alphaDirection
-
-      // 当透明度达到 1 时，改变方向
-      if (封足显示.alpha >= 1) {
-        封足显示.alpha = 1 // 保证不超过 1
-        封足alphaDirection = -1 // 改变方向
-      }
-      // 当透明度达到 0 时，改变方向
-      else if (封足显示.alpha <= 0.1) {
-        封足显示.alpha = 0.1 // 保证不低于 0.1
-        封足alphaDirection = 1 // 改变方向
-      }
-    }, 50) // 每 50 毫秒更新一次
-
-    封足显示.visible = false
-    this.on('封足变化时', () => {
-      if (this.封足) {
-        封足显示.visible = true
-      } else {
-        封足显示.visible = false
-      }
-    })
-    this.角色.addChild(封足显示)
-
     const 动画 = await 加载神动画(this.美术资源)
     动画.zIndex = -1
     动画.x = 位宽 * 0.5
@@ -2226,31 +2192,58 @@ class 单位类 extends 目标类 {
     })
     角色.addChild(秘术显示)
 
+    const 封足显示 = await 加载子画面('pvp/field/fengzu.png')
+    封足显示.zIndex = -2
+    封足显示.scale.set(
+      (位宽 * 1.75) / 封足显示.width,
+      (位宽 * 0.75) / 封足显示.height
+    )
+    封足显示.x = (位宽 - 封足显示.width) / 2
+    封足显示.y = 位宽 - 封足显示.height * 0.75
+
+    let 封足透明调整方向 = 1
+    setInterval(() => {
+      if (this.封足) {
+        封足显示.alpha += 0.02 * 封足透明调整方向
+
+        if (封足显示.alpha >= 1) {
+          封足显示.alpha = 1
+          封足透明调整方向 = -1
+        } else if (封足显示.alpha <= 0.1) {
+          封足显示.alpha = 0.1
+          封足透明调整方向 = 1
+        }
+      }
+    }, 25)
+
+    封足显示.visible = this.封足
+    this.on('封足变化时', () => {
+      封足显示.visible = this.封足
+      封足显示.alpha = 1
+    })
+    this.角色.addChild(封足显示)
+
     const 封刃显示 = await 加载子画面('pvp/field/fengren.png')
     封刃显示.scale.set(位宽 / 封刃显示.height)
-    let 封刃alphaDirection = 1 // 1 表示逐渐增加，-1 表示逐渐减少
+    let 封刃透明调整方向 = 1
     setInterval(() => {
-      封刃显示.alpha += 0.1 * 封刃alphaDirection
-
-      // 当透明度达到 1 时，改变方向
-      if (封刃显示.alpha >= 1) {
-        封刃显示.alpha = 1 // 保证不超过 1
-        封刃alphaDirection = -1 // 改变方向
-      }
-      // 当透明度达到 0 时，改变方向
-      else if (封刃显示.alpha <= 0.1) {
-        封刃显示.alpha = 0.1 // 保证不低于 0.1
-        封刃alphaDirection = 1 // 改变方向
-      }
-    }, 50) // 每 50 毫秒更新一次
-
-    封刃显示.visible = false
-    this.on('封刃变化时', () => {
       if (this.封刃) {
-        封刃显示.visible = true
-      } else {
-        封刃显示.visible = false
+        封刃显示.alpha += 0.02 * 封刃透明调整方向
+
+        if (封刃显示.alpha >= 1) {
+          封刃显示.alpha = 1
+          封刃透明调整方向 = -1
+        } else if (封刃显示.alpha <= 0.1) {
+          封刃显示.alpha = 0.1
+          封刃透明调整方向 = 1
+        }
       }
+    }, 25)
+
+    封刃显示.visible = this.封刃
+    this.on('封刃变化时', () => {
+      封刃显示.visible = this.封刃
+      封刃显示.alpha = 1
     })
     角色.addChild(封刃显示)
 
@@ -2291,6 +2284,7 @@ class 单位类 extends 目标类 {
     角色.on('added', (p) => {
       p.sortChildren()
     })
+    角色.sortChildren()
     return 角色
   }
 
