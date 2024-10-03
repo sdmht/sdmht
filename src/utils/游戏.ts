@@ -2020,7 +2020,9 @@ class 单位类 extends 目标类 {
     this.位置.单位 = undefined
     位置.单位 = this
     this.位置 = 位置
-    if (this.弹幕?.是否暴露自身) {
+    if (this.迷雾不可被解除 || this.位置.迷雾不可被解除) {
+      this.位置.覆盖迷雾()
+    } else if (this.弹幕?.是否暴露自身) {
       this.位置.解除迷雾()
     }
     this.emit('传送时')
