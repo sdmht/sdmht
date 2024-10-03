@@ -1889,6 +1889,15 @@ class 单位类 extends 目标类 {
       this.圣盾 = true
       this.emit('圣盾变化时')
     })
+
+    this.on('封刃变化', () => {
+      this.emit('封刃变化时')
+    })
+
+    this.on('封足变化', () => {
+      this.emit('封足变化时')
+    })
+
     this.on('变化时', () => {
       播放角色背景音乐(this.美术资源)
       播放技能语音(this.美术资源)
@@ -2051,6 +2060,41 @@ class 单位类 extends 目标类 {
     // 装填到弹幕准备完成 storing_to_stored
     // 弹幕准备完成 stored
     // 暂停 pseudo_setup_pose
+
+    const 封足显示 = await 加载子画面('pvp/field/fengzu.png')
+    封足显示.scale.set(
+      (位宽 * 1.75) / 封足显示.height,
+      (位宽 * 0.75) / 封足显示.height
+    )
+    封足显示.x = (位宽 - 封足显示.width) / 2
+    封足显示.y = 位宽 * 0.5
+
+    let 封足alphaDirection = 1 // 1 表示逐渐增加，-1 表示逐渐减少
+    setInterval(() => {
+      封足显示.alpha += 0.1 * 封足alphaDirection
+
+      // 当透明度达到 1 时，改变方向
+      if (封足显示.alpha >= 1) {
+        封足显示.alpha = 1 // 保证不超过 1
+        封足alphaDirection = -1 // 改变方向
+      }
+      // 当透明度达到 0 时，改变方向
+      else if (封足显示.alpha <= 0.1) {
+        封足显示.alpha = 0.1 // 保证不低于 0.1
+        封足alphaDirection = 1 // 改变方向
+      }
+    }, 50) // 每 50 毫秒更新一次
+
+    封足显示.visible = false
+    this.on('封足变化时', () => {
+      if (this.封足) {
+        封足显示.visible = true
+      } else {
+        封足显示.visible = false
+      }
+    })
+    this.角色.addChild(封足显示)
+
     const 动画 = await 加载神动画(this.美术资源)
     动画.zIndex = -1
     动画.x = 位宽 * 0.5
@@ -2069,7 +2113,6 @@ class 单位类 extends 目标类 {
     }
     this.动画 = 动画
     this.角色.addChild(动画)
-    this.角色.sortChildren()
   }
   更新坐标(位宽: number) {
     const x = (this.位置.列 - 1) * 位宽
@@ -2182,6 +2225,34 @@ class 单位类 extends 目标类 {
       }
     })
     角色.addChild(秘术显示)
+
+    const 封刃显示 = await 加载子画面('pvp/field/fengren.png')
+    封刃显示.scale.set(位宽 / 封刃显示.height)
+    let 封刃alphaDirection = 1 // 1 表示逐渐增加，-1 表示逐渐减少
+    setInterval(() => {
+      封刃显示.alpha += 0.1 * 封刃alphaDirection
+
+      // 当透明度达到 1 时，改变方向
+      if (封刃显示.alpha >= 1) {
+        封刃显示.alpha = 1 // 保证不超过 1
+        封刃alphaDirection = -1 // 改变方向
+      }
+      // 当透明度达到 0 时，改变方向
+      else if (封刃显示.alpha <= 0.1) {
+        封刃显示.alpha = 0.1 // 保证不低于 0.1
+        封刃alphaDirection = 1 // 改变方向
+      }
+    }, 50) // 每 50 毫秒更新一次
+
+    封刃显示.visible = false
+    this.on('封刃变化时', () => {
+      if (this.封刃) {
+        封刃显示.visible = true
+      } else {
+        封刃显示.visible = false
+      }
+    })
+    角色.addChild(封刃显示)
 
     const 护盾值显示 = new PIXI.Text(this.护盾值, {
       fill: 0x818fa9,
