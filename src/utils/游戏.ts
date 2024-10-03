@@ -1380,12 +1380,16 @@ class 技能类 extends 基类 {
     玩家类.事件.emit('行动点变化', { 变化值: -this.消耗 })
   }
   触发(参数: Record<string, unknown> = {}) {
-    游戏开始前执行(() => {
-      if (this.是否禁止触发()) return
-      this.本回合使用次数++
-      this.使用次数++
-      this.emit('触发', 参数)
-    }, this.编号)
+    游戏开始前执行(
+      () => {
+        if (this.是否禁止触发()) return
+        this.本回合使用次数++
+        this.使用次数++
+        this.emit('触发', 参数)
+      },
+      this.编号,
+      this.携带者.是否我方
+    )
   }
   是否对敌我方(目标: 目标类) {
     if (this.携带者.是否我方 == 目标.是否我方) {
@@ -2319,9 +2323,19 @@ class 主神类 extends 单位类 {
     this.神威序号 = 神威序号
     const 技能编号 = 信息[`技能${神威序号}`]
     this.主技能编号 = 技能编号
-    游戏开始前执行(() => {
-      this.神威 = new 技能类(this.主技能编号, this, undefined, undefined, true)
-    }, this.主技能编号)
+    游戏开始前执行(
+      () => {
+        this.神威 = new 技能类(
+          this.主技能编号,
+          this,
+          undefined,
+          undefined,
+          true
+        )
+      },
+      this.主技能编号,
+      this.是否我方
+    )
     this.卡牌名称 = 信息.卡牌名称
     this.描述 = 信息.描述
     this.美术资源.push(信息.美术资源)
@@ -2361,7 +2375,7 @@ class 主神类 extends 单位类 {
         location.reload()
       }, 5000)
     })
-    游戏开始前执行(() => this.emit('登场时'), this.编号)
+    游戏开始前执行(() => this.emit('登场时'), this.编号, this.是否我方)
   }
 
   获得主神资源清单(): PIXI.AssetsBundle {
@@ -2453,9 +2467,13 @@ class 附属神类 extends 单位类 {
     this.可否移动 = Boolean(信息.可否移动)
     if (信息.技能) {
       this.主技能编号 = 信息.技能
-      游戏开始前执行(() => {
-        new 技能类(this.主技能编号, this)
-      }, this.主技能编号)
+      游戏开始前执行(
+        () => {
+          new 技能类(this.主技能编号, this)
+        },
+        this.主技能编号,
+        this.是否我方
+      )
     }
     if (信息.伙伴卡ID) this.伙伴卡ID = 信息.伙伴卡ID
     this.卡牌名称 = 信息.卡牌名称
@@ -2479,7 +2497,7 @@ class 附属神类 extends 单位类 {
       new 技能类(this.主技能编号, this)
       this.emit('变化时')
     })
-    游戏开始前执行(() => this.emit('登场时'), this.编号)
+    游戏开始前执行(() => this.emit('登场时'), this.编号, this.是否我方)
   }
 
   获得附属神资源清单(): PIXI.AssetsBundle {
@@ -2839,16 +2857,23 @@ class 神迹卡类 extends 牌类 {
     this.玩家.emit('手牌数量变化时')
   }
 }
-let 游戏开始前执行的函数: [(...args: unknown[]) => void, number][] = []
-function 游戏开始前执行(函数: (...args: unknown[]) => void, 优先级: number) {
+let 游戏开始前执行的函数: [(...args: unknown[]) => void, number, boolean][] = []
+function 游戏开始前执行(
+  函数: (...args: unknown[]) => void,
+  优先级: number,
+  是否我方: boolean
+) {
   if (玩家类.游戏已开始) {
     函数()
   } else {
-    游戏开始前执行的函数.push([函数, 优先级])
+    游戏开始前执行的函数.push([函数, 优先级, 是否我方])
   }
 }
-function 游戏开始前() {
+function 游戏开始前(先手是否我方: boolean) {
   游戏开始前执行的函数.sort((x, y) => x[1] - y[1])
+  游戏开始前执行的函数 = _.sortBy(游戏开始前执行的函数, (x) =>
+    x[2] === 先手是否我方 ? -1 : 1
+  )
   游戏开始前执行的函数.forEach((x) => x[0]())
   游戏开始前执行的函数 = []
 }
@@ -3035,7 +3060,7 @@ class 玩家类 extends 目标类 {
         玩家类.行动点 = Math.min(10, Math.max(0, 玩家类.行动点 + 参数.变化值))
         玩家类.事件.emit('行动点变化时')
       })
-      游戏开始前()
+      游戏开始前(this.是否我方)
       玩家类.事件.emit('游戏开始时')
       行动点 -= 3
       this.emit('祈愿倒计时变化', { 变化值: -1 })
