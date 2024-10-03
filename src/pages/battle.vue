@@ -2,6 +2,7 @@
   <q-btn-group class="absolute">
     <q-btn to="/">回首页</q-btn>
     <q-btn to="/card_deck">回卡组</q-btn>
+    <q-btn @click="投降()">投降</q-btn>
   </q-btn-group>
   <div ref="战斗框" class="overflow-hidden full-height full-width"></div>
 </template>
@@ -42,6 +43,11 @@ import { 获得资源 } from 'src/utils/美术资源'
 import { 行动队列类 } from 'src/utils/行动队列'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+
+function 投降() {
+  行动队列类.行动队列.添加(['投降'])
+  location.reload()
+}
 
 const q = useQuasar()
 
@@ -540,6 +546,11 @@ onMounted(async () => {
     } else if (行动[0] == '使用神迹') {
       const 神迹卡 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 神迹卡类
       神迹卡.消耗结算()
+    } else if (行动[0] == '投降' && !是否我方) {
+      q.notify({ message: '对方投降，5秒后将刷新页面', type: 'positive' })
+      useTimeoutFn(() => {
+        location.reload()
+      }, 5000)
     }
   })
   行动队列类.行动队列.on(

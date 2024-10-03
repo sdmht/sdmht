@@ -17,6 +17,7 @@ type 行动类型 =
   | ['装填弹幕', number, number]
   | ['使用神迹', number]
   | ['选择', number, number]
+  | ['投降']
 
 type 初始数据类型 = {
   主神: {
