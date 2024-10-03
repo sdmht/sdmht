@@ -1893,6 +1893,14 @@ class 单位类 extends 目标类 {
       播放角色背景音乐(this.美术资源)
       播放技能语音(this.美术资源)
     })
+    this.on('雷印变化', () => {
+      this.雷印++
+      if (this.雷印 == 3) {
+        new 效果类('封刃，持续1回合', this.玩家.敌方玩家.主神, this)
+        this.雷印 = 0
+      }
+      this.emit('获得雷印时')
+    })
   }
   emit(事件名: string, 参数: Record<string, unknown> = {}): boolean {
     const 有监听器 = super.emit(事件名, 参数)
