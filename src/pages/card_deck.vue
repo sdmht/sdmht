@@ -242,7 +242,9 @@
                       ? 弹幕卡列表.filter(
                           (v) =>
                             v.卡牌名称.indexOf(val) > -1 ||
-                            v.描述.indexOf(val) > -1
+                            v.描述.indexOf(val) > -1 ||
+                            `${v.消耗}${v.攻击力}${v.吟唱时间}`.indexOf(val) >
+                              -1
                         )
                       : 弹幕卡列表
                   )
