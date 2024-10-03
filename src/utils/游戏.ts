@@ -2200,10 +2200,10 @@ class 单位类 extends 目标类 {
     封足显示.zIndex = -2
     封足显示.scale.set(
       (位宽 * 1.75) / 封足显示.width,
-      (位宽 * 0.75) / 封足显示.height
+      (位宽 * 1) / 封足显示.height
     )
     封足显示.x = (位宽 - 封足显示.width) / 2
-    封足显示.y = 位宽 - 封足显示.height * 0.75
+    封足显示.y = (位宽 - 封足显示.height) / 2 + 位宽 / 3
 
     let 封足透明调整方向 = 1
     setInterval(() => {
@@ -2250,6 +2250,32 @@ class 单位类 extends 目标类 {
       封刃显示.alpha = 1
     })
     角色.addChild(封刃显示)
+
+    const 雷印显示: PIXI.Sprite[] = []
+    for (let i = 1; i <= 3; i++) {
+      雷印显示[i] = await 加载子画面('pvp/field/leiyin.webp')
+      雷印显示[i].zIndex = -3
+      雷印显示[i].scale.set(
+        (位宽 * (1 - i * 0.2) * 1.5) / 雷印显示[i].height,
+        (位宽 * (1 - i * 0.2) * 0.75) / 雷印显示[i].height
+      )
+
+      雷印显示[i].x = (位宽 - 雷印显示[i].width) / 2
+      雷印显示[i].y = (位宽 - 雷印显示[i].height) / 2 + 位宽 / 3
+
+      雷印显示[i].visible = false
+
+      this.角色.addChild(雷印显示[i])
+    }
+    this.on('获得雷印时', () => {
+      if (this.雷印 == 0) {
+        雷印显示[1].visible = false
+        雷印显示[2].visible = false
+        雷印显示[3].visible = false
+      } else {
+        雷印显示[this.雷印].visible = true
+      }
+    })
 
     const 护盾值显示 = new PIXI.Text(this.护盾值, {
       fill: 0x818fa9,
