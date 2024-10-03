@@ -1,5 +1,5 @@
 <template>
-  <q-btn-group class="absolute">
+  <q-btn-group class="absolute q-dark">
     <q-btn to="/">回首页</q-btn>
     <q-btn to="/card_deck">回卡组</q-btn>
     <q-btn @click="投降()">投降</q-btn>

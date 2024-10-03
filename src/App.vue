@@ -1,5 +1,8 @@
 <template>
   <router-view />
+  <span class="absolute-bottom bg-dark text-white" style="width: fit-content">
+    当前版本：{{ packageInfo.version }}
+  </span>
 </template>
 
 <script setup lang="ts">
@@ -12,6 +15,7 @@ import {
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { provideApolloClient } from '@vue/apollo-composable'
+import packageInfo from 'app/package.json'
 import { Kind, OperationTypeNode } from 'graphql'
 import { createClient } from 'graphql-ws'
 
