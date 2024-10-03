@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { resolve } = require('path')
 
 module.exports = {
   parserOptions: {
@@ -14,4 +14,4 @@ module.exports = {
       },
     },
   ],
-};
+}
