@@ -11,11 +11,3 @@ import { precacheAndRoute } from 'workbox-precaching'
 
 // Use with precache injection
 precacheAndRoute(self.__WB_MANIFEST)
-self.addEventListener('install', () => {
-  self.skipWaiting()
-})
-self.addEventListener('message', (event) => {
-  if (event.data && event.data === 'SKIP_WAITING') {
-    self.skipWaiting()
-  }
-})

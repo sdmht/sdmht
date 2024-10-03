@@ -48,13 +48,4 @@ provideApolloClient(apolloClient)
 defineOptions({
   name: 'App',
 })
-if ('serviceWorker' in navigator) {
-  let refreshing = false
-  navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (!refreshing) {
-      location.reload()
-      refreshing = true
-    }
-  })
-}
 </script>

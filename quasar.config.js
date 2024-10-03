@@ -158,6 +158,7 @@ module.exports = configure(function (ctx) {
 
       /** @type {import('workbox-build').WebpackGenerateSWOptions} */
       workboxOptions: {
+        skipWaiting: true,
         maximumFileSizeToCacheInBytes: 2 ** 30,
         include: [
           'index.html',
