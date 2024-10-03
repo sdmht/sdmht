@@ -1867,6 +1867,7 @@ class 单位类 extends 目标类 {
         this.emit('吟唱时间变化时')
       }
       if (this.秘术) {
+        this.秘术.技能.级联禁用()
         this.秘术 = undefined
         this.emit('秘术变化时')
       }
