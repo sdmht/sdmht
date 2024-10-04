@@ -1532,8 +1532,8 @@ class 效果类 extends 基类 {
     })
     this.on('效果结束', () => {
       this.是否已结束 = true
-      _.remove(目标.效果列表, (x) => x === this)
-      _.remove(效果类.效果列表, (x) => x === this)
+      _.remove(目标.效果列表, (x) => x.是否已结束)
+      _.remove(效果类.效果列表, (x) => x.是否已结束)
       目标.emit(`${this.效果}变化时`)
     })
     if (
