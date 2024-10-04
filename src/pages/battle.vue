@@ -2,7 +2,9 @@
   <q-btn-group class="absolute q-dark">
     <q-btn to="/">回首页</q-btn>
     <q-btn to="/card_deck">回卡组</q-btn>
-    <q-btn @click="投降()">投降</q-btn>
+    <q-btn @click="投降并刷新()">{{
+      玩家类.游戏已开始 ? '投降' : '刷新'
+    }}</q-btn>
   </q-btn-group>
   <div ref="战斗框" class="overflow-hidden full-height full-width"></div>
 </template>
@@ -44,8 +46,10 @@ import { 行动队列类 } from 'src/utils/行动队列'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
-function 投降() {
-  行动队列类.行动队列.添加(['投降'])
+function 投降并刷新() {
+  if (玩家类.游戏已开始) {
+    行动队列类.行动队列.添加(['投降'])
+  }
   location.reload()
 }
 
