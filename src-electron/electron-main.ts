@@ -73,5 +73,5 @@ autoUpdater.on('download-progress', (progressObj) => {
   mainWindow?.setTitle(`正在下载更新 ${progressObj.percent}%`)
 })
 autoUpdater.on('update-downloaded', () => {
-  autoUpdater.quitAndInstall(false, true)
+  autoUpdater.quitAndInstall(true, true)
 })
