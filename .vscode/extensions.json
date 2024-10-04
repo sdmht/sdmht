@@ -6,7 +6,20 @@
     "vue.volar",
     "wayou.vscode-todo-highlight",
     "graphql.vscode-graphql",
-    "graphql.vscode-graphql-syntax"
+    "graphql.vscode-graphql-syntax",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "aaron-bond.better-comments",
+    "ms-ceintl.vscode-language-pack-zh-hans",
+    "w88975.code-translate",
+    "aminer.codegeex",
+    "grapecity.gc-excelviewer",
+    "eamodio.gitlens",
+    "wix.vscode-import-cost",
+    "visualstudioexptteam.vscodeintellicode",
+    "zignd.html-css-class-completion",
+    "mechatroner.rainbow-csv",
+    "sdras.vue-vscode-snippets"
   ],
   "unwantedRecommendations": [
     "octref.vetur",
