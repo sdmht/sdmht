@@ -2825,7 +2825,7 @@ class 神迹卡类 extends 牌类 {
     this.已使用 = true
   }
   async 使用() {
-    this.玩家.emit('使用神迹卡时', { 神迹卡: this })
+    let 秘术装填单位: 单位类 | undefined
     if (this.玩家.无效化下次使用的神迹卡) {
       this.玩家.无效化下次使用的神迹卡 = false
       Notify.create({
@@ -2864,18 +2864,21 @@ class 神迹卡类 extends 牌类 {
           行动队列类.行动队列.on('结算', handler)
         })
       }
-      const 选中的单位 = 我方单位列表[选中的单位索引]
-      if (选中的单位.秘术) {
-        选中的单位.秘术.技能.级联禁用()
+      秘术装填单位 = 我方单位列表[选中的单位索引]
+    }
+    this.玩家.emit('使用神迹卡时', { 神迹卡: this })
+    if (秘术装填单位) {
+      if (秘术装填单位.秘术) {
+        秘术装填单位.秘术.技能.级联禁用()
       }
-      选中的单位.秘术 = this
-      选中的单位.emit('秘术变化时')
-      this.技能 = new 技能类(this.技能编号, 选中的单位)
+      秘术装填单位.秘术 = this
+      秘术装填单位.emit('秘术变化时')
+      this.技能 = new 技能类(this.技能编号, 秘术装填单位)
       Notify.create({
         message: '装填秘术',
         color: 'primary',
       })
-    } else {
+    } else if (this.类型 === '神迹卡') {
       this.技能 = new 技能类(this.技能编号, this.玩家.主神)
       Notify.create({
         message: `使用神迹：${this.卡牌名称}`,
