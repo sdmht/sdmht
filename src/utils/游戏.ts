@@ -1391,10 +1391,10 @@ class 技能类 extends 基类 {
         this.本回合使用次数++
         this.使用次数++
         this.emit('触发', 参数)
-        Notify.create({
+        行动队列类.发送通知({
           message: `触发技能：${this.技能名称}，携带者：${this.携带者.类型}${this.携带者.卡牌名称}`,
           caption: this.技能描述,
-          color: 'primary',
+          color: this.携带者.是否我方 ? 'blue' : 'red',
         })
       },
       this.编号,
@@ -1870,7 +1870,7 @@ class 单位类 extends 目标类 {
     this.on('完全离场', () => {
       this.emit('完全离场时')
       this.位置.单位 = undefined
-      Notify.create({
+      行动队列类.发送通知({
         message: `${this.是否我方 ? '我方' : '敌方'}${this.类型}${
           this.卡牌名称
         }完全离场`,
@@ -2067,9 +2067,9 @@ class 单位类 extends 目标类 {
     this.emit('装填弹幕时')
     this.emit('吟唱时间变化时')
     this.玩家.emit('手牌数量变化时')
-    Notify.create({
+    行动队列类.发送通知({
       message: `装填弹幕：${弹幕卡.卡牌名称}`,
-      color: 'primary',
+      color: this.是否我方 ? 'blue' : 'red',
     })
     return true
   }
@@ -2845,7 +2845,7 @@ class 神迹卡类 extends 牌类 {
     let 秘术装填单位: 单位类 | undefined
     if (this.玩家.无效化下次使用的神迹卡) {
       this.玩家.无效化下次使用的神迹卡 = false
-      Notify.create({
+      行动队列类.发送通知({
         message: '争议',
         color: 'negative',
       })
@@ -2891,15 +2891,15 @@ class 神迹卡类 extends 牌类 {
       秘术装填单位.秘术 = this
       秘术装填单位.emit('秘术变化时')
       this.技能 = new 技能类(this.技能编号, 秘术装填单位)
-      Notify.create({
+      行动队列类.发送通知({
         message: '装填秘术',
-        color: 'primary',
+        color: this.是否我方 ? 'blue' : 'red',
       })
     } else if (this.类型 === '神迹卡') {
       this.技能 = new 技能类(this.技能编号, this.玩家.主神)
-      Notify.create({
+      行动队列类.发送通知({
         message: `使用神迹：${this.卡牌名称}`,
-        color: 'primary',
+        color: this.是否我方 ? 'blue' : 'red',
       })
     }
     this.玩家.emit('手牌数量变化时')
@@ -3132,10 +3132,11 @@ class 玩家类 extends 目标类 {
         }
       })
     } else {
-      Notify.create({
+      行动队列类.发送通知({
         message:
           (this.是否我方 ? '我方' : '敌方') +
           '没有附属神，场地迷雾不会自动恢复',
+        color: this.是否我方 ? 'blue' : 'red',
       })
     }
     this.emit('回合开始时')
@@ -3149,9 +3150,9 @@ class 玩家类 extends 目标类 {
   }
   祈愿() {
     this.emit('祈愿倒计时变化', { 变化值: -1 })
-    Notify.create({
+    行动队列类.发送通知({
       message: '祈愿',
-      color: 'primary',
+      color: this.是否我方 ? 'blue' : 'red',
     })
   }
 }

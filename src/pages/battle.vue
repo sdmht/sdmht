@@ -5,8 +5,21 @@
     <q-btn @click="投降并刷新()">{{
       玩家类.游戏已开始 ? '投降' : '刷新'
     }}</q-btn>
+    <q-btn @click="历史弹窗 = true">历史</q-btn>
   </q-btn-group>
   <div ref="战斗框" class="overflow-hidden full-height full-width"></div>
+  <q-dialog v-model="历史弹窗">
+    <q-card class="text-white" style="min-width: 500px">
+      <q-card-section
+        v-for="(通知, i) in 通知列表"
+        :key="i"
+        :class="`bg-${通知.颜色}`"
+      >
+        {{ 通知.消息 }}
+        {{ 通知.说明 ? '\n' + 通知.说明 : '' }}
+      </q-card-section>
+    </q-card>
+  </q-dialog>
 </template>
 <script setup lang="ts">
 import { GlowFilter } from '@pixi/filter-glow'
@@ -45,6 +58,9 @@ import { 获得资源 } from 'src/utils/美术资源'
 import { 行动队列类 } from 'src/utils/行动队列'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+
+const 历史弹窗 = ref(false)
+const 通知列表 = ref(行动队列类.通知列表)
 
 function 投降并刷新() {
   if (玩家类.游戏已开始) {

@@ -1,9 +1,11 @@
 import EventEmitter from 'events'
+import { Notify } from 'quasar'
 import type { 行动类型 } from './数据通道'
 
 type 渲染类型 = [boolean, ...行动类型]
 class 行动队列类 extends EventEmitter {
   static _行动队列?: 行动队列类
+  static 通知列表: { 消息: string; 说明?: string; 颜色: string }[] = []
   static get 行动队列() {
     if (行动队列类._行动队列 === undefined) {
       行动队列类._行动队列 = new 行动队列类()
@@ -35,6 +37,26 @@ class 行动队列类 extends EventEmitter {
       this.已渲染.push(this.渲染中)
       this.渲染中 = undefined
     }
+  }
+  static 发送通知({
+    message,
+    color,
+    caption,
+  }: {
+    message: string
+    caption?: string
+    color: string
+  }) {
+    行动队列类.通知列表.push({
+      消息: message,
+      说明: caption,
+      颜色: color,
+    })
+    Notify.create({
+      message: message,
+      caption: caption,
+      color: color,
+    })
   }
 }
 export { 行动队列类 }
