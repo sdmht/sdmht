@@ -1386,6 +1386,11 @@ class 技能类 extends 基类 {
         this.本回合使用次数++
         this.使用次数++
         this.emit('触发', 参数)
+        Notify.create({
+          message: `触发技能：${this.技能名称}，携带者：${this.携带者.类型}${this.携带者.卡牌名称}`,
+          caption: this.技能描述,
+          color: 'primary',
+        })
       },
       this.编号,
       this.携带者.是否我方
@@ -1859,6 +1864,12 @@ class 单位类 extends 目标类 {
     })
     this.on('完全离场', () => {
       this.emit('完全离场时')
+      Notify.create({
+        message: `${this.是否我方 ? '我方' : '敌方'}${this.类型}${
+          this.卡牌名称
+        }完全离场`,
+        color: 'negative',
+      })
     })
     this.on('吟唱时间变化', (参数: { 变化值: number }) => {
       if (this.弹幕)
@@ -3132,6 +3143,10 @@ class 玩家类 extends 目标类 {
   }
   祈愿() {
     this.emit('祈愿倒计时变化', { 变化值: -1 })
+    Notify.create({
+      message: '祈愿',
+      color: 'primary',
+    })
   }
 }
 export {
