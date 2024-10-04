@@ -1869,6 +1869,7 @@ class 单位类 extends 目标类 {
     })
     this.on('完全离场', () => {
       this.emit('完全离场时')
+      this.位置.单位 = undefined
       Notify.create({
         message: `${this.是否我方 ? '我方' : '敌方'}${this.类型}${
           this.卡牌名称
