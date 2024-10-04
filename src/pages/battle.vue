@@ -2,9 +2,7 @@
   <q-btn-group class="absolute q-dark">
     <q-btn to="/">回首页</q-btn>
     <q-btn to="/card_deck">回卡组</q-btn>
-    <q-btn @click="投降并刷新()">{{
-      玩家类.游戏已开始 ? '投降' : '刷新'
-    }}</q-btn>
+    <q-btn @click="投降并刷新()">投降并刷新</q-btn>
     <q-btn @click="历史弹窗 = true">历史</q-btn>
   </q-btn-group>
   <div ref="战斗框" class="overflow-hidden full-height full-width"></div>
