@@ -474,6 +474,7 @@ class 技能类 extends 基类 {
           .filter((v) => v.行 == 位置.行 && v.列 == 位置.列)
       }
       if (this.选择规则 === '选择') {
+        const 待选择的目标列表 = this.目标列表
         let 选中的目标索引: number | null = null
         if (this.携带者.是否我方 && !this.目标同父技能) {
           选中的目标索引 = await new Promise<number>((resolve) => {
@@ -481,7 +482,7 @@ class 技能类 extends 基类 {
               title: '选择',
               options: {
                 model: '0',
-                items: this.目标列表.map((v, i) => ({
+                items: 待选择的目标列表.map((v, i) => ({
                   value: `${i}`,
                   label:
                     v instanceof 位置类
@@ -509,7 +510,7 @@ class 技能类 extends 基类 {
             行动队列类.行动队列.on('结算', handler)
           })
         }
-        const 选中的目标 = this.目标列表[选中的目标索引] as 目标类
+        const 选中的目标 = 待选择的目标列表[选中的目标索引] as 目标类
         this._目标列表缓存 =
           this.选择范围 && 选中的目标 instanceof 位置类
             ? 选中的目标
