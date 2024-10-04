@@ -715,7 +715,7 @@ class 技能类 extends 基类 {
           this.目标列表.forEach((i) => {
             if (i instanceof 单位类) {
               i.我方(位置类).forEach((v) => {
-                if (v.是否在范围内(i.位置, '十', false)) {
+                if (v.是否在范围内(i.位置, '十')) {
                   v.解除迷雾()
                 }
               })
