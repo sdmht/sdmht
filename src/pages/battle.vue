@@ -560,139 +560,161 @@ onMounted(async () => {
   行动队列类.行动队列.on(
     '渲染',
     async (是否我方: boolean, ...行动: 行动类型) => {
-      if (行动[0] == '使用神迹') {
-        const 神迹卡 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 神迹卡类
-        神迹卡.使用()
-      }
-      if (行动[0] == '回合结束') {
+      try {
+        if (行动[0] == '使用神迹') {
+          const 神迹卡 = 目标类.目标列表.find(
+            (x) => x.id == 行动[1]
+          ) as 神迹卡类
+          神迹卡.使用()
+        }
+        if (行动[0] == '回合结束') {
+          if (是否我方) {
+            玩家.敌方玩家.回合开始()
+          } else {
+            玩家.回合开始()
+          }
+        }
+        if (行动[0] == '神威') {
+          const re = 是否我方 ? 1 : -1
+          const 主神 = 是否我方 ? 玩家.主神 : 玩家.敌方玩家.主神
+          const 神威背光 = await PIXI.Texture.fromURL(
+            获得资源(主神.美术资源, (f, i) => f === `flash/FlashBG_${i}.webp`)!
+          )
+          const 背光动画 = new PIXI.TilingSprite(神威背光, 宽, 神威背光.height)
+          背光动画.y = 高 * 0.1
+          背光动画.scale.y = (高 * 0.5) / 背光动画.height
+          const 神威黑边 = await PIXI.Texture.fromURL(
+            'pvp/field/FlashLine.webp'
+          )
+          const 上黑边动画 = new PIXI.TilingSprite(
+            神威黑边,
+            宽,
+            神威黑边.height
+          )
+          上黑边动画.y = 高 * 0.075
+          上黑边动画.scale.x = (宽 * 2) / 神威黑边.width
+          上黑边动画.scale.y = (高 * 0.05) / 神威黑边.height
+          const 神威动画 = await 加载动画(
+            获得资源(
+              主神.美术资源,
+              (f, i) => f === `spine/flash/${i}/${i}.json`
+            )!
+          )
+          神威动画.state.setAnimation(0, 'newAnimation', false)
+          神威动画.x = 宽 * 0.5
+          神威动画.y = 高 * 0.6
+          神威动画.scale.x = ((高 * 0.6) / 神威动画.height) * re
+          神威动画.scale.y = (高 * 0.6) / 神威动画.height
+          const 下黑边动画 = new PIXI.TilingSprite(
+            神威黑边,
+            宽,
+            神威黑边.height
+          )
+          下黑边动画.y = 高 * (0.6 - 0.2 / 2)
+          下黑边动画.scale.x = (宽 * 2) / 神威黑边.width
+          下黑边动画.scale.y = (高 * 0.2) / 神威黑边.height
+          战斗画框.ticker.add(() => {
+            背光动画.tilePosition.x += (背光动画.width / 宽) * 25 * re
+            上黑边动画.tilePosition.x += (上黑边动画.width / 宽) * 2 * re
+            下黑边动画.tilePosition.x += (下黑边动画.width / 宽) * 2 * re
+          })
+          const 神威描述 = new PIXI.Text(
+            `${主神.神威.技能名称}\n${主神.神威.技能描述}`,
+            {
+              fill: 0xffffff,
+              fontSize: 32,
+            }
+          )
+          神威描述.x = (宽 - 神威描述.width) / 2
+          神威描述.y = 高 * 0.6
+          神威动画层.addChild(背光动画)
+          神威动画层.addChild(上黑边动画)
+          神威动画层.addChild(神威动画)
+          神威动画层.addChild(下黑边动画)
+          神威动画层.addChild(神威描述)
+          播放神威语音(主神.美术资源)
+          await 等待(
+            神威动画.spineData.findAnimation('newAnimation')?.duration || 3
+          )
+          神威动画层.removeChild(...神威动画层.children)
+          主神.emit('发动神威')
+          行动队列类.行动队列.完成渲染()
+          return
+        }
+        let _d
         if (是否我方) {
-          玩家.敌方玩家.回合开始()
+          _d = 1
         } else {
-          玩家.回合开始()
+          _d = 0
         }
-      }
-      if (行动[0] == '神威') {
-        const re = 是否我方 ? 1 : -1
-        const 主神 = 是否我方 ? 玩家.主神 : 玩家.敌方玩家.主神
-        const 神威背光 = await PIXI.Texture.fromURL(
-          获得资源(主神.美术资源, (f, i) => f === `flash/FlashBG_${i}.webp`)!
-        )
-        const 背光动画 = new PIXI.TilingSprite(神威背光, 宽, 神威背光.height)
-        背光动画.y = 高 * 0.1
-        背光动画.scale.y = (高 * 0.5) / 背光动画.height
-        const 神威黑边 = await PIXI.Texture.fromURL('pvp/field/FlashLine.webp')
-        const 上黑边动画 = new PIXI.TilingSprite(神威黑边, 宽, 神威黑边.height)
-        上黑边动画.y = 高 * 0.075
-        上黑边动画.scale.x = (宽 * 2) / 神威黑边.width
-        上黑边动画.scale.y = (高 * 0.05) / 神威黑边.height
-        const 神威动画 = await 加载动画(
-          获得资源(主神.美术资源, (f, i) => f === `spine/flash/${i}/${i}.json`)!
-        )
-        神威动画.state.setAnimation(0, 'newAnimation', false)
-        神威动画.x = 宽 * 0.5
-        神威动画.y = 高 * 0.6
-        神威动画.scale.x = ((高 * 0.6) / 神威动画.height) * re
-        神威动画.scale.y = (高 * 0.6) / 神威动画.height
-        const 下黑边动画 = new PIXI.TilingSprite(神威黑边, 宽, 神威黑边.height)
-        下黑边动画.y = 高 * (0.6 - 0.2 / 2)
-        下黑边动画.scale.x = (宽 * 2) / 神威黑边.width
-        下黑边动画.scale.y = (高 * 0.2) / 神威黑边.height
-        战斗画框.ticker.add(() => {
-          背光动画.tilePosition.x += (背光动画.width / 宽) * 25 * re
-          上黑边动画.tilePosition.x += (上黑边动画.width / 宽) * 2 * re
-          下黑边动画.tilePosition.x += (下黑边动画.width / 宽) * 2 * re
-        })
-        const 神威描述 = new PIXI.Text(
-          `${主神.神威.技能名称}\n${主神.神威.技能描述}`,
-          {
-            fill: 0xffffff,
-            fontSize: 32,
-          }
-        )
-        神威描述.x = (宽 - 神威描述.width) / 2
-        神威描述.y = 高 * 0.6
-        神威动画层.addChild(背光动画)
-        神威动画层.addChild(上黑边动画)
-        神威动画层.addChild(神威动画)
-        神威动画层.addChild(下黑边动画)
-        神威动画层.addChild(神威描述)
-        播放神威语音(主神.美术资源)
-        await 等待(
-          神威动画.spineData.findAnimation('newAnimation')?.duration || 3
-        )
-        神威动画层.removeChild(...神威动画层.children)
-        主神.emit('发动神威')
-        行动队列类.行动队列.完成渲染()
-        return
-      }
-      let _d
-      if (是否我方) {
-        _d = 1
-      } else {
-        _d = 0
-      }
-      if (行动[0] == '装填弹幕') {
-        播放音频('prefab/pvp/storing.mp3')
-        const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
-        const 弹幕卡 = 目标类.目标列表.find((x) => x.id == 行动[2]) as 弹幕卡类
-        单位.装填弹幕(弹幕卡)
-      } else if (行动[0] == '攻击') {
-        const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
-        const 位置 = 单位
-          .敌方(位置类)
-          .find((x) => x.行 == 行动[2] && x.列 == 行动[3])!
-        const 攻击范围 = 单位.获得攻击范围(位置)
-        单位.攻击前()
-        单位.动画.state.setAnimation(0, 'attack', false)
-        单位.动画.state.addAnimation(0, 'idle', true, 0)
-        播放攻击语音(单位.美术资源)
-        播放攻击音效(单位.美术资源)
-        await 等待(
-          (单位.动画.spineData.findAnimation('attack')?.duration || 0) - 0.3
-        )
-        for (let _位置 of 攻击范围) {
-          let 攻击动画 = await 加载普攻动画(单位.美术资源)
-          if (攻击动画) {
-            攻击动画.x = 迷雾层.children[_d].x + 位宽 * (_位置.列 - 0.5)
-            攻击动画.y = 迷雾层.children[_d].y + 位宽 * (_位置.行 - 0.5)
-            攻击动画.scale.set(缩放比例)
-            攻击动画.state.setAnimation(0, 'idle', false)
-            攻击动画层.addChild(攻击动画)
-            等待(攻击动画.spineData.findAnimation('idle')?.duration || 0).then(
-              () => {
+        if (行动[0] == '装填弹幕') {
+          播放音频('prefab/pvp/storing.mp3')
+          const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
+          const 弹幕卡 = 目标类.目标列表.find(
+            (x) => x.id == 行动[2]
+          ) as 弹幕卡类
+          单位.装填弹幕(弹幕卡)
+        } else if (行动[0] == '攻击') {
+          const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
+          const 位置 = 单位
+            .敌方(位置类)
+            .find((x) => x.行 == 行动[2] && x.列 == 行动[3])!
+          const 攻击范围 = 单位.获得攻击范围(位置)
+          单位.攻击前()
+          单位.动画.state.setAnimation(0, 'attack', false)
+          单位.动画.state.addAnimation(0, 'idle', true, 0)
+          播放攻击语音(单位.美术资源)
+          播放攻击音效(单位.美术资源)
+          await 等待(
+            (单位.动画.spineData.findAnimation('attack')?.duration || 0) - 0.3
+          )
+          for (let _位置 of 攻击范围) {
+            let 攻击动画 = await 加载普攻动画(单位.美术资源)
+            if (攻击动画) {
+              攻击动画.x = 迷雾层.children[_d].x + 位宽 * (_位置.列 - 0.5)
+              攻击动画.y = 迷雾层.children[_d].y + 位宽 * (_位置.行 - 0.5)
+              攻击动画.scale.set(缩放比例)
+              攻击动画.state.setAnimation(0, 'idle', false)
+              攻击动画层.addChild(攻击动画)
+              等待(
+                攻击动画.spineData.findAnimation('idle')?.duration || 0
+              ).then(() => {
                 攻击动画层.removeChild(攻击动画)
-              }
-            )
+              })
+            }
           }
+          // 待做
+          // 打击1.mp3 打甲
+          // 打击2.mp3 空地
+          // 打击3.mp3 圣盾
+          // 打击4.mp3 无护甲
+          播放音频(`prefab/pvp/打击${_.random(1, 4)}.mp3`)
+          单位.攻击(攻击范围)
+        } else if (行动[0] == '移动') {
+          播放音频('prefab/pvp/角色移动.mp3')
+          const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
+          const 位置 = 单位
+            .我方(位置类)
+            .find((x) => x.行 == 行动[2] && x.列 == 行动[3])!
+          单位.移动(位置)
+          渲染移动范围()
+          单位.动画.state.setAnimation(0, 'move', false)
+          单位.动画.state.addAnimation(
+            0,
+            单位.弹幕 ? (单位.弹幕.吟唱时间 ? 'storing' : 'stored') : 'idle',
+            true,
+            0
+          )
+          单位.更新坐标(位宽)
+        } else if (行动[0] == '祈愿') {
+          播放音频('prefab/pvp/祈愿发动.mp3')
+          if (是否我方) 玩家.祈愿()
         }
-        // 待做
-        // 打击1.mp3 打甲
-        // 打击2.mp3 空地
-        // 打击3.mp3 圣盾
-        // 打击4.mp3 无护甲
-        播放音频(`prefab/pvp/打击${_.random(1, 4)}.mp3`)
-        单位.攻击(攻击范围)
-      } else if (行动[0] == '移动') {
-        播放音频('prefab/pvp/角色移动.mp3')
-        const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
-        const 位置 = 单位
-          .我方(位置类)
-          .find((x) => x.行 == 行动[2] && x.列 == 行动[3])!
-        单位.移动(位置)
-        渲染移动范围()
-        单位.动画.state.setAnimation(0, 'move', false)
-        单位.动画.state.addAnimation(
-          0,
-          单位.弹幕 ? (单位.弹幕.吟唱时间 ? 'storing' : 'stored') : 'idle',
-          true,
-          0
-        )
-        单位.更新坐标(位宽)
-      } else if (行动[0] == '祈愿') {
-        播放音频('prefab/pvp/祈愿发动.mp3')
-        if (是否我方) 玩家.祈愿()
+        行动队列类.行动队列.完成渲染()
+      } catch (e) {
+        q.notify({ message: `渲染报错：${e}`, type: 'negative' })
+        行动队列类.行动队列.完成渲染()
       }
-      行动队列类.行动队列.完成渲染()
     }
   )
   玩家类.事件.on('单位传送时', (参数: { 单位: 单位类; 玩家: 玩家类 }) => {
