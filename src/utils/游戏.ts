@@ -870,11 +870,6 @@ class 技能类 extends 基类 {
           })
           break
         case '无效化对手的神迹卡':
-          this.目标列表.forEach((v) => {
-            if (v instanceof 玩家类) {
-              v.无效化下次使用的神迹卡 = true
-            }
-          })
           break
         case '复制对方使用的神迹卡，复制的卡消耗为0':
           this.目标列表.forEach((v) => {
@@ -1360,6 +1355,13 @@ class 技能类 extends 基类 {
         this.目标列表.forEach((v) => {
           if (v instanceof 单位类) {
             v.攻击可解除迷雾 = false
+          }
+        })
+        break
+      case '无效化对手的神迹卡':
+        this.目标列表.forEach((v) => {
+          if (v instanceof 玩家类) {
+            v.无效化下次使用的神迹卡 = true
           }
         })
         break
@@ -2883,7 +2885,6 @@ class 神迹卡类 extends 牌类 {
       }
       秘术装填单位 = 我方单位列表[选中的单位索引]
     }
-    this.玩家.emit('使用神迹卡时', { 神迹卡: this })
     if (秘术装填单位) {
       if (秘术装填单位.秘术) {
         秘术装填单位.秘术.技能.级联禁用()
@@ -2902,6 +2903,7 @@ class 神迹卡类 extends 牌类 {
         color: this.是否我方 ? 'blue' : 'red',
       })
     }
+    this.玩家.emit('使用神迹卡时', { 神迹卡: this })
     this.玩家.emit('手牌数量变化时')
   }
 }
