@@ -2006,7 +2006,7 @@ class 单位类 extends 目标类 {
       }
       if (
         this.攻击可解除迷雾 &&
-        this.弹幕?.是否驱散迷雾 !== false &&
+        (!this.弹幕 || this.弹幕.是否驱散迷雾) &&
         v.解除迷雾() &&
         v.单位 != undefined
       ) {
