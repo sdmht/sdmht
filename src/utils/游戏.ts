@@ -412,17 +412,10 @@ class 技能类 extends 基类 {
   get 监听选择id(): number {
     return this.父技能 && this.目标同父技能 ? this.父技能.监听选择id : this.id
   }
-  constructor(
-    编号: number,
-    携带者: 单位类,
-    目标列表?: 目标类[],
-    父技能?: 技能类,
-    神威?: boolean
-  ) {
+  constructor(编号: number, 携带者: 单位类, 父技能?: 技能类, 神威?: boolean) {
     super()
     this.编号 = 编号
     this.携带者 = 携带者
-    this._目标列表 = 目标列表
     this.父技能 = 父技能
     const 信息 = 获得技能信息(编号)
     this.消耗 = 信息.消耗
@@ -1199,6 +1192,7 @@ class 技能类 extends 基类 {
           }
           break
       }
+      this.emit('触发时')
     })
     switch (this.何时触发) {
       case '发动时':
@@ -1370,7 +1364,7 @@ class 技能类 extends 基类 {
     this.携带者.技能列表.push(this)
     this.父技能?.子技能列表.push(this)
     this.附带技能.forEach((v) => {
-      new 技能类(v, this.携带者, undefined, this, 神威)
+      new 技能类(v, this.携带者, this, 神威)
     })
   }
   是否禁止触发() {
@@ -1894,16 +1888,29 @@ class 单位类 extends 目标类 {
         this.弹幕.吟唱时间 = Math.max(0, this.弹幕.吟唱时间 + 参数.变化值)
       this.emit('吟唱时间变化时')
     })
+    this.on('秘术变化', (参数: { 变化值: 神迹卡类 | undefined }) => {
+      if (this.秘术) {
+        this.秘术.技能.级联禁用()
+      }
+      this.秘术 = 参数.变化值
+      if (this.秘术) {
+        this.秘术.技能 = new 技能类(this.秘术.技能编号, this)
+        this.秘术.技能.once('触发时', () => {
+          this.emit('秘术变化', { 变化值: undefined })
+        })
+      }
+      this.emit('秘术变化时')
+      行动队列类.发送通知({
+        message: '装填秘术',
+        color: this.是否我方 ? 'blue' : 'red',
+      })
+    })
     this.on('清除', () => {
       if (this.弹幕) {
         this.弹幕 = undefined
         this.emit('吟唱时间变化时')
       }
-      if (this.秘术) {
-        this.秘术.技能.级联禁用()
-        this.秘术 = undefined
-        this.emit('秘术变化时')
-      }
+      this.emit('秘术变化', { 变化值: undefined })
     })
     this.on('替换弹幕', (参数: { 弹幕卡编号: number }) => {
       const 弹幕卡 = new 弹幕卡类(this.玩家, 参数.弹幕卡编号)
@@ -2383,13 +2390,7 @@ class 主神类 extends 单位类 {
     this.主技能编号 = 技能编号
     游戏开始前执行(
       () => {
-        this.神威 = new 技能类(
-          this.主技能编号,
-          this,
-          undefined,
-          undefined,
-          true
-        )
+        this.神威 = new 技能类(this.主技能编号, this, undefined, true)
       },
       this.主技能编号,
       this.是否我方
@@ -2897,16 +2898,7 @@ class 神迹卡类 extends 牌类 {
       秘术装填单位 = 我方单位列表[选中的单位索引]
     }
     if (秘术装填单位) {
-      if (秘术装填单位.秘术) {
-        秘术装填单位.秘术.技能.级联禁用()
-      }
-      秘术装填单位.秘术 = this
-      秘术装填单位.emit('秘术变化时')
-      this.技能 = new 技能类(this.技能编号, 秘术装填单位)
-      行动队列类.发送通知({
-        message: '装填秘术',
-        color: this.是否我方 ? 'blue' : 'red',
-      })
+      秘术装填单位.emit('秘术变化', { 变化值: this })
     } else if (this.类型 === '神迹卡') {
       this.技能 = new 技能类(this.技能编号, this.玩家.主神)
       行动队列类.发送通知({
