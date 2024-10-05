@@ -591,6 +591,7 @@ onMounted(async () => {
         if (行动[0] == '神威') {
           const re = 是否我方 ? 1 : -1
           const 主神 = 是否我方 ? 玩家.主神 : 玩家.敌方玩家.主神
+          主神.emit('发动神威')
           const 神威背光 = await PIXI.Texture.fromURL(
             获得资源(主神.美术资源, (f, i) => f === `flash/FlashBG_${i}.webp`)!
           )
@@ -651,7 +652,6 @@ onMounted(async () => {
             神威动画.spineData.findAnimation('newAnimation')?.duration || 3
           )
           神威动画层.removeChild(...神威动画层.children)
-          主神.emit('发动神威')
           行动队列类.行动队列.完成渲染()
           return
         }
