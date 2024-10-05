@@ -1603,7 +1603,11 @@ class 位置类 extends 目标类 {
   }
 
   覆盖迷雾() {
-    const 迷雾可被覆盖 = !this.迷雾
+    const 迷雾可被覆盖 =
+      !this.迷雾 &&
+      (this.迷雾不可被解除 ||
+        this.单位?.迷雾不可被解除 ||
+        !this.单位?.弹幕?.是否驱散迷雾)
     if (迷雾可被覆盖) {
       this.迷雾 = true
       this.emit('迷雾被覆盖时')
@@ -1863,8 +1867,8 @@ class 单位类 extends 目标类 {
       this.emit('移动力变化时')
     })
     this.on('离场', () => {
+      _.remove(目标类.目标列表, (v) => _.eq(v, this))
       this.emit('离场时')
-      _.remove(目标类.目标列表, (v) => v === this)
       this.技能列表.forEach((v) => (v.是否禁用 = true))
       if (!this.未完全离场) {
         this.emit('完全离场')
