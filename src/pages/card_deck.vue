@@ -278,7 +278,9 @@
                   <q-item-label caption
                     >消耗：{{ scope.opt.消耗 }}；攻击力：{{
                       scope.opt.攻击力
-                    }}；吟唱时间：{{ scope.opt.吟唱时间 }}</q-item-label
+                    }}；吟唱时间：{{ scope.opt.吟唱时间 }}；攻击范围：{{
+                      翻译弹幕卡范围(scope.opt.弹幕攻击范围)
+                    }}</q-item-label
                   >
                   <q-item-label caption>{{ scope.opt.描述 }}</q-item-label>
                 </q-item-section>
@@ -551,5 +553,23 @@ function 粘贴卡组码() {
     .catch((reason) => {
       q.notify({ type: 'negative', message: '粘贴失败：' + reason })
     })
+}
+function 翻译弹幕卡范围(范围: number) {
+  switch (范围) {
+    case 0:
+      return '单'
+    case 2:
+      return '圆'
+    case 5:
+      return '十'
+    case 6:
+      return '横'
+    case 7:
+      return '竖'
+    case 17:
+      return '全'
+    default:
+      return '未知'
+  }
 }
 </script>
