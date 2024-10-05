@@ -991,61 +991,69 @@ onMounted(async () => {
 
   战斗画框.stage.addChild(回合栏)
 
-  const 手牌栏 = new PIXI.Container()
+  const 手牌栏 = new PIXI.Container<PXUI.ButtonContainer>()
   玩家.on(
     '手牌数量变化时',
-    _.throttle(() => {
-      手牌栏.removeChildren()
-      玩家.手牌.forEach(async (v, i) => {
-        const 卡面 = await v.获得卡面()
-        卡面.scale.set(1)
-        const 卡面焦点缩放 = 消耗栏底框.y / 卡面.height
-        const 卡面缩放 = Math.min(
-          (纵 * 0.6) / 卡面.height,
-          宽 / 10 / 卡面.width
-        )
-        卡面.scale.set(卡面缩放)
-        const 原横坐标 =
-          (宽 - 卡面.width * 玩家.手牌.length) / 2 + 卡面.width * i
-        const 原纵坐标 = 消耗栏底框.y - 卡面.height
-        卡面.x = 原横坐标
-        卡面.y = 原纵坐标
-        卡面.onDown.disconnectAll()
-        卡面.onDown.connect(() => {
-          卡面.scale.set(卡面焦点缩放)
-          卡面.x = (宽 - 卡面.width) / 2
-          卡面.y = 0
-          卡面.zIndex = 1
-          手牌栏.sortChildren()
-        })
-        卡面.onUp.disconnectAll()
-        卡面.onUp.connect((b, e) => {
+    _.throttle(async () => {
+      await Promise.all(
+        玩家.手牌.map(async (v, i) => {
+          const 已创建 = !!v.卡面
+          const 卡面 = await v.获得卡面()
+          _.set(卡面, 'id', v.id)
+          卡面.scale.set(1)
+          const 卡面焦点缩放 = 消耗栏底框.y / 卡面.height
+          const 卡面缩放 = Math.min(
+            (纵 * 0.6) / 卡面.height,
+            宽 / 10 / 卡面.width
+          )
           卡面.scale.set(卡面缩放)
+          const 原横坐标 =
+            (宽 - 卡面.width * 玩家.手牌.length) / 2 + 卡面.width * i
+          const 原纵坐标 = 消耗栏底框.y - 卡面.height
           卡面.x = 原横坐标
           卡面.y = 原纵坐标
-          卡面.zIndex = 0
-          if (
-            e &&
-            e.screenY < 原纵坐标 &&
-            玩家类.我方回合 !== false &&
-            玩家类.行动点 >= v.消耗
-          ) {
-            if (v instanceof 弹幕卡类) {
-              待装填的弹幕卡.value = v
-            } else if (v instanceof 神迹卡类 && v.可使用()) {
-              行动队列类.行动队列.添加(['使用神迹', v.id])
+          _.set(卡面, '原横坐标', 原横坐标)
+          if (已创建) return
+          卡面.onDown.connect(() => {
+            卡面.scale.set(卡面焦点缩放)
+            卡面.x = (宽 - 卡面.width) / 2
+            卡面.y = 0
+            卡面.zIndex = 1
+            手牌栏.sortChildren()
+          })
+          卡面.onUp.connect((b, e) => {
+            卡面.scale.set(卡面缩放)
+            卡面.x = _.get(卡面, '原横坐标', 原横坐标)
+            卡面.y = 原纵坐标
+            卡面.zIndex = 0
+            if (
+              e &&
+              e.screenY < 原纵坐标 &&
+              玩家类.我方回合 !== false &&
+              玩家类.行动点 >= v.消耗
+            ) {
+              if (v instanceof 弹幕卡类) {
+                待装填的弹幕卡.value = v
+              } else if (v instanceof 神迹卡类 && v.可使用()) {
+                行动队列类.行动队列.添加(['使用神迹', v.id])
+              }
             }
-          }
+          })
+          卡面.onOut.connect(() => {
+            卡面.scale.set(卡面缩放)
+            卡面.x = _.get(卡面, '原横坐标', 原横坐标)
+            卡面.y = 原纵坐标
+            卡面.zIndex = 0
+          })
+          手牌栏.addChild(卡面)
         })
-        卡面.onOut.disconnectAll()
-        卡面.onOut.connect(() => {
-          卡面.scale.set(卡面缩放)
-          卡面.x = 原横坐标
-          卡面.y = 原纵坐标
-          卡面.zIndex = 0
-        })
-        手牌栏.addChild(卡面)
-      })
+      )
+      const 手牌键列表 = 玩家.手牌.map((v) => v.id)
+      手牌栏.removeChild(
+        ...手牌栏.children.filter(
+          (v) => !手牌键列表.includes(_.get(v, 'id', 0))
+        )
+      )
     }, 1000)
   )
   回合栏.addChild(手牌栏)
