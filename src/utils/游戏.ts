@@ -1413,7 +1413,6 @@ class 技能类 extends 基类 {
 }
 
 class 效果类 extends 基类 {
-  static 效果列表: 效果类[] = []
   static 效果数据: Record<string, string> = {
     '1': '迷雾不可被解除，持续1回合',
     '2': '迷雾不可被解除',
@@ -1531,21 +1530,27 @@ class 效果类 extends 基类 {
 
     this.on('效果开始', () => {
       this.触发次数++
+      目标.emit(`${this.效果}变化`, {
+        变化值: this.效果值,
+        是否等于: this.是否等于,
+      })
+      if (_.get(目标, this.效果) === false) {
+        _.set(目标, this.效果, true)
+        目标.emit(`${this.效果}变化时`)
+      }
       if (目标 instanceof 单位类) {
         行动队列类.发送通知({
           message: `${目标.卡牌名称}${this.描述}，发动者：${this.发动者.卡牌名称}`,
           color: 发动者.是否我方 == 目标.是否我方 ? 'blue' : 'red',
         })
       }
-      目标.emit(`${this.效果}变化`, {
-        变化值: this.效果值,
-        是否等于: this.是否等于,
-      })
     })
     this.on('效果结束', () => {
       this.是否已结束 = true
       _.remove(目标.效果列表, (x) => x.是否已结束)
-      _.remove(效果类.效果列表, (x) => x.是否已结束)
+      if (_.get(目标, this.效果) === true) {
+        _.set(目标, this.效果, false)
+      }
       目标.emit(`${this.效果}变化时`)
     })
     if (
@@ -1557,7 +1562,6 @@ class 效果类 extends 基类 {
       })
     }
     目标.效果列表.push(this)
-    效果类.效果列表.push(this)
     this.emit('效果开始')
   }
 }
@@ -1568,18 +1572,15 @@ class 位置类 extends 目标类 {
   单位?: 单位类
   行 = 0
   列 = 0
-
-  get 迷雾不可被解除() {
-    return this.效果列表.findIndex((x) => x.效果 == '迷雾不可被解除') !== -1
-  }
+  迷雾不可被解除 = false
 
   constructor(玩家: 玩家类, 行: number, 列: number) {
     super(玩家.是否我方)
     this.玩家 = 玩家
     this.行 = 行
     this.列 = 列
-    this.on('迷雾不可被解除变化', () => {
-      this.覆盖迷雾()
+    this.on('迷雾不可被解除变化时', () => {
+      if (this.迷雾不可被解除) this.覆盖迷雾()
     })
   }
 
@@ -1737,22 +1738,12 @@ class 单位类 extends 目标类 {
         .reduce((a, b) => a + b.效果值, this.基础移动力)
     )
   }
-  get 迷雾不可被解除() {
-    return this.效果列表.findIndex((x) => x.效果 === '迷雾不可被解除') !== -1
-  }
+  迷雾不可被解除 = false
   圣盾 = false
-  get 无敌() {
-    return this.效果列表.findIndex((x) => x.效果 === '无敌') !== -1
-  }
-  get 封刃() {
-    return this.效果列表.findIndex((x) => x.效果 === '封刃') !== -1
-  }
-  get 封足() {
-    return this.效果列表.findIndex((x) => x.效果 === '封足') !== -1
-  }
-  get 诅咒() {
-    return this.效果列表.findIndex((x) => x.效果 === '诅咒') !== -1
-  }
+  无敌 = false
+  封刃 = false
+  封足 = false
+  诅咒 = false
 
   动画!: PXSP.Spine
   角色!: PIXI.Container
@@ -1813,7 +1804,7 @@ class 单位类 extends 目标类 {
             }
             this.生命值 -= 生命值减少值
           }
-        } else {
+        } else if (!this.诅咒) {
           this.生命值 = Math.min(this.生命上限, this.生命值 + 参数.变化值)
         }
         if (参数.变化值 < 0) this.emit('生命值减少时')
@@ -1925,18 +1916,6 @@ class 单位类 extends 目标类 {
         }
       })
     })
-    this.on('圣盾变化', () => {
-      this.圣盾 = true
-      this.emit('圣盾变化时')
-    })
-
-    this.on('封刃变化', () => {
-      this.emit('封刃变化时')
-    })
-
-    this.on('封足变化', () => {
-      this.emit('封足变化时')
-    })
 
     this.on('变化时', () => {
       播放角色背景音乐(this.美术资源)
@@ -1950,8 +1929,8 @@ class 单位类 extends 目标类 {
       }
       this.emit('获得雷印时')
     })
-    this.on('迷雾不可被解除变化', () => {
-      this.位置.覆盖迷雾()
+    this.on('迷雾不可被解除变化时', () => {
+      if (this.迷雾不可被解除) this.位置.覆盖迷雾()
     })
   }
   emit(事件名: string, 参数: Record<string, unknown> = {}): boolean {
