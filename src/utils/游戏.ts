@@ -2857,7 +2857,7 @@ class 神迹卡类 extends 牌类 {
         color: 'negative',
       })
     } else if (this.类型 == '秘术卡') {
-      const 我方单位列表 = this.我方(单位类)
+      const 我方单位列表 = this.我方(单位类).filter((v) => v.可否装填)
       let 选中的单位索引: number | null = null
       if (this.是否我方) {
         选中的单位索引 = await new Promise<number>((resolve) => {
