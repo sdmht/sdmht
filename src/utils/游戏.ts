@@ -489,7 +489,7 @@ class 技能类 extends 基类 {
                     v instanceof 位置类
                       ? `第${v.行}行，第${v.列}列`
                       : v instanceof 单位类
-                      ? v.卡牌名称
+                      ? `${v.卡牌名称}，第${v.位置.行}，第行${v.位置.列}列`
                       : `${Object.getPrototypeOf(v).constructor.name}${v.id}`,
                 })),
               },
@@ -2868,7 +2868,7 @@ class 神迹卡类 extends 牌类 {
               model: '0',
               items: 我方单位列表.map((v, i) => ({
                 value: `${i}`,
-                label: v.卡牌名称,
+                label: `${v.卡牌名称}，第${v.位置.行}，第行${v.位置.列}列`,
               })),
             },
             cancel: false,
