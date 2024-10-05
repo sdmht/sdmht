@@ -1386,13 +1386,13 @@ class 技能类 extends 基类 {
   }
   消耗结算() {
     玩家类.事件.emit('行动点变化', { 变化值: -this.消耗 })
+    this.本回合使用次数++
+    this.使用次数++
   }
   触发(参数: Record<string, unknown> = {}) {
     游戏开始前执行(
       () => {
         if (this.是否禁止触发()) return
-        this.本回合使用次数++
-        this.使用次数++
         this.emit('触发', 参数)
         行动队列类.发送通知({
           message: `触发技能：${this.技能名称}，携带者：${this.携带者.类型}${this.携带者.卡牌名称}`,
