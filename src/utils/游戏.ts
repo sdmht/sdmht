@@ -1527,8 +1527,7 @@ class 效果类 extends 基类 {
     this.发动者.玩家.on('回合开始时', () => {
       if (
         !this.是否已结束 &&
-        this.持续回合 !== undefined &&
-        this.持续回合 > this.触发次数
+        (this.持续回合 === undefined || this.持续回合 > this.触发次数)
       ) {
         this.emit('效果开始')
       } else if (this.持续回合 == this.触发次数) {
@@ -1538,6 +1537,12 @@ class 效果类 extends 基类 {
 
     this.on('效果开始', () => {
       this.触发次数++
+      if (目标 instanceof 单位类) {
+        行动队列类.发送通知({
+          message: `${目标.卡牌名称}${this.描述}，发动者：${this.发动者.卡牌名称}`,
+          color: 发动者.是否我方 == 目标.是否我方 ? 'blue' : 'red',
+        })
+      }
       目标.emit(`${this.效果}变化`, {
         变化值: this.效果值,
         是否等于: this.是否等于,
