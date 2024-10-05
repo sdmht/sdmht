@@ -369,7 +369,7 @@ onMounted(async () => {
     附属神.获得角色(位宽).then((角色) => 角色层.children[0].addChild(角色))
   })
   角色层.children[0].sortChildren()
-  玩家类.事件.on('单位登场时', async (参数: { 单位: 单位类; 玩家: 玩家类 }) => {
+  玩家类.事件.on('单位创建时', async (参数: { 单位: 单位类; 玩家: 玩家类 }) => {
     角色层.children[参数.单位.是否我方 ? 0 : 1]
       .addChild(await 参数.单位.获得角色(位宽))
       .sortChildren()
@@ -820,20 +820,6 @@ onMounted(async () => {
       玩家.敌方玩家 = 敌方玩家
       敌方玩家.敌方玩家 = 玩家
 
-      const 角色渲染列表 = []
-      角色渲染列表.push(
-        敌方玩家.主神
-          .获得角色(位宽)
-          .then((角色) => 角色层.children[1].addChild(角色))
-      )
-      敌方玩家.我方(附属神类).forEach((附属神) => {
-        角色渲染列表.push(
-          附属神
-            .获得角色(位宽)
-            .then((角色) => 角色层.children[1].addChild(角色))
-        )
-      })
-      await Promise.all(角色渲染列表)
       if (玩家.主神.id > 敌方玩家.主神.id) {
         玩家.回合开始()
       } else {

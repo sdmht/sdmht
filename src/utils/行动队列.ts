@@ -56,6 +56,7 @@ class 行动队列类 extends EventEmitter {
       message: message,
       caption: caption,
       color: color,
+      timeout: 666,
     })
   }
 }

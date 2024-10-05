@@ -40,6 +40,7 @@ class 随机类 {
    */
   static 随机数() {
     this.随机数种子 = (this.随机数种子 * 9301 + 49297) % 233280
+    console.log('随机数种子', this.随机数种子)
     return this.随机数种子 / 233280.0
   }
   static 乱序<T>(列表: T[]): T[] {
@@ -1262,8 +1263,7 @@ class 技能类 extends 基类 {
         )
         break
       case '效果值中合体素材单位同时在场时':
-        this.携带者.玩家.on('召唤物登场时', (召唤物: 附属神类) => {
-          if (!this.效果值.slice(0, -1).includes(召唤物.编号)) return
+        this.携带者.on('登场时', () => {
           const 召唤物列表: 附属神类[] = []
           for (let i = 0; i < this.效果值.length - 1; i++) {
             for (const v of this.携带者.我方(附属神类)) {
@@ -1867,7 +1867,7 @@ class 单位类 extends 目标类 {
       this.emit('移动力变化时')
     })
     this.on('离场', () => {
-      _.remove(目标类.目标列表, (v) => _.eq(v, this))
+      _.remove(目标类.目标列表, (v) => v.id === this.id)
       this.emit('离场时')
       this.技能列表.forEach((v) => (v.是否禁用 = true))
       if (!this.未完全离场) {
@@ -2341,6 +2341,7 @@ class 单位类 extends 目标类 {
       p.sortChildren()
     })
     角色.sortChildren()
+    游戏开始前执行(() => this.emit('登场时'), this.编号, this.是否我方)
     return 角色
   }
 
@@ -2427,7 +2428,7 @@ class 主神类 extends 单位类 {
         location.reload()
       }, 5000)
     })
-    游戏开始前执行(() => this.emit('登场时'), this.编号, this.是否我方)
+    this.emit('创建时')
   }
 
   获得主神资源清单(): PIXI.AssetsBundle {
@@ -2549,7 +2550,7 @@ class 附属神类 extends 单位类 {
       new 技能类(this.主技能编号, this)
       this.emit('变化时')
     })
-    游戏开始前执行(() => this.emit('登场时'), this.编号, this.是否我方)
+    this.emit('创建时')
   }
 
   获得附属神资源清单(): PIXI.AssetsBundle {
