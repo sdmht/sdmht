@@ -1517,8 +1517,9 @@ class 效果类 extends 基类 {
     this.发动者.玩家.on('回合开始时', () => {
       if (
         !this.是否已结束 &&
-        ((this.持续回合 !== undefined && this.持续回合 > this.触发次数) ||
-          this.描述.match(/永久/))
+        (this.触发次数 == 0 ||
+          this.描述.match(/永久/) ||
+          (this.持续回合 !== undefined && this.持续回合 > this.触发次数))
       ) {
         this.emit('效果开始')
       } else if (this.持续回合 == this.触发次数) {
