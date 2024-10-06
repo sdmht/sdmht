@@ -3122,8 +3122,8 @@ class 玩家类 extends 目标类 {
     if (this.牌堆.length == 0) {
       this.枯竭回合数++
       this.我方(单位类).forEach((v) =>
-        v.emit('受到攻击', {
-          伤害值: 2 * this.枯竭回合数,
+        v.emit('生命值变化', {
+          变化值: 2 * this.枯竭回合数,
         })
       )
       行动队列类.发送通知({
