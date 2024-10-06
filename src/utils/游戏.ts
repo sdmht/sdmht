@@ -2004,7 +2004,7 @@ class 单位类 extends 目标类 {
     if (攻击命中的单位列表.length) {
       this.emit('攻击命中时', { 攻击命中的单位列表 })
     }
-    this.emit('攻击时')
+    this.emit('攻击时', { 攻击命中的单位列表 })
     if (this.弹幕) {
       this.弹幕 = undefined
       this.emit('吟唱时间变化时')
