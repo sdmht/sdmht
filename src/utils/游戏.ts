@@ -1909,6 +1909,7 @@ class 单位类 extends 目标类 {
       弹幕卡.已使用 = true
     })
     this.on('净化', () => {
+      this.雷印 = 0
       this.效果列表.forEach((x) => {
         if (!x.不可被净化) {
           x.emit('效果结束')
@@ -2283,6 +2284,9 @@ class 单位类 extends 目标类 {
       雷印显示[i].visible = false
       this.on('获得雷印时', () => {
         雷印显示[i].visible = this.雷印 >= i
+      })
+      this.on('净化', () => {
+        雷印显示[i].visible = false
       })
 
       this.角色.addChild(雷印显示[i])
