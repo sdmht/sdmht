@@ -47,7 +47,7 @@ class 行动队列类 extends EventEmitter {
     caption?: string
     color: string
   }) {
-    行动队列类.通知列表.push({
+    行动队列类.通知列表.unshift({
       消息: message,
       说明: caption,
       颜色: color,
