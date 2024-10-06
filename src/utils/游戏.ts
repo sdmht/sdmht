@@ -2876,14 +2876,17 @@ class 神迹卡类 extends 牌类 {
     }
     if (秘术装填单位) {
       秘术装填单位.emit('秘术变化', { 变化值: this })
+      this.玩家.emit('使用神迹卡时', { 神迹卡: this })
     } else if (this.类型 === '神迹卡') {
       this.技能 = new 技能类(this.技能编号, this.玩家.主神)
+      this.技能.once('触发时', () => {
+        this.玩家.emit('使用神迹卡时', { 神迹卡: this })
+      })
       行动队列类.发送通知({
         message: `使用神迹：${this.卡牌名称}`,
         color: this.是否我方 ? 'blue' : 'red',
       })
     }
-    this.玩家.emit('使用神迹卡时', { 神迹卡: this })
     this.玩家.emit('手牌数量变化时')
   }
 }
