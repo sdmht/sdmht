@@ -2282,18 +2282,12 @@ class 单位类 extends 目标类 {
       雷印显示[i].y = (位宽 - 雷印显示[i].height) / 2 + 位宽 / 3
 
       雷印显示[i].visible = false
+      this.on('获得雷印时', () => {
+        雷印显示[i].visible = this.雷印 >= i
+      })
 
       this.角色.addChild(雷印显示[i])
     }
-    this.on('获得雷印时', () => {
-      if (this.雷印 == 0) {
-        雷印显示[1].visible = false
-        雷印显示[2].visible = false
-        雷印显示[3].visible = false
-      } else {
-        雷印显示[this.雷印].visible = true
-      }
-    })
 
     const 护盾值显示 = new PIXI.Text(this.护盾值, {
       fill: 0x818fa9,
