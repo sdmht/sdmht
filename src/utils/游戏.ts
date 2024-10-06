@@ -1856,8 +1856,8 @@ class 单位类 extends 目标类 {
       this.emit('移动力变化时')
     })
     this.on('离场', () => {
-      _.remove(目标类.目标列表, (v) => v.id === this.id)
       this.emit('离场时')
+      _.remove(目标类.目标列表, (v) => v.id === this.id)
       this.技能列表.forEach((v) => (v.是否禁用 = true))
       if (!this.未完全离场) {
         this.emit('完全离场')
