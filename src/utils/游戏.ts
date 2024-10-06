@@ -6,6 +6,7 @@ import _ from 'lodash'
 import * as PXSP from 'pixi-spine'
 import * as PIXI from 'pixi.js'
 import { Dialog, Notify } from 'quasar'
+import { nextTick } from 'vue'
 import {
   主神皮肤,
   弹幕卡信息列表,
@@ -1546,11 +1547,13 @@ class 效果类 extends 基类 {
     })
     this.on('效果结束', () => {
       this.是否已结束 = true
-      _.remove(目标.效果列表, (x) => x.是否已结束)
       if (_.get(目标, this.效果) === true) {
         _.set(目标, this.效果, false)
       }
-      目标.emit(`${this.效果}变化时`)
+      nextTick(() => {
+        _.remove(目标.效果列表, (x) => x.是否已结束)
+        目标.emit(`${this.效果}变化时`)
+      })
     })
     if (
       this.持续回合 == undefined &&
