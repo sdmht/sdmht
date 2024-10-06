@@ -310,7 +310,7 @@ class 技能类 extends 基类 {
         if (this.目标类型.startsWith('封足的') && !v.封足) return false
         if (
           this.目标类型.startsWith('自身左上到右下位置内的') &&
-          !v.位置.是否在范围内(this.携带者.位置, '米')
+          !v.位置.是否在范围内(this.携带者.位置, '米', false)
         )
           return false
         if (
