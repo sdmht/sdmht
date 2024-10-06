@@ -2099,6 +2099,7 @@ class 单位类 extends 目标类 {
     }
     this.动画 = 动画
     this.角色.addChild(动画)
+    this.角色.sortChildren()
   }
   更新坐标(位宽: number) {
     const x = (this.位置.列 - 1) * 位宽
@@ -2321,9 +2322,6 @@ class 单位类 extends 目标类 {
       }
     })
     角色.addChild(吟唱时间显示)
-    角色.on('added', (p) => {
-      p.sortChildren()
-    })
     角色.sortChildren()
     游戏开始前执行(() => this.emit('登场时'), this.编号, this.是否我方)
     return 角色
