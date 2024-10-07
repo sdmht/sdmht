@@ -743,6 +743,7 @@ class 技能类 extends 基类 {
           break
         case '消耗素材单位，合体为最后一个编号的单位':
           ;(参数['召唤物列表'] as 附属神类[]).forEach((v) => {
+            v.因合体离场 = true
             v.emit('离场')
           })
           this.目标列表.forEach((v) => {
@@ -1686,6 +1687,7 @@ class 单位类 extends 目标类 {
   可否移动 = true
   可否攻击 = true
   可否装填 = true
+  因合体离场 = false
   未完全离场 = false
   弹幕?: 弹幕卡类
   秘术?: 神迹卡类
@@ -1858,12 +1860,23 @@ class 单位类 extends 目标类 {
       this.emit('移动力变化时')
     })
     this.on('离场', () => {
-      this.emit('离场时')
+      this.emit('角色销毁')
+      if (!this.因合体离场) {
+        this.emit('离场时')
+        if (!this.未完全离场) {
+          this.emit('完全离场')
+        }
+      }
+    })
+    this.on('角色销毁', () => {
       _.remove(目标类.目标列表, (v) => v.id === this.id)
       this.技能列表.forEach((v) => (v.是否禁用 = true))
-      if (!this.未完全离场) {
-        this.emit('完全离场')
-      }
+      播放音频('prefab/pvp/effect1.mp3')
+      this.动画.state.setAnimation(0, 'hurt', false)
+      播放死亡语音(this.美术资源)
+      等待(this.动画.spineData.findAnimation('hurt')?.duration || 0).then(() =>
+        this.角色.destroy()
+      )
     })
     this.on('完全离场', () => {
       this.emit('完全离场时')
@@ -2133,14 +2146,6 @@ class 单位类 extends 目标类 {
         this.弹幕 ? (this.弹幕.吟唱时间 ? 'storing' : 'stored') : 'idle',
         true,
         0
-      )
-    })
-    this.on('离场时', () => {
-      播放音频('prefab/pvp/effect1.mp3')
-      this.动画.state.setAnimation(0, 'hurt', false)
-      播放死亡语音(this.美术资源)
-      等待(this.动画.spineData.findAnimation('hurt')?.duration || 0).then(() =>
-        this.角色.destroy()
       )
     })
     this.on('吟唱时间变化时', () => {
