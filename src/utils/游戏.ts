@@ -1910,7 +1910,9 @@ class 单位类 extends 目标类 {
       if (this.秘术) {
         this.秘术.技能 = new 技能类(this.秘术.技能编号, this)
         this.秘术.技能.once('触发时', () => {
-          this.emit('秘术变化', { 变化值: undefined })
+          nextTick(() => {
+            this.emit('秘术变化', { 变化值: undefined })
+          })
         })
         行动队列类.发送通知({
           message: `${
