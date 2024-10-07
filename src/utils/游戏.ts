@@ -3048,6 +3048,12 @@ class 玩家类 extends 目标类 {
         })
       }
     })
+    this.on('祈愿时', () => {
+      行动队列类.发送通知({
+        message: `${玩家类.我方回合 ? '我方' : '敌方'}发动了祈愿`,
+        color: 玩家类.我方回合 ? 'blue' : 'red',
+      })
+    })
     this.格 = Math.max(Math.ceil(Math.sqrt(卡组.附属神.length + 1)), 4)
     _.range(this.格).forEach((行) => {
       _.range(this.格).forEach((列) => {
@@ -3169,11 +3175,9 @@ class 玩家类 extends 目标类 {
     玩家类.事件.emit('行动点变化', { 变化值: -2 })
   }
   祈愿() {
-    this.emit('祈愿倒计时变化', { 变化值: -1 })
-    行动队列类.发送通知({
-      message: '祈愿',
-      color: this.是否我方 ? 'blue' : 'red',
-    })
+    if (玩家类.我方回合 === this.是否我方)
+      this.emit('祈愿倒计时变化', { 变化值: -1 })
+    this.emit('祈愿时')
   }
 }
 export {
