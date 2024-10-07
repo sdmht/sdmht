@@ -520,7 +520,6 @@ class 技能类 extends 基类 {
             if (v instanceof 单位类) {
               v.emit('生命值变化', {
                 变化值: this.效果值[0],
-                真伤: this.何时触发 == '发动时',
               })
             }
           })
