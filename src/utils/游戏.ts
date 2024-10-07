@@ -1860,7 +1860,9 @@ class 单位类 extends 目标类 {
       this.emit('移动力变化时')
     })
     this.on('离场', () => {
-      this.emit('角色销毁')
+      nextTick(() => {
+        this.emit('角色销毁')
+      })
       if (!this.因合体离场) {
         this.emit('离场时')
         if (!this.未完全离场) {
