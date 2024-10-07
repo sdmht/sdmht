@@ -2165,6 +2165,13 @@ class 单位类 extends 目标类 {
         角色.visible = false
       })
     }
+    this.on('移动时', () => {
+      if (this.本回合移动次数 == 1)
+        行动队列类.发送通知({
+          message: `${this.是否我方 ? this.卡牌名称 : '敌方'}移动`,
+          color: this.是否我方 ? 'blue' : 'red',
+        })
+    })
     const 生命值显示 = new PIXI.Text(this.生命值, {
       fill: this instanceof 主神类 ? 0xf6b04f : 0x368f57,
       strokeThickness: 5,
