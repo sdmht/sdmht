@@ -705,7 +705,7 @@ onMounted(async () => {
           播放音频(`prefab/pvp/打击${_.random(1, 4)}.mp3`)
           单位.攻击(攻击范围)
         } else if (行动[0] == '移动') {
-          播放音频('prefab/pvp/角色移动.mp3')
+          if (是否我方) 播放音频('prefab/pvp/角色移动.mp3')
           const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
           const 位置 = 单位
             .我方(位置类)
