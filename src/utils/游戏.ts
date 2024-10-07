@@ -1903,12 +1903,14 @@ class 单位类 extends 目标类 {
         this.秘术.技能.once('触发时', () => {
           this.emit('秘术变化', { 变化值: undefined })
         })
+        行动队列类.发送通知({
+          message: `${
+            this.是否我方 ? '秘术装填：' + this.秘术?.卡牌名称 : '秘术装填'
+          }`,
+          color: this.是否我方 ? 'blue' : 'red',
+        })
       }
       this.emit('秘术变化时')
-      行动队列类.发送通知({
-        message: '装填秘术',
-        color: this.是否我方 ? 'blue' : 'red',
-      })
     })
     this.on('清除', () => {
       if (this.弹幕) {
