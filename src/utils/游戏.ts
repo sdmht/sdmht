@@ -1286,9 +1286,12 @@ class 技能类 extends 基类 {
         })
         break
       case '主神生命值低于触发辅助时':
-        this.携带者.玩家.主神.on('生命值减少时', () => {
-          if (this.携带者.玩家.主神.生命值 < this.触发辅助) this.触发()
-        })
+        this.携带者.玩家.on(
+          '主神生命值减少时',
+          (参数: { 单位: 主神类; 生命值: number }) => {
+            if (参数.生命值 < this.触发辅助) this.触发()
+          }
+        )
         break
       case '己方回合开始且不处于迷雾时':
         this.携带者.玩家.on('回合开始时', () => {
@@ -1814,7 +1817,7 @@ class 单位类 extends 目标类 {
         } else if (!this.诅咒) {
           this.生命值 = Math.min(this.生命上限, this.生命值 + 参数.变化值)
         }
-        if (参数.变化值 < 0) this.emit('生命值减少时')
+        if (参数.变化值 < 0) this.emit('生命值减少时', { 生命值: this.生命值 })
         if (参数.变化值 > 0) this.emit('生命值增加时')
         this.emit('生命值变化时')
       }
