@@ -61,7 +61,9 @@ function regularlyCheckUpdate() {
   if (!app.getAppPath().includes('WindowsApps')) {
     autoUpdater.checkForUpdates()
     setInterval(() => {
-      autoUpdater.checkForUpdates()
+      if (!autoUpdater.isUpdaterActive()) {
+        autoUpdater.checkForUpdates()
+      }
     }, 60000)
   }
 }
