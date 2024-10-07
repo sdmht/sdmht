@@ -865,7 +865,7 @@ class 技能类 extends 基类 {
         case '弹幕卡攻击力+效果值':
           this.目标列表.forEach((v) => {
             if (v instanceof 弹幕卡类) {
-              v.emit('攻击力变化', this.效果值[0])
+              v.emit('攻击力变化', { 变化值: this.效果值[0] })
             }
           })
           break
