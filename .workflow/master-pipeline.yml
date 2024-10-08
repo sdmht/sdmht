@@ -21,20 +21,17 @@ stages:
         displayName: Nodejs 构建
         nodeVersion: 18.16.0
         commands:
-          - npm i -g yarn
+          - uname -a
           - yarn
           - rm -rf ./dist
           - yarn build -m pwa
-          - yarn build -m electron -T win -A x64
-          - rm -rf ./dist/electron/Packaged/*-unpacked/
-          - rm -rf ./dist/electron/Packaged/builder-*
-          - rm -rf ./dist/electron/UnPackaged/
         artifacts:
           - name: BUILD_ARTIFACT
             path:
               - ./dist
         caches:
           - ./node_modules
+          - ~/.cache
         strategy:
           retry: '1'
       - step: publish@general_artifacts
