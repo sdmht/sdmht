@@ -12,7 +12,7 @@ triggers:
         - '[0-9]+\.[0-9]+\.[0-9]+'
 stages:
   - name: compile
-    displayName: 编译
+    displayName: 编译并上传
     strategy: naturally
     trigger: auto
     steps:
@@ -21,35 +21,13 @@ stages:
         displayName: Nodejs 构建
         nodeVersion: 18.16.0
         commands:
-          - uname -a
-          - yarn
           - rm -rf ./dist
-          - yarn build -m pwa
-        artifacts:
-          - name: BUILD_ARTIFACT
-            path:
-              - ./dist
+          - yum install wine
+          - yarn
+          # - yarn build -m pwa
+          - yarn build -m electron -T win -A x64 && rm -rf ./dist/electron/Packaged/*-unpacked/ && rm -rf ./dist/electron/Packaged/builder-* && rm -rf ./dist/electron/UnPackaged/
         caches:
           - ./node_modules
           - ~/.cache
         strategy:
           retry: '1'
-      - step: publish@general_artifacts
-        name: publish_general_artifacts
-        displayName: 上传制品
-        dependArtifact: BUILD_ARTIFACT
-        artifactName: output
-        strategy: {}
-        dependsOn: build_nodejs
-  - name: release
-    displayName: 发布
-    strategy: naturally
-    trigger: auto
-    steps:
-      - step: publish@release_artifacts
-        name: publish_release_artifacts
-        displayName: 发布
-        dependArtifact: output
-        version: 1.0.0.0
-        autoIncrement: true
-        strategy: {}
