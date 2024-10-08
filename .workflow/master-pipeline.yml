@@ -21,8 +21,7 @@ stages:
         displayName: Nodejs 构建
         nodeVersion: 18.16.0
         commands:
-          - yum install yum-utils
-          - yum-config-manager --add-repo https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/centos/docker-ce.repo
+          - wget -qO- https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/centos/docker-ce.repo > /etc/yum.repos.d/docker-ce.repo
           - sed -i 's+https://download.docker.com+https://mirrors.tuna.tsinghua.edu.cn/docker-ce+' /etc/yum.repos.d/docker-ce.repo
           - yum install docker-ce
           - yarn
