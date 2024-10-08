@@ -7,9 +7,9 @@ triggers:
     branches:
       include:
         - master
-    commitMessages:
-      include:
-        - '[0-9]+\.[0-9]+\.[0-9]+'
+    paths:
+      precise:
+        - package.json
 stages:
   - name: compile
     displayName: 编译并上传
@@ -22,9 +22,8 @@ stages:
         nodeVersion: 18.16.0
         commands:
           - rm -rf ./dist
-          - yum install wine
+          - yum install wine.el7
           - yarn
-          # - yarn build -m pwa
           - yarn build -m electron -T win -A x64
         caches:
           - ./node_modules
