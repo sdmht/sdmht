@@ -23,7 +23,7 @@ stages:
         commands:
           - wget -qO- https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/centos/docker-ce.repo > /etc/yum.repos.d/docker-ce.repo
           - sed -i 's+https://download.docker.com+https://mirrors.tuna.tsinghua.edu.cn/docker-ce+' /etc/yum.repos.d/docker-ce.repo
-          - yum install docker-ce
+          - yum install -y docker-ce
           - yarn
           - docker run --rm -ti \
           - ' --env ELECTRON_CACHE="/root/.cache/electron" \'
