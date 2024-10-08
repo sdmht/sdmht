@@ -21,6 +21,8 @@ stages:
         displayName: Nodejs 构建
         nodeVersion: 18.16.0
         commands:
+          - yum install docker
+          - yarn
           - docker run --rm -ti \
           - ' --env ELECTRON_CACHE="/root/.cache/electron" \'
           - ' --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \'
@@ -28,7 +30,7 @@ stages:
           - ' -v ~/.cache/electron:/root/.cache/electron \'
           - ' -v ~/.cache/electron-builder:/root/.cache/electron-builder \'
           - ' electronuserland/builder:wine \'
-          - ' /bin/bash -c "yarn && yarn build -m electron -T win -A x64"'
+          - ' /bin/bash -c "yarn build -m electron -T win -A x64"'
         caches:
           - node_modules
           - ~/.cache/electron
