@@ -25,7 +25,7 @@ stages:
           - yum install wine
           - yarn
           # - yarn build -m pwa
-          - yarn build -m electron -T win -A x64 && rm -rf ./dist/electron/Packaged/*-unpacked/ && rm -rf ./dist/electron/Packaged/builder-* && rm -rf ./dist/electron/UnPackaged/
+          - yarn build -m electron -T win -A x64
         caches:
           - ./node_modules
           - ~/.cache
