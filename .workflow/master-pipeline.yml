@@ -22,7 +22,7 @@ stages:
         nodeVersion: 18.16.0
         commands:
           - docker run --rm -ti \
-          - ' --env-file < env \'
+          - ' --env-file < $(env) \'
           - ' --env ELECTRON_CACHE="/root/.cache/electron" \'
           - ' --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \'
           - ' -v ${PWD}:/project \'
