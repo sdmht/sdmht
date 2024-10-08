@@ -16,13 +16,22 @@ stages:
     strategy: naturally
     trigger: auto
     steps:
-      - step: execute@docker
-        name: execute_by_docker
-        displayName: 基于镜像的脚本执行
-        certificate: ''
-        image: electronuserland/builder:wine
-        command:
-          - yarn && yarn build -m electron -T win -A x64
-        notify: []
+      - step: build@nodejs
+        name: build_nodejs
+        displayName: Nodejs 构建
+        nodeVersion: 18.16.0
+        commands:
+          - docker run --rm -ti \
+          - ' --env ELECTRON_CACHE="/root/.cache/electron" \'
+          - ' --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \'
+          - ' -v ${PWD}:/project \'
+          - ' -v ~/.cache/electron:/root/.cache/electron \'
+          - ' -v ~/.cache/electron-builder:/root/.cache/electron-builder \'
+          - ' electronuserland/builder:wine \'
+          - ' /bin/bash -c "yarn && yarn build -m electron -T win -A x64"'
+        caches:
+          - node_modules
+          - ~/.cache/electron
+          - ~/.cache/electron-builder
         strategy:
-          retry: '0'
+          retry: '1'
