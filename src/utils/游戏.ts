@@ -1869,13 +1869,13 @@ class 单位类 extends 目标类 {
     this.on('离场', () => {
       nextTick(() => {
         this.emit('角色销毁')
-      })
-      if (!this.因合体离场) {
-        this.emit('离场时')
-        if (!this.未完全离场) {
-          this.emit('完全离场')
+        if (!this.因合体离场) {
+          this.emit('离场时')
+          if (!this.未完全离场) {
+            this.emit('完全离场')
+          }
         }
-      }
+      })
     })
     this.on('角色销毁', () => {
       _.remove(目标类.目标列表, (v) => v.id === this.id)
