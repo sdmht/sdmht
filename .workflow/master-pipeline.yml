@@ -29,7 +29,6 @@ stages:
           - rm -rf ./dist/electron/Packaged/*-unpacked/
           - rm -rf ./dist/electron/Packaged/builder-*
           - rm -rf ./dist/electron/UnPackaged/
-          - ''
         artifacts:
           - name: BUILD_ARTIFACT
             path:
