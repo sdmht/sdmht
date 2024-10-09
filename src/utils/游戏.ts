@@ -2420,19 +2420,21 @@ class 主神类 extends 单位类 {
       this.emit('变化时')
     })
     this.on('完全离场时', () => {
-      if (this.是否我方) {
-        Notify.create({
-          message: '我方主神死亡，战斗失败，5秒后刷新页面',
-          type: 'negative',
-        })
-        播放音频('prefab/pvp/失败_01.mp3')
-      } else {
-        Notify.create({
-          message: '对方主神死亡，战斗胜利，5秒后刷新页面',
-          type: 'positive',
-        })
-        播放音频('prefab/pvp/胜利_01.mp3')
-      }
+      if (!玩家类.游戏结束)
+        if (this.是否我方) {
+          Notify.create({
+            message: '我方主神死亡，战斗失败，5秒后刷新页面',
+            type: 'negative',
+          })
+          播放音频('prefab/pvp/失败_01.mp3')
+        } else {
+          Notify.create({
+            message: '对方主神死亡，战斗胜利，5秒后刷新页面',
+            type: 'positive',
+          })
+          播放音频('prefab/pvp/胜利_01.mp3')
+        }
+      玩家类.游戏结束 = true
       useTimeoutFn(() => {
         location.reload()
       }, 5000)
@@ -2942,6 +2944,7 @@ class 玩家类 extends 目标类 {
   static 我方回合?: boolean
   static 行动点 = 10
   static 倒计时 = Date.now() + 1000 * 60
+  static 游戏结束 = false
   static 重置倒计时() {
     this.倒计时 = Date.now() + 1000 * 60
   }

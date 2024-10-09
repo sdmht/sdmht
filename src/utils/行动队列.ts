@@ -1,6 +1,7 @@
 import EventEmitter from 'events'
 import { Notify } from 'quasar'
 import type { 行动类型 } from './数据通道'
+import { 玩家类 } from './游戏'
 
 type 渲染类型 = [boolean, ...行动类型]
 class 行动队列类 extends EventEmitter {
@@ -16,9 +17,11 @@ class 行动队列类 extends EventEmitter {
   待渲染: 渲染类型[] = []
   已渲染: 渲染类型[] = []
   添加(行动: 行动类型) {
-    this.emit('结算', true, 行动)
-    this.待渲染.push([true, ...行动])
-    this.emit('添加', 行动)
+    if (!玩家类.游戏结束) {
+      this.emit('结算', true, 行动)
+      this.待渲染.push([true, ...行动])
+      this.emit('添加', 行动)
+    }
   }
   接收(行动: 行动类型) {
     this.emit('结算', false, 行动)
