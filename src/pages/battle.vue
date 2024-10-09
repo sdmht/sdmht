@@ -726,7 +726,7 @@ onMounted(async () => {
         }
         行动队列类.行动队列.完成渲染()
       } catch (e) {
-        q.notify({ message: `渲染报错：${e}`, type: 'negative' })
+        q.notify({ message: `渲染报错：${e + e.stack}`, type: 'negative' })
         行动队列类.行动队列.完成渲染()
       }
     }
