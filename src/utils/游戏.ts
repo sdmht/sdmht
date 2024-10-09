@@ -3150,6 +3150,7 @@ class 玩家类 extends 目标类 {
     if (this.是否我方) {
       播放音频('prefab/pvp/我方回合，行动开始.mp3')
     }
+    this.emit('回合开始时')
     if (this.我方(附属神类).filter((x) => x.类型 == '附属神').length) {
       this.我方(位置类).forEach((x) => {
         if (x.盖雾倒计时 > 0) {
@@ -3167,7 +3168,6 @@ class 玩家类 extends 目标类 {
         color: this.是否我方 ? 'blue' : 'red',
       })
     }
-    this.emit('回合开始时')
     玩家类.重置倒计时()
     if (this.牌堆.length == 0) {
       this.枯竭回合数++
