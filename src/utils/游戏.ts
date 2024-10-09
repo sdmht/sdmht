@@ -1197,7 +1197,9 @@ class 技能类 extends 基类 {
           }
           break
       }
-      this.emit('触发时')
+      nextTick(() => {
+        this.emit('触发时')
+      })
     })
     switch (this.何时触发) {
       case '发动时':
@@ -2907,7 +2909,9 @@ class 神迹卡类 extends 牌类 {
         color: this.是否我方 ? 'blue' : 'red',
       })
       this.技能 = new 技能类(this.技能编号, this.玩家.主神)
-      this.玩家.emit('使用神迹卡时', { 神迹卡: this })
+      this.技能.once('触发时', () => {
+        this.玩家.emit('使用神迹卡时', { 神迹卡: this })
+      })
     }
     this.玩家.emit('手牌数量变化时')
   }
