@@ -1232,6 +1232,15 @@ class 技能类 extends 基类 {
           if (this.携带者.弹幕?.编号 === this.选择范围) this.触发()
         })
         break
+      case '任意附属神离场时':
+      case '任意附属神完全离场时':
+        玩家类.事件.on(
+          this.何时触发.replace('任意', ''),
+          (参数: { 单位: 附属神类 }) => {
+            if (参数.单位.编号 !== this.携带者.编号) this.触发()
+          }
+        )
+        break
       case '敌方附属神离场时':
       case '敌方回合开始时':
       case '敌方每获得一张卡时':
@@ -1247,8 +1256,6 @@ class 技能类 extends 基类 {
       case '任意单位获得雷印时':
       case '任意单位离场时':
       case '任意单位完全离场时':
-      case '任意附属神离场时':
-      case '任意附属神完全离场时':
       case '游戏开始时':
         玩家类.事件.on(
           this.何时触发.replace(/^(敌方|己方|任意)/, ''),
@@ -1870,13 +1877,13 @@ class 单位类 extends 目标类 {
     })
     this.on('离场', () => {
       nextTick(() => {
-        this.emit('角色销毁')
         if (!this.因合体离场) {
           this.emit('离场时')
           if (!this.未完全离场) {
             this.emit('完全离场')
           }
         }
+        this.emit('角色销毁')
       })
     })
     this.on('角色销毁', () => {
