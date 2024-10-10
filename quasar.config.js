@@ -292,7 +292,7 @@ module.exports = configure(function (ctx) {
         },
         publish: {
           provider: 'generic',
-          url: 'https://xn--mnqp1iily05a6lnxnydg3aysu.star2000.work/',
+          url: 'https://sdmhtexe.star2000.work/',
         },
         nsis: {
           oneClick: false,
