@@ -3,7 +3,7 @@
     ref="首页框"
     class="overflow-hidden full-height full-width flex justify-between bg-dark"
   >
-    <div class="text-white">
+    <div class="text-white col">
       本站为神代梦华谭玩家收集原动画资源后自制复活的仿品，请勿用于商业行为
       <ol>
         使用方式
