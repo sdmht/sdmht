@@ -555,7 +555,9 @@ class 技能类 extends 基类 {
         case '召唤编号为效果值的单位':
           this.目标列表.forEach((v) => {
             if (v instanceof 位置类) {
-              new 附属神类(v.玩家, this.效果值[0], v, undefined, this.携带者)
+              nextTick(() => {
+                new 附属神类(v.玩家, this.效果值[0], v, undefined, this.携带者)
+              })
             }
           })
           break
