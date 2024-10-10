@@ -555,7 +555,7 @@ class 技能类 extends 基类 {
         case '召唤编号为效果值的单位':
           this.目标列表.forEach((v) => {
             if (v instanceof 位置类) {
-              new 附属神类(v.玩家, this.效果值[0], v)
+              new 附属神类(v.玩家, this.效果值[0], v, undefined, this.携带者)
             }
           })
           break
@@ -1688,6 +1688,7 @@ class 位置类 extends 目标类 {
 class 单位类 extends 目标类 {
   编号: number
   玩家: 玩家类
+  召唤者?: 单位类
   位置: 位置类
   主技能编号!: number
   技能列表: 技能类[] = []
@@ -2146,6 +2147,10 @@ class 单位类 extends 目标类 {
     this.角色.zIndex = this.角色.y
     this.角色.parent?.sortChildren()
   }
+  更新可见() {
+    this.角色.visible =
+      this.召唤者?.是否我方 === !this.是否我方 || !this.位置.迷雾
+  }
   async 获得角色(位宽: number) {
     if (this.角色 !== undefined) {
       return this.角色
@@ -2178,18 +2183,18 @@ class 单位类 extends 目标类 {
       )
     })
     if (!this.是否我方) {
-      角色.visible = !this.位置.迷雾
+      this.更新可见()
       this.on('移动时', () => {
-        角色.visible = !this.位置.迷雾
+        this.更新可见()
       })
       this.on('传送时', () => {
-        角色.visible = !this.位置.迷雾
+        this.更新可见()
       })
       this.on('迷雾被解除时', () => {
-        角色.visible = true
+        this.更新可见()
       })
       this.on('迷雾被覆盖时', () => {
-        角色.visible = false
+        this.更新可见()
       })
     }
     this.on('移动时', () => {
@@ -2509,9 +2514,11 @@ class 附属神类 extends 单位类 {
     玩家: 玩家类,
     编号: number,
     位置: 位置类,
-    初始生命值上限?: number
+    初始生命值上限?: number,
+    召唤者?: 单位类
   ) {
     super(玩家, 编号, 位置)
+    this.召唤者 = 召唤者
     const 信息 = 获得附属神信息(编号)
     this.阵营 = 信息.阵营
     switch (信息.类型) {
