@@ -3,6 +3,7 @@
   <span class="absolute-bottom bg-dark text-white" style="width: fit-content">
     当前版本：{{ packageInfo.version }}
   </span>
+  <pwa-install></pwa-install>
 </template>
 
 <script setup lang="ts">
@@ -14,6 +15,7 @@ import {
 } from '@apollo/client/core'
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
 import { getMainDefinition } from '@apollo/client/utilities'
+import '@khmyznikov/pwa-install'
 import { provideApolloClient } from '@vue/apollo-composable'
 import packageInfo from 'app/package.json'
 import { Kind, OperationTypeNode } from 'graphql'
