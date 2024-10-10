@@ -1,30 +1,31 @@
 <template>
-  <div class="text-white absolute" style="max-width: 500px">
-    本站为神代梦华谭玩家收集原动画资源后自制复活的仿品，请勿用于商业行为
-    <ol>
-      使用方式
-      <li>电脑版（推荐）：https://sdmhtexe.star2000.work/latest.exe</li>
-      <li>
-        手机用Edge浏览器，菜单>添加至手机>安装（如果切到应用信息，权限管理>其他权限>桌面快捷方式>始终允许，再次安装），然后回到桌面打开神代梦华谭
-      </li>
-      <li>网页版：https://sdmht.star2000.work</li>
-    </ol>
-    <ol>
-      反馈渠道
-      <li>QQ群：102804509</li>
-      <li>源代码仓库议题：https://gitee.com/star2000/sdmht/issues</li>
-    </ol>
-    <ol>
-      参与开发
-      <li>
-        教程：https://gitee.com/star2000/sdmht/blob/master/参与开发教程.md
-      </li>
-    </ol>
-  </div>
   <div
     ref="首页框"
-    class="overflow-hidden full-height full-width flex justify-center bg-dark"
-  ></div>
+    class="overflow-hidden full-height full-width flex justify-between bg-dark"
+  >
+    <div class="text-white">
+      本站为神代梦华谭玩家收集原动画资源后自制复活的仿品，请勿用于商业行为
+      <ol>
+        使用方式
+        <li>电脑版（推荐）：https://sdmhtexe.star2000.work/latest.exe</li>
+        <li>
+          手机用Edge浏览器，菜单>添加至手机>安装（如果切到应用信息，权限管理>其他权限>桌面快捷方式>始终允许，再次安装），然后回到桌面打开神代梦华谭
+        </li>
+        <li>网页版：https://sdmht.star2000.work</li>
+      </ol>
+      <ol>
+        反馈渠道
+        <li>QQ群：102804509</li>
+        <li>源代码仓库议题：https://gitee.com/star2000/sdmht/issues</li>
+      </ol>
+      <ol>
+        参与开发
+        <li>
+          教程：https://gitee.com/star2000/sdmht/blob/master/参与开发教程.md
+        </li>
+      </ol>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
