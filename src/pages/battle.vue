@@ -541,7 +541,7 @@ onMounted(async () => {
       行动队列类.行动队列.添加(['神威'])
     }
   })
-  行动队列类.行动队列.on('结算', async (是否我方: boolean, 行动: 行动类型) => {
+  行动队列类.行动队列.on('结算', (是否我方: boolean, 行动: 行动类型) => {
     玩家类.重置倒计时()
     if (行动[0] == '攻击') {
       const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
@@ -726,7 +726,7 @@ onMounted(async () => {
         }
         行动队列类.行动队列.完成渲染()
       } catch (e) {
-        q.notify({ message: `渲染报错：${e + e.stack}`, type: 'negative' })
+        q.notify({ message: `渲染报错：${e}`, type: 'negative' })
         行动队列类.行动队列.完成渲染()
       }
     }
@@ -811,7 +811,7 @@ onMounted(async () => {
     })
     状态.value = '战斗'
   })
-  数据通道.on('收到数据', async (d: 数据同步类型) => {
+  数据通道.on('收到数据', (d: 数据同步类型) => {
     if (d.k == '行动') {
       行动队列类.行动队列.接收(d.v)
     } else if (d.k == '初始数据') {
