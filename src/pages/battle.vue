@@ -416,7 +416,7 @@ onMounted(async () => {
   玩家.on('回合开始时', 渲染移动范围)
   玩家类.事件.on('行动点变化', 渲染移动范围)
 
-  事件层.on('pointerdown', async (e) => {
+  事件层.on('pointerdown', (e) => {
     if (状态.value == '布阵') {
       if (
         是否在区域中(e, 迷雾层.children[0]) &&

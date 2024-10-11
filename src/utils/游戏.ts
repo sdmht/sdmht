@@ -411,7 +411,7 @@ class 技能类 extends 基类 {
     }
   }
   get 监听选择id(): number {
-    return this.父技能 && this.目标同父技能 ? this.父技能.监听选择id : this.id
+    return this.父技能 && this.目标同父技能 ? this.父技能.监听选择id : this.编号
   }
   constructor(编号: number, 携带者: 单位类, 父技能?: 技能类, 神威?: boolean) {
     super()
@@ -493,7 +493,7 @@ class 技能类 extends 基类 {
               resolve(v)
             })
           })
-          行动队列类.行动队列.添加(['选择', this.id, 选中的目标索引])
+          行动队列类.行动队列.添加(['选择', this.编号, 选中的目标索引])
         } else {
           选中的目标索引 = await new Promise<number>((resolve) => {
             const handler = (是否我方: boolean, 行动: 行动类型) => {
