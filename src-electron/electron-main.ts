@@ -57,11 +57,12 @@ app.on('activate', () => {
   }
 })
 
+let is_downloading_update = false
 function regularlyCheckUpdate() {
   if (!app.getAppPath().includes('WindowsApps')) {
     autoUpdater.checkForUpdates()
     setInterval(() => {
-      if (!autoUpdater.isUpdaterActive()) {
+      if (!is_downloading_update) {
         autoUpdater.checkForUpdates()
       }
     }, 60000)
@@ -72,6 +73,7 @@ autoUpdater.on('update-available', (info) => {
   mainWindow?.setTitle(`开始更新到 ${info.version}`)
 })
 autoUpdater.on('download-progress', (progressObj) => {
+  is_downloading_update = true
   mainWindow?.setTitle(`正在下载更新 ${progressObj.percent}%`)
 })
 autoUpdater.on('update-downloaded', () => {
