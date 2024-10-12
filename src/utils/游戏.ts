@@ -1823,11 +1823,12 @@ class 单位类 extends 目标类 {
               this.emit('护盾值变化', { 变化值: -护盾值减少值 })
             }
             this.生命值 -= 生命值减少值
+            if (生命值减少值 > 0)
+              this.emit('生命值减少时', { 生命值: this.生命值 })
           }
         } else if (!this.诅咒) {
           this.生命值 = Math.min(this.生命上限, this.生命值 + 参数.变化值)
         }
-        if (参数.变化值 < 0) this.emit('生命值减少时', { 生命值: this.生命值 })
         if (参数.变化值 > 0) this.emit('生命值增加时')
         this.emit('生命值变化时')
       }
