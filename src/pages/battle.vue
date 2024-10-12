@@ -71,6 +71,9 @@ const q = useQuasar()
 
 let 强制结束回合: ReturnType<typeof setInterval> | undefined
 onUnmounted(() => {
+  if (玩家类.游戏已开始) {
+    行动队列类.行动队列.添加(['投降'])
+  }
   clearInterval(强制结束回合)
   location.reload()
 })
