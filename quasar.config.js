@@ -298,7 +298,6 @@ module.exports = configure(function (ctx) {
           oneClick: false,
           perMachine: true,
           allowToChangeInstallationDirectory: true,
-          deleteAppDataOnUninstall: true,
         },
         electronLanguages: ['zh-CN'],
         files: [],
