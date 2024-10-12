@@ -354,12 +354,11 @@ class 技能类 extends 基类 {
     if (this.选择规则 == '随机') {
       目标列表 = _.sortBy(
         _.sortBy(随机类.乱序(目标列表), (a) =>
-          a instanceof 位置类 && a.单位 ? 1 : -1
-        ),
-        (a) =>
           (a instanceof 位置类 || a instanceof 单位类) && a.迷雾不可被解除
             ? 1
             : -1
+        ),
+        (a) => (a instanceof 位置类 && a.单位 ? 1 : -1)
       ).slice(0, this.随机数量)
     }
     this._目标列表缓存 = 目标列表
