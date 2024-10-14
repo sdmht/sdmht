@@ -193,9 +193,10 @@ module.exports = configure(function (ctx) {
           /^prefab\/pvp\/打击\d+\.mp3$/,
           /^prefab\/pvp\/effect\d+\.mp3$/,
         ],
+        navigateFallbackDenylist: [/^\/admin\//, /^\/api\//],
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/.+\.(mp3|webp|json|atlas|css|js)$/,
+            urlPattern: /.*/,
             handler: 'CacheFirst',
             options: {
               cacheName: 'static-resources',
