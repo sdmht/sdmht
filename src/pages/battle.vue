@@ -12,6 +12,7 @@
         v-for="(通知, i) in 通知列表"
         :key="i"
         :class="`bg-${通知.颜色}`"
+        style="white-space: pre-wrap"
       >
         {{ 通知.消息 }}
         {{ 通知.说明 ? '\n' + 通知.说明 : '' }}

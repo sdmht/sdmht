@@ -2107,6 +2107,7 @@ class 单位类 extends 目标类 {
     this.玩家.emit('手牌数量变化时')
     行动队列类.发送通知({
       message: `装填弹幕：${弹幕卡.卡牌名称}`,
+      caption: this.描述,
       color: this.是否我方 ? 'blue' : 'red',
     })
     return true
@@ -2924,6 +2925,7 @@ class 神迹卡类 extends 牌类 {
     } else if (this.类型 === '神迹卡') {
       行动队列类.发送通知({
         message: `使用神迹：${this.卡牌名称}`,
+        caption: this.描述,
         color: this.是否我方 ? 'blue' : 'red',
       })
       this.技能 = new 技能类(this.技能编号, this.玩家.主神)
