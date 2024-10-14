@@ -193,7 +193,7 @@ module.exports = configure(function (ctx) {
           /^prefab\/pvp\/打击\d+\.mp3$/,
           /^prefab\/pvp\/effect\d+\.mp3$/,
         ],
-        navigateFallbackDenylist: [/^\/admin\//, /^\/api\//],
+        navigateFallbackDenylist: [/\.webm$/ , /^\/admin\//, /^\/api\//],
         runtimeCaching: [
           {
             urlPattern: /.*/,
