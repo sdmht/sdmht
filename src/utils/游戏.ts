@@ -568,12 +568,18 @@ class 技能类 extends 基类 {
             if (v instanceof 位置类) {
               v.覆盖迷雾()
             }
+            if (v instanceof 单位类) {
+              v.位置.覆盖迷雾()
+            }
           })
           break
         case '解除范围类型为选择范围的迷雾，0单2圆5十6横7竖17全':
           this.目标列表.forEach((v) => {
             if (v instanceof 位置类) {
               v.解除迷雾()
+            }
+            if (v instanceof 单位类) {
+              v.位置.解除迷雾()
             }
           })
           break
