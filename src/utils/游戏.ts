@@ -559,7 +559,7 @@ class 技能类 extends 基类 {
         case '召唤编号为效果值的单位':
           this.目标列表.forEach((v) => {
             if (v instanceof 位置类) {
-              new 附属神类(v.玩家, this.效果值[0], v, undefined, true)
+              new 附属神类(v.玩家, this.效果值[0], v, true)
             }
           })
           break
@@ -751,8 +751,7 @@ class 技能类 extends 基类 {
           break
         case '消耗素材单位，合体为最后一个编号的单位':
           ;(参数['召唤物列表'] as 附属神类[]).forEach((v) => {
-            v.因合体离场 = true
-            v.emit('离场')
+            v.emit('角色销毁')
           })
           this.目标列表.forEach((v) => {
             if (v instanceof 位置类) {
@@ -803,17 +802,17 @@ class 技能类 extends 基类 {
                 随机类.乱序(v.我方(位置类).filter((l) => !l.单位)),
                 (l) => (l.迷雾 ? -1 : 1)
               )[0]
-              if (v instanceof 主神类) {
-                v.玩家.主神 = new 主神类(
-                  v.玩家,
-                  v.编号,
-                  v.神威序号,
-                  位置,
-                  this.效果值[0]
-                )
-              } else if (v instanceof 附属神类) {
-                new 附属神类(v.玩家, v.编号, 位置, this.效果值[0])
-              }
+              v.传送(位置)
+              v.emit('净化')
+              v.效果列表.forEach((x) => {
+                if (x.效果 == '攻击力') {
+                  x.emit('效果结束')
+                }
+              })
+              v.基础攻击力 = v.初始攻击力
+              v.emit('攻击力变化时')
+              v.生命值 = Math.min(v.生命上限, this.效果值[0])
+              v.emit('生命值变化时')
             }
           })
           break
@@ -1181,7 +1180,7 @@ class 技能类 extends 基类 {
             const 召唤物编号 = 随机类.乱序(this.效果值)[0]
             this.目标列表.forEach((v) => {
               if (v instanceof 位置类) {
-                new 附属神类(this.携带者.玩家, 召唤物编号, v, undefined, true)
+                new 附属神类(this.携带者.玩家, 召唤物编号, v, true)
               }
             })
           }
@@ -1392,7 +1391,7 @@ class 技能类 extends 基类 {
     )
   }
   可触发() {
-    return !(this.是否禁止触发() || 玩家类.行动点 < this.消耗)
+    return !(this.是否禁止触发() || this.携带者.玩家.行动点 < this.消耗)
   }
   消耗结算() {
     玩家类.事件.emit('行动点变化', { 变化值: -this.消耗 })
@@ -1573,7 +1572,7 @@ class 效果类 extends 基类 {
       this.持续回合 == undefined &&
       ['迷雾不可被解除', '无敌'].includes(this.效果)
     ) {
-      发动者.on('离场', () => {
+      发动者.on('完全离场时', () => {
         this.emit('效果结束')
       })
     }
@@ -1701,7 +1700,6 @@ class 单位类 extends 目标类 {
   可否移动 = true
   可否攻击 = true
   可否装填 = true
-  因合体离场 = false
   未完全离场 = false
   弹幕?: 弹幕卡类
   秘术?: 神迹卡类
@@ -1729,6 +1727,7 @@ class 单位类 extends 目标类 {
     return this.攻击力 + (this.弹幕?.攻击力 || 0)
   }
 
+  初始攻击力 = 0
   基础攻击力 = 0
   get 攻击力() {
     const 固定值 = this.效果列表.findLast(
@@ -1875,13 +1874,10 @@ class 单位类 extends 目标类 {
       this.emit('移动力变化时')
     })
     this.on('离场', () => {
-      if (!this.因合体离场) {
-        this.emit('离场时')
-        if (!this.未完全离场) {
-          this.emit('完全离场')
-        }
+      this.emit('离场时')
+      if (!this.未完全离场) {
+        this.emit('完全离场')
       }
-      this.emit('角色销毁')
     })
     this.on('角色销毁', () => {
       _.remove(目标类.目标列表, (v) => v.id === this.id)
@@ -1997,7 +1993,7 @@ class 单位类 extends 目标类 {
     return (
       this.可否攻击 &&
       !this.封刃 &&
-      玩家类.行动点 >= this.攻击消耗 &&
+      this.玩家.行动点 >= this.攻击消耗 &&
       !this.弹幕?.吟唱时间
     )
   }
@@ -2055,7 +2051,7 @@ class 单位类 extends 目标类 {
       this.可否移动 &&
       !this.封足 &&
       this.移动力 > this.本回合移动次数 &&
-      玩家类.行动点 >= this.移动消耗 &&
+      this.玩家.行动点 >= this.移动消耗 &&
       !位置?.单位
     )
   }
@@ -2081,7 +2077,7 @@ class 单位类 extends 目标类 {
   }
 
   可装填(弹幕卡: 弹幕卡类) {
-    return !弹幕卡.已使用 && this.可否装填 && 玩家类.行动点 >= 弹幕卡.消耗
+    return !弹幕卡.已使用 && this.可否装填 && this.玩家.行动点 >= 弹幕卡.消耗
   }
   装填消耗结算(弹幕卡: 弹幕卡类) {
     玩家类.事件.emit('行动点变化', { 变化值: -弹幕卡.消耗 })
@@ -2376,23 +2372,13 @@ class 主神类 extends 单位类 {
   类型 = '主神'
   神威序号: 1 | 2 | 3
   神威!: 技能类
-  constructor(
-    玩家: 玩家类,
-    编号: number,
-    神威序号: 1 | 2 | 3,
-    位置: 位置类,
-    初始生命值上限?: number
-  ) {
+  constructor(玩家: 玩家类, 编号: number, 神威序号: 1 | 2 | 3, 位置: 位置类) {
     super(玩家, 编号, 位置)
     const 信息 = 获得主神信息(编号)
     this.阵营 = 信息.阵营
-    this.基础攻击力 = 信息.攻击力
+    this.初始攻击力 = this.基础攻击力 = 信息.攻击力
     this.生命上限 = 信息.生命值
-    if (初始生命值上限 != undefined) {
-      this.生命值 = Math.min(this.生命上限, 初始生命值上限)
-    } else {
-      this.生命值 = this.生命上限
-    }
+    this.生命值 = this.生命上限
     this.基础移动力 = 信息.移动力
     this.神威序号 = 神威序号
     const 技能编号 = 信息[`技能${神威序号}`]
@@ -2504,13 +2490,7 @@ class 主神类 extends 单位类 {
 }
 class 附属神类 extends 单位类 {
   伙伴卡ID?: number
-  constructor(
-    玩家: 玩家类,
-    编号: number,
-    位置: 位置类,
-    初始生命值上限?: number,
-    召唤物?: boolean
-  ) {
+  constructor(玩家: 玩家类, 编号: number, 位置: 位置类, 召唤物?: boolean) {
     super(玩家, 编号, 位置)
     const 信息 = 获得附属神信息(编号)
     this.阵营 = 信息.阵营
@@ -2529,13 +2509,9 @@ class 附属神类 extends 单位类 {
           break
       }
     }
-    this.基础攻击力 = 信息.攻击力
+    this.初始攻击力 = this.基础攻击力 = 信息.攻击力
     this.生命上限 = 信息.生命值
-    if (初始生命值上限 != undefined) {
-      this.生命值 = Math.min(this.生命上限, 初始生命值上限)
-    } else {
-      this.生命值 = this.生命上限
-    }
+    this.生命值 = this.生命上限
     this.基础移动力 = 信息.移动力
     this.可否攻击 = Boolean(信息.可否攻击)
     this.可否装填 = Boolean(信息.可否装填)
@@ -2864,7 +2840,7 @@ class 神迹卡类 extends 牌类 {
     }
   }
   可使用() {
-    return !this.已使用 && 玩家类.行动点 >= this.消耗
+    return !this.已使用 && this.玩家.行动点 >= this.消耗
   }
   消耗结算() {
     玩家类.事件.emit('行动点变化', { 变化值: -this.消耗 })
@@ -2954,12 +2930,12 @@ class 玩家类 extends 目标类 {
   static 事件 = new 事件类()
   static 游戏已开始 = false
   static 我方回合?: boolean
-  static 行动点 = 10
   static 倒计时 = Date.now() + 1000 * 60
   static 游戏结束 = false
   static 重置倒计时() {
     this.倒计时 = Date.now() + 1000 * 60
   }
+  行动点 = 10
   敌方玩家!: 玩家类
   主神: 主神类
   格 = 4
@@ -3119,6 +3095,10 @@ class 玩家类 extends 目标类 {
         神迹卡.id = v.id
       })
     }
+    this.on('行动点变化', (参数: { 变化值: number }) => {
+      this.行动点 = Math.min(10, Math.max(0, this.行动点 + 参数.变化值))
+      this.emit('行动点变化时')
+    })
   }
   emit(事件名: string, 参数: Record<string, unknown> = {}): boolean {
     const 有监听器 = super.emit(事件名, 参数)
@@ -3137,10 +3117,6 @@ class 玩家类 extends 目标类 {
         x.是否我方 == this.是否我方 ? -1 : 1
       )
       玩家类.游戏已开始 = true
-      玩家类.事件.on('行动点变化', (参数: { 变化值: number }) => {
-        玩家类.行动点 = Math.min(10, Math.max(0, 玩家类.行动点 + 参数.变化值))
-        玩家类.事件.emit('行动点变化时')
-      })
       行动点 -= 3
       this.emit('祈愿倒计时变化', { 变化值: -1 })
       this.敌方玩家.emit('祈愿倒计时变化', { 变化值: -1 })
@@ -3149,7 +3125,7 @@ class 玩家类 extends 目标类 {
       玩家类.事件.emit('游戏开始时')
     }
     this.emit('祈愿倒计时变化', { 变化值: -1 })
-    this.emit('行动点变化', { 变化值: 行动点 - 玩家类.行动点 })
+    this.emit('行动点变化', { 变化值: 行动点 - this.行动点 })
     this.回合首次神迹卡消耗变化值 = 0
     this.回合数++
     if (this.是否我方) {
@@ -3188,7 +3164,7 @@ class 玩家类 extends 目标类 {
     }
   }
   可祈愿() {
-    return 玩家类.游戏已开始 && 玩家类.行动点 >= 2
+    return 玩家类.游戏已开始 && this.行动点 >= 2
   }
   祈愿消耗结算() {
     玩家类.事件.emit('行动点变化', { 变化值: -2 })

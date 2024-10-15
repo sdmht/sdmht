@@ -849,8 +849,8 @@ onMounted(async () => {
   for (let i = 0; i < 10; i++) {
     const 蓝祈愿点 = await 加载子画面('pvp/icon xiaohao.webp')
     const 红祈愿点 = await 加载子画面('pvp/icon xiaohao red.webp')
-    const 更新祈愿点 = () => {
-      红祈愿点.visible = 蓝祈愿点.visible = 玩家类.行动点 > i
+    const 更新祈愿点 = (参数: { 玩家: 玩家类 }) => {
+      红祈愿点.visible = 蓝祈愿点.visible = 参数.玩家.行动点 > i
       if (玩家类.我方回合 !== false) {
         红祈愿点.visible = false
       } else {
@@ -1034,7 +1034,7 @@ onMounted(async () => {
               e &&
               e.screenY < 原纵坐标 &&
               玩家类.我方回合 !== false &&
-              玩家类.行动点 >= v.消耗
+              玩家.行动点 >= v.消耗
             ) {
               if (v instanceof 弹幕卡类) {
                 待装填的弹幕卡.value = v
