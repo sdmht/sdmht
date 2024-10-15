@@ -7,6 +7,9 @@ function battle() {
 function card_deck() {
   return import(/* webpackChunkName: "card_deck" */ 'pages/card_deck.vue')
 }
+function login() {
+  return import(/* webpackChunkName: "login" */ 'pages/login.vue')
+}
 
 export default [
   {
@@ -23,5 +26,10 @@ export default [
     name: 'card_deck',
     path: '/card_deck',
     component: card_deck,
+  },
+  {
+    name: 'login',
+    path: '/login',
+    component: login,
   },
 ]

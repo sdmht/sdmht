@@ -38,6 +38,293 @@ export type Scalars = {
   Void: { input: any; output: any }
 }
 
+export type ActionFilter = {
+  AND?: InputMaybe<ActionFilter>
+  DISTINCT?: InputMaybe<Scalars['Boolean']['input']>
+  NOT?: InputMaybe<ActionFilter>
+  OR?: InputMaybe<ActionFilter>
+  /** 所属战斗 */
+  battle?: InputMaybe<BattleFilter>
+  /** 内容 */
+  content?: InputMaybe<JsonFilterLookup>
+  /** 创建时间 */
+  createdTime?: InputMaybe<DatetimeDatetimeFilterLookup>
+  /** ID */
+  id?: InputMaybe<IdBaseFilterLookup>
+  /** 所属用户 */
+  player?: InputMaybe<UserFilter>
+}
+
+export type ActionInput = {
+  /** 所属战斗 */
+  battleId: BattlePartialInputOneToManyInput
+  /** 内容 */
+  content: Scalars['JSON']['input']
+  /** 所属用户 */
+  playerId?: InputMaybe<Scalars['ID']['input']>
+}
+
+/** 行动 */
+export type ActionNode = Node & {
+  __typename?: 'ActionNode'
+  _Str__: Scalars['String']['output']
+  /** 所属战斗 */
+  battle: BattleType
+  /** 内容 */
+  content: Scalars['JSON']['output']
+  /** 创建时间 */
+  createdTime: Scalars['DateTime']['output']
+  /** The Globally Unique ID of this object */
+  id: Scalars['GlobalID']['output']
+  /** 所属用户 */
+  player: UserType
+}
+
+/** A connection to a list of items. */
+export type ActionNodeConnection = {
+  __typename?: 'ActionNodeConnection'
+  /** Contains the nodes in this connection */
+  edges: Array<ActionNodeEdge>
+  /** Pagination data for this connection */
+  pageInfo: PageInfo
+  /** Total quantity of existing nodes. */
+  totalCount?: Maybe<Scalars['Int']['output']>
+}
+
+/** An edge in a connection. */
+export type ActionNodeEdge = {
+  __typename?: 'ActionNodeEdge'
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output']
+  /** The item at the end of the edge */
+  node: ActionNode
+}
+
+export type ActionOrder = {
+  /** 所属战斗 */
+  battle?: InputMaybe<BattleOrder>
+  /** 内容 */
+  content?: InputMaybe<Ordering>
+  /** 创建时间 */
+  createdTime?: InputMaybe<Ordering>
+  /** ID */
+  id?: InputMaybe<Ordering>
+  /** 所属用户 */
+  player?: InputMaybe<UserOrder>
+}
+
+export type ActionPartialInput = {
+  /** 所属战斗 */
+  battleId?: InputMaybe<BattlePartialInputOneToManyInput>
+  /** 内容 */
+  content?: InputMaybe<Scalars['JSON']['input']>
+  /** 所属用户 */
+  playerId?: InputMaybe<Scalars['ID']['input']>
+}
+
+export type ActionPartialInputManyToOneInput = {
+  add?: InputMaybe<Array<Scalars['ID']['input']>>
+  addObjects?: InputMaybe<Array<ActionPartialInput>>
+  remove?: InputMaybe<Array<Scalars['ID']['input']>>
+  set?: InputMaybe<Array<Scalars['ID']['input']>>
+  setObjects?: InputMaybe<Array<ActionPartialInput>>
+}
+
+/** 行动 */
+export type ActionType = {
+  __typename?: 'ActionType'
+  _Str__: Scalars['String']['output']
+  /** 所属战斗 */
+  battle: BattleType
+  /** 内容 */
+  content: Scalars['JSON']['output']
+  /** 创建时间 */
+  createdTime: Scalars['DateTime']['output']
+  /** ID */
+  id: Scalars['ID']['output']
+  /** 所属用户 */
+  player: UserType
+}
+
+export type BattleFilter = {
+  AND?: InputMaybe<BattleFilter>
+  DISTINCT?: InputMaybe<Scalars['Boolean']['input']>
+  NOT?: InputMaybe<BattleFilter>
+  OR?: InputMaybe<BattleFilter>
+  /** 行动 */
+  action?: InputMaybe<ActionFilter>
+  /** 创建时间 */
+  createdTime?: InputMaybe<DatetimeDatetimeFilterLookup>
+  /** ID */
+  id?: InputMaybe<IdBaseFilterLookup>
+  /** 是否p1胜利 */
+  isP1Win?: InputMaybe<BoolBaseFilterLookup>
+  /** 所属卡组 */
+  p1Deck?: InputMaybe<DeckFilter>
+  /** 所属卡组 */
+  p2Deck?: InputMaybe<DeckFilter>
+  /** 用户 */
+  watchPlayers?: InputMaybe<UserFilter>
+}
+
+export type BattleInput = {
+  /** 行动 */
+  actionSet?: InputMaybe<ActionPartialInputManyToOneInput>
+  /** 是否p1胜利 */
+  isP1Win?: InputMaybe<Scalars['Boolean']['input']>
+  /** 所属卡组 */
+  p1DeckId: DeckPartialInputOneToManyInput
+  /** 所属卡组 */
+  p2DeckId?: InputMaybe<DeckPartialInputOneToManyInput>
+  /** 用户 */
+  watchPlayers?: InputMaybe<UserPartialInputManyToManyInput>
+}
+
+/** 战斗 */
+export type BattleNode = Node & {
+  __typename?: 'BattleNode'
+  _Str__: Scalars['String']['output']
+  /** 行动 */
+  actionSet: ActionNodeConnection
+  /** 创建时间 */
+  createdTime: Scalars['DateTime']['output']
+  /** The Globally Unique ID of this object */
+  id: Scalars['GlobalID']['output']
+  /** 是否p1胜利 */
+  isP1Win?: Maybe<Scalars['Boolean']['output']>
+  /** 所属卡组 */
+  p1Deck: DeckType
+  /** 所属卡组 */
+  p2Deck?: Maybe<DeckType>
+  /** 用户 */
+  watchPlayers: UserNodeConnection
+}
+
+/** 战斗 */
+export type BattleNodeActionSetArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  filters?: InputMaybe<ActionFilter>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  order?: InputMaybe<ActionOrder>
+}
+
+/** 战斗 */
+export type BattleNodeWatchPlayersArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  filters?: InputMaybe<UserFilter>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  order?: InputMaybe<UserOrder>
+}
+
+/** A connection to a list of items. */
+export type BattleNodeConnection = {
+  __typename?: 'BattleNodeConnection'
+  /** Contains the nodes in this connection */
+  edges: Array<BattleNodeEdge>
+  /** Pagination data for this connection */
+  pageInfo: PageInfo
+  /** Total quantity of existing nodes. */
+  totalCount?: Maybe<Scalars['Int']['output']>
+}
+
+/** An edge in a connection. */
+export type BattleNodeEdge = {
+  __typename?: 'BattleNodeEdge'
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output']
+  /** The item at the end of the edge */
+  node: BattleNode
+}
+
+export type BattleOrder = {
+  /** 行动 */
+  action?: InputMaybe<ActionOrder>
+  /** 创建时间 */
+  createdTime?: InputMaybe<Ordering>
+  /** ID */
+  id?: InputMaybe<Ordering>
+  /** 是否p1胜利 */
+  isP1Win?: InputMaybe<Ordering>
+  /** 所属卡组 */
+  p1Deck?: InputMaybe<DeckOrder>
+  /** 所属卡组 */
+  p2Deck?: InputMaybe<DeckOrder>
+  /** 用户 */
+  watchPlayers?: InputMaybe<UserOrder>
+}
+
+export type BattlePartialInput = {
+  /** 行动 */
+  actionSet?: InputMaybe<ActionPartialInputManyToOneInput>
+  /** 是否p1胜利 */
+  isP1Win?: InputMaybe<Scalars['Boolean']['input']>
+  /** 所属卡组 */
+  p1DeckId?: InputMaybe<DeckPartialInputOneToManyInput>
+  /** 所属卡组 */
+  p2DeckId?: InputMaybe<DeckPartialInputOneToManyInput>
+  /** 用户 */
+  watchPlayers?: InputMaybe<UserPartialInputManyToManyInput>
+}
+
+export type BattlePartialInputManyToManyInput = {
+  add?: InputMaybe<Array<Scalars['ID']['input']>>
+  addObjects?: InputMaybe<Array<BattlePartialInput>>
+  remove?: InputMaybe<Array<Scalars['ID']['input']>>
+  set?: InputMaybe<Array<Scalars['ID']['input']>>
+  setObjects?: InputMaybe<Array<BattlePartialInput>>
+}
+
+export type BattlePartialInputManyToOneInput = {
+  add?: InputMaybe<Array<Scalars['ID']['input']>>
+  addObjects?: InputMaybe<Array<BattlePartialInput>>
+  remove?: InputMaybe<Array<Scalars['ID']['input']>>
+  set?: InputMaybe<Array<Scalars['ID']['input']>>
+  setObjects?: InputMaybe<Array<BattlePartialInput>>
+}
+
+export type BattlePartialInputOneToManyInput = {
+  set?: InputMaybe<Scalars['ID']['input']>
+  setObject?: InputMaybe<BattlePartialInput>
+}
+
+/** 战斗 */
+export type BattleType = {
+  __typename?: 'BattleType'
+  _Str__: Scalars['String']['output']
+  /** 行动 */
+  actionSet: Array<ActionType>
+  /** 创建时间 */
+  createdTime: Scalars['DateTime']['output']
+  /** ID */
+  id: Scalars['ID']['output']
+  /** 是否p1胜利 */
+  isP1Win?: Maybe<Scalars['Boolean']['output']>
+  /** 所属卡组 */
+  p1Deck: DeckType
+  /** 所属卡组 */
+  p2Deck?: Maybe<DeckType>
+  /** 用户 */
+  watchPlayers: Array<UserType>
+}
+
+/** 战斗 */
+export type BattleTypeActionSetArgs = {
+  filters?: InputMaybe<ActionFilter>
+  order?: InputMaybe<ActionOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
+}
+
+/** 战斗 */
+export type BattleTypeWatchPlayersArgs = {
+  filters?: InputMaybe<UserFilter>
+  order?: InputMaybe<UserOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
+}
+
 export type BoolBaseFilterLookup = {
   /** Exact match. Filter will be skipped on `null` value */
   exact?: InputMaybe<Scalars['Boolean']['input']>
@@ -446,6 +733,193 @@ export type DatetimeDatetimeFilterLookup = {
 export type DatetimeRangeLookup = {
   end?: InputMaybe<Scalars['DateTime']['input']>
   start?: InputMaybe<Scalars['DateTime']['input']>
+}
+
+export type DeckFilter = {
+  AND?: InputMaybe<DeckFilter>
+  DISTINCT?: InputMaybe<Scalars['Boolean']['input']>
+  NOT?: InputMaybe<DeckFilter>
+  OR?: InputMaybe<DeckFilter>
+  /** 内容 */
+  content?: InputMaybe<JsonFilterLookup>
+  /** 创建时间 */
+  createdTime?: InputMaybe<DatetimeDatetimeFilterLookup>
+  /** 删除日期 */
+  deletedAt?: InputMaybe<DatetimeDatetimeFilterLookup>
+  /** ID */
+  id?: InputMaybe<IdBaseFilterLookup>
+  /** 名称 */
+  name?: InputMaybe<StrFilterLookup>
+  /** 战斗 */
+  p1Battles?: InputMaybe<BattleFilter>
+  /** 战斗 */
+  p2Battles?: InputMaybe<BattleFilter>
+  /** 修改时间 */
+  updatedTime?: InputMaybe<DatetimeDatetimeFilterLookup>
+  /** 所属用户 */
+  user?: InputMaybe<UserFilter>
+}
+
+export type DeckInput = {
+  /** 内容 */
+  content: Scalars['JSON']['input']
+  /** 名称 */
+  name: Scalars['String']['input']
+  /** 战斗 */
+  p1Battles?: InputMaybe<BattlePartialInputManyToOneInput>
+  /** 战斗 */
+  p2Battles?: InputMaybe<BattlePartialInputManyToOneInput>
+  /** 所属用户 */
+  userId?: InputMaybe<Scalars['ID']['input']>
+}
+
+/** 卡组 */
+export type DeckNode = Node & {
+  __typename?: 'DeckNode'
+  _Str__: Scalars['String']['output']
+  /** 内容 */
+  content: Scalars['JSON']['output']
+  /** 创建时间 */
+  createdTime: Scalars['DateTime']['output']
+  /** 删除日期 */
+  deletedAt?: Maybe<Scalars['DateTime']['output']>
+  /** The Globally Unique ID of this object */
+  id: Scalars['GlobalID']['output']
+  /** 名称 */
+  name: Scalars['String']['output']
+  /** 战斗 */
+  p1Battles: BattleNodeConnection
+  /** 战斗 */
+  p2Battles: BattleNodeConnection
+  /** 修改时间 */
+  updatedTime: Scalars['DateTime']['output']
+  /** 所属用户 */
+  user: UserType
+}
+
+/** 卡组 */
+export type DeckNodeP1BattlesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  filters?: InputMaybe<BattleFilter>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  order?: InputMaybe<BattleOrder>
+}
+
+/** 卡组 */
+export type DeckNodeP2BattlesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  filters?: InputMaybe<BattleFilter>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  order?: InputMaybe<BattleOrder>
+}
+
+/** A connection to a list of items. */
+export type DeckNodeConnection = {
+  __typename?: 'DeckNodeConnection'
+  /** Contains the nodes in this connection */
+  edges: Array<DeckNodeEdge>
+  /** Pagination data for this connection */
+  pageInfo: PageInfo
+  /** Total quantity of existing nodes. */
+  totalCount?: Maybe<Scalars['Int']['output']>
+}
+
+/** An edge in a connection. */
+export type DeckNodeEdge = {
+  __typename?: 'DeckNodeEdge'
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output']
+  /** The item at the end of the edge */
+  node: DeckNode
+}
+
+export type DeckOrder = {
+  /** 内容 */
+  content?: InputMaybe<Ordering>
+  /** 创建时间 */
+  createdTime?: InputMaybe<Ordering>
+  /** 删除日期 */
+  deletedAt?: InputMaybe<Ordering>
+  /** ID */
+  id?: InputMaybe<Ordering>
+  /** 名称 */
+  name?: InputMaybe<Ordering>
+  /** 战斗 */
+  p1Battles?: InputMaybe<BattleOrder>
+  /** 战斗 */
+  p2Battles?: InputMaybe<BattleOrder>
+  /** 修改时间 */
+  updatedTime?: InputMaybe<Ordering>
+  /** 所属用户 */
+  user?: InputMaybe<UserOrder>
+}
+
+export type DeckPartialInput = {
+  /** 内容 */
+  content?: InputMaybe<Scalars['JSON']['input']>
+  /** 名称 */
+  name?: InputMaybe<Scalars['String']['input']>
+  /** 战斗 */
+  p1Battles?: InputMaybe<BattlePartialInputManyToOneInput>
+  /** 战斗 */
+  p2Battles?: InputMaybe<BattlePartialInputManyToOneInput>
+  /** 所属用户 */
+  userId?: InputMaybe<Scalars['ID']['input']>
+}
+
+export type DeckPartialInputManyToOneInput = {
+  add?: InputMaybe<Array<Scalars['ID']['input']>>
+  addObjects?: InputMaybe<Array<DeckPartialInput>>
+  remove?: InputMaybe<Array<Scalars['ID']['input']>>
+  set?: InputMaybe<Array<Scalars['ID']['input']>>
+  setObjects?: InputMaybe<Array<DeckPartialInput>>
+}
+
+export type DeckPartialInputOneToManyInput = {
+  set?: InputMaybe<Scalars['ID']['input']>
+  setObject?: InputMaybe<DeckPartialInput>
+}
+
+/** 卡组 */
+export type DeckType = {
+  __typename?: 'DeckType'
+  _Str__: Scalars['String']['output']
+  /** 内容 */
+  content: Scalars['JSON']['output']
+  /** 创建时间 */
+  createdTime: Scalars['DateTime']['output']
+  /** 删除日期 */
+  deletedAt?: Maybe<Scalars['DateTime']['output']>
+  /** ID */
+  id: Scalars['ID']['output']
+  /** 名称 */
+  name: Scalars['String']['output']
+  /** 战斗 */
+  p1Battles: Array<BattleType>
+  /** 战斗 */
+  p2Battles: Array<BattleType>
+  /** 修改时间 */
+  updatedTime: Scalars['DateTime']['output']
+  /** 所属用户 */
+  user: UserType
+}
+
+/** 卡组 */
+export type DeckTypeP1BattlesArgs = {
+  filters?: InputMaybe<BattleFilter>
+  order?: InputMaybe<BattleOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
+}
+
+/** 卡组 */
+export type DeckTypeP2BattlesArgs = {
+  filters?: InputMaybe<BattleFilter>
+  order?: InputMaybe<BattleOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
 }
 
 export type DjangoImageType = {
@@ -1200,10 +1674,16 @@ export type LogType = {
 
 export type Mutation = {
   __typename?: 'Mutation'
+  createAction: ActionType
+  createActions: Array<ActionType>
+  createBattle: BattleType
+  createBattles: Array<BattleType>
   createChangeSet: ChangeSetType
   createChangeSets: Array<ChangeSetType>
   createContentType: ContentTypeType
   createContentTypes: Array<ContentTypeType>
+  createDeck: DeckType
+  createDecks: Array<DeckType>
   createDynamicConfiguration: DynamicConfigurationType
   createDynamicConfigurations: Array<DynamicConfigurationType>
   createFailedExceptionMail: FailedExceptionMailType
@@ -1234,8 +1714,11 @@ export type Mutation = {
   createUsers: Array<UserType>
   createVerificationCode: VerificationCodeType
   createVerificationCodes: Array<VerificationCodeType>
+  deleteActions: Array<ActionType>
+  deleteBattles: Array<BattleType>
   deleteChangeSets: Array<ChangeSetType>
   deleteContentTypes: Array<ContentTypeType>
+  deleteDecks: Array<DeckType>
   deleteDynamicConfigurations: Array<DynamicConfigurationType>
   deleteFailedExceptionMails: Array<FailedExceptionMailType>
   deleteGroups: Array<GroupType>
@@ -1255,8 +1738,11 @@ export type Mutation = {
   logout: Scalars['Boolean']['output']
   sendVerificationEmail: Scalars['Boolean']['output']
   su: UserType
+  updateActions: Array<ActionType>
+  updateBattles: Array<BattleType>
   updateChangeSets: Array<ChangeSetType>
   updateContentTypes: Array<ContentTypeType>
+  updateDecks: Array<DeckType>
   updateDynamicConfigurations: Array<DynamicConfigurationType>
   updateFailedExceptionMails: Array<FailedExceptionMailType>
   updateGroups: Array<GroupType>
@@ -1275,6 +1761,24 @@ export type Mutation = {
   verificationEmailAuth: Scalars['Boolean']['output']
 }
 
+export type MutationCreateActionArgs = {
+  data: ActionInput
+}
+
+export type MutationCreateActionsArgs = {
+  data: Array<ActionInput>
+  filters?: InputMaybe<ActionFilter>
+}
+
+export type MutationCreateBattleArgs = {
+  data: BattleInput
+}
+
+export type MutationCreateBattlesArgs = {
+  data: Array<BattleInput>
+  filters?: InputMaybe<BattleFilter>
+}
+
 export type MutationCreateChangeSetArgs = {
   data: ChangeSetInput
 }
@@ -1291,6 +1795,15 @@ export type MutationCreateContentTypeArgs = {
 export type MutationCreateContentTypesArgs = {
   data: Array<ContentTypeInput>
   filters?: InputMaybe<ContentTypeFilter>
+}
+
+export type MutationCreateDeckArgs = {
+  data: DeckInput
+}
+
+export type MutationCreateDecksArgs = {
+  data: Array<DeckInput>
+  filters?: InputMaybe<DeckFilter>
 }
 
 export type MutationCreateDynamicConfigurationArgs = {
@@ -1428,12 +1941,24 @@ export type MutationCreateVerificationCodesArgs = {
   filters?: InputMaybe<VerificationCodeFilter>
 }
 
+export type MutationDeleteActionsArgs = {
+  filters?: InputMaybe<ActionFilter>
+}
+
+export type MutationDeleteBattlesArgs = {
+  filters?: InputMaybe<BattleFilter>
+}
+
 export type MutationDeleteChangeSetsArgs = {
   filters?: InputMaybe<ChangeSetFilter>
 }
 
 export type MutationDeleteContentTypesArgs = {
   filters?: InputMaybe<ContentTypeFilter>
+}
+
+export type MutationDeleteDecksArgs = {
+  filters?: InputMaybe<DeckFilter>
 }
 
 export type MutationDeleteDynamicConfigurationsArgs = {
@@ -1509,6 +2034,16 @@ export type MutationSuArgs = {
   username: Scalars['String']['input']
 }
 
+export type MutationUpdateActionsArgs = {
+  data: ActionPartialInput
+  filters?: InputMaybe<ActionFilter>
+}
+
+export type MutationUpdateBattlesArgs = {
+  data: BattlePartialInput
+  filters?: InputMaybe<BattleFilter>
+}
+
 export type MutationUpdateChangeSetsArgs = {
   data: ChangeSetPartialInput
   filters?: InputMaybe<ChangeSetFilter>
@@ -1517,6 +2052,11 @@ export type MutationUpdateChangeSetsArgs = {
 export type MutationUpdateContentTypesArgs = {
   data: ContentTypePartialInput
   filters?: InputMaybe<ContentTypeFilter>
+}
+
+export type MutationUpdateDecksArgs = {
+  data: DeckPartialInput
+  filters?: InputMaybe<DeckFilter>
 }
 
 export type MutationUpdateDynamicConfigurationsArgs = {
@@ -2105,6 +2645,14 @@ export type PermissionTypeRoleSetArgs = {
 
 export type Query = {
   __typename?: 'Query'
+  Action: ActionType
+  ActionConnection: ActionNodeConnection
+  Actions: Array<ActionType>
+  ActionsCount: Scalars['Int']['output']
+  Battle: BattleType
+  BattleConnection: BattleNodeConnection
+  Battles: Array<BattleType>
+  BattlesCount: Scalars['Int']['output']
   ChangeSet: ChangeSetType
   ChangeSetConnection: ChangeSetNodeConnection
   ChangeSets: Array<ChangeSetType>
@@ -2113,6 +2661,10 @@ export type Query = {
   ContentTypeConnection: ContentTypeNodeConnection
   ContentTypes: Array<ContentTypeType>
   ContentTypesCount: Scalars['Int']['output']
+  Deck: DeckType
+  DeckConnection: DeckNodeConnection
+  Decks: Array<DeckType>
+  DecksCount: Scalars['Int']['output']
   DynamicConfiguration: DynamicConfigurationType
   DynamicConfigurationConnection: DynamicConfigurationNodeConnection
   DynamicConfigurations: Array<DynamicConfigurationType>
@@ -2178,6 +2730,52 @@ export type Query = {
   node: Node
 }
 
+export type QueryActionArgs = {
+  pk: Scalars['ID']['input']
+}
+
+export type QueryActionConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  filters?: InputMaybe<ActionFilter>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  order?: InputMaybe<ActionOrder>
+}
+
+export type QueryActionsArgs = {
+  filters?: InputMaybe<ActionFilter>
+  order?: InputMaybe<ActionOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
+}
+
+export type QueryActionsCountArgs = {
+  filters?: InputMaybe<ActionFilter>
+}
+
+export type QueryBattleArgs = {
+  pk: Scalars['ID']['input']
+}
+
+export type QueryBattleConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  filters?: InputMaybe<BattleFilter>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  order?: InputMaybe<BattleOrder>
+}
+
+export type QueryBattlesArgs = {
+  filters?: InputMaybe<BattleFilter>
+  order?: InputMaybe<BattleOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
+}
+
+export type QueryBattlesCountArgs = {
+  filters?: InputMaybe<BattleFilter>
+}
+
 export type QueryChangeSetArgs = {
   pk: Scalars['ID']['input']
 }
@@ -2222,6 +2820,29 @@ export type QueryContentTypesArgs = {
 
 export type QueryContentTypesCountArgs = {
   filters?: InputMaybe<ContentTypeFilter>
+}
+
+export type QueryDeckArgs = {
+  pk: Scalars['ID']['input']
+}
+
+export type QueryDeckConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  filters?: InputMaybe<DeckFilter>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  order?: InputMaybe<DeckOrder>
+}
+
+export type QueryDecksArgs = {
+  filters?: InputMaybe<DeckFilter>
+  order?: InputMaybe<DeckOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
+}
+
+export type QueryDecksCountArgs = {
+  filters?: InputMaybe<DeckFilter>
 }
 
 export type QueryDynamicConfigurationArgs = {
@@ -3264,12 +3885,21 @@ export type StrFilterLookup = {
 
 export type Subscription = {
   __typename?: 'Subscription'
+  Action: ActionType
+  Actions: Array<ActionType>
+  ActionsCount: Scalars['Int']['output']
+  Battle: BattleType
+  Battles: Array<BattleType>
+  BattlesCount: Scalars['Int']['output']
   ChangeSet: ChangeSetType
   ChangeSets: Array<ChangeSetType>
   ChangeSetsCount: Scalars['Int']['output']
   ContentType: ContentTypeType
   ContentTypes: Array<ContentTypeType>
   ContentTypesCount: Scalars['Int']['output']
+  Deck: DeckType
+  Decks: Array<DeckType>
+  DecksCount: Scalars['Int']['output']
   DynamicConfiguration: DynamicConfigurationType
   DynamicConfigurations: Array<DynamicConfigurationType>
   DynamicConfigurationsCount: Scalars['Int']['output']
@@ -3323,6 +3953,26 @@ export type Subscription = {
   time: Scalars['Float']['output']
 }
 
+export type SubscriptionActionsArgs = {
+  filters?: InputMaybe<ActionFilter>
+  order?: InputMaybe<ActionOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
+}
+
+export type SubscriptionActionsCountArgs = {
+  filters?: InputMaybe<ActionFilter>
+}
+
+export type SubscriptionBattlesArgs = {
+  filters?: InputMaybe<BattleFilter>
+  order?: InputMaybe<BattleOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
+}
+
+export type SubscriptionBattlesCountArgs = {
+  filters?: InputMaybe<BattleFilter>
+}
+
 export type SubscriptionChangeSetsArgs = {
   filters?: InputMaybe<ChangeSetFilter>
   order?: InputMaybe<ChangeSetOrder>
@@ -3341,6 +3991,16 @@ export type SubscriptionContentTypesArgs = {
 
 export type SubscriptionContentTypesCountArgs = {
   filters?: InputMaybe<ContentTypeFilter>
+}
+
+export type SubscriptionDecksArgs = {
+  filters?: InputMaybe<DeckFilter>
+  order?: InputMaybe<DeckOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
+}
+
+export type SubscriptionDecksCountArgs = {
+  filters?: InputMaybe<DeckFilter>
 }
 
 export type SubscriptionDynamicConfigurationsArgs = {
@@ -3517,8 +4177,12 @@ export type UserFilter = {
   DISTINCT?: InputMaybe<Scalars['Boolean']['input']>
   NOT?: InputMaybe<UserFilter>
   OR?: InputMaybe<UserFilter>
+  /** 行动 */
+  action?: InputMaybe<ActionFilter>
   /** 创建时间 */
   createdTime?: InputMaybe<DatetimeDatetimeFilterLookup>
+  /** 卡组 */
+  deck?: InputMaybe<DeckFilter>
   /** 删除日期 */
   deletedAt?: InputMaybe<DatetimeDatetimeFilterLookup>
   /** 电子邮件地址 */
@@ -3551,11 +4215,17 @@ export type UserFilter = {
   updatedTime?: InputMaybe<DatetimeDatetimeFilterLookup>
   /** 账号 */
   username?: InputMaybe<StrFilterLookup>
+  /** 战斗 */
+  watchBattles?: InputMaybe<BattleFilter>
 }
 
 export type UserInput = {
+  /** 行动 */
+  actionSet?: InputMaybe<ActionPartialInputManyToOneInput>
   /** 头像 */
   avatar?: InputMaybe<Scalars['Upload']['input']>
+  /** 卡组 */
+  deckSet?: InputMaybe<DeckPartialInputManyToOneInput>
   /** 电子邮件地址 */
   email?: InputMaybe<Scalars['String']['input']>
   /** 有效 */
@@ -3582,16 +4252,22 @@ export type UserInput = {
   roles?: InputMaybe<RolePartialInputManyToManyInput>
   /** 账号 */
   username: Scalars['String']['input']
+  /** 战斗 */
+  watchBattles?: InputMaybe<BattlePartialInputManyToManyInput>
 }
 
 /** 用户 */
 export type UserNode = Node & {
   __typename?: 'UserNode'
   _Str__: Scalars['String']['output']
+  /** 行动 */
+  actionSet: ActionNodeConnection
   /** 头像 */
   avatar?: Maybe<DjangoImageType>
   /** 创建时间 */
   createdTime: Scalars['DateTime']['output']
+  /** 卡组 */
+  deckSet: DeckNodeConnection
   /** 删除日期 */
   deletedAt?: Maybe<Scalars['DateTime']['output']>
   /** 电子邮件地址 */
@@ -3624,6 +4300,28 @@ export type UserNode = Node & {
   updatedTime: Scalars['DateTime']['output']
   /** 账号 */
   username: Scalars['String']['output']
+  /** 战斗 */
+  watchBattles: BattleNodeConnection
+}
+
+/** 用户 */
+export type UserNodeActionSetArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  filters?: InputMaybe<ActionFilter>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  order?: InputMaybe<ActionOrder>
+}
+
+/** 用户 */
+export type UserNodeDeckSetArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  filters?: InputMaybe<DeckFilter>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  order?: InputMaybe<DeckOrder>
 }
 
 /** 用户 */
@@ -3686,6 +4384,16 @@ export type UserNodeRolesArgs = {
   order?: InputMaybe<RoleOrder>
 }
 
+/** 用户 */
+export type UserNodeWatchBattlesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  filters?: InputMaybe<BattleFilter>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  order?: InputMaybe<BattleOrder>
+}
+
 /** A connection to a list of items. */
 export type UserNodeConnection = {
   __typename?: 'UserNodeConnection'
@@ -3707,8 +4415,12 @@ export type UserNodeEdge = {
 }
 
 export type UserOrder = {
+  /** 行动 */
+  action?: InputMaybe<ActionOrder>
   /** 创建时间 */
   createdTime?: InputMaybe<Ordering>
+  /** 卡组 */
+  deck?: InputMaybe<DeckOrder>
   /** 删除日期 */
   deletedAt?: InputMaybe<Ordering>
   /** 电子邮件地址 */
@@ -3741,11 +4453,17 @@ export type UserOrder = {
   updatedTime?: InputMaybe<Ordering>
   /** 账号 */
   username?: InputMaybe<Ordering>
+  /** 战斗 */
+  watchBattles?: InputMaybe<BattleOrder>
 }
 
 export type UserPartialInput = {
+  /** 行动 */
+  actionSet?: InputMaybe<ActionPartialInputManyToOneInput>
   /** 头像 */
   avatar?: InputMaybe<Scalars['Upload']['input']>
+  /** 卡组 */
+  deckSet?: InputMaybe<DeckPartialInputManyToOneInput>
   /** 电子邮件地址 */
   email?: InputMaybe<Scalars['String']['input']>
   /** 有效 */
@@ -3772,6 +4490,8 @@ export type UserPartialInput = {
   roles?: InputMaybe<RolePartialInputManyToManyInput>
   /** 账号 */
   username?: InputMaybe<Scalars['String']['input']>
+  /** 战斗 */
+  watchBattles?: InputMaybe<BattlePartialInputManyToManyInput>
 }
 
 export type UserPartialInputManyToManyInput = {
@@ -3786,10 +4506,14 @@ export type UserPartialInputManyToManyInput = {
 export type UserType = {
   __typename?: 'UserType'
   _Str__: Scalars['String']['output']
+  /** 行动 */
+  actionSet: Array<ActionType>
   /** 头像 */
   avatar?: Maybe<DjangoImageType>
   /** 创建时间 */
   createdTime: Scalars['DateTime']['output']
+  /** 卡组 */
+  deckSet: Array<DeckType>
   /** 删除日期 */
   deletedAt?: Maybe<Scalars['DateTime']['output']>
   /** 电子邮件地址 */
@@ -3822,6 +4546,22 @@ export type UserType = {
   updatedTime: Scalars['DateTime']['output']
   /** 账号 */
   username: Scalars['String']['output']
+  /** 战斗 */
+  watchBattles: Array<BattleType>
+}
+
+/** 用户 */
+export type UserTypeActionSetArgs = {
+  filters?: InputMaybe<ActionFilter>
+  order?: InputMaybe<ActionOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
+}
+
+/** 用户 */
+export type UserTypeDeckSetArgs = {
+  filters?: InputMaybe<DeckFilter>
+  order?: InputMaybe<DeckOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
 }
 
 /** 用户 */
@@ -3863,6 +4603,13 @@ export type UserTypeQuerylogSetArgs = {
 export type UserTypeRolesArgs = {
   filters?: InputMaybe<RoleFilter>
   order?: InputMaybe<RoleOrder>
+  pagination?: InputMaybe<OffsetPaginationInput>
+}
+
+/** 用户 */
+export type UserTypeWatchBattlesArgs = {
+  filters?: InputMaybe<BattleFilter>
+  order?: InputMaybe<BattleOrder>
   pagination?: InputMaybe<OffsetPaginationInput>
 }
 

@@ -290,6 +290,461 @@ schema {
   subscription: Subscription
 }
 
+input ActionFilter {
+  AND: ActionFilter
+  DISTINCT: Boolean
+  NOT: ActionFilter
+  OR: ActionFilter
+  """
+  所属战斗
+  """
+  battle: BattleFilter
+  """
+  内容
+  """
+  content: JSONFilterLookup
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+  """
+  所属用户
+  """
+  player: UserFilter
+}
+
+input ActionInput {
+  """
+  所属战斗
+  """
+  battleId: BattlePartialInputOneToManyInput!
+  """
+  内容
+  """
+  content: JSON!
+  """
+  所属用户
+  """
+  playerId: ID
+}
+
+"""
+行动
+"""
+type ActionNode implements Node {
+  _Str__: String!
+  """
+  所属战斗
+  """
+  battle: BattleType!
+  """
+  内容
+  """
+  content: JSON!
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+  """
+  所属用户
+  """
+  player: UserType!
+}
+
+"""
+A connection to a list of items.
+"""
+type ActionNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [ActionNodeEdge!]!
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type ActionNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+  """
+  The item at the end of the edge
+  """
+  node: ActionNode!
+}
+
+input ActionOrder {
+  """
+  所属战斗
+  """
+  battle: BattleOrder
+  """
+  内容
+  """
+  content: Ordering
+  """
+  创建时间
+  """
+  createdTime: Ordering
+  """
+  ID
+  """
+  id: Ordering
+  """
+  所属用户
+  """
+  player: UserOrder
+}
+
+input ActionPartialInput {
+  """
+  所属战斗
+  """
+  battleId: BattlePartialInputOneToManyInput
+  """
+  内容
+  """
+  content: JSON
+  """
+  所属用户
+  """
+  playerId: ID
+}
+
+input ActionPartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [ActionPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [ActionPartialInput!]
+}
+
+"""
+行动
+"""
+type ActionType {
+  _Str__: String!
+  """
+  所属战斗
+  """
+  battle: BattleType!
+  """
+  内容
+  """
+  content: JSON!
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+  """
+  ID
+  """
+  id: ID!
+  """
+  所属用户
+  """
+  player: UserType!
+}
+
+input BattleFilter {
+  AND: BattleFilter
+  DISTINCT: Boolean
+  NOT: BattleFilter
+  OR: BattleFilter
+  """
+  行动
+  """
+  action: ActionFilter
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+  """
+  是否p1胜利
+  """
+  isP1Win: BoolBaseFilterLookup
+  """
+  所属卡组
+  """
+  p1Deck: DeckFilter
+  """
+  所属卡组
+  """
+  p2Deck: DeckFilter
+  """
+  用户
+  """
+  watchPlayers: UserFilter
+}
+
+input BattleInput {
+  """
+  行动
+  """
+  actionSet: ActionPartialInputManyToOneInput
+  """
+  是否p1胜利
+  """
+  isP1Win: Boolean
+  """
+  所属卡组
+  """
+  p1DeckId: DeckPartialInputOneToManyInput!
+  """
+  所属卡组
+  """
+  p2DeckId: DeckPartialInputOneToManyInput
+  """
+  用户
+  """
+  watchPlayers: UserPartialInputManyToManyInput
+}
+
+"""
+战斗
+"""
+type BattleNode implements Node {
+  _Str__: String!
+  """
+  行动
+  """
+  actionSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: ActionFilter
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: ActionOrder
+  ): ActionNodeConnection!
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+  """
+  是否p1胜利
+  """
+  isP1Win: Boolean
+  """
+  所属卡组
+  """
+  p1Deck: DeckType!
+  """
+  所属卡组
+  """
+  p2Deck: DeckType
+  """
+  用户
+  """
+  watchPlayers(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: UserFilter
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: UserOrder
+  ): UserNodeConnection!
+}
+
+"""
+A connection to a list of items.
+"""
+type BattleNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [BattleNodeEdge!]!
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type BattleNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+  """
+  The item at the end of the edge
+  """
+  node: BattleNode!
+}
+
+input BattleOrder {
+  """
+  行动
+  """
+  action: ActionOrder
+  """
+  创建时间
+  """
+  createdTime: Ordering
+  """
+  ID
+  """
+  id: Ordering
+  """
+  是否p1胜利
+  """
+  isP1Win: Ordering
+  """
+  所属卡组
+  """
+  p1Deck: DeckOrder
+  """
+  所属卡组
+  """
+  p2Deck: DeckOrder
+  """
+  用户
+  """
+  watchPlayers: UserOrder
+}
+
+input BattlePartialInput {
+  """
+  行动
+  """
+  actionSet: ActionPartialInputManyToOneInput
+  """
+  是否p1胜利
+  """
+  isP1Win: Boolean
+  """
+  所属卡组
+  """
+  p1DeckId: DeckPartialInputOneToManyInput
+  """
+  所属卡组
+  """
+  p2DeckId: DeckPartialInputOneToManyInput
+  """
+  用户
+  """
+  watchPlayers: UserPartialInputManyToManyInput
+}
+
+input BattlePartialInputManyToManyInput {
+  add: [ID!]
+  addObjects: [BattlePartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [BattlePartialInput!]
+}
+
+input BattlePartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [BattlePartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [BattlePartialInput!]
+}
+
+input BattlePartialInputOneToManyInput {
+  set: ID
+  setObject: BattlePartialInput
+}
+
+"""
+战斗
+"""
+type BattleType {
+  _Str__: String!
+  """
+  行动
+  """
+  actionSet(
+    filters: ActionFilter
+    order: ActionOrder
+    pagination: OffsetPaginationInput
+  ): [ActionType!]!
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+  """
+  ID
+  """
+  id: ID!
+  """
+  是否p1胜利
+  """
+  isP1Win: Boolean
+  """
+  所属卡组
+  """
+  p1Deck: DeckType!
+  """
+  所属卡组
+  """
+  p2Deck: DeckType
+  """
+  用户
+  """
+  watchPlayers(
+    filters: UserFilter
+    order: UserOrder
+    pagination: OffsetPaginationInput
+  ): [UserType!]!
+}
+
 input BoolBaseFilterLookup {
   """
   Exact match. Filter will be skipped on `null` value
@@ -937,6 +1392,311 @@ input DatetimeDatetimeFilterLookup {
 input DatetimeRangeLookup {
   end: DateTime = null
   start: DateTime = null
+}
+
+input DeckFilter {
+  AND: DeckFilter
+  DISTINCT: Boolean
+  NOT: DeckFilter
+  OR: DeckFilter
+  """
+  内容
+  """
+  content: JSONFilterLookup
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+  """
+  删除日期
+  """
+  deletedAt: DatetimeDatetimeFilterLookup
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+  """
+  名称
+  """
+  name: StrFilterLookup
+  """
+  战斗
+  """
+  p1Battles: BattleFilter
+  """
+  战斗
+  """
+  p2Battles: BattleFilter
+  """
+  修改时间
+  """
+  updatedTime: DatetimeDatetimeFilterLookup
+  """
+  所属用户
+  """
+  user: UserFilter
+}
+
+input DeckInput {
+  """
+  内容
+  """
+  content: JSON!
+  """
+  名称
+  """
+  name: String!
+  """
+  战斗
+  """
+  p1Battles: BattlePartialInputManyToOneInput
+  """
+  战斗
+  """
+  p2Battles: BattlePartialInputManyToOneInput
+  """
+  所属用户
+  """
+  userId: ID
+}
+
+"""
+卡组
+"""
+type DeckNode implements Node {
+  _Str__: String!
+  """
+  内容
+  """
+  content: JSON!
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+  """
+  删除日期
+  """
+  deletedAt: DateTime
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+  """
+  名称
+  """
+  name: String!
+  """
+  战斗
+  """
+  p1Battles(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: BattleFilter
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: BattleOrder
+  ): BattleNodeConnection!
+  """
+  战斗
+  """
+  p2Battles(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: BattleFilter
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: BattleOrder
+  ): BattleNodeConnection!
+  """
+  修改时间
+  """
+  updatedTime: DateTime!
+  """
+  所属用户
+  """
+  user: UserType!
+}
+
+"""
+A connection to a list of items.
+"""
+type DeckNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [DeckNodeEdge!]!
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type DeckNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+  """
+  The item at the end of the edge
+  """
+  node: DeckNode!
+}
+
+input DeckOrder {
+  """
+  内容
+  """
+  content: Ordering
+  """
+  创建时间
+  """
+  createdTime: Ordering
+  """
+  删除日期
+  """
+  deletedAt: Ordering
+  """
+  ID
+  """
+  id: Ordering
+  """
+  名称
+  """
+  name: Ordering
+  """
+  战斗
+  """
+  p1Battles: BattleOrder
+  """
+  战斗
+  """
+  p2Battles: BattleOrder
+  """
+  修改时间
+  """
+  updatedTime: Ordering
+  """
+  所属用户
+  """
+  user: UserOrder
+}
+
+input DeckPartialInput {
+  """
+  内容
+  """
+  content: JSON
+  """
+  名称
+  """
+  name: String
+  """
+  战斗
+  """
+  p1Battles: BattlePartialInputManyToOneInput
+  """
+  战斗
+  """
+  p2Battles: BattlePartialInputManyToOneInput
+  """
+  所属用户
+  """
+  userId: ID
+}
+
+input DeckPartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [DeckPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [DeckPartialInput!]
+}
+
+input DeckPartialInputOneToManyInput {
+  set: ID
+  setObject: DeckPartialInput
+}
+
+"""
+卡组
+"""
+type DeckType {
+  _Str__: String!
+  """
+  内容
+  """
+  content: JSON!
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+  """
+  删除日期
+  """
+  deletedAt: DateTime
+  """
+  ID
+  """
+  id: ID!
+  """
+  名称
+  """
+  name: String!
+  """
+  战斗
+  """
+  p1Battles(
+    filters: BattleFilter
+    order: BattleOrder
+    pagination: OffsetPaginationInput
+  ): [BattleType!]!
+  """
+  战斗
+  """
+  p2Battles(
+    filters: BattleFilter
+    order: BattleOrder
+    pagination: OffsetPaginationInput
+  ): [BattleType!]!
+  """
+  修改时间
+  """
+  updatedTime: DateTime!
+  """
+  所属用户
+  """
+  user: UserType!
 }
 
 type DjangoImageType {
@@ -2159,6 +2919,10 @@ type LogType {
 }
 
 type Mutation {
+  createAction(data: ActionInput!): ActionType!
+  createActions(data: [ActionInput!]!, filters: ActionFilter): [ActionType!]!
+  createBattle(data: BattleInput!): BattleType!
+  createBattles(data: [BattleInput!]!, filters: BattleFilter): [BattleType!]!
   createChangeSet(data: ChangeSetInput!): ChangeSetType!
   createChangeSets(
     data: [ChangeSetInput!]!
@@ -2169,6 +2933,8 @@ type Mutation {
     data: [ContentTypeInput!]!
     filters: ContentTypeFilter
   ): [ContentTypeType!]!
+  createDeck(data: DeckInput!): DeckType!
+  createDecks(data: [DeckInput!]!, filters: DeckFilter): [DeckType!]!
   createDynamicConfiguration(
     data: DynamicConfigurationInput!
   ): DynamicConfigurationType!
@@ -2236,8 +3002,11 @@ type Mutation {
     data: [VerificationCodeInput!]!
     filters: VerificationCodeFilter
   ): [VerificationCodeType!]!
+  deleteActions(filters: ActionFilter): [ActionType!]!
+  deleteBattles(filters: BattleFilter): [BattleType!]!
   deleteChangeSets(filters: ChangeSetFilter): [ChangeSetType!]!
   deleteContentTypes(filters: ContentTypeFilter): [ContentTypeType!]!
+  deleteDecks(filters: DeckFilter): [DeckType!]!
   deleteDynamicConfigurations(
     filters: DynamicConfigurationFilter
   ): [DynamicConfigurationType!]!
@@ -2267,6 +3036,14 @@ type Mutation {
   logout: Boolean!
   sendVerificationEmail(email: String!): Boolean!
   su(username: String!): UserType!
+  updateActions(
+    data: ActionPartialInput!
+    filters: ActionFilter
+  ): [ActionType!]!
+  updateBattles(
+    data: BattlePartialInput!
+    filters: BattleFilter
+  ): [BattleType!]!
   updateChangeSets(
     data: ChangeSetPartialInput!
     filters: ChangeSetFilter
@@ -2275,6 +3052,7 @@ type Mutation {
     data: ContentTypePartialInput!
     filters: ContentTypeFilter
   ): [ContentTypeType!]!
+  updateDecks(data: DeckPartialInput!, filters: DeckFilter): [DeckType!]!
   updateDynamicConfigurations(
     data: DynamicConfigurationPartialInput!
     filters: DynamicConfigurationFilter
@@ -3161,6 +3939,60 @@ type PermissionType {
 }
 
 type Query {
+  Action(pk: ID!): ActionType!
+  ActionConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: ActionFilter
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: ActionOrder
+  ): ActionNodeConnection!
+  Actions(
+    filters: ActionFilter
+    order: ActionOrder
+    pagination: OffsetPaginationInput
+  ): [ActionType!]!
+  ActionsCount(filters: ActionFilter): Int!
+  Battle(pk: ID!): BattleType!
+  BattleConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: BattleFilter
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: BattleOrder
+  ): BattleNodeConnection!
+  Battles(
+    filters: BattleFilter
+    order: BattleOrder
+    pagination: OffsetPaginationInput
+  ): [BattleType!]!
+  BattlesCount(filters: BattleFilter): Int!
   ChangeSet(pk: ID!): ChangeSetType!
   ChangeSetConnection(
     """
@@ -3215,6 +4047,33 @@ type Query {
     pagination: OffsetPaginationInput
   ): [ContentTypeType!]!
   ContentTypesCount(filters: ContentTypeFilter): Int!
+  Deck(pk: ID!): DeckType!
+  DeckConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: DeckFilter
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: DeckOrder
+  ): DeckNodeConnection!
+  Decks(
+    filters: DeckFilter
+    order: DeckOrder
+    pagination: OffsetPaginationInput
+  ): [DeckType!]!
+  DecksCount(filters: DeckFilter): Int!
   DynamicConfiguration(pk: ID!): DynamicConfigurationType!
   DynamicConfigurationConnection(
     """
@@ -4746,6 +5605,20 @@ input StrFilterLookup {
 }
 
 type Subscription {
+  Action: ActionType!
+  Actions(
+    filters: ActionFilter
+    order: ActionOrder
+    pagination: OffsetPaginationInput
+  ): [ActionType!]!
+  ActionsCount(filters: ActionFilter): Int!
+  Battle: BattleType!
+  Battles(
+    filters: BattleFilter
+    order: BattleOrder
+    pagination: OffsetPaginationInput
+  ): [BattleType!]!
+  BattlesCount(filters: BattleFilter): Int!
   ChangeSet: ChangeSetType!
   ChangeSets(
     filters: ChangeSetFilter
@@ -4760,6 +5633,13 @@ type Subscription {
     pagination: OffsetPaginationInput
   ): [ContentTypeType!]!
   ContentTypesCount(filters: ContentTypeFilter): Int!
+  Deck: DeckType!
+  Decks(
+    filters: DeckFilter
+    order: DeckOrder
+    pagination: OffsetPaginationInput
+  ): [DeckType!]!
+  DecksCount(filters: DeckFilter): Int!
   DynamicConfiguration: DynamicConfigurationType!
   DynamicConfigurations(
     filters: DynamicConfigurationFilter
@@ -4881,9 +5761,17 @@ input UserFilter {
   NOT: UserFilter
   OR: UserFilter
   """
+  行动
+  """
+  action: ActionFilter
+  """
   创建时间
   """
   createdTime: DatetimeDatetimeFilterLookup
+  """
+  卡组
+  """
+  deck: DeckFilter
   """
   删除日期
   """
@@ -4948,13 +5836,25 @@ input UserFilter {
   账号
   """
   username: StrFilterLookup
+  """
+  战斗
+  """
+  watchBattles: BattleFilter
 }
 
 input UserInput {
   """
+  行动
+  """
+  actionSet: ActionPartialInputManyToOneInput
+  """
   头像
   """
   avatar: Upload
+  """
+  卡组
+  """
+  deckSet: DeckPartialInputManyToOneInput
   """
   电子邮件地址
   """
@@ -5007,6 +5907,10 @@ input UserInput {
   账号
   """
   username: String!
+  """
+  战斗
+  """
+  watchBattles: BattlePartialInputManyToManyInput
 }
 
 """
@@ -5015,6 +5919,29 @@ input UserInput {
 type UserNode implements Node {
   _Str__: String!
   """
+  行动
+  """
+  actionSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: ActionFilter
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: ActionOrder
+  ): ActionNodeConnection!
+  """
   头像
   """
   avatar: DjangoImageType
@@ -5022,6 +5949,29 @@ type UserNode implements Node {
   创建时间
   """
   createdTime: DateTime!
+  """
+  卡组
+  """
+  deckSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: DeckFilter
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: DeckOrder
+  ): DeckNodeConnection!
   """
   删除日期
   """
@@ -5200,6 +6150,29 @@ type UserNode implements Node {
   账号
   """
   username: String!
+  """
+  战斗
+  """
+  watchBattles(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: BattleFilter
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: BattleOrder
+  ): BattleNodeConnection!
 }
 
 """
@@ -5236,9 +6209,17 @@ type UserNodeEdge {
 
 input UserOrder {
   """
+  行动
+  """
+  action: ActionOrder
+  """
   创建时间
   """
   createdTime: Ordering
+  """
+  卡组
+  """
+  deck: DeckOrder
   """
   删除日期
   """
@@ -5303,13 +6284,25 @@ input UserOrder {
   账号
   """
   username: Ordering
+  """
+  战斗
+  """
+  watchBattles: BattleOrder
 }
 
 input UserPartialInput {
   """
+  行动
+  """
+  actionSet: ActionPartialInputManyToOneInput
+  """
   头像
   """
   avatar: Upload
+  """
+  卡组
+  """
+  deckSet: DeckPartialInputManyToOneInput
   """
   电子邮件地址
   """
@@ -5362,6 +6355,10 @@ input UserPartialInput {
   账号
   """
   username: String
+  """
+  战斗
+  """
+  watchBattles: BattlePartialInputManyToManyInput
 }
 
 input UserPartialInputManyToManyInput {
@@ -5378,6 +6375,14 @@ input UserPartialInputManyToManyInput {
 type UserType {
   _Str__: String!
   """
+  行动
+  """
+  actionSet(
+    filters: ActionFilter
+    order: ActionOrder
+    pagination: OffsetPaginationInput
+  ): [ActionType!]!
+  """
   头像
   """
   avatar: DjangoImageType
@@ -5385,6 +6390,14 @@ type UserType {
   创建时间
   """
   createdTime: DateTime!
+  """
+  卡组
+  """
+  deckSet(
+    filters: DeckFilter
+    order: DeckOrder
+    pagination: OffsetPaginationInput
+  ): [DeckType!]!
   """
   删除日期
   """
@@ -5473,6 +6486,14 @@ type UserType {
   账号
   """
   username: String!
+  """
+  战斗
+  """
+  watchBattles(
+    filters: BattleFilter
+    order: BattleOrder
+    pagination: OffsetPaginationInput
+  ): [BattleType!]!
 }
 
 input VerificationCodeFilter {
