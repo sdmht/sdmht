@@ -1905,6 +1905,9 @@ class 单位类 extends 目标类 {
         color: 'negative',
       })
     })
+    this.on('完全离场时', () => {
+      this.emit('角色销毁')
+    })
     this.on('吟唱时间变化', (参数: { 变化值: number }) => {
       if (this.弹幕)
         this.弹幕.吟唱时间 = Math.max(0, this.弹幕.吟唱时间 + 参数.变化值)
