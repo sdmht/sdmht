@@ -1555,12 +1555,6 @@ class 效果类 extends 基类 {
         _.set(目标, this.效果, true)
         目标.emit(`${this.效果}变化时`)
       }
-      if (目标 instanceof 单位类) {
-        行动队列类.发送通知({
-          message: `${目标.卡牌名称}${this.描述}，发动者：${this.发动者.卡牌名称}`,
-          color: 发动者.是否我方 == 目标.是否我方 ? 'blue' : 'red',
-        })
-      }
     })
     this.on('效果结束', () => {
       this.是否已结束 = true
@@ -2107,7 +2101,7 @@ class 单位类 extends 目标类 {
     this.玩家.emit('手牌数量变化时')
     行动队列类.发送通知({
       message: `装填弹幕：${弹幕卡.卡牌名称}`,
-      caption: this.描述,
+      caption: 弹幕卡.描述,
       color: this.是否我方 ? 'blue' : 'red',
     })
     return true
