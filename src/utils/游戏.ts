@@ -59,15 +59,20 @@ class 随机类 {
     return this.乱序(列表).slice(0, 数量)
   }
 }
-class 基类 extends EventEmitter {
+class 事件类 extends EventEmitter {
+  emit(eventName: string | symbol, ...args: unknown[]): boolean {
+    console.log(this.constructor.name, eventName, ...args, this)
+    nextTick(() => {
+      super.emit(eventName, ...args)
+    })
+    return super.listenerCount(eventName) > 0
+  }
+}
+class 基类 extends 事件类 {
   id: number
   constructor() {
     super()
     this.id = 随机类.随机数()
-  }
-  emit(eventName: string | symbol, ...args: unknown[]): boolean {
-    console.log(this.constructor.name, eventName, ...args, this)
-    return super.emit(eventName, ...args)
   }
 }
 class 目标类 extends 基类 {
@@ -1196,9 +1201,7 @@ class 技能类 extends 基类 {
           }
           break
       }
-      nextTick(() => {
-        this.emit('触发时')
-      })
+      this.emit('触发时')
     })
     switch (this.何时触发) {
       case '发动时':
@@ -1872,15 +1875,13 @@ class 单位类 extends 目标类 {
       this.emit('移动力变化时')
     })
     this.on('离场', () => {
-      nextTick(() => {
-        if (!this.因合体离场) {
-          this.emit('离场时')
-          if (!this.未完全离场) {
-            this.emit('完全离场')
-          }
+      if (!this.因合体离场) {
+        this.emit('离场时')
+        if (!this.未完全离场) {
+          this.emit('完全离场')
         }
-        this.emit('角色销毁')
-      })
+      }
+      this.emit('角色销毁')
     })
     this.on('角色销毁', () => {
       _.remove(目标类.目标列表, (v) => v.id === this.id)
@@ -1915,9 +1916,7 @@ class 单位类 extends 目标类 {
       if (this.秘术) {
         this.秘术.技能 = new 技能类(this.秘术.技能编号, this)
         this.秘术.技能.once('触发时', () => {
-          nextTick(() => {
-            this.emit('秘术变化', { 变化值: undefined })
-          })
+          this.emit('秘术变化', { 变化值: undefined })
         })
         行动队列类.发送通知({
           message: `${
@@ -2952,7 +2951,7 @@ function 游戏开始前(先手是否我方: boolean) {
   游戏开始前执行的函数 = []
 }
 class 玩家类 extends 目标类 {
-  static 事件 = new EventEmitter()
+  static 事件 = new 事件类()
   static 游戏已开始 = false
   static 我方回合?: boolean
   static 行动点 = 10
