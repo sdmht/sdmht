@@ -554,7 +554,7 @@ class 技能类 extends 基类 {
         case '召唤编号为效果值的单位':
           this.目标列表.forEach((v) => {
             if (v instanceof 位置类) {
-              new 附属神类(v.玩家, this.效果值[0], v)
+              new 附属神类(v.玩家, this.效果值[0], v, undefined, true)
             }
           })
           break
@@ -1176,7 +1176,7 @@ class 技能类 extends 基类 {
             const 召唤物编号 = 随机类.乱序(this.效果值)[0]
             this.目标列表.forEach((v) => {
               if (v instanceof 位置类) {
-                new 附属神类(this.携带者.玩家, 召唤物编号, v)
+                new 附属神类(this.携带者.玩家, 召唤物编号, v, undefined, true)
               }
             })
           }
@@ -2510,20 +2510,25 @@ class 附属神类 extends 单位类 {
     编号: number,
     位置: 位置类,
     初始生命值上限?: number,
+    召唤物?: boolean
   ) {
     super(玩家, 编号, 位置)
     const 信息 = 获得附属神信息(编号)
     this.阵营 = 信息.阵营
-    switch (信息.类型) {
-      case 1:
-        this.类型 = '附属神'
-        break
-      case 2:
-        this.类型 = '召唤物'
-        break
-      case 3:
-        this.类型 = '祭坛'
-        break
+    if (召唤物) {
+      this.类型 = '召唤物'
+    } else {
+      switch (信息.类型) {
+        case 1:
+          this.类型 = '附属神'
+          break
+        case 2:
+          this.类型 = '召唤物'
+          break
+        case 3:
+          this.类型 = '祭坛'
+          break
+      }
     }
     this.基础攻击力 = 信息.攻击力
     this.生命上限 = 信息.生命值
@@ -3207,6 +3212,5 @@ export {
   目标类,
   神迹卡类,
   附属神类,
-  随机类
+  随机类,
 }
-
