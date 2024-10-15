@@ -2107,7 +2107,7 @@ class 单位类 extends 目标类 {
     this.玩家.emit('手牌数量变化时')
     行动队列类.发送通知({
       message: `装填弹幕：${弹幕卡.卡牌名称}`,
-      caption: this.描述,
+      caption: 弹幕卡.描述,
       color: this.是否我方 ? 'blue' : 'red',
     })
     return true
