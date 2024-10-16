@@ -60,10 +60,20 @@ class 随机类 {
   }
 }
 class 事件类 extends EventEmitter {
+  static 总数 = 0
+  static 已完成数 = 0
   emit(eventName: string | symbol, ...args: unknown[]): boolean {
     console.log(this.constructor.name, eventName, ...args, this)
-    nextTick(() => {
-      super.emit(eventName, ...args)
+    const 顺序 = 事件类.总数++
+    nextTick(async () => {
+      while (true) {
+        if (事件类.已完成数 === 顺序) {
+          super.emit(eventName, ...args)
+          事件类.已完成数 = 顺序 + 1
+          break
+        }
+        await 等待(0.01)
+      }
     })
     return super.listenerCount(eventName) > 0
   }
