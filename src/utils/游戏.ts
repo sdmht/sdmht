@@ -2884,56 +2884,58 @@ class 神迹卡类 extends 牌类 {
     if (this.玩家.无效化下次使用的神迹卡) {
       this.玩家.无效化下次使用的神迹卡 = false
       行动队列类.发送通知({
-        message: '争议',
+        message: '秘术触发：争议',
         color: 'negative',
       })
-    } else if (this.类型 == '秘术卡') {
-      const 我方单位列表 = this.我方(单位类).filter((v) => v.可否装填)
-      let 选中的单位索引: number | null = null
-      if (this.是否我方) {
-        选中的单位索引 = await new Promise<number>((resolve) => {
-          Dialog.create({
-            title: '选择',
-            options: {
-              model: '0',
-              items: 我方单位列表.map((v, i) => ({
-                value: `${i}`,
-                label: `${v.类型}${v.卡牌名称}，第${v.位置.行}，第行${v.位置.列}列`,
-              })),
-            },
-            cancel: false,
-            persistent: true,
-          }).onOk((v) => {
-            resolve(v)
+    } else {
+      if (this.类型 == '秘术卡') {
+        const 我方单位列表 = this.我方(单位类).filter((v) => v.可否装填)
+        let 选中的单位索引: number | null = null
+        if (this.是否我方) {
+          选中的单位索引 = await new Promise<number>((resolve) => {
+            Dialog.create({
+              title: '选择',
+              options: {
+                model: '0',
+                items: 我方单位列表.map((v, i) => ({
+                  value: `${i}`,
+                  label: `${v.类型}${v.卡牌名称}，第${v.位置.行}，第行${v.位置.列}列`,
+                })),
+              },
+              cancel: false,
+              persistent: true,
+            }).onOk((v) => {
+              resolve(v)
+            })
           })
-        })
-        行动队列类.行动队列.添加(['选择', this.id, 选中的单位索引])
-      } else {
-        选中的单位索引 = await new Promise<number>((resolve) => {
-          const handler = (是否我方: boolean, 行动: 行动类型) => {
-            if (行动[0] == '选择' && 行动[1] == this.id) {
-              行动队列类.行动队列.removeListener('结算', handler)
-              resolve(行动[2])
+          行动队列类.行动队列.添加(['选择', this.id, 选中的单位索引])
+        } else {
+          选中的单位索引 = await new Promise<number>((resolve) => {
+            const handler = (是否我方: boolean, 行动: 行动类型) => {
+              if (行动[0] == '选择' && 行动[1] == this.id) {
+                行动队列类.行动队列.removeListener('结算', handler)
+                resolve(行动[2])
+              }
             }
-          }
-          行动队列类.行动队列.on('结算', handler)
+            行动队列类.行动队列.on('结算', handler)
+          })
+        }
+        秘术装填单位 = 我方单位列表[选中的单位索引]
+      }
+      if (秘术装填单位) {
+        秘术装填单位.emit('秘术变化', { 变化值: this })
+        this.玩家.emit('使用神迹卡时', { 神迹卡: this })
+      } else if (this.类型 === '神迹卡') {
+        行动队列类.发送通知({
+          message: `使用神迹：${this.卡牌名称}`,
+          caption: this.描述,
+          color: this.是否我方 ? 'blue' : 'red',
+        })
+        this.技能 = new 技能类(this.技能编号, this.玩家.主神)
+        this.技能.once('触发时', () => {
+          this.玩家.emit('使用神迹卡时', { 神迹卡: this })
         })
       }
-      秘术装填单位 = 我方单位列表[选中的单位索引]
-    }
-    if (秘术装填单位) {
-      秘术装填单位.emit('秘术变化', { 变化值: this })
-      this.玩家.emit('使用神迹卡时', { 神迹卡: this })
-    } else if (this.类型 === '神迹卡') {
-      行动队列类.发送通知({
-        message: `使用神迹：${this.卡牌名称}`,
-        caption: this.描述,
-        color: this.是否我方 ? 'blue' : 'red',
-      })
-      this.技能 = new 技能类(this.技能编号, this.玩家.主神)
-      this.技能.once('触发时', () => {
-        this.玩家.emit('使用神迹卡时', { 神迹卡: this })
-      })
     }
     this.玩家.emit('手牌数量变化时')
   }
