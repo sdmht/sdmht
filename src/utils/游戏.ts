@@ -813,7 +813,6 @@ class 技能类 extends 基类 {
         case '在随机格迷雾内以效果值点生命值复活（不超过生命上限）':
           this.目标列表.forEach((v) => {
             if (v instanceof 单位类 && v.生命上限 > 0) {
-              v.未完全离场 = true
               const 位置 = _.sortBy(
                 随机类.乱序(v.我方(位置类).filter((l) => !l.单位)),
                 (l) => (l.迷雾 ? -1 : 1)
@@ -1721,7 +1720,6 @@ class 单位类 extends 目标类 {
   可否移动 = true
   可否攻击 = true
   可否装填 = true
-  未完全离场 = false
   弹幕?: 弹幕卡类
   秘术?: 神迹卡类
   坚壁: 单位类[] = []
@@ -1896,7 +1894,13 @@ class 单位类 extends 目标类 {
     })
     this.on('离场', () => {
       this.emit('离场时')
-      if (!this.未完全离场) {
+      行动队列类.发送通知({
+        message: `${this.是否我方 ? '我方' : '敌方'}${this.类型}${
+          this.卡牌名称
+        }离场`,
+        color: 'negative',
+      })
+      if (this.秘术?.编号 != 36032) {
         this.emit('完全离场')
       }
     })
@@ -1937,6 +1941,10 @@ class 单位类 extends 目标类 {
         this.秘术.技能 = new 技能类(this.秘术.技能编号, this)
         this.秘术.技能.once('触发时', () => {
           this.emit('秘术变化', { 变化值: undefined })
+          行动队列类.发送通知({
+            message: `${'秘术发动：' + this.秘术?.卡牌名称}`,
+            color: this.是否我方 ? 'blue' : 'red',
+          })
         })
         行动队列类.发送通知({
           message: `${
