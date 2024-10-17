@@ -3052,7 +3052,13 @@ class 玩家类 extends 目标类 {
       }
     )
     this.on('弃牌', (参数: { 数量: number }) => {
-      随机类.抽样列表(this.手牌, 参数.数量).forEach((x) => (x.已弃置 = true))
+      随机类.抽样列表(this.手牌, 参数.数量).forEach((x) => {
+        x.已弃置 = true
+        行动队列类.发送通知({
+          message: `${this.是否我方 ? '我方' : '敌方'}弃掉了${x.卡牌名称}`,
+          color: this.是否我方 ? 'blue' : 'red',
+        })
+      })
       this.emit('手牌数量变化时')
     })
     this.on('祈愿倒计时变化', (参数: { 变化值: number }) => {
