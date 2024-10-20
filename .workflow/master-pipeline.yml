@@ -30,13 +30,8 @@ stages:
           - yum install --repo baseos -y rsync
           - rsync --version
           - export RSYNC_PASSWORD='${RSYNC_PASSWORD}'
-          - set +e
-          - while true; do
-          - rsync -chrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
-          - if [ $? -eq 0 ]; then break; fi; done
-          - while true; do
-          - rsync -chrvz --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
-          - if [ $? -eq 0 ]; then break; fi; done
+          - rsync -achrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+          - rsync -achrvz --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
         caches:
           - node_modules
 strategy:
