@@ -22,7 +22,7 @@ stages:
         nodeVersion: 18.16.0
         commands:
           - set -e
-          - yarn
+          - yarn install --registry https://registry.npmmirror.com
           - yarn build -m pwa
           - export RSYNC_PASSWORD=${RSYNC_PASSWORD}
           - rsync -chrvz --mkpath --chmod 775 --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
