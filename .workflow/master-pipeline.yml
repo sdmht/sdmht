@@ -24,6 +24,7 @@ stages:
           - set -e
           - yarn
           - yarn build -m pwa
+          - export RSYNC_PASSWORD=${RSYNC_PASSWORD}
           - rsync -chrvz --mkpath --chmod 775 --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
           - rsync -chrvz --mkpath --chmod 775 --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
         caches:
