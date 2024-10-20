@@ -1,0 +1,34 @@
+version: '1.0'
+name: master-pipeline
+displayName: MasterPipeline
+triggers:
+  trigger: auto
+  push:
+    branches:
+      include:
+        - master
+    paths:
+      precise:
+        - package.json
+stages:
+  - name: compile
+    displayName: 编译并上传
+    strategy: naturally
+    trigger: auto
+    steps:
+      - step: build@nodejs
+        name: build_nodejs
+        displayName: Nodejs 构建
+        nodeVersion: 18.16.0
+        commands:
+          - set -e
+          - yarn
+          - yarn build -m pwa
+          - rsync -chrvz --mkpath --chmod '775' --exclude 'service-worker.js' './dist/pwa/' 'star2000:/srv/http/sdmht/'
+          - rsync -chrvz --mkpath --chmod '775' --delete-after './dist/pwa/' 'star2000:/srv/http/sdmht/'
+        caches:
+          - node_modules
+          - ~/.cache/electron
+          - ~/.cache/electron-builder
+        strategy:
+          retry: '1'
