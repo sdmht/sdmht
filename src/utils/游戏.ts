@@ -1964,6 +1964,7 @@ class 单位类 extends 目标类 {
       this.弹幕 = 弹幕卡
       if (弹幕卡.技能编号) new 技能类(弹幕卡.技能编号, this)
       弹幕卡.已使用 = true
+      this.emit('吟唱时间变化时')
     })
     this.on('净化', () => {
       this.雷印 = 0
