@@ -29,8 +29,13 @@ stages:
           - yarn build -m pwa
           - yum install --repo baseos -y rsync
           - export RSYNC_PASSWORD='${RSYNC_PASSWORD}'
-          - rsync -chrvvvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
-          - rsync -chrvvvz --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+          - set +e
+          - while true; do
+          - rsync -chrvvvz --partial --append --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+          - if [ $? -eq 0 ]; then break; fi; done
+          - while true; do
+          - rsync -chrvvvz --partial --append --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+          - if [ $? -eq 0 ]; then break; fi; done
         caches:
           - node_modules
 strategy:
