@@ -28,6 +28,7 @@ stages:
           - yarn
           - yarn build -m pwa
           - yum install --repo baseos -y rsync
+          - rsync --version
           - export RSYNC_PASSWORD='${RSYNC_PASSWORD}'
           - set +e
           - while true; do
