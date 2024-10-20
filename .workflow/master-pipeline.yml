@@ -24,8 +24,8 @@ stages:
           - set -e
           - yarn
           - yarn build -m pwa
-          - rsync -chrvz --mkpath --chmod 775 --exclude service-worker.js ./dist/pwa/ sdmht.star2000.work::sdmht
-          - rsync -chrvz --mkpath --chmod 775 --delete-after ./dist/pwa/ sdmht.star2000.work::sdmht
+          - rsync -chrvz --mkpath --chmod 775 --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+          - rsync -chrvz --mkpath --chmod 775 --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
         caches:
           - node_modules
         strategy:
