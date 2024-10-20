@@ -24,15 +24,16 @@ stages:
         displayName: Nodejs 构建
         nodeVersion: 18.16.0
         commands:
-          - set -e
-          - yarn
-          - yarn build -m pwa
-          - yum --help
+          - yarn && yarn build -m pwa
+          - yum install --help
           - yum install -y rsync
           - export RSYNC_PASSWORD='${RSYNC_PASSWORD}'
-          - rsync --help
+          - while true; do
           - rsync -chrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+          - if [ $? -eq 0 ]; then; break; fi; done
+          - while true; do
           - rsync -chrvz --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+          - if [ $? -eq 0 ]; then; break; fi; done
         caches:
           - node_modules
         strategy:
