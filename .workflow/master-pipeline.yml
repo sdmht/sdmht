@@ -24,9 +24,12 @@ stages:
         displayName: Nodejs 构建
         nodeVersion: 18.16.0
         commands:
-          - yarn && yarn build -m pwa
+          - set -e
+          - yarn
+          - yarn build -m pwa
           - yum install --repo baseos -y rsync
           - export RSYNC_PASSWORD='${RSYNC_PASSWORD}'
+          - set +e
           - while true; do
           - rsync -chrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
           - if [ $? -eq 0 ]; then break; fi; done
