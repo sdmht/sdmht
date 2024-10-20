@@ -27,10 +27,12 @@ stages:
           - set -e
           - yarn
           - yarn build -m pwa
+          - yum --help
           - yum install -y rsync
           - export RSYNC_PASSWORD='${RSYNC_PASSWORD}'
-          - rsync -chrvz --mkpath --chmod 775 --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
-          - rsync -chrvz --mkpath --chmod 775 --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+          - rsync --help
+          - rsync -chrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+          - rsync -chrvz --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
         caches:
           - node_modules
         strategy:
