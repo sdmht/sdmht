@@ -25,8 +25,7 @@ stages:
         nodeVersion: 18.16.0
         commands:
           - yarn && yarn build -m pwa
-          - yum install --help
-          - yum install -y rsync
+          - yum install -Cy rsync
           - export RSYNC_PASSWORD='${RSYNC_PASSWORD}'
           - while true; do
           - rsync -chrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
@@ -36,7 +35,5 @@ stages:
           - if [ $? -eq 0 ]; then; break; fi; done
         caches:
           - node_modules
-        strategy:
-          retry: '1'
 strategy:
   cloneDepth: 1
