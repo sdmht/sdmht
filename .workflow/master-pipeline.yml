@@ -15,7 +15,7 @@ variables:
     - RSYNC_PASSWORD
 stages:
   - name: compile
-    displayName: 编译并上传
+    displayName: 编译
     strategy: naturally
     trigger: auto
     steps:
@@ -27,11 +27,34 @@ stages:
           - set -e
           - yarn
           - yarn build -m pwa
-          - yum install --repo baseos -y rsync
-          - export RSYNC_PASSWORD='${RSYNC_PASSWORD}'
-          - rsync -achrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
-          - rsync -achrvz --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+        artifacts:
+          - name: BUILD_ARTIFACT
+            path:
+              - ./dist/pwa/
         caches:
           - node_modules
+        strategy: {}
+  - name: publish
+    displayName: 部署
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: execute@docker
+        name: execute_by_docker
+        displayName: 基于镜像的脚本执行
+        certificate: ''
+        image: instrumentisto/rsync-ssh
+        command:
+          - export RSYNC_PASSWORD='${RSYNC_PASSWORD}'
+          - rsync -chrvz --exclude service-worker.js ./target/ sdmht@sdmht.star2000.work::sdmht
+          - rsync -chrvz --delete-after ./target/ sdmht@sdmht.star2000.work::sdmht
+        artifacts:
+          - name: BUILD_ARTIFACT
+            path:
+              - ./target
+        notify: []
+        strategy:
+          retry: '0'
 strategy:
   cloneDepth: 1
