@@ -1908,11 +1908,8 @@ class 单位类 extends 目标类 {
       _.remove(目标类.目标列表, (v) => v.id === this.id)
       this.技能列表.forEach((v) => (v.是否禁用 = true))
       播放音频('prefab/pvp/effect1.mp3')
-      this.动画.state.setAnimation(0, 'hurt', false)
       播放死亡语音(this.美术资源)
-      等待(this.动画.spineData.findAnimation('hurt')?.duration || 0).then(() =>
-        this.角色.destroy()
-      )
+      this.角色.destroy()
     })
     this.on('完全离场', () => {
       this.emit('完全离场时')
