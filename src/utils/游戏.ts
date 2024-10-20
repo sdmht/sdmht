@@ -2882,6 +2882,11 @@ class 神迹卡类 extends 牌类 {
     if (this.玩家.无效化下次使用的神迹卡) {
       this.玩家.无效化下次使用的神迹卡 = false
       行动队列类.发送通知({
+        message: `使用神迹：${this.卡牌名称}`,
+        caption: this.描述,
+        color: this.是否我方 ? 'blue' : 'red',
+      })
+      行动队列类.发送通知({
         message: '秘术触发：争议',
         color: 'negative',
       })
