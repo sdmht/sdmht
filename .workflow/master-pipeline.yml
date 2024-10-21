@@ -37,7 +37,7 @@ stages:
           - fi
           - rm -f gost_lastest_release
           - export RSYNC_PASSWORD='${RSYNC_PASSWORD}'
-          - ~/.cache/gost/gost -L=:8080 -F=kcp://sdmht:$RSYNC_PASSWORD@sdmht.star2000.work:8388
+          - ~/.cache/gost/gost -L=:8080 -F=kcp://sdmht:$RSYNC_PASSWORD@sdmht.star2000.work:8388 &
           - export RSYNC_PROXY=127.0.0.1:8080
           - yarn
           - yarn build -m pwa
