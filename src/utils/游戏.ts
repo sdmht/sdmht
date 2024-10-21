@@ -28,7 +28,6 @@ import {
   播放音频,
 } from './播放音频'
 import { 初始数据类型, 行动类型 } from './数据通道'
-import { 等待 } from './等待'
 import { 获得资源 } from './美术资源'
 import { 行动队列类 } from './行动队列'
 
@@ -64,18 +63,7 @@ class 事件类 extends EventEmitter {
   static 已完成数 = 0
   emit(eventName: string | symbol, ...args: unknown[]): boolean {
     console.log(this.constructor.name, eventName, ...args, this)
-    const 顺序 = 事件类.总数++
-    nextTick(async () => {
-      while (true) {
-        if (事件类.已完成数 === 顺序) {
-          super.emit(eventName, ...args)
-          事件类.已完成数 = 顺序 + 1
-          break
-        }
-        await 等待(0.01)
-      }
-    })
-    return super.listenerCount(eventName) > 0
+    return super.emit(eventName, ...args)
   }
 }
 class 基类 extends 事件类 {
@@ -150,6 +138,7 @@ class 技能类 extends 基类 {
     '76': '被攻击离场时',
     '77': '完全离场时',
     '78': '敌方附属神离场时',
+    '200': '离场前',
   }
   static 技能目标类型: Record<string, string> = {
     '0': '',
@@ -828,6 +817,7 @@ class 技能类 extends 基类 {
               v.emit('攻击力变化时')
               v.生命值 = Math.min(v.生命上限, this.效果值[0])
               v.emit('生命值变化时')
+              v.莫非王土 = true
             }
           })
           break
@@ -1239,6 +1229,7 @@ class 技能类 extends 基类 {
       case '被攻击离场时':
       case '生命值增加时':
       case '离场时':
+      case '离场前':
       case '完全离场时':
       case '装填弹幕时':
         this.携带者.on(this.何时触发, (参数) => this.触发(参数))
@@ -1713,6 +1704,7 @@ class 单位类 extends 目标类 {
   美术资源: number[] = []
   阵营!: number
   类型!: string
+  莫非王土 = false
   get 移动消耗() {
     return this.本回合移动次数 ? 0 : 1
   }
@@ -1893,6 +1885,12 @@ class 单位类 extends 目标类 {
       this.emit('移动力变化时')
     })
     this.on('离场', () => {
+      this.emit('离场前')
+      if (this.莫非王土) {
+        this.莫非王土 = false
+      } else {
+        _.remove(目标类.目标列表, (v) => v.id === this.id)
+      }
       this.emit('离场时')
       行动队列类.发送通知({
         message: `${this.是否我方 ? '我方' : '敌方'}${this.类型}${
@@ -1900,9 +1898,7 @@ class 单位类 extends 目标类 {
         }离场`,
         color: 'negative',
       })
-      if (this.秘术?.编号 != 36032) {
-        this.emit('完全离场')
-      }
+      if (!this.莫非王土) this.emit('完全离场')
     })
     this.on('角色销毁', () => {
       _.remove(目标类.目标列表, (v) => v.id === this.id)
@@ -1914,6 +1910,7 @@ class 单位类 extends 目标类 {
     this.on('完全离场', () => {
       this.emit('完全离场时')
       this.位置.单位 = undefined
+      this.emit('角色销毁')
       行动队列类.发送通知({
         message: `${this.是否我方 ? '我方' : '敌方'}${this.类型}${
           this.卡牌名称
@@ -1921,9 +1918,7 @@ class 单位类 extends 目标类 {
         color: 'negative',
       })
     })
-    this.on('完全离场时', () => {
-      this.emit('角色销毁')
-    })
+
     this.on('吟唱时间变化', (参数: { 变化值: number }) => {
       if (this.弹幕)
         this.弹幕.吟唱时间 = Math.max(0, this.弹幕.吟唱时间 + 参数.变化值)
@@ -1937,11 +1932,11 @@ class 单位类 extends 目标类 {
       if (this.秘术) {
         this.秘术.技能 = new 技能类(this.秘术.技能编号, this)
         this.秘术.技能.once('触发时', () => {
-          this.emit('秘术变化', { 变化值: undefined })
           行动队列类.发送通知({
             message: `${'秘术发动：' + this.秘术?.卡牌名称}`,
             color: this.是否我方 ? 'blue' : 'red',
           })
+          this.emit('秘术变化', { 变化值: undefined })
         })
         行动队列类.发送通知({
           message: `${
@@ -2887,7 +2882,7 @@ class 神迹卡类 extends 牌类 {
         color: this.是否我方 ? 'blue' : 'red',
       })
       行动队列类.发送通知({
-        message: '秘术触发：争议',
+        message: '秘术发动：争议',
         color: 'negative',
       })
     } else {
