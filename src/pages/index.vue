@@ -16,12 +16,12 @@
       <ol>
         反馈渠道
         <li>QQ群：102804509</li>
-        <li>源代码仓库议题：https://gitee.com/star2000/sdmht/issues</li>
+        <li>源代码仓库议题：https://github.com/star2000/sdmht/issues</li>
       </ol>
       <ol>
         参与开发
         <li>
-          教程：https://gitee.com/star2000/sdmht/blob/master/参与开发教程.md
+          教程：https://github.com/star2000/sdmht/blob/main/参与开发教程.md
         </li>
       </ol>
     </div>
