@@ -1886,8 +1886,10 @@ class 单位类 extends 目标类 {
     })
     this.on('离场', () => {
       this.emit('离场前')
+      let _莫非王土 = false
       if (this.莫非王土) {
         this.莫非王土 = false
+        _莫非王土 = true
       } else {
         _.remove(目标类.目标列表, (v) => v.id === this.id)
       }
@@ -1898,7 +1900,7 @@ class 单位类 extends 目标类 {
         }离场`,
         color: 'negative',
       })
-      if (!this.莫非王土) this.emit('完全离场')
+      if (!_莫非王土) this.emit('完全离场')
     })
     this.on('角色销毁', () => {
       _.remove(目标类.目标列表, (v) => v.id === this.id)
