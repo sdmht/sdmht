@@ -278,30 +278,6 @@ module.exports = configure(function (ctx) {
 
       builder: {
         // https://www.electron.build/configuration/configuration
-
-        asar: false,
-        appId: 'sdmht',
-        npmRebuild: false,
-        win: {
-          target: ['nsis'],
-        },
-        appx: {
-          applicationId: 'sdmht',
-          identityName: '',
-          publisher: 'CN=DAEDB467-37AD-45E0-ABC2-F8D31A662066',
-          languages: 'zh-CN',
-        },
-        publish: {
-          provider: 'generic',
-          url: 'https://sdmhtexe.star2000.work/',
-        },
-        nsis: {
-          oneClick: false,
-          perMachine: true,
-          allowToChangeInstallationDirectory: true,
-        },
-        electronLanguages: ['zh-CN'],
-        files: [],
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
