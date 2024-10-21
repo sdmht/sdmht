@@ -25,19 +25,28 @@ stages:
         nodeVersion: 18.16.0
         commands:
           - set -e
+          - yum install --repo baseos -y rsync
+          - mkdir -p ~/.cache/gost
+          - curl -so gost_lastest_release https://api.github.com/repos/ginuerzh/gost/releases/latest
+          - gost_version=$(cat gost_lastest_release | grep tag_name | grep -o '[v0-9.]*')
+          - if [ ! -f ~/.cache/gost_version ] || [ $(cat ~/.cache/gost_version) != $gost_version ]; then
+          - curl -so ~/.cache/gost.tar.gz "https://ghp.ci/$(cat gost_lastest_release | grep -o 'https://.*_linux_amd64\.tar\.gz')"
+          - tar -zxf ~/.cache/gost.tar.gz -C ~/.cache/gost
+          - rm -f ~/.cache/gost.tar.gz
+          - echo $gost_version > ~/.cache/gost_version
+          - fi
+          - rm -f gost_lastest_release
+          - alias gost=~/.cache/gost/gost
+          - export RSYNC_PASSWORD='${RSYNC_PASSWORD}'
+          - gost -L=:8080 -F=kcp://sdmht:$RSYNC_PASSWORD@sdmht.star2000.work:8388
+          - export RSYNC_PROXY=127.0.0.1:8080
           - yarn
           - yarn build -m pwa
-          - yum install --repo baseos -y rsync
-          - export RSYNC_PASSWORD='${RSYNC_PASSWORD}'
-          - set +e
-          - while true; do
-          - rsync -chrvz --partial --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
-          - if [ $? -eq 0 ]; then break; fi; done
-          - while true; do
-          - rsync -chrvz --partial --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
-          - if [ $? -eq 0 ]; then break; fi; done
+          - rsync -chrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+          - rsync -chrvz --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
         caches:
           - node_modules
+          - ~/.cache
         strategy:
           timeout: 20
           retry: '0'
