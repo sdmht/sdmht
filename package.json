@@ -19,11 +19,18 @@
   "dependencies": {
     "@apollo/client": "^3.11.1",
     "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/client-preset": "4.3.2",
+    "@graphql-codegen/introspection": "^4.0.3",
     "@khmyznikov/pwa-install": "^0.4.5",
+    "@parcel/watcher": "^2.4.1",
     "@pixi/filter-glow": "^5.2.1",
     "@pixi/ui": "^1",
     "@quasar/app-webpack": "^3.13.0",
     "@quasar/extras": "^1.16.4",
+    "@types/howler": "^2.2.11",
+    "@types/lodash": "^4.17.7",
+    "@types/node": "^18",
+    "@types/simple-peer": "^9.11.8",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
     "@vue/apollo-composable": "^4.0.2",
@@ -54,13 +61,6 @@
     "workbox-webpack-plugin": "^7.0.0"
   },
   "devDependencies": {
-    "@graphql-codegen/client-preset": "4.3.2",
-    "@graphql-codegen/introspection": "^4.0.3",
-    "@parcel/watcher": "^2.4.1",
-    "@types/howler": "^2.2.11",
-    "@types/lodash": "^4.17.7",
-    "@types/node": "^18",
-    "@types/simple-peer": "^9.11.8",
     "concurrently": "^8.2.2"
   },
   "resolutions": {
