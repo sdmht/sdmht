@@ -1205,7 +1205,9 @@ class 技能类 extends 基类 {
           }
           break
       }
-      this.emit('触发时')
+      nextTick(() => {
+        this.emit('触发时')
+      })
     })
     switch (this.何时触发) {
       case '发动时':
