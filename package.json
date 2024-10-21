@@ -11,7 +11,7 @@
     "l": "yarn lint --fix && yarn format",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
-    "build": "quasar build -P always",
+    "build": "quasar build -m pwa",
     "prec": "graphql-codegen --require dotenv/config --config src/gen/gen_schema.ts || exit 0",
     "c": "graphql-codegen --config src/gen/gen_gql.ts",
     "d": "concurrently \"yarn dev\" \"yarn c\""
