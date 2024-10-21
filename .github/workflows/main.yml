@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - package.json
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: 编译并部署
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - env:
+          RSYNC_PASSWORD: ${{ secrets.RSYNC_PASSWORD }}
+        run: |
+          yarn install --prod
+          yarn build
+          apt install -y rsync
+          rsync -chrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+          rsync -chrvz --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
