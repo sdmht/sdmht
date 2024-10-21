@@ -18,6 +18,6 @@ jobs:
         run: |
           yarn install --prod
           yarn build
-          apt install -y rsync
+          sudo apt install -y rsync
           rsync -chrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
           rsync -chrvz --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
