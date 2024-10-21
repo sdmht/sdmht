@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.11.1",
+    "@graphql-codegen/cli": "5.0.2",
     "@khmyznikov/pwa-install": "^0.4.5",
     "@pixi/filter-glow": "^5.2.1",
     "@pixi/ui": "^1",
@@ -53,7 +54,6 @@
     "workbox-webpack-plugin": "^7.0.0"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "5.0.2",
     "@graphql-codegen/client-preset": "4.3.2",
     "@graphql-codegen/introspection": "^4.0.3",
     "@parcel/watcher": "^2.4.1",
