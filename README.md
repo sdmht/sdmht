@@ -8,15 +8,7 @@
 
 ## 使用
 
-### Windows 版（推荐）
-
-[安装包下载链接](https://sdmhtexe.star2000.work/latest.exe)
-
-### 网页版
-
-但资源加载受网速影响，体验不如安装版
-
-[网页链接](https://sdmht.star2000.work/)
+任意设备使用可安装渐进式 Web 应用的浏览器（比如 Edge 或 Chrome）访问并安装 https://sdmht.star2000.work 。然后回到桌面打开神代梦华谭
 
 ## 开发相关
 
@@ -44,6 +36,8 @@ yarn l
 2.  新建 Feat_xxx 分支
 3.  提交代码
 4.  新建 Pull Request
+
+如果要改多次，也可以申请成为本项目的协作者，然后直接在本仓库提交代码
 
 ## 其他
 
