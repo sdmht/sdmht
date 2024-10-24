@@ -1413,7 +1413,7 @@ class 技能类 extends 基类 {
         this.emit('触发', 参数)
         if (this.编号 < 30000 || this.编号 > 50000) {
           行动队列类.发送通知({
-            message: `触发技能：${this.技能名称}，携带者：${this.携带者.类型}${this.携带者.卡牌名称}`,
+            message: `触发技能：${this.技能名称}，携带者：${this.携带者.类型}${this.携带者.卡牌名称}：命${this.携带者.生命值}/攻${this.携带者.攻击力}/移${this.携带者.移动力}`,
             caption: this.技能描述,
             color: this.携带者.是否我方 ? 'blue' : 'red',
           })
