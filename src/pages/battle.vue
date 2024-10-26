@@ -1075,7 +1075,14 @@ onMounted(async () => {
     高 - 纵 - 边,
     () => {
       战斗画框.stage.removeChild(开始匹配按钮.view)
-      数据通道.开始匹配(格)
+      try {
+        数据通道.开始匹配(格)
+      } catch (e) {
+        q.notify({
+          type: 'negative',
+          message: `匹配报错：${e}`,
+        })
+      }
     }
   )
 
