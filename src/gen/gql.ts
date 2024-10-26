@@ -13,10 +13,12 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-  '\n        subscription matchOpponent(\n          $uid: String!\n          $size: Int!\n          $version: String!\n        ) {\n          matchOpponent(uid: $uid, size: $size, version: $version)\n        }\n      ':
-    types.MatchOpponentDocument,
   '\n        subscription heartbeat($uid: String!) {\n          heartbeat(uid: $uid)\n        }\n      ':
     types.HeartbeatDocument,
+  '\n      subscription onlineCount {\n        onlineCount\n      }\n    ':
+    types.OnlineCountDocument,
+  '\n        subscription matchOpponent(\n          $uid: String!\n          $size: Int!\n          $version: String!\n        ) {\n          matchOpponent(uid: $uid, size: $size, version: $version)\n        }\n      ':
+    types.MatchOpponentDocument,
   '\n                subscription sendData($to: String!, $data: JSON!) {\n                  sendData(to: $to, data: $data)\n                }\n              ':
     types.SendDataDocument,
   '\n              subscription listenAlive($uid: String!) {\n                listenAlive(uid: $uid)\n              }\n            ':
@@ -41,14 +43,20 @@ export function graphql(source: string): unknown
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n        subscription matchOpponent(\n          $uid: String!\n          $size: Int!\n          $version: String!\n        ) {\n          matchOpponent(uid: $uid, size: $size, version: $version)\n        }\n      '
-): (typeof documents)['\n        subscription matchOpponent(\n          $uid: String!\n          $size: Int!\n          $version: String!\n        ) {\n          matchOpponent(uid: $uid, size: $size, version: $version)\n        }\n      ']
+  source: '\n        subscription heartbeat($uid: String!) {\n          heartbeat(uid: $uid)\n        }\n      '
+): (typeof documents)['\n        subscription heartbeat($uid: String!) {\n          heartbeat(uid: $uid)\n        }\n      ']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n        subscription heartbeat($uid: String!) {\n          heartbeat(uid: $uid)\n        }\n      '
-): (typeof documents)['\n        subscription heartbeat($uid: String!) {\n          heartbeat(uid: $uid)\n        }\n      ']
+  source: '\n      subscription onlineCount {\n        onlineCount\n      }\n    '
+): (typeof documents)['\n      subscription onlineCount {\n        onlineCount\n      }\n    ']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n        subscription matchOpponent(\n          $uid: String!\n          $size: Int!\n          $version: String!\n        ) {\n          matchOpponent(uid: $uid, size: $size, version: $version)\n        }\n      '
+): (typeof documents)['\n        subscription matchOpponent(\n          $uid: String!\n          $size: Int!\n          $version: String!\n        ) {\n          matchOpponent(uid: $uid, size: $size, version: $version)\n        }\n      ']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

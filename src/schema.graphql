@@ -29,11 +29,11 @@ directive @skip(
 ) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
 
 """
-Exposes a URL that specifies the behaviour of this scalar.
+Exposes a URL that specifies the behavior of this scalar.
 """
 directive @specifiedBy(
   """
-  The URL that specifies the behaviour of this scalar.
+  The URL that specifies the behavior of this scalar.
   """
   url: String!
 ) on SCALAR
@@ -3032,6 +3032,7 @@ type Mutation {
   deleteVerificationCodes(
     filters: VerificationCodeFilter
   ): [VerificationCodeType!]!
+  isRegistered(username: String!): Boolean!
   login(password: String!, username: String!): UserType
   logout: Boolean!
   sendVerificationEmail(email: String!): Boolean!
@@ -5749,6 +5750,7 @@ type Subscription {
   listenAlive(uid: String!): Void
   matchOpponent(size: Int! = 4, uid: String!, version: String! = ""): JSON!
   me: UserType
+  onlineCount: Int!
   sendData(data: JSON!, to: String!): Void
   time: Float!
 }

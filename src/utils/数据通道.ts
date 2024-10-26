@@ -1,10 +1,11 @@
 import { useSubscription } from '@vue/apollo-composable'
 import packageInfo from 'app/package.json'
 import { EventEmitter } from 'events'
-import { Notify, uid } from 'quasar'
+import { Notify } from 'quasar'
 import SimplePeer from 'simple-peer'
 import { graphql } from 'src/gen'
 import { watch } from 'vue'
+import { 我方编号 } from './在线'
 import { 等待 } from './等待'
 import { 位置类型 } from './类型'
 
@@ -59,7 +60,6 @@ class 数据通道类 extends EventEmitter {
   连接成功 = false
 
   开始匹配(格: number) {
-    const 我方编号 = uid()
     const 服务端通道 = useSubscription(
       graphql(`
         subscription matchOpponent(
@@ -72,17 +72,6 @@ class 数据通道类 extends EventEmitter {
       `),
       { uid: 我方编号, size: 格, version: packageInfo.version }
     )
-    const 心跳 = useSubscription(
-      graphql(`
-        subscription heartbeat($uid: String!) {
-          heartbeat(uid: $uid)
-        }
-      `),
-      { uid: 我方编号 }
-    )
-    const 心跳循环 = setInterval(() => {
-      心跳.restart()
-    }, 2500)
     const 匹配通知 = Notify.create({
       group: false,
       message: '匹配中',
@@ -100,7 +89,6 @@ class 数据通道类 extends EventEmitter {
     })
     this.on('销毁', () => {
       匹配通知()
-      clearInterval(心跳循环)
     })
 
     let 发起者 = false

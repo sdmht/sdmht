@@ -1734,6 +1734,7 @@ export type Mutation = {
   deleteSoftDeleteRecords: Array<SoftDeleteRecordType>
   deleteUsers: Array<UserType>
   deleteVerificationCodes: Array<VerificationCodeType>
+  isRegistered: Scalars['Boolean']['output']
   login?: Maybe<UserType>
   logout: Scalars['Boolean']['output']
   sendVerificationEmail: Scalars['Boolean']['output']
@@ -2019,6 +2020,10 @@ export type MutationDeleteUsersArgs = {
 
 export type MutationDeleteVerificationCodesArgs = {
   filters?: InputMaybe<VerificationCodeFilter>
+}
+
+export type MutationIsRegisteredArgs = {
+  username: Scalars['String']['input']
 }
 
 export type MutationLoginArgs = {
@@ -3949,6 +3954,7 @@ export type Subscription = {
   listenAlive?: Maybe<Scalars['Void']['output']>
   matchOpponent: Scalars['JSON']['output']
   me?: Maybe<UserType>
+  onlineCount: Scalars['Int']['output']
   sendData?: Maybe<Scalars['Void']['output']>
   time: Scalars['Float']['output']
 }
@@ -4717,6 +4723,22 @@ export type VerificationCodeType = {
   username: Scalars['String']['output']
 }
 
+export type HeartbeatSubscriptionVariables = Exact<{
+  uid: Scalars['String']['input']
+}>
+
+export type HeartbeatSubscription = {
+  __typename?: 'Subscription'
+  heartbeat?: any | null
+}
+
+export type OnlineCountSubscriptionVariables = Exact<{ [key: string]: never }>
+
+export type OnlineCountSubscription = {
+  __typename?: 'Subscription'
+  onlineCount: number
+}
+
 export type MatchOpponentSubscriptionVariables = Exact<{
   uid: Scalars['String']['input']
   size: Scalars['Int']['input']
@@ -4726,15 +4748,6 @@ export type MatchOpponentSubscriptionVariables = Exact<{
 export type MatchOpponentSubscription = {
   __typename?: 'Subscription'
   matchOpponent: any
-}
-
-export type HeartbeatSubscriptionVariables = Exact<{
-  uid: Scalars['String']['input']
-}>
-
-export type HeartbeatSubscription = {
-  __typename?: 'Subscription'
-  heartbeat?: any | null
 }
 
 export type SendDataSubscriptionVariables = Exact<{
@@ -4756,6 +4769,70 @@ export type ListenAliveSubscription = {
   listenAlive?: any | null
 }
 
+export const HeartbeatDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'subscription',
+      name: { kind: 'Name', value: 'heartbeat' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'uid' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'heartbeat' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'uid' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'uid' },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  HeartbeatSubscription,
+  HeartbeatSubscriptionVariables
+>
+export const OnlineCountDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'subscription',
+      name: { kind: 'Name', value: 'onlineCount' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'onlineCount' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  OnlineCountSubscription,
+  OnlineCountSubscriptionVariables
+>
 export const MatchOpponentDocument = {
   kind: 'Document',
   definitions: [
@@ -4838,51 +4915,6 @@ export const MatchOpponentDocument = {
 } as unknown as DocumentNode<
   MatchOpponentSubscription,
   MatchOpponentSubscriptionVariables
->
-export const HeartbeatDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'subscription',
-      name: { kind: 'Name', value: 'heartbeat' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'uid' } },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'heartbeat' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'uid' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'uid' },
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  HeartbeatSubscription,
-  HeartbeatSubscriptionVariables
 >
 export const SendDataDocument = {
   kind: 'Document',

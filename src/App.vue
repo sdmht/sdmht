@@ -1,7 +1,7 @@
 <template>
   <router-view />
   <span class="absolute-bottom bg-dark text-white" style="width: fit-content">
-    当前版本：{{ packageInfo.version }}
+    当前版本：{{ packageInfo.version }}；在线人数：{{ 在线人数 }}
   </span>
   <pwa-install></pwa-install>
 </template>
@@ -20,9 +20,10 @@ import { provideApolloClient } from '@vue/apollo-composable'
 import packageInfo from 'app/package.json'
 import { Kind, OperationTypeNode } from 'graphql'
 import { createClient } from 'graphql-ws'
+import { 在线人数, 开始心跳, 订阅在线人数 } from 'src/utils/在线'
 
 const httpLink = new HttpLink({
-  uri: 'https://sdmht.star2000.work',
+  uri: 'https://sdmht.star2000.work/api/',
 })
 
 const wsLink = new GraphQLWsLink(
@@ -46,7 +47,8 @@ const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
 })
 provideApolloClient(apolloClient)
-
+开始心跳()
+订阅在线人数()
 defineOptions({
   name: 'App',
 })
