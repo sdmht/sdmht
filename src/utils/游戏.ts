@@ -1246,7 +1246,7 @@ class 技能类 extends 基类 {
         玩家类.事件.on(
           this.何时触发.replace('任意', ''),
           (参数: { 单位: 附属神类 }) => {
-            if (参数.单位.编号 !== this.携带者.编号) this.触发()
+            if (参数.单位.id !== this.携带者.id) this.触发()
           }
         )
         break
