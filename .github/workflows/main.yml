@@ -16,6 +16,7 @@ jobs:
       - env:
           RSYNC_PASSWORD: ${{ secrets.RSYNC_PASSWORD }}
         run: |
+          corepack enable
           yarn
           yarn build
           sudo apt install -y rsync

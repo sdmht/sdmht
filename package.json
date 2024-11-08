@@ -6,7 +6,6 @@
   "author": "star2000 <i@star2000.work>",
   "private": true,
   "scripts": {
-    "preinstall": "corepack enable",
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,cjs,ts,vue,css,html,md}\" --ignore-path .gitignore",
     "l": "yarn lint --fix && yarn format",

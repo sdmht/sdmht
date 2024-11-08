@@ -15,6 +15,7 @@
 ### 安装依赖
 
 ```bash
+corepack enable
 yarn
 ```
 
