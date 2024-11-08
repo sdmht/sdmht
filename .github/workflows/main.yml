@@ -16,7 +16,7 @@ jobs:
       - env:
           RSYNC_PASSWORD: ${{ secrets.RSYNC_PASSWORD }}
         run: |
-          yarn install --prod
+          yarn
           yarn build
           sudo apt install -y rsync
           rsync -chrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
