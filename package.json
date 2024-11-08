@@ -38,12 +38,12 @@
     "core-js": "^3.31.1",
     "csv-loader": "^3.0.5",
     "dotenv": "^16.4.5",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",
-    "eslint": "^8.57.0",
+    "graphql": "^16.9.0",
     "graphql-tag": "^2.12.6",
     "graphql-ws": "^5.14.0",
-    "graphql": "^16.9.0",
     "howler": "^2.2.4",
     "lit": "^3.2.1",
     "lodash": "^4.17.21",
@@ -53,11 +53,10 @@
     "prettier": "^2.5.1",
     "quasar": "^2.16.0",
     "simple-peer": "^9.11.1",
-    "three": "^0.166.1",
     "typescript": "^5.5.3",
+    "vue": "^3.4.18",
     "vue-auto-routing": "^1.0.1",
     "vue-router": "^4.0.12",
-    "vue": "^3.4.18",
     "workbox-webpack-plugin": "^7.0.0"
   },
   "devDependencies": {
@@ -83,5 +82,6 @@
     "node": "^18 || ^20 || ^22",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
-  }
+  },
+  "packageManager": "yarn@4.5.1"
 }
