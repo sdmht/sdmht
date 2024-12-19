@@ -1,0 +1,6 @@
+{
+  "@quasar/apollo": {
+    "subscriptions": true,
+    "subscriptionsTransport": "ws"
+  }
+}

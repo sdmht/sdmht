@@ -24,7 +24,7 @@ register(process.env.SERVICE_WORKER_FILE, {
   },
 
   updatefound(/* registration */) {
-    // console.log('Content has been cached for offline use.')
+    // console.log('New content is downloading.')
   },
 
   updated(/* registration */) {

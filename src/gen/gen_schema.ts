@@ -1,19 +1,11 @@
 import type { CodegenConfig } from '@graphql-codegen/cli'
 
 const config: CodegenConfig = {
-  overwrite: true,
   errorsOnly: true,
   schema: 'https://sdmht.star2000.work/api/',
   generates: {
-    'src/gen/introspection.json': {
-      plugins: ['introspection'],
-    },
-    'src/schema.graphql': {
+    'src/gen/schema.graphql': {
       plugins: ['schema-ast'],
-      config: {
-        includeDirectives: true,
-        includeIntrospectionTypes: true,
-      },
     },
   },
   hooks: {

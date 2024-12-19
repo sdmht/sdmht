@@ -1,35 +1,23 @@
-function index() {
-  return import(/* webpackChunkName: "index" */ 'pages/index.vue')
-}
-function battle() {
-  return import(/* webpackChunkName: "battle" */ 'pages/battle.vue')
-}
-function card_deck() {
-  return import(/* webpackChunkName: "card_deck" */ 'pages/card_deck.vue')
-}
-function login() {
-  return import(/* webpackChunkName: "login" */ 'pages/login.vue')
-}
+import type { RouteRecordRaw } from 'vue-router'
 
-export default [
+const routes: RouteRecordRaw[] = [
   {
-    name: 'index',
     path: '/',
-    component: index,
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
   },
   {
-    name: 'battle',
     path: '/battle',
-    component: battle,
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/BattlePage.vue') }],
   },
+
+  // Always leave this as last one,
+  // but you can also remove it
   {
-    name: 'card_deck',
-    path: '/card_deck',
-    component: card_deck,
-  },
-  {
-    name: 'login',
-    path: '/login',
-    component: login,
+    path: '/:catchAll(.*)*',
+    component: () => import('pages/ErrorNotFound.vue'),
   },
 ]
+
+export default routes

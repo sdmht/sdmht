@@ -5,18 +5,12 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
   "typescript.tsdk": "node_modules/typescript/lib",
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "always",
-    "source.fixAll": "always"
+  "[properties][ignore][dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "editor.formatOnType": true,
   "files.autoSave": "off",
-  "[ignore][dotenv]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
   },
-  "git.ignoreLimitWarning": true,
-  "javascript.format.semicolons": "remove",
-  "[properties]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  }
+  "javascript.format.semicolons": "remove"
 }

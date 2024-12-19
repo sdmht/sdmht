@@ -3,11 +3,11 @@ import packageInfo from 'app/package.json'
 import { EventEmitter } from 'events'
 import { Notify } from 'quasar'
 import SimplePeer from 'simple-peer'
-import { graphql } from 'src/gen'
+import { gql } from 'src/gen'
 import { watch } from 'vue'
 import { 我方编号 } from './在线'
 import { 等待 } from './等待'
-import { 位置类型 } from './类型'
+import type { 位置类型 } from './类型'
 
 type 行动类型 =
   | ['攻击', number, number, number]
@@ -41,12 +41,10 @@ type 初始数据类型 = {
     编号: number
   }[]
 }
-type 数据同步类型 =
-  | { k: '初始数据'; v: 初始数据类型 }
-  | { k: '行动'; v: 行动类型 }
+type 数据同步类型 = { k: '初始数据'; v: 初始数据类型 } | { k: '行动'; v: 行动类型 }
 
 class 数据通道类 extends EventEmitter {
-  emit(name: string, ...args: unknown[]) {
+  override emit(name: string, ...args: unknown[]) {
     console.log(name, ...args)
     // if (!location.protocol.endsWith('s:')) {
     //   Notify.create({
@@ -61,7 +59,7 @@ class 数据通道类 extends EventEmitter {
 
   开始匹配(格: number) {
     const 服务端通道 = useSubscription(
-      graphql(`
+      gql(`
         subscription matchOpponent(
           $uid: String!
           $size: Int!
@@ -70,7 +68,7 @@ class 数据通道类 extends EventEmitter {
           matchOpponent(uid: $uid, size: $size, version: $version)
         }
       `),
-      { uid: 我方编号, size: 格, version: packageInfo.version }
+      { uid: 我方编号, size: 格, version: packageInfo.version },
     )
     const 匹配通知 = Notify.create({
       group: false,
@@ -103,12 +101,12 @@ class 数据通道类 extends EventEmitter {
           对方编号 = d
           this.on('发送信令', (data) => {
             useSubscription(
-              graphql(`
+              gql(`
                 subscription sendData($to: String!, $data: JSON!) {
                   sendData(to: $to, data: $data)
                 }
               `),
-              { to: 对方编号, data: data }
+              { to: 对方编号, data: data },
             )
           })
           this.开始点对点连接(发起者)
@@ -121,12 +119,12 @@ class 数据通道类 extends EventEmitter {
           this.on('点对点连接成功', 通知连接成功)
           等待(3).then(通知连接成功)
           const 掉线监听 = useSubscription(
-            graphql(`
+            gql(`
               subscription listenAlive($uid: String!) {
                 listenAlive(uid: $uid)
               }
             `),
-            { uid: 对方编号 }
+            { uid: 对方编号 },
           )
           this.on('销毁', () => {
             掉线监听.stop()
@@ -167,12 +165,10 @@ class 数据通道类 extends EventEmitter {
     this.on('收到信令', (d) => 点对点通道.signal(d))
     点对点通道.on('signal', (d) => this.emit('发送信令', d))
     点对点通道.on('connect', () => this.emit('点对点连接成功'))
-    点对点通道.on('data', (d) =>
-      this.emit('收到数据', JSON.parse(d.toString()))
-    )
+    点对点通道.on('data', (d) => this.emit('收到数据', JSON.parse(d.toString())))
     watch(
       () => 点对点通道.connected,
-      (connected) => (this.点对点已连接 = connected)
+      (connected) => (this.点对点已连接 = connected),
     )
     this.on('发送数据', (d) => {
       点对点通道.send(JSON.stringify(d))
@@ -191,4 +187,5 @@ class 数据通道类 extends EventEmitter {
   }
 }
 
-export { 初始数据类型, 数据同步类型, 数据通道类, 行动类型 }
+export { 数据通道类 }
+export type { 初始数据类型, 数据同步类型, 行动类型 }

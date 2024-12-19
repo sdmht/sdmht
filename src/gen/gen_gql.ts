@@ -2,8 +2,7 @@ import type { CodegenConfig } from '@graphql-codegen/cli'
 
 const config: CodegenConfig = {
   watch: true,
-  overwrite: true,
-  schema: 'src/gen/introspection.json',
+  schema: 'src/gen/schema.graphql',
   documents: ['src/**/*.vue', 'src/**/*.ts'],
   ignoreNoDocuments: true,
   generates: {
@@ -11,6 +10,9 @@ const config: CodegenConfig = {
       preset: 'client',
       config: {
         useTypeImports: true,
+      },
+      presetConfig: {
+        gqlTagName: 'gql',
       },
     },
   },

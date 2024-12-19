@@ -1,0 +1,7214 @@
+input ActionFilter {
+  AND: ActionFilter
+  DISTINCT: Boolean
+  NOT: ActionFilter
+  OR: ActionFilter
+
+  """
+  所属战斗
+  """
+  battle: BattleFilter
+
+  """
+  内容
+  """
+  content: JSONFilterLookup
+
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  所属用户
+  """
+  player: UserFilter
+}
+
+input ActionInput {
+  """
+  所属战斗
+  """
+  battleId: BattlePartialInputOneToManyInput!
+
+  """
+  内容
+  """
+  content: JSON!
+
+  """
+  所属用户
+  """
+  playerId: ID
+}
+
+"""
+行动
+"""
+type ActionNode implements Node {
+  _Str__: String!
+
+  """
+  所属战斗
+  """
+  battle: BattleType!
+
+  """
+  内容
+  """
+  content: JSON!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  所属用户
+  """
+  player: UserType!
+}
+
+"""
+A connection to a list of items.
+"""
+type ActionNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [ActionNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type ActionNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: ActionNode!
+}
+
+input ActionOrder {
+  """
+  所属战斗
+  """
+  battle: BattleOrder
+
+  """
+  内容
+  """
+  content: Ordering
+
+  """
+  创建时间
+  """
+  createdTime: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  所属用户
+  """
+  player: UserOrder
+}
+
+input ActionPartialInput {
+  """
+  所属战斗
+  """
+  battleId: BattlePartialInputOneToManyInput
+
+  """
+  内容
+  """
+  content: JSON
+
+  """
+  所属用户
+  """
+  playerId: ID
+}
+
+input ActionPartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [ActionPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [ActionPartialInput!]
+}
+
+"""
+行动
+"""
+type ActionType {
+  _Str__: String!
+
+  """
+  所属战斗
+  """
+  battle: BattleType!
+
+  """
+  内容
+  """
+  content: JSON!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  所属用户
+  """
+  player: UserType!
+}
+
+input BattleFilter {
+  AND: BattleFilter
+  DISTINCT: Boolean
+  NOT: BattleFilter
+  OR: BattleFilter
+
+  """
+  行动
+  """
+  action: ActionFilter
+
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  是否p1胜利
+  """
+  isP1Win: BoolBaseFilterLookup
+
+  """
+  所属卡组
+  """
+  p1Deck: DeckFilter
+
+  """
+  所属卡组
+  """
+  p2Deck: DeckFilter
+
+  """
+  用户
+  """
+  watchPlayers: UserFilter
+}
+
+input BattleInput {
+  """
+  行动
+  """
+  actionSet: ActionPartialInputManyToOneInput
+
+  """
+  是否p1胜利
+  """
+  isP1Win: Boolean
+
+  """
+  所属卡组
+  """
+  p1DeckId: DeckPartialInputOneToManyInput!
+
+  """
+  所属卡组
+  """
+  p2DeckId: DeckPartialInputOneToManyInput
+
+  """
+  用户
+  """
+  watchPlayers: UserPartialInputManyToManyInput
+}
+
+"""
+战斗
+"""
+type BattleNode implements Node {
+  _Str__: String!
+
+  """
+  行动
+  """
+  actionSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: ActionFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: ActionOrder
+  ): ActionNodeConnection!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  是否p1胜利
+  """
+  isP1Win: Boolean
+
+  """
+  所属卡组
+  """
+  p1Deck: DeckType!
+
+  """
+  所属卡组
+  """
+  p2Deck: DeckType
+
+  """
+  用户
+  """
+  watchPlayers(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: UserFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: UserOrder
+  ): UserNodeConnection!
+}
+
+"""
+A connection to a list of items.
+"""
+type BattleNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [BattleNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type BattleNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: BattleNode!
+}
+
+input BattleOrder {
+  """
+  行动
+  """
+  action: ActionOrder
+
+  """
+  创建时间
+  """
+  createdTime: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  是否p1胜利
+  """
+  isP1Win: Ordering
+
+  """
+  所属卡组
+  """
+  p1Deck: DeckOrder
+
+  """
+  所属卡组
+  """
+  p2Deck: DeckOrder
+
+  """
+  用户
+  """
+  watchPlayers: UserOrder
+}
+
+input BattlePartialInput {
+  """
+  行动
+  """
+  actionSet: ActionPartialInputManyToOneInput
+
+  """
+  是否p1胜利
+  """
+  isP1Win: Boolean
+
+  """
+  所属卡组
+  """
+  p1DeckId: DeckPartialInputOneToManyInput
+
+  """
+  所属卡组
+  """
+  p2DeckId: DeckPartialInputOneToManyInput
+
+  """
+  用户
+  """
+  watchPlayers: UserPartialInputManyToManyInput
+}
+
+input BattlePartialInputManyToManyInput {
+  add: [ID!]
+  addObjects: [BattlePartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [BattlePartialInput!]
+}
+
+input BattlePartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [BattlePartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [BattlePartialInput!]
+}
+
+input BattlePartialInputOneToManyInput {
+  set: ID
+  setObject: BattlePartialInput
+}
+
+"""
+战斗
+"""
+type BattleType {
+  _Str__: String!
+
+  """
+  行动
+  """
+  actionSet(
+    filters: ActionFilter
+    order: ActionOrder
+    pagination: OffsetPaginationInput
+  ): [ActionType!]!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  是否p1胜利
+  """
+  isP1Win: Boolean
+
+  """
+  所属卡组
+  """
+  p1Deck: DeckType!
+
+  """
+  所属卡组
+  """
+  p2Deck: DeckType
+
+  """
+  用户
+  """
+  watchPlayers(
+    filters: UserFilter
+    order: UserOrder
+    pagination: OffsetPaginationInput
+  ): [UserType!]!
+}
+
+input BoolBaseFilterLookup {
+  """
+  Exact match. Filter will be skipped on `null` value
+  """
+  exact: Boolean
+
+  """
+  Exact match of items in a given list. Filter will be skipped on `null` value
+  """
+  inList: [Boolean!]
+
+  """
+  Assignment test. Filter will be skipped on `null` value
+  """
+  isNull: Boolean
+}
+
+input ChangeSetFilter {
+  AND: ChangeSetFilter
+  DISTINCT: Boolean
+  NOT: ChangeSetFilter
+  OR: ChangeSetFilter
+
+  """
+  所属内容类型
+  """
+  contentType: ContentTypeFilter
+
+  """
+  创建日期
+  """
+  createdDate: DatetimeDatetimeFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  对象编号
+  """
+  objectId: StrFilterLookup
+
+  """
+  软删除记录
+  """
+  softDeleteRecords: SoftDeleteRecordFilter
+}
+
+input ChangeSetInput {
+  """
+  所属内容类型
+  """
+  contentTypeId: ContentTypePartialInputOneToManyInput!
+
+  """
+  创建日期
+  """
+  createdDate: DateTime
+
+  """
+  对象编号
+  """
+  objectId: String!
+
+  """
+  软删除记录
+  """
+  softDeleteRecords: SoftDeleteRecordPartialInputManyToOneInput
+}
+
+"""
+修改集
+"""
+type ChangeSetNode implements Node {
+  _Str__: String!
+
+  """
+  所属内容类型
+  """
+  contentType: ContentTypeType!
+
+  """
+  创建日期
+  """
+  createdDate: DateTime!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  对象编号
+  """
+  objectId: String!
+
+  """
+  软删除记录
+  """
+  softDeleteRecords(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: SoftDeleteRecordFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: SoftDeleteRecordOrder
+  ): SoftDeleteRecordNodeConnection!
+}
+
+"""
+A connection to a list of items.
+"""
+type ChangeSetNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [ChangeSetNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type ChangeSetNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: ChangeSetNode!
+}
+
+input ChangeSetOrder {
+  """
+  所属内容类型
+  """
+  contentType: ContentTypeOrder
+
+  """
+  创建日期
+  """
+  createdDate: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  对象编号
+  """
+  objectId: Ordering
+
+  """
+  软删除记录
+  """
+  softDeleteRecords: SoftDeleteRecordOrder
+}
+
+input ChangeSetPartialInput {
+  """
+  所属内容类型
+  """
+  contentTypeId: ContentTypePartialInputOneToManyInput
+
+  """
+  创建日期
+  """
+  createdDate: DateTime
+
+  """
+  对象编号
+  """
+  objectId: String
+
+  """
+  软删除记录
+  """
+  softDeleteRecords: SoftDeleteRecordPartialInputManyToOneInput
+}
+
+input ChangeSetPartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [ChangeSetPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [ChangeSetPartialInput!]
+}
+
+input ChangeSetPartialInputOneToManyInput {
+  set: ID
+  setObject: ChangeSetPartialInput
+}
+
+"""
+修改集
+"""
+type ChangeSetType {
+  _Str__: String!
+
+  """
+  所属内容类型
+  """
+  contentType: ContentTypeType!
+
+  """
+  创建日期
+  """
+  createdDate: DateTime!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  对象编号
+  """
+  objectId: String!
+
+  """
+  软删除记录
+  """
+  softDeleteRecords(
+    filters: SoftDeleteRecordFilter
+    order: SoftDeleteRecordOrder
+    pagination: OffsetPaginationInput
+  ): [SoftDeleteRecordType!]!
+}
+
+input ContentTypeFilter {
+  AND: ContentTypeFilter
+  DISTINCT: Boolean
+  NOT: ContentTypeFilter
+  OR: ContentTypeFilter
+
+  """
+  app label
+  """
+  appLabel: StrFilterLookup
+
+  """
+  修改集
+  """
+  changeset: ChangeSetFilter
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  日志
+  """
+  log: LogFilter
+
+  """
+  日志记录
+  """
+  logentry: LogEntryFilter
+
+  """
+  python 模型类名
+  """
+  model: StrFilterLookup
+
+  """
+  权限
+  """
+  permission: PermissionFilter
+
+  """
+  软删除记录
+  """
+  softdeleterecord: SoftDeleteRecordFilter
+}
+
+input ContentTypeInput {
+  """
+  app label
+  """
+  appLabel: String!
+
+  """
+  修改集
+  """
+  changesetSet: ChangeSetPartialInputManyToOneInput
+
+  """
+  日志
+  """
+  logSet: LogPartialInputManyToOneInput
+
+  """
+  日志记录
+  """
+  logentrySet: LogEntryPartialInputManyToOneInput
+
+  """
+  python 模型类名
+  """
+  model: String!
+
+  """
+  权限
+  """
+  permissionSet: PermissionPartialInputManyToOneInput
+
+  """
+  软删除记录
+  """
+  softdeleterecordSet: SoftDeleteRecordPartialInputManyToOneInput
+}
+
+"""
+内容类型
+"""
+type ContentTypeNode implements Node {
+  _Str__: String!
+
+  """
+  app label
+  """
+  appLabel: String!
+
+  """
+  修改集
+  """
+  changesetSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: ChangeSetFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: ChangeSetOrder
+  ): ChangeSetNodeConnection!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  日志
+  """
+  logSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: LogFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: LogOrder
+  ): LogNodeConnection!
+
+  """
+  日志记录
+  """
+  logentrySet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: LogEntryFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: LogEntryOrder
+  ): LogEntryNodeConnection!
+
+  """
+  python 模型类名
+  """
+  model: String!
+
+  """
+  权限
+  """
+  permissionSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: PermissionFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: PermissionOrder
+  ): PermissionNodeConnection!
+
+  """
+  软删除记录
+  """
+  softdeleterecordSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: SoftDeleteRecordFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: SoftDeleteRecordOrder
+  ): SoftDeleteRecordNodeConnection!
+}
+
+"""
+A connection to a list of items.
+"""
+type ContentTypeNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [ContentTypeNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type ContentTypeNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: ContentTypeNode!
+}
+
+input ContentTypeOrder {
+  """
+  app label
+  """
+  appLabel: Ordering
+
+  """
+  修改集
+  """
+  changeset: ChangeSetOrder
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  日志
+  """
+  log: LogOrder
+
+  """
+  日志记录
+  """
+  logentry: LogEntryOrder
+
+  """
+  python 模型类名
+  """
+  model: Ordering
+
+  """
+  权限
+  """
+  permission: PermissionOrder
+
+  """
+  软删除记录
+  """
+  softdeleterecord: SoftDeleteRecordOrder
+}
+
+input ContentTypePartialInput {
+  """
+  app label
+  """
+  appLabel: String
+
+  """
+  修改集
+  """
+  changesetSet: ChangeSetPartialInputManyToOneInput
+
+  """
+  日志
+  """
+  logSet: LogPartialInputManyToOneInput
+
+  """
+  日志记录
+  """
+  logentrySet: LogEntryPartialInputManyToOneInput
+
+  """
+  python 模型类名
+  """
+  model: String
+
+  """
+  权限
+  """
+  permissionSet: PermissionPartialInputManyToOneInput
+
+  """
+  软删除记录
+  """
+  softdeleterecordSet: SoftDeleteRecordPartialInputManyToOneInput
+}
+
+input ContentTypePartialInputOneToManyInput {
+  set: ID
+  setObject: ContentTypePartialInput
+}
+
+"""
+内容类型
+"""
+type ContentTypeType {
+  _Str__: String!
+
+  """
+  app label
+  """
+  appLabel: String!
+
+  """
+  修改集
+  """
+  changesetSet(
+    filters: ChangeSetFilter
+    order: ChangeSetOrder
+    pagination: OffsetPaginationInput
+  ): [ChangeSetType!]!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  日志
+  """
+  logSet(filters: LogFilter, order: LogOrder, pagination: OffsetPaginationInput): [LogType!]!
+
+  """
+  日志记录
+  """
+  logentrySet(
+    filters: LogEntryFilter
+    order: LogEntryOrder
+    pagination: OffsetPaginationInput
+  ): [LogEntryType!]!
+
+  """
+  python 模型类名
+  """
+  model: String!
+
+  """
+  权限
+  """
+  permissionSet(
+    filters: PermissionFilter
+    order: PermissionOrder
+    pagination: OffsetPaginationInput
+  ): [PermissionType!]!
+
+  """
+  软删除记录
+  """
+  softdeleterecordSet(
+    filters: SoftDeleteRecordFilter
+    order: SoftDeleteRecordOrder
+    pagination: OffsetPaginationInput
+  ): [SoftDeleteRecordType!]!
+}
+
+"""
+Date with time (isoformat)
+"""
+scalar DateTime
+
+input DatetimeDatetimeFilterLookup {
+  date: IntComparisonFilterLookup
+  day: IntComparisonFilterLookup
+
+  """
+  Exact match. Filter will be skipped on `null` value
+  """
+  exact: DateTime
+
+  """
+  Greater than. Filter will be skipped on `null` value
+  """
+  gt: DateTime
+
+  """
+  Greater than or equal to. Filter will be skipped on `null` value
+  """
+  gte: DateTime
+  hour: IntComparisonFilterLookup
+
+  """
+  Exact match of items in a given list. Filter will be skipped on `null` value
+  """
+  inList: [DateTime!]
+
+  """
+  Assignment test. Filter will be skipped on `null` value
+  """
+  isNull: Boolean
+  isoWeekDay: IntComparisonFilterLookup
+  isoYear: IntComparisonFilterLookup
+
+  """
+  Less than. Filter will be skipped on `null` value
+  """
+  lt: DateTime
+
+  """
+  Less than or equal to. Filter will be skipped on `null` value
+  """
+  lte: DateTime
+  minute: IntComparisonFilterLookup
+  month: IntComparisonFilterLookup
+  quarter: IntComparisonFilterLookup
+
+  """
+  Inclusive range test (between)
+  """
+  range: DatetimeRangeLookup
+  second: IntComparisonFilterLookup
+  time: IntComparisonFilterLookup
+  week: IntComparisonFilterLookup
+  weekDay: IntComparisonFilterLookup
+  year: IntComparisonFilterLookup
+}
+
+input DatetimeRangeLookup {
+  end: DateTime = null
+  start: DateTime = null
+}
+
+input DeckFilter {
+  AND: DeckFilter
+  DISTINCT: Boolean
+  NOT: DeckFilter
+  OR: DeckFilter
+
+  """
+  内容
+  """
+  content: JSONFilterLookup
+
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+
+  """
+  删除日期
+  """
+  deletedAt: DatetimeDatetimeFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  名称
+  """
+  name: StrFilterLookup
+
+  """
+  战斗
+  """
+  p1Battles: BattleFilter
+
+  """
+  战斗
+  """
+  p2Battles: BattleFilter
+
+  """
+  修改时间
+  """
+  updatedTime: DatetimeDatetimeFilterLookup
+
+  """
+  所属用户
+  """
+  user: UserFilter
+}
+
+input DeckInput {
+  """
+  内容
+  """
+  content: JSON!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  战斗
+  """
+  p1Battles: BattlePartialInputManyToOneInput
+
+  """
+  战斗
+  """
+  p2Battles: BattlePartialInputManyToOneInput
+
+  """
+  所属用户
+  """
+  userId: ID
+}
+
+"""
+卡组
+"""
+type DeckNode implements Node {
+  _Str__: String!
+
+  """
+  内容
+  """
+  content: JSON!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  删除日期
+  """
+  deletedAt: DateTime
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  战斗
+  """
+  p1Battles(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: BattleFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: BattleOrder
+  ): BattleNodeConnection!
+
+  """
+  战斗
+  """
+  p2Battles(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: BattleFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: BattleOrder
+  ): BattleNodeConnection!
+
+  """
+  修改时间
+  """
+  updatedTime: DateTime!
+
+  """
+  所属用户
+  """
+  user: UserType!
+}
+
+"""
+A connection to a list of items.
+"""
+type DeckNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [DeckNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type DeckNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: DeckNode!
+}
+
+input DeckOrder {
+  """
+  内容
+  """
+  content: Ordering
+
+  """
+  创建时间
+  """
+  createdTime: Ordering
+
+  """
+  删除日期
+  """
+  deletedAt: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  名称
+  """
+  name: Ordering
+
+  """
+  战斗
+  """
+  p1Battles: BattleOrder
+
+  """
+  战斗
+  """
+  p2Battles: BattleOrder
+
+  """
+  修改时间
+  """
+  updatedTime: Ordering
+
+  """
+  所属用户
+  """
+  user: UserOrder
+}
+
+input DeckPartialInput {
+  """
+  内容
+  """
+  content: JSON
+
+  """
+  名称
+  """
+  name: String
+
+  """
+  战斗
+  """
+  p1Battles: BattlePartialInputManyToOneInput
+
+  """
+  战斗
+  """
+  p2Battles: BattlePartialInputManyToOneInput
+
+  """
+  所属用户
+  """
+  userId: ID
+}
+
+input DeckPartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [DeckPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [DeckPartialInput!]
+}
+
+input DeckPartialInputOneToManyInput {
+  set: ID
+  setObject: DeckPartialInput
+}
+
+"""
+卡组
+"""
+type DeckType {
+  _Str__: String!
+
+  """
+  内容
+  """
+  content: JSON!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  删除日期
+  """
+  deletedAt: DateTime
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  战斗
+  """
+  p1Battles(
+    filters: BattleFilter
+    order: BattleOrder
+    pagination: OffsetPaginationInput
+  ): [BattleType!]!
+
+  """
+  战斗
+  """
+  p2Battles(
+    filters: BattleFilter
+    order: BattleOrder
+    pagination: OffsetPaginationInput
+  ): [BattleType!]!
+
+  """
+  修改时间
+  """
+  updatedTime: DateTime!
+
+  """
+  所属用户
+  """
+  user: UserType!
+}
+
+type DjangoImageType {
+  height: Int!
+  name: String!
+  path: String!
+  size: Int!
+  url: String!
+  width: Int!
+}
+
+input DynamicConfigurationFilter {
+  AND: DynamicConfigurationFilter
+  DISTINCT: Boolean
+  NOT: DynamicConfigurationFilter
+  OR: DynamicConfigurationFilter
+
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+
+  """
+  删除日期
+  """
+  deletedAt: DatetimeDatetimeFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  是否公开
+  """
+  isPublic: BoolBaseFilterLookup
+
+  """
+  名称
+  """
+  name: StrFilterLookup
+
+  """
+  修改时间
+  """
+  updatedTime: DatetimeDatetimeFilterLookup
+
+  """
+  文本
+  """
+  value: StrFilterLookup
+}
+
+input DynamicConfigurationInput {
+  """
+  是否公开
+  """
+  isPublic: Boolean
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  文本
+  """
+  value: String!
+}
+
+"""
+动态配置
+"""
+type DynamicConfigurationNode implements Node {
+  _Str__: String!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  删除日期
+  """
+  deletedAt: DateTime
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  是否公开
+  """
+  isPublic: Boolean!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  修改时间
+  """
+  updatedTime: DateTime!
+
+  """
+  文本
+  """
+  value: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type DynamicConfigurationNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [DynamicConfigurationNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type DynamicConfigurationNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: DynamicConfigurationNode!
+}
+
+input DynamicConfigurationOrder {
+  """
+  创建时间
+  """
+  createdTime: Ordering
+
+  """
+  删除日期
+  """
+  deletedAt: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  是否公开
+  """
+  isPublic: Ordering
+
+  """
+  名称
+  """
+  name: Ordering
+
+  """
+  修改时间
+  """
+  updatedTime: Ordering
+
+  """
+  文本
+  """
+  value: Ordering
+}
+
+input DynamicConfigurationPartialInput {
+  """
+  是否公开
+  """
+  isPublic: Boolean
+
+  """
+  名称
+  """
+  name: String
+
+  """
+  文本
+  """
+  value: String
+}
+
+"""
+动态配置
+"""
+type DynamicConfigurationType {
+  _Str__: String!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  删除日期
+  """
+  deletedAt: DateTime
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  是否公开
+  """
+  isPublic: Boolean!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  修改时间
+  """
+  updatedTime: DateTime!
+
+  """
+  文本
+  """
+  value: String!
+}
+
+input FailedExceptionMailFilter {
+  AND: FailedExceptionMailFilter
+  DISTINCT: Boolean
+  NOT: FailedExceptionMailFilter
+  OR: FailedExceptionMailFilter
+
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+
+  """
+  失败原因
+  """
+  failReason: StrFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  消息
+  """
+  message: StrFilterLookup
+
+  """
+  主题
+  """
+  subject: StrFilterLookup
+}
+
+input FailedExceptionMailInput {
+  """
+  失败原因
+  """
+  failReason: String!
+
+  """
+  消息
+  """
+  message: String!
+
+  """
+  主题
+  """
+  subject: String!
+}
+
+"""
+发送失败的报错邮件
+"""
+type FailedExceptionMailNode implements Node {
+  _Str__: String!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  失败原因
+  """
+  failReason: String!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  消息
+  """
+  message: String!
+
+  """
+  主题
+  """
+  subject: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type FailedExceptionMailNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [FailedExceptionMailNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type FailedExceptionMailNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: FailedExceptionMailNode!
+}
+
+input FailedExceptionMailOrder {
+  """
+  创建时间
+  """
+  createdTime: Ordering
+
+  """
+  失败原因
+  """
+  failReason: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  消息
+  """
+  message: Ordering
+
+  """
+  主题
+  """
+  subject: Ordering
+}
+
+input FailedExceptionMailPartialInput {
+  """
+  失败原因
+  """
+  failReason: String
+
+  """
+  消息
+  """
+  message: String
+
+  """
+  主题
+  """
+  subject: String
+}
+
+"""
+发送失败的报错邮件
+"""
+type FailedExceptionMailType {
+  _Str__: String!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  失败原因
+  """
+  failReason: String!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  消息
+  """
+  message: String!
+
+  """
+  主题
+  """
+  subject: String!
+}
+
+"""
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+"""
+scalar GlobalID
+
+input GroupFilter {
+  AND: GroupFilter
+  DISTINCT: Boolean
+  NOT: GroupFilter
+  OR: GroupFilter
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  名称
+  """
+  name: StrFilterLookup
+
+  """
+  权限
+  """
+  permissions: PermissionFilter
+
+  """
+  角色
+  """
+  role: RoleFilter
+}
+
+input GroupInput {
+  """
+  名称
+  """
+  name: String!
+
+  """
+  权限
+  """
+  permissions: PermissionPartialInputManyToManyInput
+
+  """
+  角色
+  """
+  roleSet: RolePartialInputManyToManyInput
+}
+
+"""
+权限组
+"""
+type GroupNode implements Node {
+  _Str__: String!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  权限
+  """
+  permissions(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: PermissionFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: PermissionOrder
+  ): PermissionNodeConnection!
+
+  """
+  角色
+  """
+  roleSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: RoleFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: RoleOrder
+  ): RoleNodeConnection!
+}
+
+"""
+A connection to a list of items.
+"""
+type GroupNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [GroupNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type GroupNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: GroupNode!
+}
+
+input GroupOrder {
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  名称
+  """
+  name: Ordering
+
+  """
+  权限
+  """
+  permissions: PermissionOrder
+
+  """
+  角色
+  """
+  role: RoleOrder
+}
+
+input GroupPartialInput {
+  """
+  名称
+  """
+  name: String
+
+  """
+  权限
+  """
+  permissions: PermissionPartialInputManyToManyInput
+
+  """
+  角色
+  """
+  roleSet: RolePartialInputManyToManyInput
+}
+
+input GroupPartialInputManyToManyInput {
+  add: [ID!]
+  addObjects: [GroupPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [GroupPartialInput!]
+}
+
+"""
+权限组
+"""
+type GroupType {
+  _Str__: String!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  权限
+  """
+  permissions(
+    filters: PermissionFilter
+    order: PermissionOrder
+    pagination: OffsetPaginationInput
+  ): [PermissionType!]!
+
+  """
+  角色
+  """
+  roleSet(filters: RoleFilter, order: RoleOrder, pagination: OffsetPaginationInput): [RoleType!]!
+}
+
+input IDBaseFilterLookup {
+  """
+  Exact match. Filter will be skipped on `null` value
+  """
+  exact: ID
+
+  """
+  Exact match of items in a given list. Filter will be skipped on `null` value
+  """
+  inList: [ID!]
+
+  """
+  Assignment test. Filter will be skipped on `null` value
+  """
+  isNull: Boolean
+}
+
+input IntComparisonFilterLookup {
+  """
+  Exact match. Filter will be skipped on `null` value
+  """
+  exact: Int
+
+  """
+  Greater than. Filter will be skipped on `null` value
+  """
+  gt: Int
+
+  """
+  Greater than or equal to. Filter will be skipped on `null` value
+  """
+  gte: Int
+
+  """
+  Exact match of items in a given list. Filter will be skipped on `null` value
+  """
+  inList: [Int!]
+
+  """
+  Assignment test. Filter will be skipped on `null` value
+  """
+  isNull: Boolean
+
+  """
+  Less than. Filter will be skipped on `null` value
+  """
+  lt: Int
+
+  """
+  Less than or equal to. Filter will be skipped on `null` value
+  """
+  lte: Int
+
+  """
+  Inclusive range test (between)
+  """
+  range: IntRangeLookup
+}
+
+input IntRangeLookup {
+  end: Int = null
+  start: Int = null
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](https://ecma-international.org/wp-content/uploads/ECMA-404_2nd_edition_december_2017.pdf).
+"""
+scalar JSON
+
+input JSONFilterLookup {
+  """
+  Case-sensitive containment test. Filter will be skipped on `null` value
+  """
+  contains: JSON
+
+  """
+  Case-sensitive ends-with. Filter will be skipped on `null` value
+  """
+  endsWith: JSON
+
+  """
+  Exact match. Filter will be skipped on `null` value
+  """
+  exact: JSON
+
+  """
+  Case-insensitive containment test. Filter will be skipped on `null` value
+  """
+  iContains: JSON
+
+  """
+  Case-insensitive ends-with. Filter will be skipped on `null` value
+  """
+  iEndsWith: JSON
+
+  """
+  Case-insensitive exact match. Filter will be skipped on `null` value
+  """
+  iExact: JSON
+
+  """
+  Case-insensitive regular expression match. Filter will be skipped on `null` value
+  """
+  iRegex: JSON
+
+  """
+  Case-insensitive starts-with. Filter will be skipped on `null` value
+  """
+  iStartsWith: JSON
+
+  """
+  Exact match of items in a given list. Filter will be skipped on `null` value
+  """
+  inList: [JSON!]
+
+  """
+  Assignment test. Filter will be skipped on `null` value
+  """
+  isNull: Boolean
+
+  """
+  Case-sensitive regular expression match. Filter will be skipped on `null` value
+  """
+  regex: JSON
+
+  """
+  Case-sensitive starts-with. Filter will be skipped on `null` value
+  """
+  startsWith: JSON
+}
+
+"""
+CREATE:创建,UPDATE:更新,DELETE:删除
+"""
+enum LogActionEnum {
+  CREATE
+  DELETE
+  UPDATE
+}
+
+input LogActionEnumFilterLookup {
+  contains: LogActionEnum
+  endsWith: LogActionEnum
+  exact: LogActionEnum
+  gt: LogActionEnum
+  gte: LogActionEnum
+  iContains: LogActionEnum
+  iEndsWith: LogActionEnum
+  iExact: LogActionEnum
+  iRegex: String
+  iStartsWith: LogActionEnum
+  inList: [LogActionEnum!]
+  isNull: Boolean
+  lt: LogActionEnum
+  lte: LogActionEnum
+  range: [LogActionEnum!]
+  regex: String
+  startsWith: LogActionEnum
+}
+
+"""
+ADDITION:添加,CHANGE:修改,DELETION:删除
+"""
+enum LogEntryActionFlagEnum {
+  ADDITION
+  CHANGE
+  DELETION
+}
+
+input LogEntryActionFlagEnumFilterLookup {
+  contains: LogEntryActionFlagEnum
+  endsWith: LogEntryActionFlagEnum
+  exact: LogEntryActionFlagEnum
+  gt: LogEntryActionFlagEnum
+  gte: LogEntryActionFlagEnum
+  iContains: LogEntryActionFlagEnum
+  iEndsWith: LogEntryActionFlagEnum
+  iExact: LogEntryActionFlagEnum
+  iRegex: String
+  iStartsWith: LogEntryActionFlagEnum
+  inList: [LogEntryActionFlagEnum!]
+  isNull: Boolean
+  lt: LogEntryActionFlagEnum
+  lte: LogEntryActionFlagEnum
+  range: [LogEntryActionFlagEnum!]
+  regex: String
+  startsWith: LogEntryActionFlagEnum
+}
+
+input LogEntryFilter {
+  AND: LogEntryFilter
+  DISTINCT: Boolean
+  NOT: LogEntryFilter
+  OR: LogEntryFilter
+
+  """
+  动作标志
+  """
+  actionFlag: LogEntryActionFlagEnumFilterLookup
+
+  """
+  操作时间
+  """
+  actionTime: DatetimeDatetimeFilterLookup
+
+  """
+  修改消息
+  """
+  changeMessage: StrFilterLookup
+
+  """
+  内容类型
+  """
+  contentType: ContentTypeFilter
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  对象id
+  """
+  objectId: StrFilterLookup
+
+  """
+  对象表示
+  """
+  objectRepr: StrFilterLookup
+
+  """
+  用户
+  """
+  user: UserFilter
+}
+
+input LogEntryInput {
+  """
+  动作标志
+  """
+  actionFlag: LogEntryActionFlagEnum!
+
+  """
+  修改消息
+  """
+  changeMessage: String
+
+  """
+  内容类型
+  """
+  contentTypeId: ContentTypePartialInputOneToManyInput
+
+  """
+  对象id
+  """
+  objectId: String
+
+  """
+  对象表示
+  """
+  objectRepr: String!
+
+  """
+  用户
+  """
+  userId: ID
+}
+
+"""
+日志记录
+"""
+type LogEntryNode implements Node {
+  _Str__: String!
+
+  """
+  动作标志
+  """
+  actionFlag: LogEntryActionFlagEnum!
+
+  """
+  操作时间
+  """
+  actionTime: DateTime!
+
+  """
+  修改消息
+  """
+  changeMessage: String!
+
+  """
+  内容类型
+  """
+  contentType: ContentTypeType
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  对象id
+  """
+  objectId: String
+
+  """
+  对象表示
+  """
+  objectRepr: String!
+
+  """
+  用户
+  """
+  user: UserType!
+}
+
+"""
+A connection to a list of items.
+"""
+type LogEntryNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [LogEntryNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type LogEntryNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: LogEntryNode!
+}
+
+input LogEntryOrder {
+  """
+  动作标志
+  """
+  actionFlag: Ordering
+
+  """
+  操作时间
+  """
+  actionTime: Ordering
+
+  """
+  修改消息
+  """
+  changeMessage: Ordering
+
+  """
+  内容类型
+  """
+  contentType: ContentTypeOrder
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  对象id
+  """
+  objectId: Ordering
+
+  """
+  对象表示
+  """
+  objectRepr: Ordering
+
+  """
+  用户
+  """
+  user: UserOrder
+}
+
+input LogEntryPartialInput {
+  """
+  动作标志
+  """
+  actionFlag: LogEntryActionFlagEnum
+
+  """
+  修改消息
+  """
+  changeMessage: String
+
+  """
+  内容类型
+  """
+  contentTypeId: ContentTypePartialInputOneToManyInput
+
+  """
+  对象id
+  """
+  objectId: String
+
+  """
+  对象表示
+  """
+  objectRepr: String
+
+  """
+  用户
+  """
+  userId: ID
+}
+
+input LogEntryPartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [LogEntryPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [LogEntryPartialInput!]
+}
+
+"""
+日志记录
+"""
+type LogEntryType {
+  _Str__: String!
+
+  """
+  动作标志
+  """
+  actionFlag: LogEntryActionFlagEnum!
+
+  """
+  操作时间
+  """
+  actionTime: DateTime!
+
+  """
+  修改消息
+  """
+  changeMessage: String!
+
+  """
+  内容类型
+  """
+  contentType: ContentTypeType
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  对象id
+  """
+  objectId: String
+
+  """
+  对象表示
+  """
+  objectRepr: String!
+
+  """
+  用户
+  """
+  user: UserType!
+}
+
+input LogFilter {
+  AND: LogFilter
+  DISTINCT: Boolean
+  NOT: LogFilter
+  OR: LogFilter
+
+  """
+  操作
+  """
+  action: LogActionEnumFilterLookup
+
+  """
+  所属内容类型
+  """
+  contentType: ContentTypeFilter
+
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  IP地址
+  """
+  ip: StrFilterLookup
+
+  """
+  操作对象
+  """
+  objectRepr: StrFilterLookup
+
+  """
+  所属用户
+  """
+  user: UserFilter
+}
+
+input LogInput {
+  """
+  操作
+  """
+  action: LogActionEnum!
+
+  """
+  所属内容类型
+  """
+  contentTypeId: ContentTypePartialInputOneToManyInput!
+
+  """
+  IP地址
+  """
+  ip: String!
+
+  """
+  操作对象
+  """
+  objectRepr: String!
+
+  """
+  所属用户
+  """
+  userId: ID
+}
+
+"""
+日志
+"""
+type LogNode implements Node {
+  _Str__: String!
+
+  """
+  操作
+  """
+  action: LogActionEnum!
+
+  """
+  所属内容类型
+  """
+  contentType: ContentTypeType!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  IP地址
+  """
+  ip: String!
+
+  """
+  操作对象
+  """
+  objectRepr: String!
+
+  """
+  所属用户
+  """
+  user: UserType!
+}
+
+"""
+A connection to a list of items.
+"""
+type LogNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [LogNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type LogNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: LogNode!
+}
+
+input LogOrder {
+  """
+  操作
+  """
+  action: Ordering
+
+  """
+  所属内容类型
+  """
+  contentType: ContentTypeOrder
+
+  """
+  创建时间
+  """
+  createdTime: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  IP地址
+  """
+  ip: Ordering
+
+  """
+  操作对象
+  """
+  objectRepr: Ordering
+
+  """
+  所属用户
+  """
+  user: UserOrder
+}
+
+input LogPartialInput {
+  """
+  操作
+  """
+  action: LogActionEnum
+
+  """
+  所属内容类型
+  """
+  contentTypeId: ContentTypePartialInputOneToManyInput
+
+  """
+  IP地址
+  """
+  ip: String
+
+  """
+  操作对象
+  """
+  objectRepr: String
+
+  """
+  所属用户
+  """
+  userId: ID
+}
+
+input LogPartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [LogPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [LogPartialInput!]
+}
+
+"""
+日志
+"""
+type LogType {
+  _Str__: String!
+
+  """
+  操作
+  """
+  action: LogActionEnum!
+
+  """
+  所属内容类型
+  """
+  contentType: ContentTypeType!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  IP地址
+  """
+  ip: String!
+
+  """
+  操作对象
+  """
+  objectRepr: String!
+
+  """
+  所属用户
+  """
+  user: UserType!
+}
+
+type Mutation {
+  createAction(data: ActionInput!): ActionType!
+  createActions(data: [ActionInput!]!, filters: ActionFilter): [ActionType!]!
+  createBattle(data: BattleInput!): BattleType!
+  createBattles(data: [BattleInput!]!, filters: BattleFilter): [BattleType!]!
+  createChangeSet(data: ChangeSetInput!): ChangeSetType!
+  createChangeSets(data: [ChangeSetInput!]!, filters: ChangeSetFilter): [ChangeSetType!]!
+  createContentType(data: ContentTypeInput!): ContentTypeType!
+  createContentTypes(data: [ContentTypeInput!]!, filters: ContentTypeFilter): [ContentTypeType!]!
+  createDeck(data: DeckInput!): DeckType!
+  createDecks(data: [DeckInput!]!, filters: DeckFilter): [DeckType!]!
+  createDynamicConfiguration(data: DynamicConfigurationInput!): DynamicConfigurationType!
+  createDynamicConfigurations(
+    data: [DynamicConfigurationInput!]!
+    filters: DynamicConfigurationFilter
+  ): [DynamicConfigurationType!]!
+  createFailedExceptionMail(data: FailedExceptionMailInput!): FailedExceptionMailType!
+  createFailedExceptionMails(
+    data: [FailedExceptionMailInput!]!
+    filters: FailedExceptionMailFilter
+  ): [FailedExceptionMailType!]!
+  createGroup(data: GroupInput!): GroupType!
+  createGroups(data: [GroupInput!]!, filters: GroupFilter): [GroupType!]!
+  createLog(data: LogInput!): LogType!
+  createLogEntry(data: LogEntryInput!): LogEntryType!
+  createLogEntrys(data: [LogEntryInput!]!, filters: LogEntryFilter): [LogEntryType!]!
+  createLogs(data: [LogInput!]!, filters: LogFilter): [LogType!]!
+  createMutationLog(data: MutationLogInput!): MutationLogType!
+  createMutationLogs(data: [MutationLogInput!]!, filters: MutationLogFilter): [MutationLogType!]!
+  createMutationThrottle(data: MutationThrottleInput!): MutationThrottleType!
+  createMutationThrottles(
+    data: [MutationThrottleInput!]!
+    filters: MutationThrottleFilter
+  ): [MutationThrottleType!]!
+  createPermission(data: PermissionInput!): PermissionType!
+  createPermissions(data: [PermissionInput!]!, filters: PermissionFilter): [PermissionType!]!
+  createQueryContent(data: QueryContentInput!): QueryContentType!
+  createQueryContents(
+    data: [QueryContentInput!]!
+    filters: QueryContentFilter
+  ): [QueryContentType!]!
+  createQueryLog(data: QueryLogInput!): QueryLogType!
+  createQueryLogs(data: [QueryLogInput!]!, filters: QueryLogFilter): [QueryLogType!]!
+  createRole(data: RoleInput!): RoleType!
+  createRoles(data: [RoleInput!]!, filters: RoleFilter): [RoleType!]!
+  createSession(data: SessionInput!): SessionType!
+  createSessions(data: [SessionInput!]!, filters: SessionFilter): [SessionType!]!
+  createSoftDeleteRecord(data: SoftDeleteRecordInput!): SoftDeleteRecordType!
+  createSoftDeleteRecords(
+    data: [SoftDeleteRecordInput!]!
+    filters: SoftDeleteRecordFilter
+  ): [SoftDeleteRecordType!]!
+  createUser(data: UserInput!): UserType!
+  createUsers(data: [UserInput!]!, filters: UserFilter): [UserType!]!
+  createVerificationCode(data: VerificationCodeInput!): VerificationCodeType!
+  createVerificationCodes(
+    data: [VerificationCodeInput!]!
+    filters: VerificationCodeFilter
+  ): [VerificationCodeType!]!
+  deleteActions(filters: ActionFilter): [ActionType!]!
+  deleteBattles(filters: BattleFilter): [BattleType!]!
+  deleteChangeSets(filters: ChangeSetFilter): [ChangeSetType!]!
+  deleteContentTypes(filters: ContentTypeFilter): [ContentTypeType!]!
+  deleteDecks(filters: DeckFilter): [DeckType!]!
+  deleteDynamicConfigurations(filters: DynamicConfigurationFilter): [DynamicConfigurationType!]!
+  deleteFailedExceptionMails(filters: FailedExceptionMailFilter): [FailedExceptionMailType!]!
+  deleteGroups(filters: GroupFilter): [GroupType!]!
+  deleteLogEntrys(filters: LogEntryFilter): [LogEntryType!]!
+  deleteLogs(filters: LogFilter): [LogType!]!
+  deleteMutationLogs(filters: MutationLogFilter): [MutationLogType!]!
+  deleteMutationThrottles(filters: MutationThrottleFilter): [MutationThrottleType!]!
+  deletePermissions(filters: PermissionFilter): [PermissionType!]!
+  deleteQueryContents(filters: QueryContentFilter): [QueryContentType!]!
+  deleteQueryLogs(filters: QueryLogFilter): [QueryLogType!]!
+  deleteRoles(filters: RoleFilter): [RoleType!]!
+  deleteSessions(filters: SessionFilter): [SessionType!]!
+  deleteSoftDeleteRecords(filters: SoftDeleteRecordFilter): [SoftDeleteRecordType!]!
+  deleteUsers(filters: UserFilter): [UserType!]!
+  deleteVerificationCodes(filters: VerificationCodeFilter): [VerificationCodeType!]!
+  isRegistered(username: String!): Boolean!
+  login(password: String!, username: String!): UserType
+  logout: Boolean!
+  sendVerificationEmail(email: String!): Boolean!
+  su(username: String!): UserType!
+  updateActions(data: ActionPartialInput!, filters: ActionFilter): [ActionType!]!
+  updateBattles(data: BattlePartialInput!, filters: BattleFilter): [BattleType!]!
+  updateChangeSets(data: ChangeSetPartialInput!, filters: ChangeSetFilter): [ChangeSetType!]!
+  updateContentTypes(
+    data: ContentTypePartialInput!
+    filters: ContentTypeFilter
+  ): [ContentTypeType!]!
+  updateDecks(data: DeckPartialInput!, filters: DeckFilter): [DeckType!]!
+  updateDynamicConfigurations(
+    data: DynamicConfigurationPartialInput!
+    filters: DynamicConfigurationFilter
+  ): [DynamicConfigurationType!]!
+  updateFailedExceptionMails(
+    data: FailedExceptionMailPartialInput!
+    filters: FailedExceptionMailFilter
+  ): [FailedExceptionMailType!]!
+  updateGroups(data: GroupPartialInput!, filters: GroupFilter): [GroupType!]!
+  updateLogEntrys(data: LogEntryPartialInput!, filters: LogEntryFilter): [LogEntryType!]!
+  updateLogs(data: LogPartialInput!, filters: LogFilter): [LogType!]!
+  updateMutationLogs(
+    data: MutationLogPartialInput!
+    filters: MutationLogFilter
+  ): [MutationLogType!]!
+  updateMutationThrottles(
+    data: MutationThrottlePartialInput!
+    filters: MutationThrottleFilter
+  ): [MutationThrottleType!]!
+  updatePermissions(data: PermissionPartialInput!, filters: PermissionFilter): [PermissionType!]!
+  updateQueryContents(
+    data: QueryContentPartialInput!
+    filters: QueryContentFilter
+  ): [QueryContentType!]!
+  updateQueryLogs(data: QueryLogPartialInput!, filters: QueryLogFilter): [QueryLogType!]!
+  updateRoles(data: RolePartialInput!, filters: RoleFilter): [RoleType!]!
+  updateSessions(data: SessionPartialInput!, filters: SessionFilter): [SessionType!]!
+  updateSoftDeleteRecords(
+    data: SoftDeleteRecordPartialInput!
+    filters: SoftDeleteRecordFilter
+  ): [SoftDeleteRecordType!]!
+  updateUsers(data: UserPartialInput!, filters: UserFilter): [UserType!]!
+  updateVerificationCodes(
+    data: VerificationCodePartialInput!
+    filters: VerificationCodeFilter
+  ): [VerificationCodeType!]!
+  verificationEmailAuth(code: String!, email: String!, password: String = null): Boolean!
+}
+
+input MutationLogFilter {
+  AND: MutationLogFilter
+  DISTINCT: Boolean
+  NOT: MutationLogFilter
+  OR: MutationLogFilter
+
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+
+  """
+  域名
+  """
+  domain: StrFilterLookup
+
+  """
+  错误
+  """
+  errors: StrFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  IP
+  """
+  ip: StrFilterLookup
+
+  """
+  所属查询内容
+  """
+  queryContent: QueryContentFilter
+
+  """
+  所属用户
+  """
+  user: UserFilter
+
+  """
+  变量
+  """
+  variables: JSONFilterLookup
+}
+
+input MutationLogInput {
+  """
+  域名
+  """
+  domain: String!
+
+  """
+  错误
+  """
+  errors: String
+
+  """
+  IP
+  """
+  ip: String!
+
+  """
+  所属查询内容
+  """
+  queryContentId: QueryContentPartialInputOneToManyInput
+
+  """
+  所属用户
+  """
+  userId: ID
+
+  """
+  变量
+  """
+  variables: JSON
+}
+
+"""
+突变日志
+"""
+type MutationLogNode implements Node {
+  _Str__: String!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  域名
+  """
+  domain: String!
+
+  """
+  错误
+  """
+  errors: String
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  IP
+  """
+  ip: String!
+
+  """
+  所属查询内容
+  """
+  queryContent: QueryContentType
+
+  """
+  所属用户
+  """
+  user: UserType
+
+  """
+  变量
+  """
+  variables: JSON
+}
+
+"""
+A connection to a list of items.
+"""
+type MutationLogNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [MutationLogNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type MutationLogNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: MutationLogNode!
+}
+
+input MutationLogOrder {
+  """
+  创建时间
+  """
+  createdTime: Ordering
+
+  """
+  域名
+  """
+  domain: Ordering
+
+  """
+  错误
+  """
+  errors: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  IP
+  """
+  ip: Ordering
+
+  """
+  所属查询内容
+  """
+  queryContent: QueryContentOrder
+
+  """
+  所属用户
+  """
+  user: UserOrder
+
+  """
+  变量
+  """
+  variables: Ordering
+}
+
+input MutationLogPartialInput {
+  """
+  域名
+  """
+  domain: String
+
+  """
+  错误
+  """
+  errors: String
+
+  """
+  IP
+  """
+  ip: String
+
+  """
+  所属查询内容
+  """
+  queryContentId: QueryContentPartialInputOneToManyInput
+
+  """
+  所属用户
+  """
+  userId: ID
+
+  """
+  变量
+  """
+  variables: JSON
+}
+
+input MutationLogPartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [MutationLogPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [MutationLogPartialInput!]
+}
+
+"""
+突变日志
+"""
+type MutationLogType {
+  _Str__: String!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  域名
+  """
+  domain: String!
+
+  """
+  错误
+  """
+  errors: String
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  IP
+  """
+  ip: String!
+
+  """
+  所属查询内容
+  """
+  queryContent: QueryContentType
+
+  """
+  所属用户
+  """
+  user: UserType
+
+  """
+  变量
+  """
+  variables: JSON
+}
+
+input MutationThrottleFilter {
+  AND: MutationThrottleFilter
+  DISTINCT: Boolean
+  NOT: MutationThrottleFilter
+  OR: MutationThrottleFilter
+
+  """
+  域名
+  """
+  domain: StrFilterLookup
+
+  """
+  字段名称
+  """
+  fieldName: StrFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  IP
+  """
+  ip: StrFilterLookup
+
+  """
+  参数
+  """
+  kwargs: StrFilterLookup
+
+  """
+  MD5
+  """
+  md5: StrFilterLookup
+
+  """
+  时间
+  """
+  time: DatetimeDatetimeFilterLookup
+
+  """
+  时间1
+  """
+  time1: DatetimeDatetimeFilterLookup
+
+  """
+  所属用户
+  """
+  user: UserFilter
+}
+
+input MutationThrottleInput {
+  """
+  域名
+  """
+  domain: String!
+
+  """
+  字段名称
+  """
+  fieldName: String!
+
+  """
+  IP
+  """
+  ip: String!
+
+  """
+  参数
+  """
+  kwargs: String!
+
+  """
+  MD5
+  """
+  md5: String!
+
+  """
+  时间
+  """
+  time: DateTime!
+
+  """
+  时间1
+  """
+  time1: DateTime
+
+  """
+  所属用户
+  """
+  userId: ID
+}
+
+"""
+突变节流
+"""
+type MutationThrottleNode implements Node {
+  _Str__: String!
+
+  """
+  域名
+  """
+  domain: String!
+
+  """
+  字段名称
+  """
+  fieldName: String!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  IP
+  """
+  ip: String!
+
+  """
+  参数
+  """
+  kwargs: String!
+
+  """
+  MD5
+  """
+  md5: String!
+
+  """
+  时间
+  """
+  time: DateTime!
+
+  """
+  时间1
+  """
+  time1: DateTime
+
+  """
+  所属用户
+  """
+  user: UserType
+}
+
+"""
+A connection to a list of items.
+"""
+type MutationThrottleNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [MutationThrottleNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type MutationThrottleNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: MutationThrottleNode!
+}
+
+input MutationThrottleOrder {
+  """
+  域名
+  """
+  domain: Ordering
+
+  """
+  字段名称
+  """
+  fieldName: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  IP
+  """
+  ip: Ordering
+
+  """
+  参数
+  """
+  kwargs: Ordering
+
+  """
+  MD5
+  """
+  md5: Ordering
+
+  """
+  时间
+  """
+  time: Ordering
+
+  """
+  时间1
+  """
+  time1: Ordering
+
+  """
+  所属用户
+  """
+  user: UserOrder
+}
+
+input MutationThrottlePartialInput {
+  """
+  域名
+  """
+  domain: String
+
+  """
+  字段名称
+  """
+  fieldName: String
+
+  """
+  IP
+  """
+  ip: String
+
+  """
+  参数
+  """
+  kwargs: String
+
+  """
+  MD5
+  """
+  md5: String
+
+  """
+  时间
+  """
+  time: DateTime
+
+  """
+  时间1
+  """
+  time1: DateTime
+
+  """
+  所属用户
+  """
+  userId: ID
+}
+
+input MutationThrottlePartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [MutationThrottlePartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [MutationThrottlePartialInput!]
+}
+
+"""
+突变节流
+"""
+type MutationThrottleType {
+  _Str__: String!
+
+  """
+  域名
+  """
+  domain: String!
+
+  """
+  字段名称
+  """
+  fieldName: String!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  IP
+  """
+  ip: String!
+
+  """
+  参数
+  """
+  kwargs: String!
+
+  """
+  MD5
+  """
+  md5: String!
+
+  """
+  时间
+  """
+  time: DateTime!
+
+  """
+  时间1
+  """
+  time1: DateTime
+
+  """
+  所属用户
+  """
+  user: UserType
+}
+
+"""
+An object with a Globally Unique ID
+"""
+interface Node {
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+}
+
+input OffsetPaginationInput {
+  limit: Int! = -1
+  offset: Int! = 0
+}
+
+enum Ordering {
+  ASC
+  ASC_NULLS_FIRST
+  ASC_NULLS_LAST
+  DESC
+  DESC_NULLS_FIRST
+  DESC_NULLS_LAST
+}
+
+"""
+Information to aid in pagination.
+"""
+type PageInfo {
+  """
+  When paginating forwards, the cursor to continue.
+  """
+  endCursor: String
+
+  """
+  When paginating forwards, are there more items?
+  """
+  hasNextPage: Boolean!
+
+  """
+  When paginating backwards, are there more items?
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  When paginating backwards, the cursor to continue.
+  """
+  startCursor: String
+}
+
+input PermissionFilter {
+  AND: PermissionFilter
+  DISTINCT: Boolean
+  NOT: PermissionFilter
+  OR: PermissionFilter
+
+  """
+  代码名称
+  """
+  codename: StrFilterLookup
+
+  """
+  内容类型
+  """
+  contentType: ContentTypeFilter
+
+  """
+  权限组
+  """
+  group: GroupFilter
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  名称
+  """
+  name: StrFilterLookup
+
+  """
+  角色
+  """
+  role: RoleFilter
+}
+
+input PermissionInput {
+  """
+  代码名称
+  """
+  codename: String!
+
+  """
+  内容类型
+  """
+  contentTypeId: ContentTypePartialInputOneToManyInput!
+
+  """
+  权限组
+  """
+  groupSet: GroupPartialInputManyToManyInput
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  角色
+  """
+  roleSet: RolePartialInputManyToManyInput
+}
+
+"""
+权限
+"""
+type PermissionNode implements Node {
+  _Str__: String!
+
+  """
+  代码名称
+  """
+  codename: String!
+
+  """
+  内容类型
+  """
+  contentType: ContentTypeType!
+
+  """
+  权限组
+  """
+  groupSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: GroupFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: GroupOrder
+  ): GroupNodeConnection!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  角色
+  """
+  roleSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: RoleFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: RoleOrder
+  ): RoleNodeConnection!
+}
+
+"""
+A connection to a list of items.
+"""
+type PermissionNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [PermissionNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type PermissionNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: PermissionNode!
+}
+
+input PermissionOrder {
+  """
+  代码名称
+  """
+  codename: Ordering
+
+  """
+  内容类型
+  """
+  contentType: ContentTypeOrder
+
+  """
+  权限组
+  """
+  group: GroupOrder
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  名称
+  """
+  name: Ordering
+
+  """
+  角色
+  """
+  role: RoleOrder
+}
+
+input PermissionPartialInput {
+  """
+  代码名称
+  """
+  codename: String
+
+  """
+  内容类型
+  """
+  contentTypeId: ContentTypePartialInputOneToManyInput
+
+  """
+  权限组
+  """
+  groupSet: GroupPartialInputManyToManyInput
+
+  """
+  名称
+  """
+  name: String
+
+  """
+  角色
+  """
+  roleSet: RolePartialInputManyToManyInput
+}
+
+input PermissionPartialInputManyToManyInput {
+  add: [ID!]
+  addObjects: [PermissionPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [PermissionPartialInput!]
+}
+
+input PermissionPartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [PermissionPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [PermissionPartialInput!]
+}
+
+"""
+权限
+"""
+type PermissionType {
+  _Str__: String!
+
+  """
+  代码名称
+  """
+  codename: String!
+
+  """
+  内容类型
+  """
+  contentType: ContentTypeType!
+
+  """
+  权限组
+  """
+  groupSet(
+    filters: GroupFilter
+    order: GroupOrder
+    pagination: OffsetPaginationInput
+  ): [GroupType!]!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  角色
+  """
+  roleSet(filters: RoleFilter, order: RoleOrder, pagination: OffsetPaginationInput): [RoleType!]!
+}
+
+type Query {
+  Action(pk: ID!): ActionType!
+  ActionConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: ActionFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: ActionOrder
+  ): ActionNodeConnection!
+  Actions(
+    filters: ActionFilter
+    order: ActionOrder
+    pagination: OffsetPaginationInput
+  ): [ActionType!]!
+  ActionsCount(filters: ActionFilter): Int!
+  Battle(pk: ID!): BattleType!
+  BattleConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: BattleFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: BattleOrder
+  ): BattleNodeConnection!
+  Battles(
+    filters: BattleFilter
+    order: BattleOrder
+    pagination: OffsetPaginationInput
+  ): [BattleType!]!
+  BattlesCount(filters: BattleFilter): Int!
+  ChangeSet(pk: ID!): ChangeSetType!
+  ChangeSetConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: ChangeSetFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: ChangeSetOrder
+  ): ChangeSetNodeConnection!
+  ChangeSets(
+    filters: ChangeSetFilter
+    order: ChangeSetOrder
+    pagination: OffsetPaginationInput
+  ): [ChangeSetType!]!
+  ChangeSetsCount(filters: ChangeSetFilter): Int!
+  ContentType(pk: ID!): ContentTypeType!
+  ContentTypeConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: ContentTypeFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: ContentTypeOrder
+  ): ContentTypeNodeConnection!
+  ContentTypes(
+    filters: ContentTypeFilter
+    order: ContentTypeOrder
+    pagination: OffsetPaginationInput
+  ): [ContentTypeType!]!
+  ContentTypesCount(filters: ContentTypeFilter): Int!
+  Deck(pk: ID!): DeckType!
+  DeckConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: DeckFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: DeckOrder
+  ): DeckNodeConnection!
+  Decks(filters: DeckFilter, order: DeckOrder, pagination: OffsetPaginationInput): [DeckType!]!
+  DecksCount(filters: DeckFilter): Int!
+  DynamicConfiguration(pk: ID!): DynamicConfigurationType!
+  DynamicConfigurationConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: DynamicConfigurationFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: DynamicConfigurationOrder
+  ): DynamicConfigurationNodeConnection!
+  DynamicConfigurations(
+    filters: DynamicConfigurationFilter
+    order: DynamicConfigurationOrder
+    pagination: OffsetPaginationInput
+  ): [DynamicConfigurationType!]!
+  DynamicConfigurationsCount(filters: DynamicConfigurationFilter): Int!
+  FailedExceptionMail(pk: ID!): FailedExceptionMailType!
+  FailedExceptionMailConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: FailedExceptionMailFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: FailedExceptionMailOrder
+  ): FailedExceptionMailNodeConnection!
+  FailedExceptionMails(
+    filters: FailedExceptionMailFilter
+    order: FailedExceptionMailOrder
+    pagination: OffsetPaginationInput
+  ): [FailedExceptionMailType!]!
+  FailedExceptionMailsCount(filters: FailedExceptionMailFilter): Int!
+  Group(pk: ID!): GroupType!
+  GroupConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: GroupFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: GroupOrder
+  ): GroupNodeConnection!
+  Groups(filters: GroupFilter, order: GroupOrder, pagination: OffsetPaginationInput): [GroupType!]!
+  GroupsCount(filters: GroupFilter): Int!
+  Log(pk: ID!): LogType!
+  LogConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: LogFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: LogOrder
+  ): LogNodeConnection!
+  LogEntry(pk: ID!): LogEntryType!
+  LogEntryConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: LogEntryFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: LogEntryOrder
+  ): LogEntryNodeConnection!
+  LogEntrys(
+    filters: LogEntryFilter
+    order: LogEntryOrder
+    pagination: OffsetPaginationInput
+  ): [LogEntryType!]!
+  LogEntrysCount(filters: LogEntryFilter): Int!
+  Logs(filters: LogFilter, order: LogOrder, pagination: OffsetPaginationInput): [LogType!]!
+  LogsCount(filters: LogFilter): Int!
+  MutationLog(pk: ID!): MutationLogType!
+  MutationLogConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: MutationLogFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: MutationLogOrder
+  ): MutationLogNodeConnection!
+  MutationLogs(
+    filters: MutationLogFilter
+    order: MutationLogOrder
+    pagination: OffsetPaginationInput
+  ): [MutationLogType!]!
+  MutationLogsCount(filters: MutationLogFilter): Int!
+  MutationThrottle(pk: ID!): MutationThrottleType!
+  MutationThrottleConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: MutationThrottleFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: MutationThrottleOrder
+  ): MutationThrottleNodeConnection!
+  MutationThrottles(
+    filters: MutationThrottleFilter
+    order: MutationThrottleOrder
+    pagination: OffsetPaginationInput
+  ): [MutationThrottleType!]!
+  MutationThrottlesCount(filters: MutationThrottleFilter): Int!
+  Permission(pk: ID!): PermissionType!
+  PermissionConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: PermissionFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: PermissionOrder
+  ): PermissionNodeConnection!
+  Permissions(
+    filters: PermissionFilter
+    order: PermissionOrder
+    pagination: OffsetPaginationInput
+  ): [PermissionType!]!
+  PermissionsCount(filters: PermissionFilter): Int!
+  QueryContent(pk: ID!): QueryContentType!
+  QueryContentConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: QueryContentFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: QueryContentOrder
+  ): QueryContentNodeConnection!
+  QueryContents(
+    filters: QueryContentFilter
+    order: QueryContentOrder
+    pagination: OffsetPaginationInput
+  ): [QueryContentType!]!
+  QueryContentsCount(filters: QueryContentFilter): Int!
+  QueryLog(pk: ID!): QueryLogType!
+  QueryLogConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: QueryLogFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: QueryLogOrder
+  ): QueryLogNodeConnection!
+  QueryLogs(
+    filters: QueryLogFilter
+    order: QueryLogOrder
+    pagination: OffsetPaginationInput
+  ): [QueryLogType!]!
+  QueryLogsCount(filters: QueryLogFilter): Int!
+  Role(pk: ID!): RoleType!
+  RoleConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: RoleFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: RoleOrder
+  ): RoleNodeConnection!
+  Roles(filters: RoleFilter, order: RoleOrder, pagination: OffsetPaginationInput): [RoleType!]!
+  RolesCount(filters: RoleFilter): Int!
+  Session(pk: ID!): SessionType!
+  SessionConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: SessionFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: SessionOrder
+  ): SessionNodeConnection!
+  Sessions(
+    filters: SessionFilter
+    order: SessionOrder
+    pagination: OffsetPaginationInput
+  ): [SessionType!]!
+  SessionsCount(filters: SessionFilter): Int!
+  SoftDeleteRecord(pk: ID!): SoftDeleteRecordType!
+  SoftDeleteRecordConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: SoftDeleteRecordFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: SoftDeleteRecordOrder
+  ): SoftDeleteRecordNodeConnection!
+  SoftDeleteRecords(
+    filters: SoftDeleteRecordFilter
+    order: SoftDeleteRecordOrder
+    pagination: OffsetPaginationInput
+  ): [SoftDeleteRecordType!]!
+  SoftDeleteRecordsCount(filters: SoftDeleteRecordFilter): Int!
+  User(pk: ID!): UserType!
+  UserConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: UserFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: UserOrder
+  ): UserNodeConnection!
+  Users(filters: UserFilter, order: UserOrder, pagination: OffsetPaginationInput): [UserType!]!
+  UsersCount(filters: UserFilter): Int!
+  VerificationCode(pk: ID!): VerificationCodeType!
+  VerificationCodeConnection(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: VerificationCodeFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: VerificationCodeOrder
+  ): VerificationCodeNodeConnection!
+  VerificationCodes(
+    filters: VerificationCodeFilter
+    order: VerificationCodeOrder
+    pagination: OffsetPaginationInput
+  ): [VerificationCodeType!]!
+  VerificationCodesCount(filters: VerificationCodeFilter): Int!
+  me: UserType
+  myPermissions(regex: String = null): [String!]!
+  node(
+    """
+    The ID of the object.
+    """
+    id: GlobalID!
+  ): Node!
+}
+
+input QueryContentFilter {
+  AND: QueryContentFilter
+  DISTINCT: Boolean
+  NOT: QueryContentFilter
+  OR: QueryContentFilter
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  突变日志
+  """
+  mutationlog: MutationLogFilter
+
+  """
+  查询日志
+  """
+  querylog: QueryLogFilter
+
+  """
+  文本
+  """
+  text: StrFilterLookup
+}
+
+input QueryContentInput {
+  """
+  突变日志
+  """
+  mutationlogSet: MutationLogPartialInputManyToOneInput
+
+  """
+  查询日志
+  """
+  querylogSet: QueryLogPartialInputManyToOneInput
+
+  """
+  文本
+  """
+  text: String!
+}
+
+"""
+查询内容
+"""
+type QueryContentNode implements Node {
+  _Str__: String!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  突变日志
+  """
+  mutationlogSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: MutationLogFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: MutationLogOrder
+  ): MutationLogNodeConnection!
+
+  """
+  查询日志
+  """
+  querylogSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: QueryLogFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: QueryLogOrder
+  ): QueryLogNodeConnection!
+
+  """
+  文本
+  """
+  text: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type QueryContentNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [QueryContentNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type QueryContentNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: QueryContentNode!
+}
+
+input QueryContentOrder {
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  突变日志
+  """
+  mutationlog: MutationLogOrder
+
+  """
+  查询日志
+  """
+  querylog: QueryLogOrder
+
+  """
+  文本
+  """
+  text: Ordering
+}
+
+input QueryContentPartialInput {
+  """
+  突变日志
+  """
+  mutationlogSet: MutationLogPartialInputManyToOneInput
+
+  """
+  查询日志
+  """
+  querylogSet: QueryLogPartialInputManyToOneInput
+
+  """
+  文本
+  """
+  text: String
+}
+
+input QueryContentPartialInputOneToManyInput {
+  set: ID
+  setObject: QueryContentPartialInput
+}
+
+"""
+查询内容
+"""
+type QueryContentType {
+  _Str__: String!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  突变日志
+  """
+  mutationlogSet(
+    filters: MutationLogFilter
+    order: MutationLogOrder
+    pagination: OffsetPaginationInput
+  ): [MutationLogType!]!
+
+  """
+  查询日志
+  """
+  querylogSet(
+    filters: QueryLogFilter
+    order: QueryLogOrder
+    pagination: OffsetPaginationInput
+  ): [QueryLogType!]!
+
+  """
+  文本
+  """
+  text: String!
+}
+
+input QueryLogFilter {
+  AND: QueryLogFilter
+  DISTINCT: Boolean
+  NOT: QueryLogFilter
+  OR: QueryLogFilter
+
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+
+  """
+  域名
+  """
+  domain: StrFilterLookup
+
+  """
+  错误
+  """
+  errors: StrFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  IP
+  """
+  ip: StrFilterLookup
+
+  """
+  所属查询内容
+  """
+  queryContent: QueryContentFilter
+
+  """
+  所属用户
+  """
+  user: UserFilter
+
+  """
+  变量
+  """
+  variables: JSONFilterLookup
+}
+
+input QueryLogInput {
+  """
+  域名
+  """
+  domain: String!
+
+  """
+  错误
+  """
+  errors: String
+
+  """
+  IP
+  """
+  ip: String!
+
+  """
+  所属查询内容
+  """
+  queryContentId: QueryContentPartialInputOneToManyInput
+
+  """
+  所属用户
+  """
+  userId: ID
+
+  """
+  变量
+  """
+  variables: JSON
+}
+
+"""
+查询日志
+"""
+type QueryLogNode implements Node {
+  _Str__: String!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  域名
+  """
+  domain: String!
+
+  """
+  错误
+  """
+  errors: String
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  IP
+  """
+  ip: String!
+
+  """
+  所属查询内容
+  """
+  queryContent: QueryContentType
+
+  """
+  所属用户
+  """
+  user: UserType
+
+  """
+  变量
+  """
+  variables: JSON
+}
+
+"""
+A connection to a list of items.
+"""
+type QueryLogNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [QueryLogNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type QueryLogNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: QueryLogNode!
+}
+
+input QueryLogOrder {
+  """
+  创建时间
+  """
+  createdTime: Ordering
+
+  """
+  域名
+  """
+  domain: Ordering
+
+  """
+  错误
+  """
+  errors: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  IP
+  """
+  ip: Ordering
+
+  """
+  所属查询内容
+  """
+  queryContent: QueryContentOrder
+
+  """
+  所属用户
+  """
+  user: UserOrder
+
+  """
+  变量
+  """
+  variables: Ordering
+}
+
+input QueryLogPartialInput {
+  """
+  域名
+  """
+  domain: String
+
+  """
+  错误
+  """
+  errors: String
+
+  """
+  IP
+  """
+  ip: String
+
+  """
+  所属查询内容
+  """
+  queryContentId: QueryContentPartialInputOneToManyInput
+
+  """
+  所属用户
+  """
+  userId: ID
+
+  """
+  变量
+  """
+  variables: JSON
+}
+
+input QueryLogPartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [QueryLogPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [QueryLogPartialInput!]
+}
+
+"""
+查询日志
+"""
+type QueryLogType {
+  _Str__: String!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  域名
+  """
+  domain: String!
+
+  """
+  错误
+  """
+  errors: String
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  IP
+  """
+  ip: String!
+
+  """
+  所属查询内容
+  """
+  queryContent: QueryContentType
+
+  """
+  所属用户
+  """
+  user: UserType
+
+  """
+  变量
+  """
+  variables: JSON
+}
+
+input RoleFilter {
+  AND: RoleFilter
+  DISTINCT: Boolean
+  NOT: RoleFilter
+  OR: RoleFilter
+
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+
+  """
+  删除日期
+  """
+  deletedAt: DatetimeDatetimeFilterLookup
+
+  """
+  权限组
+  """
+  groups: GroupFilter
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  名称
+  """
+  name: StrFilterLookup
+
+  """
+  权限
+  """
+  permissions: PermissionFilter
+
+  """
+  修改时间
+  """
+  updatedTime: DatetimeDatetimeFilterLookup
+
+  """
+  用户
+  """
+  user: UserFilter
+}
+
+input RoleInput {
+  """
+  权限组
+  """
+  groups: GroupPartialInputManyToManyInput
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  权限
+  """
+  permissions: PermissionPartialInputManyToManyInput
+
+  """
+  用户
+  """
+  userSet: UserPartialInputManyToManyInput
+}
+
+"""
+角色
+"""
+type RoleNode implements Node {
+  _Str__: String!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  删除日期
+  """
+  deletedAt: DateTime
+
+  """
+  权限组
+  """
+  groups(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: GroupFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: GroupOrder
+  ): GroupNodeConnection!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  权限
+  """
+  permissions(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: PermissionFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: PermissionOrder
+  ): PermissionNodeConnection!
+
+  """
+  修改时间
+  """
+  updatedTime: DateTime!
+
+  """
+  用户
+  """
+  userSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: UserFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: UserOrder
+  ): UserNodeConnection!
+}
+
+"""
+A connection to a list of items.
+"""
+type RoleNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [RoleNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type RoleNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: RoleNode!
+}
+
+input RoleOrder {
+  """
+  创建时间
+  """
+  createdTime: Ordering
+
+  """
+  删除日期
+  """
+  deletedAt: Ordering
+
+  """
+  权限组
+  """
+  groups: GroupOrder
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  名称
+  """
+  name: Ordering
+
+  """
+  权限
+  """
+  permissions: PermissionOrder
+
+  """
+  修改时间
+  """
+  updatedTime: Ordering
+
+  """
+  用户
+  """
+  user: UserOrder
+}
+
+input RolePartialInput {
+  """
+  权限组
+  """
+  groups: GroupPartialInputManyToManyInput
+
+  """
+  名称
+  """
+  name: String
+
+  """
+  权限
+  """
+  permissions: PermissionPartialInputManyToManyInput
+
+  """
+  用户
+  """
+  userSet: UserPartialInputManyToManyInput
+}
+
+input RolePartialInputManyToManyInput {
+  add: [ID!]
+  addObjects: [RolePartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [RolePartialInput!]
+}
+
+"""
+角色
+"""
+type RoleType {
+  _Str__: String!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  删除日期
+  """
+  deletedAt: DateTime
+
+  """
+  权限组
+  """
+  groups(filters: GroupFilter, order: GroupOrder, pagination: OffsetPaginationInput): [GroupType!]!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  权限
+  """
+  permissions(
+    filters: PermissionFilter
+    order: PermissionOrder
+    pagination: OffsetPaginationInput
+  ): [PermissionType!]!
+
+  """
+  修改时间
+  """
+  updatedTime: DateTime!
+
+  """
+  用户
+  """
+  userSet(filters: UserFilter, order: UserOrder, pagination: OffsetPaginationInput): [UserType!]!
+}
+
+input SessionFilter {
+  AND: SessionFilter
+  DISTINCT: Boolean
+  NOT: SessionFilter
+  OR: SessionFilter
+
+  """
+  过期时间
+  """
+  expireDate: DatetimeDatetimeFilterLookup
+
+  """
+  会话数据
+  """
+  sessionData: StrFilterLookup
+
+  """
+  会话密钥
+  """
+  sessionKey: StrFilterLookup
+}
+
+input SessionInput {
+  """
+  过期时间
+  """
+  expireDate: DateTime!
+
+  """
+  会话数据
+  """
+  sessionData: String!
+
+  """
+  会话密钥
+  """
+  sessionKey: String!
+}
+
+"""
+会话
+"""
+type SessionNode implements Node {
+  _Str__: String!
+
+  """
+  过期时间
+  """
+  expireDate: DateTime!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  会话数据
+  """
+  sessionData: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type SessionNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [SessionNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type SessionNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: SessionNode!
+}
+
+input SessionOrder {
+  """
+  过期时间
+  """
+  expireDate: Ordering
+
+  """
+  会话数据
+  """
+  sessionData: Ordering
+
+  """
+  会话密钥
+  """
+  sessionKey: Ordering
+}
+
+input SessionPartialInput {
+  """
+  过期时间
+  """
+  expireDate: DateTime
+
+  """
+  会话数据
+  """
+  sessionData: String
+
+  """
+  会话密钥
+  """
+  sessionKey: String
+}
+
+"""
+会话
+"""
+type SessionType {
+  _Str__: String!
+
+  """
+  过期时间
+  """
+  expireDate: DateTime!
+
+  """
+  会话数据
+  """
+  sessionData: String!
+
+  """
+  会话密钥
+  """
+  sessionKey: String!
+}
+
+input SoftDeleteRecordFilter {
+  AND: SoftDeleteRecordFilter
+  DISTINCT: Boolean
+  NOT: SoftDeleteRecordFilter
+  OR: SoftDeleteRecordFilter
+
+  """
+  所属修改集
+  """
+  changeset: ChangeSetFilter
+
+  """
+  所属内容类型
+  """
+  contentType: ContentTypeFilter
+
+  """
+  创建日期
+  """
+  createdDate: DatetimeDatetimeFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  对象编号
+  """
+  objectId: StrFilterLookup
+}
+
+input SoftDeleteRecordInput {
+  """
+  所属修改集
+  """
+  changesetId: ChangeSetPartialInputOneToManyInput!
+
+  """
+  所属内容类型
+  """
+  contentTypeId: ContentTypePartialInputOneToManyInput!
+
+  """
+  创建日期
+  """
+  createdDate: DateTime
+
+  """
+  对象编号
+  """
+  objectId: String!
+}
+
+"""
+软删除记录
+"""
+type SoftDeleteRecordNode implements Node {
+  _Str__: String!
+
+  """
+  所属修改集
+  """
+  changeset: ChangeSetType!
+
+  """
+  所属内容类型
+  """
+  contentType: ContentTypeType!
+
+  """
+  创建日期
+  """
+  createdDate: DateTime!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  对象编号
+  """
+  objectId: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type SoftDeleteRecordNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [SoftDeleteRecordNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type SoftDeleteRecordNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: SoftDeleteRecordNode!
+}
+
+input SoftDeleteRecordOrder {
+  """
+  所属修改集
+  """
+  changeset: ChangeSetOrder
+
+  """
+  所属内容类型
+  """
+  contentType: ContentTypeOrder
+
+  """
+  创建日期
+  """
+  createdDate: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  对象编号
+  """
+  objectId: Ordering
+}
+
+input SoftDeleteRecordPartialInput {
+  """
+  所属修改集
+  """
+  changesetId: ChangeSetPartialInputOneToManyInput
+
+  """
+  所属内容类型
+  """
+  contentTypeId: ContentTypePartialInputOneToManyInput
+
+  """
+  创建日期
+  """
+  createdDate: DateTime
+
+  """
+  对象编号
+  """
+  objectId: String
+}
+
+input SoftDeleteRecordPartialInputManyToOneInput {
+  add: [ID!]
+  addObjects: [SoftDeleteRecordPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [SoftDeleteRecordPartialInput!]
+}
+
+"""
+软删除记录
+"""
+type SoftDeleteRecordType {
+  _Str__: String!
+
+  """
+  所属修改集
+  """
+  changeset: ChangeSetType!
+
+  """
+  所属内容类型
+  """
+  contentType: ContentTypeType!
+
+  """
+  创建日期
+  """
+  createdDate: DateTime!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  对象编号
+  """
+  objectId: String!
+}
+
+input StrFilterLookup {
+  """
+  Case-sensitive containment test. Filter will be skipped on `null` value
+  """
+  contains: String
+
+  """
+  Case-sensitive ends-with. Filter will be skipped on `null` value
+  """
+  endsWith: String
+
+  """
+  Exact match. Filter will be skipped on `null` value
+  """
+  exact: String
+
+  """
+  Case-insensitive containment test. Filter will be skipped on `null` value
+  """
+  iContains: String
+
+  """
+  Case-insensitive ends-with. Filter will be skipped on `null` value
+  """
+  iEndsWith: String
+
+  """
+  Case-insensitive exact match. Filter will be skipped on `null` value
+  """
+  iExact: String
+
+  """
+  Case-insensitive regular expression match. Filter will be skipped on `null` value
+  """
+  iRegex: String
+
+  """
+  Case-insensitive starts-with. Filter will be skipped on `null` value
+  """
+  iStartsWith: String
+
+  """
+  Exact match of items in a given list. Filter will be skipped on `null` value
+  """
+  inList: [String!]
+
+  """
+  Assignment test. Filter will be skipped on `null` value
+  """
+  isNull: Boolean
+
+  """
+  Case-sensitive regular expression match. Filter will be skipped on `null` value
+  """
+  regex: String
+
+  """
+  Case-sensitive starts-with. Filter will be skipped on `null` value
+  """
+  startsWith: String
+}
+
+type Subscription {
+  Action: ActionType!
+  Actions(
+    filters: ActionFilter
+    order: ActionOrder
+    pagination: OffsetPaginationInput
+  ): [ActionType!]!
+  ActionsCount(filters: ActionFilter): Int!
+  Battle: BattleType!
+  Battles(
+    filters: BattleFilter
+    order: BattleOrder
+    pagination: OffsetPaginationInput
+  ): [BattleType!]!
+  BattlesCount(filters: BattleFilter): Int!
+  ChangeSet: ChangeSetType!
+  ChangeSets(
+    filters: ChangeSetFilter
+    order: ChangeSetOrder
+    pagination: OffsetPaginationInput
+  ): [ChangeSetType!]!
+  ChangeSetsCount(filters: ChangeSetFilter): Int!
+  ContentType: ContentTypeType!
+  ContentTypes(
+    filters: ContentTypeFilter
+    order: ContentTypeOrder
+    pagination: OffsetPaginationInput
+  ): [ContentTypeType!]!
+  ContentTypesCount(filters: ContentTypeFilter): Int!
+  Deck: DeckType!
+  Decks(filters: DeckFilter, order: DeckOrder, pagination: OffsetPaginationInput): [DeckType!]!
+  DecksCount(filters: DeckFilter): Int!
+  DynamicConfiguration: DynamicConfigurationType!
+  DynamicConfigurations(
+    filters: DynamicConfigurationFilter
+    order: DynamicConfigurationOrder
+    pagination: OffsetPaginationInput
+  ): [DynamicConfigurationType!]!
+  DynamicConfigurationsCount(filters: DynamicConfigurationFilter): Int!
+  FailedExceptionMail: FailedExceptionMailType!
+  FailedExceptionMails(
+    filters: FailedExceptionMailFilter
+    order: FailedExceptionMailOrder
+    pagination: OffsetPaginationInput
+  ): [FailedExceptionMailType!]!
+  FailedExceptionMailsCount(filters: FailedExceptionMailFilter): Int!
+  Group: GroupType!
+  Groups(filters: GroupFilter, order: GroupOrder, pagination: OffsetPaginationInput): [GroupType!]!
+  GroupsCount(filters: GroupFilter): Int!
+  Log: LogType!
+  LogEntry: LogEntryType!
+  LogEntrys(
+    filters: LogEntryFilter
+    order: LogEntryOrder
+    pagination: OffsetPaginationInput
+  ): [LogEntryType!]!
+  LogEntrysCount(filters: LogEntryFilter): Int!
+  Logs(filters: LogFilter, order: LogOrder, pagination: OffsetPaginationInput): [LogType!]!
+  LogsCount(filters: LogFilter): Int!
+  MutationLog: MutationLogType!
+  MutationLogs(
+    filters: MutationLogFilter
+    order: MutationLogOrder
+    pagination: OffsetPaginationInput
+  ): [MutationLogType!]!
+  MutationLogsCount(filters: MutationLogFilter): Int!
+  MutationThrottle: MutationThrottleType!
+  MutationThrottles(
+    filters: MutationThrottleFilter
+    order: MutationThrottleOrder
+    pagination: OffsetPaginationInput
+  ): [MutationThrottleType!]!
+  MutationThrottlesCount(filters: MutationThrottleFilter): Int!
+  Permission: PermissionType!
+  Permissions(
+    filters: PermissionFilter
+    order: PermissionOrder
+    pagination: OffsetPaginationInput
+  ): [PermissionType!]!
+  PermissionsCount(filters: PermissionFilter): Int!
+  QueryContent: QueryContentType!
+  QueryContents(
+    filters: QueryContentFilter
+    order: QueryContentOrder
+    pagination: OffsetPaginationInput
+  ): [QueryContentType!]!
+  QueryContentsCount(filters: QueryContentFilter): Int!
+  QueryLog: QueryLogType!
+  QueryLogs(
+    filters: QueryLogFilter
+    order: QueryLogOrder
+    pagination: OffsetPaginationInput
+  ): [QueryLogType!]!
+  QueryLogsCount(filters: QueryLogFilter): Int!
+  Role: RoleType!
+  Roles(filters: RoleFilter, order: RoleOrder, pagination: OffsetPaginationInput): [RoleType!]!
+  RolesCount(filters: RoleFilter): Int!
+  Session: SessionType!
+  Sessions(
+    filters: SessionFilter
+    order: SessionOrder
+    pagination: OffsetPaginationInput
+  ): [SessionType!]!
+  SessionsCount(filters: SessionFilter): Int!
+  SoftDeleteRecord: SoftDeleteRecordType!
+  SoftDeleteRecords(
+    filters: SoftDeleteRecordFilter
+    order: SoftDeleteRecordOrder
+    pagination: OffsetPaginationInput
+  ): [SoftDeleteRecordType!]!
+  SoftDeleteRecordsCount(filters: SoftDeleteRecordFilter): Int!
+  User: UserType!
+  Users(filters: UserFilter, order: UserOrder, pagination: OffsetPaginationInput): [UserType!]!
+  UsersCount(filters: UserFilter): Int!
+  VerificationCode: VerificationCodeType!
+  VerificationCodes(
+    filters: VerificationCodeFilter
+    order: VerificationCodeOrder
+    pagination: OffsetPaginationInput
+  ): [VerificationCodeType!]!
+  VerificationCodesCount(filters: VerificationCodeFilter): Int!
+  heartbeat(uid: String!): Void
+  listenAlive(uid: String!): Void
+  matchOpponent(size: Int! = 4, uid: String!, version: String! = ""): JSON!
+  me: UserType
+  onlineCount: Int!
+  sendData(data: JSON!, to: String!): Void
+  time: Float!
+}
+
+scalar Upload
+
+input UserFilter {
+  AND: UserFilter
+  DISTINCT: Boolean
+  NOT: UserFilter
+  OR: UserFilter
+
+  """
+  行动
+  """
+  action: ActionFilter
+
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+
+  """
+  卡组
+  """
+  deck: DeckFilter
+
+  """
+  删除日期
+  """
+  deletedAt: DatetimeDatetimeFilterLookup
+
+  """
+  电子邮件地址
+  """
+  email: StrFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  有效
+  """
+  isActive: BoolBaseFilterLookup
+
+  """
+  超级用户状态
+  """
+  isSuperuser: BoolBaseFilterLookup
+
+  """
+  上次登录
+  """
+  lastLogin: DatetimeDatetimeFilterLookup
+
+  """
+  日志
+  """
+  log: LogFilter
+
+  """
+  日志记录
+  """
+  logentry: LogEntryFilter
+
+  """
+  突变日志
+  """
+  mutationlog: MutationLogFilter
+
+  """
+  突变节流
+  """
+  mutationthrottle: MutationThrottleFilter
+
+  """
+  名称
+  """
+  name: StrFilterLookup
+
+  """
+  密码
+  """
+  password: StrFilterLookup
+
+  """
+  查询日志
+  """
+  querylog: QueryLogFilter
+
+  """
+  角色
+  """
+  roles: RoleFilter
+
+  """
+  修改时间
+  """
+  updatedTime: DatetimeDatetimeFilterLookup
+
+  """
+  账号
+  """
+  username: StrFilterLookup
+
+  """
+  战斗
+  """
+  watchBattles: BattleFilter
+}
+
+input UserInput {
+  """
+  行动
+  """
+  actionSet: ActionPartialInputManyToOneInput
+
+  """
+  头像
+  """
+  avatar: Upload
+
+  """
+  卡组
+  """
+  deckSet: DeckPartialInputManyToOneInput
+
+  """
+  电子邮件地址
+  """
+  email: String
+
+  """
+  有效
+  """
+  isActive: Boolean
+
+  """
+  超级用户状态
+  """
+  isSuperuser: Boolean
+
+  """
+  上次登录
+  """
+  lastLogin: DateTime
+
+  """
+  日志
+  """
+  logSet: LogPartialInputManyToOneInput
+
+  """
+  日志记录
+  """
+  logentrySet: LogEntryPartialInputManyToOneInput
+
+  """
+  突变日志
+  """
+  mutationlogSet: MutationLogPartialInputManyToOneInput
+
+  """
+  突变节流
+  """
+  mutationthrottleSet: MutationThrottlePartialInputManyToOneInput
+
+  """
+  名称
+  """
+  name: String
+
+  """
+  密码
+  """
+  password: String!
+
+  """
+  查询日志
+  """
+  querylogSet: QueryLogPartialInputManyToOneInput
+
+  """
+  角色
+  """
+  roles: RolePartialInputManyToManyInput
+
+  """
+  账号
+  """
+  username: String!
+
+  """
+  战斗
+  """
+  watchBattles: BattlePartialInputManyToManyInput
+}
+
+"""
+用户
+"""
+type UserNode implements Node {
+  _Str__: String!
+
+  """
+  行动
+  """
+  actionSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: ActionFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: ActionOrder
+  ): ActionNodeConnection!
+
+  """
+  头像
+  """
+  avatar: DjangoImageType
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  卡组
+  """
+  deckSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: DeckFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: DeckOrder
+  ): DeckNodeConnection!
+
+  """
+  删除日期
+  """
+  deletedAt: DateTime
+
+  """
+  电子邮件地址
+  """
+  email: String!
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  有效
+  """
+  isActive: Boolean!
+
+  """
+  超级用户状态
+  """
+  isSuperuser: Boolean!
+
+  """
+  上次登录
+  """
+  lastLogin: DateTime
+
+  """
+  日志
+  """
+  logSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: LogFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: LogOrder
+  ): LogNodeConnection!
+
+  """
+  日志记录
+  """
+  logentrySet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: LogEntryFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: LogEntryOrder
+  ): LogEntryNodeConnection!
+
+  """
+  突变日志
+  """
+  mutationlogSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: MutationLogFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: MutationLogOrder
+  ): MutationLogNodeConnection!
+
+  """
+  突变节流
+  """
+  mutationthrottleSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: MutationThrottleFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: MutationThrottleOrder
+  ): MutationThrottleNodeConnection!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  密码
+  """
+  password: String!
+
+  """
+  查询日志
+  """
+  querylogSet(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: QueryLogFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: QueryLogOrder
+  ): QueryLogNodeConnection!
+
+  """
+  角色
+  """
+  roles(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: RoleFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: RoleOrder
+  ): RoleNodeConnection!
+
+  """
+  修改时间
+  """
+  updatedTime: DateTime!
+
+  """
+  账号
+  """
+  username: String!
+
+  """
+  战斗
+  """
+  watchBattles(
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    after: String = null
+
+    """
+    Returns the items in the list that come before the specified cursor.
+    """
+    before: String = null
+    filters: BattleFilter
+
+    """
+    Returns the first n items from the list.
+    """
+    first: Int = null
+
+    """
+    Returns the items in the list that come after the specified cursor.
+    """
+    last: Int = null
+    order: BattleOrder
+  ): BattleNodeConnection!
+}
+
+"""
+A connection to a list of items.
+"""
+type UserNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [UserNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type UserNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: UserNode!
+}
+
+input UserOrder {
+  """
+  行动
+  """
+  action: ActionOrder
+
+  """
+  创建时间
+  """
+  createdTime: Ordering
+
+  """
+  卡组
+  """
+  deck: DeckOrder
+
+  """
+  删除日期
+  """
+  deletedAt: Ordering
+
+  """
+  电子邮件地址
+  """
+  email: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  有效
+  """
+  isActive: Ordering
+
+  """
+  超级用户状态
+  """
+  isSuperuser: Ordering
+
+  """
+  上次登录
+  """
+  lastLogin: Ordering
+
+  """
+  日志
+  """
+  log: LogOrder
+
+  """
+  日志记录
+  """
+  logentry: LogEntryOrder
+
+  """
+  突变日志
+  """
+  mutationlog: MutationLogOrder
+
+  """
+  突变节流
+  """
+  mutationthrottle: MutationThrottleOrder
+
+  """
+  名称
+  """
+  name: Ordering
+
+  """
+  密码
+  """
+  password: Ordering
+
+  """
+  查询日志
+  """
+  querylog: QueryLogOrder
+
+  """
+  角色
+  """
+  roles: RoleOrder
+
+  """
+  修改时间
+  """
+  updatedTime: Ordering
+
+  """
+  账号
+  """
+  username: Ordering
+
+  """
+  战斗
+  """
+  watchBattles: BattleOrder
+}
+
+input UserPartialInput {
+  """
+  行动
+  """
+  actionSet: ActionPartialInputManyToOneInput
+
+  """
+  头像
+  """
+  avatar: Upload
+
+  """
+  卡组
+  """
+  deckSet: DeckPartialInputManyToOneInput
+
+  """
+  电子邮件地址
+  """
+  email: String
+
+  """
+  有效
+  """
+  isActive: Boolean
+
+  """
+  超级用户状态
+  """
+  isSuperuser: Boolean
+
+  """
+  上次登录
+  """
+  lastLogin: DateTime
+
+  """
+  日志
+  """
+  logSet: LogPartialInputManyToOneInput
+
+  """
+  日志记录
+  """
+  logentrySet: LogEntryPartialInputManyToOneInput
+
+  """
+  突变日志
+  """
+  mutationlogSet: MutationLogPartialInputManyToOneInput
+
+  """
+  突变节流
+  """
+  mutationthrottleSet: MutationThrottlePartialInputManyToOneInput
+
+  """
+  名称
+  """
+  name: String
+
+  """
+  密码
+  """
+  password: String
+
+  """
+  查询日志
+  """
+  querylogSet: QueryLogPartialInputManyToOneInput
+
+  """
+  角色
+  """
+  roles: RolePartialInputManyToManyInput
+
+  """
+  账号
+  """
+  username: String
+
+  """
+  战斗
+  """
+  watchBattles: BattlePartialInputManyToManyInput
+}
+
+input UserPartialInputManyToManyInput {
+  add: [ID!]
+  addObjects: [UserPartialInput!]
+  remove: [ID!]
+  set: [ID!]
+  setObjects: [UserPartialInput!]
+}
+
+"""
+用户
+"""
+type UserType {
+  _Str__: String!
+
+  """
+  行动
+  """
+  actionSet(
+    filters: ActionFilter
+    order: ActionOrder
+    pagination: OffsetPaginationInput
+  ): [ActionType!]!
+
+  """
+  头像
+  """
+  avatar: DjangoImageType
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  卡组
+  """
+  deckSet(filters: DeckFilter, order: DeckOrder, pagination: OffsetPaginationInput): [DeckType!]!
+
+  """
+  删除日期
+  """
+  deletedAt: DateTime
+
+  """
+  电子邮件地址
+  """
+  email: String!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  有效
+  """
+  isActive: Boolean!
+
+  """
+  超级用户状态
+  """
+  isSuperuser: Boolean!
+
+  """
+  上次登录
+  """
+  lastLogin: DateTime
+
+  """
+  日志
+  """
+  logSet(filters: LogFilter, order: LogOrder, pagination: OffsetPaginationInput): [LogType!]!
+
+  """
+  日志记录
+  """
+  logentrySet(
+    filters: LogEntryFilter
+    order: LogEntryOrder
+    pagination: OffsetPaginationInput
+  ): [LogEntryType!]!
+
+  """
+  突变日志
+  """
+  mutationlogSet(
+    filters: MutationLogFilter
+    order: MutationLogOrder
+    pagination: OffsetPaginationInput
+  ): [MutationLogType!]!
+
+  """
+  突变节流
+  """
+  mutationthrottleSet(
+    filters: MutationThrottleFilter
+    order: MutationThrottleOrder
+    pagination: OffsetPaginationInput
+  ): [MutationThrottleType!]!
+
+  """
+  名称
+  """
+  name: String!
+
+  """
+  密码
+  """
+  password: String!
+
+  """
+  查询日志
+  """
+  querylogSet(
+    filters: QueryLogFilter
+    order: QueryLogOrder
+    pagination: OffsetPaginationInput
+  ): [QueryLogType!]!
+
+  """
+  角色
+  """
+  roles(filters: RoleFilter, order: RoleOrder, pagination: OffsetPaginationInput): [RoleType!]!
+
+  """
+  修改时间
+  """
+  updatedTime: DateTime!
+
+  """
+  账号
+  """
+  username: String!
+
+  """
+  战斗
+  """
+  watchBattles(
+    filters: BattleFilter
+    order: BattleOrder
+    pagination: OffsetPaginationInput
+  ): [BattleType!]!
+}
+
+input VerificationCodeFilter {
+  AND: VerificationCodeFilter
+  DISTINCT: Boolean
+  NOT: VerificationCodeFilter
+  OR: VerificationCodeFilter
+
+  """
+  验证码
+  """
+  code: StrFilterLookup
+
+  """
+  创建时间
+  """
+  createdTime: DatetimeDatetimeFilterLookup
+
+  """
+  删除日期
+  """
+  deletedAt: DatetimeDatetimeFilterLookup
+
+  """
+  ID
+  """
+  id: IDBaseFilterLookup
+
+  """
+  修改时间
+  """
+  updatedTime: DatetimeDatetimeFilterLookup
+
+  """
+  用户名
+  """
+  username: StrFilterLookup
+}
+
+input VerificationCodeInput {
+  """
+  验证码
+  """
+  code: String!
+
+  """
+  用户名
+  """
+  username: String!
+}
+
+"""
+验证码
+"""
+type VerificationCodeNode implements Node {
+  _Str__: String!
+
+  """
+  验证码
+  """
+  code: String!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  删除日期
+  """
+  deletedAt: DateTime
+
+  """
+  The Globally Unique ID of this object
+  """
+  id: GlobalID!
+
+  """
+  修改时间
+  """
+  updatedTime: DateTime!
+
+  """
+  用户名
+  """
+  username: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type VerificationCodeNodeConnection {
+  """
+  Contains the nodes in this connection
+  """
+  edges: [VerificationCodeNodeEdge!]!
+
+  """
+  Pagination data for this connection
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total quantity of existing nodes.
+  """
+  totalCount: Int
+}
+
+"""
+An edge in a connection.
+"""
+type VerificationCodeNodeEdge {
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge
+  """
+  node: VerificationCodeNode!
+}
+
+input VerificationCodeOrder {
+  """
+  验证码
+  """
+  code: Ordering
+
+  """
+  创建时间
+  """
+  createdTime: Ordering
+
+  """
+  删除日期
+  """
+  deletedAt: Ordering
+
+  """
+  ID
+  """
+  id: Ordering
+
+  """
+  修改时间
+  """
+  updatedTime: Ordering
+
+  """
+  用户名
+  """
+  username: Ordering
+}
+
+input VerificationCodePartialInput {
+  """
+  验证码
+  """
+  code: String
+
+  """
+  用户名
+  """
+  username: String
+}
+
+"""
+验证码
+"""
+type VerificationCodeType {
+  _Str__: String!
+
+  """
+  验证码
+  """
+  code: String!
+
+  """
+  创建时间
+  """
+  createdTime: DateTime!
+
+  """
+  删除日期
+  """
+  deletedAt: DateTime
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  修改时间
+  """
+  updatedTime: DateTime!
+
+  """
+  用户名
+  """
+  username: String!
+}
+
+"""
+Represents NULL values
+"""
+scalar Void

@@ -1,34 +1,4 @@
-import { ExtensionType, extensions, utils } from '@pixi/core'
-import { useEventListener } from '@vueuse/core'
-import { Howl } from 'howler'
 import { 获得资源 } from './美术资源'
-
-function checkDataUrl(url: string, mimes: string) {
-  if (Array.isArray(mimes)) {
-    for (const mime of mimes) if (url.startsWith(`data:${mime}`)) return !0
-    return !1
-  }
-  return url.startsWith(`data:${mimes}`)
-}
-function checkExtension(url: string, extension: string | string[]) {
-  const tempURL = url.split('?')[0],
-    ext = utils.path.extname(tempURL).toLowerCase()
-  return Array.isArray(extension) ? extension.includes(ext) : ext === extension
-}
-const loadMp3 = {
-  extension: {
-    type: ExtensionType.LoadParser,
-    priority: 1,
-  },
-  name: 'loadMp3',
-  test(url: string) {
-    return checkDataUrl(url, 'audio/mpeg') || checkExtension(url, '.mp3')
-  },
-  async load(url: string) {
-    return new Howl({ src: url, preload: true })
-  },
-}
-extensions.add(loadMp3)
 
 function 播放音频(文件: string) {
   const 音频元素 = document.createElement('audio')
@@ -53,9 +23,7 @@ function 获得音频元素(id: string) {
   return 音频元素
 }
 function 播放语音(美术资源: number[], 类别: string) {
-  const 文件 = 获得资源(美术资源, (f, i) =>
-    f.match(`^character/${类别}_${i}(_[0-9]{2})?.mp3$`)
-  )
+  const 文件 = 获得资源(美术资源, (f, i) => f.match(`^character/${类别}_${i}(_[0-9]{2})?.mp3$`))
   if (文件) {
     const 音频元素 = 获得音频元素(类别)
     if (音频元素.src != 文件) {
@@ -85,16 +53,6 @@ async function 播放场景背景音乐(url: string) {
   音频元素.src = url
   音频元素.loop = true
   音频元素.volume = 0.15
-  useEventListener(
-    document.body,
-    'click',
-    () => {
-      if (音频元素.paused) {
-        音频元素.play()
-      }
-    },
-    { once: true }
-  )
   await 音频元素.play()
 }
 async function 播放角色背景音乐(美术资源: number[]) {

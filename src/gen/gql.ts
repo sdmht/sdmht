@@ -11,6 +11,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * 3. It does not support dead code elimination, so it will add unused operations.
  *
  * Therefore it is highly recommended to use the babel or swc plugin for production.
+ * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
   '\n      subscription heartbeat($uid: String!) {\n        heartbeat(uid: $uid)\n      }\n    ':
@@ -26,51 +27,51 @@ const documents = {
 }
 
 /**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  *
  *
  * @example
  * ```ts
- * const query = graphql(`query GetUser($id: ID!) { user(id: $id) { name } }`);
+ * const query = gql(`query GetUser($id: ID!) { user(id: $id) { name } }`);
  * ```
  *
  * The query argument is unknown!
  * Please regenerate the types.
  */
-export function graphql(source: string): unknown
+export function gql(source: string): unknown
 
 /**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n      subscription heartbeat($uid: String!) {\n        heartbeat(uid: $uid)\n      }\n    '
+export function gql(
+  source: '\n      subscription heartbeat($uid: String!) {\n        heartbeat(uid: $uid)\n      }\n    ',
 ): (typeof documents)['\n      subscription heartbeat($uid: String!) {\n        heartbeat(uid: $uid)\n      }\n    ']
 /**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n      subscription onlineCount {\n        onlineCount\n      }\n    '
+export function gql(
+  source: '\n      subscription onlineCount {\n        onlineCount\n      }\n    ',
 ): (typeof documents)['\n      subscription onlineCount {\n        onlineCount\n      }\n    ']
 /**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n        subscription matchOpponent(\n          $uid: String!\n          $size: Int!\n          $version: String!\n        ) {\n          matchOpponent(uid: $uid, size: $size, version: $version)\n        }\n      '
+export function gql(
+  source: '\n        subscription matchOpponent(\n          $uid: String!\n          $size: Int!\n          $version: String!\n        ) {\n          matchOpponent(uid: $uid, size: $size, version: $version)\n        }\n      ',
 ): (typeof documents)['\n        subscription matchOpponent(\n          $uid: String!\n          $size: Int!\n          $version: String!\n        ) {\n          matchOpponent(uid: $uid, size: $size, version: $version)\n        }\n      ']
 /**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n                subscription sendData($to: String!, $data: JSON!) {\n                  sendData(to: $to, data: $data)\n                }\n              '
+export function gql(
+  source: '\n                subscription sendData($to: String!, $data: JSON!) {\n                  sendData(to: $to, data: $data)\n                }\n              ',
 ): (typeof documents)['\n                subscription sendData($to: String!, $data: JSON!) {\n                  sendData(to: $to, data: $data)\n                }\n              ']
 /**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-  source: '\n              subscription listenAlive($uid: String!) {\n                listenAlive(uid: $uid)\n              }\n            '
+export function gql(
+  source: '\n              subscription listenAlive($uid: String!) {\n                listenAlive(uid: $uid)\n              }\n            ',
 ): (typeof documents)['\n              subscription listenAlive($uid: String!) {\n                listenAlive(uid: $uid)\n              }\n            ']
 
-export function graphql(source: string) {
+export function gql(source: string) {
   return (documents as any)[source] ?? {}
 }
 

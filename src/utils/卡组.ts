@@ -1,10 +1,5 @@
 import { Notify } from 'quasar'
-import {
-  主神信息列表,
-  弹幕卡信息列表,
-  神迹卡信息列表,
-  附属神信息列表,
-} from './信息'
+import { 主神信息列表, 弹幕卡信息列表, 神迹卡信息列表, 附属神信息列表 } from './信息'
 
 type 编号卡组类型 = {
   卡组名: string
@@ -24,18 +19,11 @@ function 编号卡组转字符串(卡组: 编号卡组类型): string {
       卡组.附属神.map((x) => x - 20000),
       卡组.神迹卡.map((x) => x - 30000),
       卡组.弹幕卡.map((x) => x - 40000),
-    ])
+    ]),
   )
 }
 function 字符串转编号卡组(字符串: string): 编号卡组类型 {
-  const 数据 = JSON.parse(atob(字符串)) as [
-    string,
-    1 | 2 | 3,
-    number,
-    number[],
-    number[],
-    number[]
-  ]
+  const 数据 = JSON.parse(atob(字符串)) as [string, 1 | 2 | 3, number, number[], number[], number[]]
   const 卡组 = {
     卡组名: decodeURIComponent(数据[0]),
     主神技能: 数据[1],
@@ -51,32 +39,21 @@ function 字符串转编号卡组(字符串: string): 编号卡组类型 {
   if (卡组.神迹卡.length + 卡组.弹幕卡.length != 20) {
     错误列表.push('神迹卡+弹幕卡总数不为20')
   }
-  if (
-    主神信息列表.findIndex((x) => x.仅系统用 == 0 && x.编号 === 卡组.主神) == -1
-  ) {
+  if (主神信息列表.findIndex((x) => x.仅系统用 == 0 && x.编号 === 卡组.主神) == -1) {
     错误列表.push(`不存在非系统用的编号为${卡组.主神}的主神`)
   }
   for (const 附属神 of 卡组.附属神) {
-    if (
-      附属神信息列表.findIndex((x) => x.仅系统用 == 0 && x.编号 === 附属神) ==
-      -1
-    ) {
+    if (附属神信息列表.findIndex((x) => x.仅系统用 == 0 && x.编号 === 附属神) == -1) {
       错误列表.push(`不存在非系统用的编号为${附属神}的附属神`)
     }
   }
   for (const 神迹卡 of 卡组.神迹卡) {
-    if (
-      神迹卡信息列表.findIndex((x) => x.仅系统用 == 0 && x.编号 === 神迹卡) ==
-      -1
-    ) {
+    if (神迹卡信息列表.findIndex((x) => x.仅系统用 == 0 && x.编号 === 神迹卡) == -1) {
       错误列表.push(`不存在非系统用的编号为${神迹卡}的神迹卡`)
     }
   }
   for (const 弹幕卡 of 卡组.弹幕卡) {
-    if (
-      弹幕卡信息列表.findIndex((x) => x.仅系统用 == 0 && x.编号 === 弹幕卡) ==
-      -1
-    ) {
+    if (弹幕卡信息列表.findIndex((x) => x.仅系统用 == 0 && x.编号 === 弹幕卡) == -1) {
       错误列表.push(`不存在非系统用的编号为${弹幕卡}的弹幕卡`)
     }
   }
@@ -92,4 +69,5 @@ function 字符串转编号卡组(字符串: string): 编号卡组类型 {
   return 卡组
 }
 
-export { 字符串转编号卡组, 编号卡组类型, 编号卡组转字符串 }
+export { 字符串转编号卡组, 编号卡组转字符串 }
+export type { 编号卡组类型 }

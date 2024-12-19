@@ -2,24 +2,15 @@
 import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K]
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> }
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> }
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = {
+  [_ in K]?: never
 }
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>
-}
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>
-}
-export type MakeEmpty<
-  T extends { [key: string]: unknown },
-  K extends keyof T
-> = { [_ in K]?: never }
 export type Incremental<T> =
   | T
-  | {
-      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never
-    }
+  | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string }
@@ -4727,17 +4718,11 @@ export type HeartbeatSubscriptionVariables = Exact<{
   uid: Scalars['String']['input']
 }>
 
-export type HeartbeatSubscription = {
-  __typename?: 'Subscription'
-  heartbeat?: any | null
-}
+export type HeartbeatSubscription = { __typename?: 'Subscription'; heartbeat?: any | null }
 
 export type OnlineCountSubscriptionVariables = Exact<{ [key: string]: never }>
 
-export type OnlineCountSubscription = {
-  __typename?: 'Subscription'
-  onlineCount: number
-}
+export type OnlineCountSubscription = { __typename?: 'Subscription'; onlineCount: number }
 
 export type MatchOpponentSubscriptionVariables = Exact<{
   uid: Scalars['String']['input']
@@ -4745,29 +4730,20 @@ export type MatchOpponentSubscriptionVariables = Exact<{
   version: Scalars['String']['input']
 }>
 
-export type MatchOpponentSubscription = {
-  __typename?: 'Subscription'
-  matchOpponent: any
-}
+export type MatchOpponentSubscription = { __typename?: 'Subscription'; matchOpponent: any }
 
 export type SendDataSubscriptionVariables = Exact<{
   to: Scalars['String']['input']
   data: Scalars['JSON']['input']
 }>
 
-export type SendDataSubscription = {
-  __typename?: 'Subscription'
-  sendData?: any | null
-}
+export type SendDataSubscription = { __typename?: 'Subscription'; sendData?: any | null }
 
 export type ListenAliveSubscriptionVariables = Exact<{
   uid: Scalars['String']['input']
 }>
 
-export type ListenAliveSubscription = {
-  __typename?: 'Subscription'
-  listenAlive?: any | null
-}
+export type ListenAliveSubscription = { __typename?: 'Subscription'; listenAlive?: any | null }
 
 export const HeartbeatDocument = {
   kind: 'Document',
@@ -4782,10 +4758,7 @@ export const HeartbeatDocument = {
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'uid' } },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
         },
       ],
@@ -4799,10 +4772,7 @@ export const HeartbeatDocument = {
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'uid' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'uid' },
-                },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'uid' } },
               },
             ],
           },
@@ -4810,10 +4780,7 @@ export const HeartbeatDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<
-  HeartbeatSubscription,
-  HeartbeatSubscriptionVariables
->
+} as unknown as DocumentNode<HeartbeatSubscription, HeartbeatSubscriptionVariables>
 export const OnlineCountDocument = {
   kind: 'Document',
   definitions: [
@@ -4823,16 +4790,11 @@ export const OnlineCountDocument = {
       name: { kind: 'Name', value: 'onlineCount' },
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'onlineCount' } },
-        ],
+        selections: [{ kind: 'Field', name: { kind: 'Name', value: 'onlineCount' } }],
       },
     },
   ],
-} as unknown as DocumentNode<
-  OnlineCountSubscription,
-  OnlineCountSubscriptionVariables
->
+} as unknown as DocumentNode<OnlineCountSubscription, OnlineCountSubscriptionVariables>
 export const MatchOpponentDocument = {
   kind: 'Document',
   definitions: [
@@ -4846,10 +4808,7 @@ export const MatchOpponentDocument = {
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'uid' } },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
         },
         {
@@ -4862,16 +4821,10 @@ export const MatchOpponentDocument = {
         },
         {
           kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'version' },
-          },
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'version' } },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
         },
       ],
@@ -4885,26 +4838,17 @@ export const MatchOpponentDocument = {
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'uid' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'uid' },
-                },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'uid' } },
               },
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'size' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'size' },
-                },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'size' } },
               },
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'version' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'version' },
-                },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'version' } },
               },
             ],
           },
@@ -4912,10 +4856,7 @@ export const MatchOpponentDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<
-  MatchOpponentSubscription,
-  MatchOpponentSubscriptionVariables
->
+} as unknown as DocumentNode<MatchOpponentSubscription, MatchOpponentSubscriptionVariables>
 export const SendDataDocument = {
   kind: 'Document',
   definitions: [
@@ -4929,10 +4870,7 @@ export const SendDataDocument = {
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'to' } },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
         },
         {
@@ -4954,18 +4892,12 @@ export const SendDataDocument = {
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'to' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'to' },
-                },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'to' } },
               },
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'data' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'data' },
-                },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'data' } },
               },
             ],
           },
@@ -4973,10 +4905,7 @@ export const SendDataDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<
-  SendDataSubscription,
-  SendDataSubscriptionVariables
->
+} as unknown as DocumentNode<SendDataSubscription, SendDataSubscriptionVariables>
 export const ListenAliveDocument = {
   kind: 'Document',
   definitions: [
@@ -4990,10 +4919,7 @@ export const ListenAliveDocument = {
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'uid' } },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
         },
       ],
@@ -5007,10 +4933,7 @@ export const ListenAliveDocument = {
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'uid' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'uid' },
-                },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'uid' } },
               },
             ],
           },
@@ -5018,7 +4941,4 @@ export const ListenAliveDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<
-  ListenAliveSubscription,
-  ListenAliveSubscriptionVariables
->
+} as unknown as DocumentNode<ListenAliveSubscription, ListenAliveSubscriptionVariables>

@@ -3,10 +3,10 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "editorconfig.editorconfig",
-    "vue.volar",
+    "Vue.volar",
     "wayou.vscode-todo-highlight",
-    "graphql.vscode-graphql",
-    "graphql.vscode-graphql-syntax",
+    "apollographql.vscode-apollo",
+    "svenzhao.var-translation",
     "formulahendry.auto-close-tag",
     "formulahendry.auto-rename-tag",
     "aaron-bond.better-comments",
@@ -19,6 +19,9 @@
     "visualstudioexptteam.vscodeintellicode",
     "zignd.html-css-class-completion",
     "mechatroner.rainbow-csv",
+    "foxundermoon.shell-format",
+    "iceworks-team.iceworks-time-master",
+    "vscode-icons-team.vscode-icons",
     "sdras.vue-vscode-snippets"
   ],
   "unwantedRecommendations": [
