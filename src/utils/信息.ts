@@ -7,27 +7,27 @@ import 主神皮肤 from 'assets/data/ron_cfg_clothes_main.csv'
 import ron_cfg_clothes_sub from 'assets/data/ron_cfg_clothes_sub.csv'
 import ron_cfg_skill from 'assets/data/ron_cfg_skill.csv'
 
-const 卡信息 = ron_cfg_card_infor.sort((_a, _b) => _b.编号 - _a.编号)
+const 卡信息 = ron_cfg_card_infor.sort((_a, _b) => (_b.编号 as number) - (_a.编号 as number))
 
-const 附属神皮肤 = ron_cfg_clothes_sub.sort((_a, _b) => _b.编号 - _a.编号)
+const 附属神皮肤 = ron_cfg_clothes_sub.sort((_a, _b) => (_b.编号 as number) - (_a.编号 as number))
 
 const 主神信息列表 = ron_cfg_card_main
-  .sort((_a, _b) => _b.编号 - _a.编号)
-  .sort((_a, _b) => _a.仅系统用 - _b.仅系统用)
+  .sort((_a, _b) => (_b.编号 as number) - (_a.编号 as number))
+  .sort((_a, _b) => (_a.仅系统用 as number) - (_b.仅系统用 as number))
 
 const 附属神信息列表 = ron_cfg_card_sub
-  .sort((_a, _b) => _b.编号 - _a.编号)
-  .sort((_a, _b) => _a.仅系统用 - _b.仅系统用)
+  .sort((_a, _b) => (_b.编号 as number) - (_a.编号 as number))
+  .sort((_a, _b) => (_a.仅系统用 as number) - (_b.仅系统用 as number))
 
 const 弹幕卡信息列表 = ron_cfg_card_bullet
-  .sort((a, b) => b.编号 - a.编号)
-  .sort((_a, _b) => _a.仅系统用 - _b.仅系统用)
+  .sort((a, b) => (b.编号 as number) - (a.编号 as number))
+  .sort((_a, _b) => (_a.仅系统用 as number) - (_b.仅系统用 as number))
 
 const 神迹卡信息列表 = ron_cfg_card_effect
-  .sort((a, b) => b.编号 - a.编号)
-  .sort((_a, _b) => _a.仅系统用 - _b.仅系统用)
+  .sort((a, b) => (b.编号 as number) - (a.编号 as number))
+  .sort((_a, _b) => (_a.仅系统用 as number) - (_b.仅系统用 as number))
 
-const 技能信息列表 = ron_cfg_skill.sort((a, b) => b.技能ID - a.技能ID)
+const 技能信息列表 = ron_cfg_skill.sort((a, b) => (b.技能ID as number) - (a.技能ID as number))
 
 function 获得卡信息(名称或编号: string | number) {
   const 类型 = typeof 名称或编号 == 'number' ? '编号' : '名称'
