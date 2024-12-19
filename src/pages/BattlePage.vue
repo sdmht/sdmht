@@ -50,7 +50,7 @@ onMounted(() => {
   })
 })
 onUnmounted(() => {
+  游戏.plugins.destroy()
   游戏.destroy(true)
-  location.reload()
 })
 </script>
