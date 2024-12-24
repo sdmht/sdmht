@@ -2,7 +2,7 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
 import { defineConfig } from '#q-app/wrappers'
-import VitePluginListFiles from 'app/mixins/vite-plugin-list-files'
+import VitePluginListFiles from './mixins/vite-plugin-list-files'
 import { fileURLToPath } from 'node:url'
 
 export default defineConfig((/* ctx */) => {
