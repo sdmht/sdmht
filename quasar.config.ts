@@ -2,8 +2,8 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
 import { defineConfig } from '#q-app/wrappers'
-import VitePluginListFiles from './mixins/vite-plugin-list-files'
 import { fileURLToPath } from 'node:url'
+import VitePluginListFiles from './mixins/vite-plugin-list-files'
 
 export default defineConfig((/* ctx */) => {
   return {
@@ -83,6 +83,21 @@ export default defineConfig((/* ctx */) => {
           { server: false },
         ],
         VitePluginListFiles(),
+        [
+          '@originjs/vite-plugin-content',
+          {
+            csv: {
+              enabled: true,
+              csvOptions: {
+                ignore_last_delimiters: true,
+                columns: true,
+                delimiter: ';',
+                encoding: 'utf8',
+              },
+            },
+          },
+          { server: false },
+        ],
       ],
 
       alias: {

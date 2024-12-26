@@ -1,11 +1,11 @@
 declare module '*.csv' {
-  const value: Record<string, unknown>[]
+  const value: Record<string, string>[]
   export default value
 }
 declare module 'assets/data/ron_cfg_bullet.csv' {
   const value: Record<
     '编号' | '特效类型' | '发动时长' | '落下时间' | '受击时长' | '震屏类型' | '黑屏',
-    unknown
+    string
   >[]
   export default value
 }
@@ -25,12 +25,12 @@ declare module 'assets/data/ron_cfg_clothes_main.csv' {
     | '描述'
     | '物品图标'
     | '变身服装',
-    unknown
+    string
   >[]
   export default value
 }
 declare module 'assets/data/ron_cfg_clothes_sub.csv' {
-  const value: Record<'编号' | '画师' | '皮肤名称' | '附属神名称', unknown>[]
+  const value: Record<'编号' | '画师' | '皮肤名称' | '附属神名称', string>[]
   export default value
 }
 declare module 'assets/data/ron_cfg_card_bullet.csv' {
@@ -61,7 +61,7 @@ declare module 'assets/data/ron_cfg_card_bullet.csv' {
     | '画师'
     | '调整'
     | '版本',
-    unknown
+    string
   >[]
   export default value
 }
@@ -86,7 +86,7 @@ declare module 'assets/data/ron_cfg_card_effect.csv' {
     | '画师'
     | '是否调整'
     | '调整版本',
-    unknown
+    string
   >[]
   export default value
 }
@@ -116,7 +116,7 @@ declare module 'assets/data/ron_cfg_card_infor.csv' {
     | '故事4'
     | '故事5'
     | '调试中',
-    unknown
+    string
   >[]
   export default value
 }
@@ -137,7 +137,7 @@ declare module 'assets/data/ron_cfg_card_main.csv' {
     | 'CV'
     | '画师'
     | '美术资源',
-    unknown
+    string
   >[]
   export default value
 }
@@ -170,7 +170,7 @@ declare module 'assets/data/ron_cfg_card_sub.csv' {
     | '画师'
     | '是否调整'
     | '调整版本',
-    unknown
+    string
   >[]
   export default value
 }
@@ -193,11 +193,11 @@ declare module 'assets/data/ron_cfg_skill.csv' {
     | '单场最大使用次数'
     | '是否有有益的'
     | '是否处于调试中',
-    unknown
+    string
   >[]
   export default value
 }
 declare module 'assets/data/ron_cfg_tag.csv' {
-  const value: Record<'编号' | '效果名' | '效果描述', unknown>[]
+  const value: Record<'编号' | '效果名' | '效果描述', string>[]
   export default value
 }
