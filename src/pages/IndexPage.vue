@@ -15,16 +15,16 @@
         反馈渠道
         <li><a href="https://qm.qq.com/q/PWZyQvtFOU" target="_blank">QQ群：重制神代梦华谭</a></li>
         <li>
-          <a href="https://github.com/star2000/sdmht/issues" target="_blank">源代码仓库议题</a>
+          <a href="https://github.com/sdmht/sdmht/issues" target="_blank">源代码仓库议题</a>
         </li>
       </ol>
       <ol>
         参与开发
         <li>
-          <a href="https://github.com/star2000/sdmht/" target="_blank">源代码仓库</a>
+          <a href="https://github.com/sdmht/sdmht/" target="_blank">源代码仓库</a>
         </li>
         <li>
-          <a href="https://github.com/star2000/sdmht/blob/main/参与开发教程.md" target="_blank"
+          <a href="https://github.com/sdmht/sdmht/blob/main/参与开发教程.md" target="_blank"
             >参与开发教程</a
           >
         </li>
