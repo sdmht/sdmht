@@ -7,21 +7,39 @@
       本站为神代梦华谭玩家收集原动画资源后自制复活的仿品，请勿用于商业行为
       <ol>
         使用方式
-        <li>网页版：https://sdmht.star2000.work</li>
-        <li>电脑用Edge浏览器，点地址栏右边收藏旁边的安装，然后回桌面打开</li>
-        <li>
-          手机用Edge浏览器，菜单>添加至手机>安装（如果切到应用信息，权限管理>其他权限>桌面快捷方式>始终允许，再次安装），然后回到桌面打开神代梦华谭
+        <li v-if="!是否移动端">
+          用Edge浏览器，点地址栏右边收藏旁边的安装，然后回桌面打开神代梦华谭
+        </li>
+        <li v-else>
+          用Edge浏览器，菜单>添加至手机>安装（如果切到应用信息，权限管理>其他权限>桌面快捷方式>始终允许，再次安装），然后回到桌面打开神代梦华谭
         </li>
       </ol>
       <ol>
         反馈渠道
-        <li>QQ群：102804509</li>
-        <li>源代码仓库议题：https://github.com/star2000/sdmht/issues</li>
+        <li>
+          <a href="https://qm.qq.com/q/PWZyQvtFOU" target="_blank"
+            >QQ群：重制神代梦华谭</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/sdmht/sdmht/issues" target="_blank"
+            >源代码仓库议题</a
+          >
+        </li>
       </ol>
       <ol>
         参与开发
         <li>
-          教程：https://github.com/star2000/sdmht/blob/main/参与开发教程.md
+          <a href="https://github.com/sdmht/sdmht/" target="_blank"
+            >源代码仓库</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://github.com/sdmht/sdmht/blob/main/参与开发教程.md"
+            target="_blank"
+            >参与开发教程</a
+          >
         </li>
       </ol>
     </div>
@@ -35,6 +53,8 @@ import { 加载动画, 加载子画面 } from 'src/utils/加载动画'
 import { 播放场景背景音乐 } from 'src/utils/播放音频'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+
+const 是否移动端 = /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent)
 
 let 首页框 = ref<HTMLDivElement>()
 
