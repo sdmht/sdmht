@@ -1,7 +1,12 @@
 <template>
   <q-list>
-    <q-item v-ripple class="q-pa-lg" clickable @click="卡组弹窗 = true">
-      <div class="text-h4 full-width text-center">创建卡组</div>
+    <q-item
+      v-ripple
+      class="q-pa-lg q-btn q-btn--outline"
+      clickable
+      @click="卡组弹窗 = true"
+    >
+      <div class="text-h4 full-width text-center">创建卡组按钮</div>
     </q-item>
     <div class="text-center">卡组向左划进入战斗界面，向右划删除</div>
     <template v-for="(卡组, k) in 编号卡组列表" :key="k">
