@@ -217,7 +217,7 @@ module.exports = configure(function (ctx) {
         name: '神代梦华谭',
         short_name: '神代梦华谭',
         description: '区区关服拦不住我重写一个',
-        display: 'standalone',
+        display: 'fullscreen',
         orientation: 'landscape',
         background_color: '#000000',
         theme_color: '#027be3',
