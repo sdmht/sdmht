@@ -162,6 +162,7 @@ module.exports = configure(function (ctx) {
         maximumFileSizeToCacheInBytes: 2 ** 30,
         include: [
           'index.html',
+          'manifest.json',
           'prebattle/布阵_01.mp3',
           'prebattle/放下神明.mp3',
           'prebattle/抓起神明.mp3',
