@@ -37,11 +37,14 @@
 import p from 'phaser'
 import 'phaser/plugins/spine/dist/SpinePlugin.min.js'
 import { onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
 
 const 是否移动端 = /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent)
 
 const 宽 = 1080
 const 高 = 1920
+
+const router = useRouter()
 
 class 首页场景 extends p.Scene {
   constructor() {
@@ -86,6 +89,10 @@ class 首页场景 extends p.Scene {
       duration: 1500,
       yoyo: true,
       repeat: -1,
+    })
+
+    this.input.on('pointerdown', () => {
+      router.push('/card_deck')
     })
   }
 }
