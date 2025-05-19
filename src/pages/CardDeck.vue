@@ -279,7 +279,7 @@ onMounted(() => {
 
 async function 匹配对手(卡组: 编号卡组类型) {
   router.push({
-    name: 'battle',
+    path: 'battle',
     query: {
       卡组: 编号卡组转字符串(卡组),
     },

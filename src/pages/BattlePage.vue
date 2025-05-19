@@ -6,6 +6,7 @@
 import 文件列表 from 'assets/文件列表.json'
 import _ from 'lodash'
 import p from 'phaser'
+import 'phaser/plugins/spine/dist/SpinePlugin.min.js'
 import { onMounted, onUnmounted } from 'vue'
 
 // import { 事件总线 } from 'utils/事件总线'
@@ -28,7 +29,7 @@ class 对战场景 extends p.Scene {
     this.load.audio('背景音乐', `background/BackgroundBattle_${背景编号}.mp3`)
   }
 
-  create() {
+  async create() {
     const 背景图 = this.add.image(宽 / 2, 高 / 2, '背景图')
     背景图.setScale(宽 / 背景图.width)
     this.sound.add('背景音乐', { loop: true, volume: 0.1 }).play()
@@ -47,6 +48,7 @@ onMounted(() => {
       mode: p.Scale.ScaleModes.FIT,
       autoCenter: p.Scale.Center.CENTER_BOTH,
     },
+    plugins: { scene: [{ key: 'SpinePlugin', plugin: window.SpinePlugin, mapping: 'spine' }] },
   })
 })
 onUnmounted(() => {
