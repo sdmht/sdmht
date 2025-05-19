@@ -7,12 +7,18 @@ import 文件列表 from 'assets/文件列表.json'
 import _ from 'lodash'
 import p from 'phaser'
 import 'phaser/plugins/spine/dist/SpinePlugin.min.js'
+import { 加载子画面 } from 'src/utils/加载动画'
 import { onMounted, onUnmounted } from 'vue'
 
 // import { 事件总线 } from 'utils/事件总线'
 
 const 宽 = 1920
 const 高 = 1080
+const 背景编号 = _.sample(
+  文件列表
+    .filter((f) => f.match(/background\/BackgroundBattle_\d+\.webp/))
+    .map((f) => f.match(/\d+/)![0]),
+)
 
 class 对战场景 extends p.Scene {
   constructor() {
@@ -20,19 +26,14 @@ class 对战场景 extends p.Scene {
   }
 
   preload() {
-    const 背景编号 = _.sample(
-      文件列表
-        .filter((f) => f.match(/background\/BackgroundBattle_\d+\.webp/))
-        .map((f) => f.match(/\d+/)![0]),
-    )
-    this.load.image('背景图', `background/BackgroundBattle_${背景编号}.webp`)
     this.load.audio('背景音乐', `background/BackgroundBattle_${背景编号}.mp3`)
   }
 
   async create() {
-    const 背景图 = this.add.image(宽 / 2, 高 / 2, '背景图')
-    背景图.setScale(宽 / 背景图.width)
     this.sound.add('背景音乐', { loop: true, volume: 0.1 }).play()
+
+    const 背景图 = await 加载子画面(this, '背景图', `background/BackgroundBattle_${背景编号}.webp`)
+    背景图.setScale(宽 / 背景图.width)
   }
 }
 let 游戏: p.Game
