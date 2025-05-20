@@ -7,6 +7,7 @@ import 文件列表 from 'assets/文件列表.json'
 import _ from 'lodash'
 import p from 'phaser'
 import 'phaser/plugins/spine/dist/SpinePlugin.min.js'
+import { 事件总线 } from 'src/utils/事件总线'
 import { 加载子画面 } from 'src/utils/加载动画'
 //import { 字符串转编号卡组 } from 'src/utils/卡组'
 import { onMounted, onUnmounted } from 'vue'
@@ -91,6 +92,19 @@ class 对战场景 extends p.Scene {
       }
     }
     边框层.strokePath()
+
+    事件总线.on('事件1', () => {
+      console.log('事件1开始')
+      事件总线.emit('事件2')
+      console.log('事件1结束')
+    })
+    事件总线.on('事件2', () => {
+      console.log('事件2开始')
+      事件总线.emit('事件3')
+      console.log('事件2结束')
+    })
+
+    事件总线.emit('事件1')
   }
 }
 
