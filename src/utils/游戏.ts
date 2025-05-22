@@ -58,14 +58,30 @@ class 随机类 {
     return this.乱序(列表).slice(0, 数量)
   }
 }
+
+const eventQueue: Array<{ event: string; args: unknown[] }> = []
+let isProcessing = false
 class 事件类 extends EventEmitter {
   static 总数 = 0
   static 已完成数 = 0
-  emit(eventName: string | symbol, ...args: unknown[]): boolean {
-    console.log(this.constructor.name, eventName, ...args, this)
-    return super.emit(eventName, ...args)
+  emit(event: string, ...args: unknown[]): boolean {
+    eventQueue.push({ event, args })
+    if (!isProcessing) {
+      this.processQueue()
+    }
+    return true
+  }
+
+  private async processQueue() {
+    isProcessing = true
+    while (eventQueue.length > 0) {
+      const { event, args } = eventQueue.shift()!
+      super.emit(event, ...args)
+    }
+    isProcessing = false
   }
 }
+
 class 基类 extends 事件类 {
   id: number
   constructor() {
