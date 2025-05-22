@@ -59,28 +59,17 @@ class 随机类 {
   }
 }
 
-const eventQueue: Array<{ event: string; args: unknown[] }> = []
-let isProcessing = false
 class 事件类 extends EventEmitter {
   static 总数 = 0
   static 已完成数 = 0
-  emit(event: string, ...args: unknown[]): boolean {
-    eventQueue.push({ event, args })
-    if (!isProcessing) {
-      this.processQueue()
-    }
-    return true
-  }
-
-  private async processQueue() {
-    isProcessing = true
-    while (eventQueue.length > 0) {
-      const { event, args } = eventQueue.shift()!
-      super.emit(event, ...args)
-    }
-    isProcessing = false
+  emit(eventName: string | symbol, ...args: unknown[]): boolean {
+    console.log(this.constructor.name, eventName, ...args, this)
+    return super.emit(eventName, ...args)
   }
 }
+
+const eventQueue: Array<{ event: string; args: unknown[] }> = []
+let isProcessing = false
 
 class 基类 extends 事件类 {
   id: number
@@ -111,6 +100,33 @@ class 目标类 extends 基类 {
 }
 
 class 技能类 extends 基类 {
+  emit(event: string, ...args: unknown[]): boolean {
+    eventQueue.push({ event, args })
+    console.log(`事件 ${event} 已加入队列，当前队列长度: ${eventQueue.length}`)
+    if (!isProcessing) {
+      this.processQueue()
+    }
+    return true
+  }
+
+  private async processQueue() {
+    isProcessing = true
+    try {
+      while (eventQueue.length > 0) {
+        const { event, args } = eventQueue.shift()!
+        console.log(
+          `开始处理事件 ${event}，当前队列剩余长度: ${eventQueue.length}`
+        )
+        super.emit(event, ...args)
+        console.log(`事件 ${event} 处理完成`)
+      }
+    } catch (error) {
+      console.error('处理事件队列时发生错误:', error)
+    } finally {
+      isProcessing = false
+      console.log('事件队列处理完成，队列已清空')
+    }
+  }
   static 技能何时触发: Record<string, string> = {
     '0': '发动时',
     '1': '移动时',
@@ -1458,6 +1474,33 @@ class 技能类 extends 基类 {
 }
 
 class 效果类 extends 基类 {
+  emit(event: string, ...args: unknown[]): boolean {
+    eventQueue.push({ event, args })
+    console.log(`事件 ${event} 已加入队列，当前队列长度: ${eventQueue.length}`)
+    if (!isProcessing) {
+      this.processQueue()
+    }
+    return true
+  }
+
+  private async processQueue() {
+    isProcessing = true
+    try {
+      while (eventQueue.length > 0) {
+        const { event, args } = eventQueue.shift()!
+        console.log(
+          `开始处理事件 ${event}，当前队列剩余长度: ${eventQueue.length}`
+        )
+        super.emit(event, ...args)
+        console.log(`事件 ${event} 处理完成`)
+      }
+    } catch (error) {
+      console.error('处理事件队列时发生错误:', error)
+    } finally {
+      isProcessing = false
+      console.log('事件队列处理完成，队列已清空')
+    }
+  }
   static 效果数据: Record<string, string> = {
     '1': '迷雾不可被解除，持续1回合',
     '2': '迷雾不可被解除',
