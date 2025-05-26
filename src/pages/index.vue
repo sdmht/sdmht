@@ -28,18 +28,9 @@
         </li>
       </ol>
       <ol>
-        参与开发
+        参与开发（有电脑就能尝试指挥AI写代码，方法在仓库的自述里，没有代码功底一样能改，千里之行始于足下）
         <li>
-          <a href="https://github.com/sdmht/sdmht/" target="_blank"
-            >源代码仓库</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://github.com/sdmht/sdmht/blob/main/参与开发教程.md"
-            target="_blank"
-            >参与开发教程</a
-          >
+          <a href="https://github.com/sdmht/sdmht/" target="_blank">源代码仓库</a>
         </li>
       </ol>
     </div>
