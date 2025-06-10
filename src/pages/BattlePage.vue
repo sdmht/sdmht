@@ -9,9 +9,10 @@ import p from 'phaser'
 import 'phaser/plugins/spine/dist/SpinePlugin.min.js'
 import { 事件总线 } from 'src/utils/事件总线'
 import { 加载子画面 } from 'src/utils/加载动画'
-//import { 字符串转编号卡组 } from 'src/utils/卡组'
+import { 字符串转编号卡组 } from 'src/utils/卡组'
+import { 玩家类 } from 'src/utils/玩家'
 import { onMounted, onUnmounted } from 'vue'
-//import { useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 // import { 事件总线 } from 'utils/事件总线'
 
@@ -22,10 +23,11 @@ const 背景编号 = _.sample(
     .filter((f) => f.match(/background\/BackgroundBattle_\d+\.webp/))
     .map((f) => f.match(/\d+/)![0]),
 )
-//const 路由 = useRoute()
+const 路由 = useRoute()
 const 人数 = 2
-//const 我方卡组 = 字符串转编号卡组(路由.query['卡组'] as string)
-const 格 = 4
+const 我方卡组 = 字符串转编号卡组(路由.query['卡组'] as string)
+const 玩家 = new 玩家类(true, 我方卡组)
+const 格 = 玩家.格
 
 class 对战场景 extends p.Scene {
   constructor() {
