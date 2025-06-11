@@ -27,7 +27,7 @@ import { useTimeoutFn } from '@vueuse/core'
 import 静态文件列表 from 'assets/index.json'
 import _ from 'lodash'
 import * as PIXI from 'pixi.js'
-import { useQuasar } from 'quasar'
+import { Dialog, useQuasar } from 'quasar'
 import { 创建画框 } from 'src/utils/创建画框'
 import { 加载动画, 加载子画面, 加载普攻动画 } from 'src/utils/加载动画'
 import { 字符串转编号卡组 } from 'src/utils/卡组'
@@ -1029,7 +1029,7 @@ onMounted(async () => {
             卡面.zIndex = 1
             手牌栏.sortChildren()
           })
-          卡面.onUp.connect((b, e) => {
+          卡面.onUp.connect(async (b, e) => {
             卡面.scale.set(卡面缩放)
             卡面.x = _.get(卡面, '原横坐标', 原横坐标)
             卡面.y = 原纵坐标
@@ -1041,7 +1041,31 @@ onMounted(async () => {
               玩家.行动点 >= v.消耗
             ) {
               if (v instanceof 弹幕卡类) {
-                待装填的弹幕卡.value = v
+                //待装填的弹幕卡.value = v
+                const 我方单位列表 = v.我方(单位类).filter((v) => v.可否装填)
+                let 选中的单位索引: number | null = null
+
+                选中的单位索引 = await new Promise<number>((resolve) => {
+                  Dialog.create({
+                    title: '选择',
+                    options: {
+                      model: '0',
+                      items: 我方单位列表.map((v, i) => ({
+                        value: `${i}`,
+                        label: `${v.类型}${v.卡牌名称}，第${v.位置.行}，第行${v.位置.列}列`,
+                      })),
+                    },
+                    cancel: false,
+                    persistent: true,
+                  }).onOk((v) => {
+                    resolve(v)
+                  })
+                })
+                行动队列类.行动队列.添加(['选择', v.id, 选中的单位索引])
+                const 弹幕装填单位 = 我方单位列表[选中的单位索引]
+                if (弹幕装填单位) {
+                  行动队列类.行动队列.添加(['装填弹幕', 弹幕装填单位.id, v.id])
+                }
               } else if (v instanceof 神迹卡类 && v.可使用()) {
                 行动队列类.行动队列.添加(['使用神迹', v.id])
               }
