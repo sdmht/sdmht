@@ -1,9 +1,8 @@
 on:
   push:
     branches:
-      - main
-    paths:
-      - package.json
+      - dev
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,5 +18,5 @@ jobs:
           yarn
           yarn build
           sudo apt install -y rsync
-          rsync -chrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
-          rsync -chrvz --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht
+          rsync -chrvz --exclude sw.js ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht_dev
+          rsync -chrvz --delete-after ./dist/pwa/ sdmht@sdmht.star2000.work::sdmht_dev
