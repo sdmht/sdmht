@@ -9,6 +9,7 @@
 任意设备使用可安装渐进式 Web 应用的浏览器（比如 Edge 或 Chrome）访问并安装 https://sdmht.star2000.work 。然后回到桌面打开神代梦华谭
 
 ## 集资悬赏流程
+开发分支部署地址：https://sdmht-dev.star2000.work/
 议题地址：https://github.com/sdmht/sdmht/issues
 1. 任何人创建议题写需求
 2. 任何开发者查看议题并给出自己的报价
