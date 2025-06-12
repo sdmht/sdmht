@@ -1055,7 +1055,7 @@ onMounted(async () => {
                         label: `${v.类型}${v.卡牌名称}，第${v.位置.行}，第行${v.位置.列}列`,
                       })),
                     },
-                    cancel: false,
+                    cancel: true,
                     persistent: true,
                   }).onOk((v) => {
                     resolve(v)
