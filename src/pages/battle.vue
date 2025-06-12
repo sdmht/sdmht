@@ -467,15 +467,7 @@ onMounted(async () => {
             }
           }
         }
-      } else if (是否在区域中(e, 迷雾层.children[1])) {
-        if (选中的单位.value !== undefined && 选择攻击目标模式) {
-          攻击目标层.removeChild(...攻击目标层.children)
-          选择攻击目标模式 = false
-          const 神 = 选中的单位.value
-          const 位置 = 获得位置(e, 迷雾层.children[1])
-          行动队列类.行动队列.添加(['攻击', 神.id, 位置.行, 位置.列])
-        }
-      } else {
+      } else if (!是否在区域中(e, 迷雾层.children[1])) {
         选中的单位.value = undefined
       }
       待装填的弹幕卡.value = undefined
@@ -532,6 +524,14 @@ onMounted(async () => {
         播放音频('prebattle/放下神明.mp3')
       }
       神.更新坐标(位宽)
+    } else if (状态.value == '战斗' && 是否在区域中(e, 迷雾层.children[1])) {
+      if (选中的单位.value !== undefined && 选择攻击目标模式) {
+        攻击目标层.removeChild(...攻击目标层.children)
+        选择攻击目标模式 = false
+        const 神 = 选中的单位.value
+        const 位置 = 获得位置(e, 迷雾层.children[1])
+        行动队列类.行动队列.添加(['攻击', 神.id, 位置.行, 位置.列])
+      }
     }
   })
 
