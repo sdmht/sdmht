@@ -17,6 +17,7 @@
 4. 出价者们测出问题要通知开发者改，确认没问题或者7天内未测出问题就付账
 - 主分支部署地址：https://sdmht.star2000.work/
 - 开发分支部署地址：https://sdmht-dev.star2000.work/
+- QQ群：[102804509](https://qm.qq.com/q/PWZyQvtFOU)
 
 ## 如何开发
 
