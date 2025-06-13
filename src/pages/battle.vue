@@ -148,13 +148,14 @@ function 获得位置(
 }
 function 是否在区域中(
   坐标: { screenX: number; screenY: number },
-  区: PIXI.Container
+  区: PIXI.Container,
+  偏移: { x: number; y: number } = { x: 0, y: 0 }
 ) {
   return (
-    坐标.screenX > 区.x &&
-    坐标.screenY > 区.y &&
-    坐标.screenX < 区.x + 区.width &&
-    坐标.screenY < 区.y + 区.height
+    坐标.screenX + 偏移.x > 区.x &&
+    坐标.screenY + 偏移.y > 区.y &&
+    坐标.screenX + 偏移.x < 区.x + 区.width &&
+    坐标.screenY + 偏移.y < 区.y + 区.height
   )
 }
 
@@ -467,18 +468,22 @@ onMounted(async () => {
             }
           }
         }
-      } else if (!是否在区域中(e, 迷雾层.children[1])) {
+      } else if (
+        !是否在区域中(e, 迷雾层.children[1], { x: 0, y: -位宽 * 0.75 })
+      ) {
         选中的单位.value = undefined
+        选择攻击目标模式 = false
       }
       待装填的弹幕卡.value = undefined
     }
   })
   事件层.on('pointermove', async (e) => {
+    const 坐标 = { screenX: e.screenX, screenY: e.screenY - 位宽 * 0.75 }
     if (选中的单位.value !== undefined) {
       const 神 = 选中的单位.value
       if (状态.value == '布阵') {
-        神.角色.x = e.screenX - 迷雾层.children[0].x - 位宽 / 2
-        神.角色.y = e.screenY - 迷雾层.children[0].y - 位宽 / 2
+        神.角色.x = 坐标.screenX - 迷雾层.children[0].x - 位宽 / 2
+        神.角色.y = 坐标.screenY - 迷雾层.children[0].y - 位宽 / 2
         神.角色.zIndex = 神.角色.y
         神.角色.parent.sortChildren()
       }
@@ -486,9 +491,9 @@ onMounted(async () => {
       if (
         状态.value == '战斗' &&
         选择攻击目标模式 &&
-        是否在区域中(e, 迷雾层.children[1])
+        是否在区域中(坐标, 迷雾层.children[1])
       ) {
-        const { 行, 列 } = 获得位置(e, 迷雾层.children[1])
+        const { 行, 列 } = 获得位置(坐标, 迷雾层.children[1])
         const 位置 = 玩家.敌方(位置类).find((x) => x.行 == 行 && x.列 == 列)!
         for (let _位置 of 神.获得攻击范围(位置)) {
           let 选择攻击目标图 = await 加载子画面('pvp/attack 1.webp')
@@ -502,12 +507,13 @@ onMounted(async () => {
     }
   })
   事件层.on('pointerup', (e) => {
+    const 坐标 = { screenX: e.screenX, screenY: e.screenY - 位宽 * 0.75 }
     if (
       状态.value == '布阵' &&
       选中的单位.value !== undefined &&
-      是否在区域中(e, 迷雾层.children[0])
+      是否在区域中(坐标, 迷雾层.children[0])
     ) {
-      const 位置 = 获得位置(e, 迷雾层.children[0])
+      const 位置 = 获得位置(坐标, 迷雾层.children[0])
       const 神 = 选中的单位.value
       if (神.位置.行 == 位置.行 && 神.位置.列 == 位置.列) {
         选中的单位.value = undefined
@@ -524,12 +530,12 @@ onMounted(async () => {
         播放音频('prebattle/放下神明.mp3')
       }
       神.更新坐标(位宽)
-    } else if (状态.value == '战斗' && 是否在区域中(e, 迷雾层.children[1])) {
+    } else if (状态.value == '战斗' && 是否在区域中(坐标, 迷雾层.children[1])) {
       if (选中的单位.value !== undefined && 选择攻击目标模式) {
         攻击目标层.removeChild(...攻击目标层.children)
         选择攻击目标模式 = false
         const 神 = 选中的单位.value
-        const 位置 = 获得位置(e, 迷雾层.children[1])
+        const 位置 = 获得位置(坐标, 迷雾层.children[1])
         行动队列类.行动队列.添加(['攻击', 神.id, 位置.行, 位置.列])
       }
     }
