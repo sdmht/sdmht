@@ -10,12 +10,10 @@ type 编号卡组类型 = {
   神迹卡: number[]
 }
 
-const 分隔符 = ':'
-
 function 编号卡组转字符串(卡组: 编号卡组类型): string {
   return (
     卡组.卡组名 +
-    分隔符 +
+    '\n' +
     btoa(
       JSON.stringify([
         卡组.主神技能,
@@ -28,9 +26,17 @@ function 编号卡组转字符串(卡组: 编号卡组类型): string {
   )
 }
 function 字符串转编号卡组(字符串: string): 编号卡组类型 {
-  const 切割下标 = 字符串.lastIndexOf(分隔符)
-  const 卡组名 = 字符串.substring(0, 切割下标)
-  const 卡组码 = 字符串.substring(切割下标 + 1)
+  const 匹配结果 = 字符串.match(/[a-zA-Z0-9=]+$/)
+  if (!匹配结果) {
+    const 错误消息 = '未识别到卡组码'
+    Notify.create({
+      message: 错误消息,
+      type: 'negative',
+    })
+    throw 错误消息
+  }
+  const 卡组码 = 匹配结果[0]
+  const 卡组名 = 字符串.substring(0, 匹配结果.index)
   const 数据 = JSON.parse(atob(卡组码)) as [1 | 2 | 3, number, number[], number[], number[]]
   const 卡组 = {
     卡组名,
