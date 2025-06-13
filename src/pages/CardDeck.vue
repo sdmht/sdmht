@@ -1,7 +1,7 @@
 <template>
   <q-list>
-    <q-item v-ripple class="q-pa-lg" clickable @click="卡组弹窗 = true">
-      <div class="text-h4 full-width text-center">创建卡组</div>
+    <q-item v-ripple class="q-pa-lg q-btn q-btn--outline" clickable @click="卡组弹窗 = true">
+      <div class="text-h4 full-width text-center">创建卡组按钮</div>
     </q-item>
     <div class="text-center">卡组向左划进入战斗界面，向右划删除</div>
     <template v-for="(卡组, k) in 编号卡组列表" :key="k">
@@ -51,7 +51,7 @@
     </template>
   </q-list>
   <q-dialog v-model="卡组弹窗">
-    <q-card class="bg-dark" style="min-width: 500px">
+    <q-card class="bg-dark" style="min-width: 80vw">
       <q-form @submit="创建卡组()" @reset="卡组.重置()">
         <q-card-section>
           <div class="text-h6">创建卡组</div>
@@ -69,6 +69,7 @@
             :option-label="(主神) => `${主神.卡牌名称}${主神.主神技能}：${主神.技能名称}`"
             map-options
             :rules="[(val) => !!val || '主神不能为空']"
+            behavior="dialog"
           >
             <template v-slot:option="scope">
               <q-item v-bind="scope.itemProps">
@@ -101,6 +102,8 @@
             map-options
             use-input
             input-debounce="0"
+            behavior="dialog"
+            use-chips
             @filter="
               (val, update) => {
                 update(() => {
@@ -144,6 +147,8 @@
             use-input
             counter
             input-debounce="0"
+            behavior="dialog"
+            use-chips
             @filter="
               (val, update) => {
                 update(() => {
@@ -192,6 +197,8 @@
             use-input
             counter
             input-debounce="0"
+            behavior="dialog"
+            use-chips
             @filter="
               (val, update) => {
                 update(() => {
