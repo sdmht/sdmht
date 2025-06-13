@@ -15,7 +15,7 @@ type 编号卡组类型 = {
   神迹卡: number[]
 }
 
-const 分隔符 = '\n'
+const 分隔符 = ':'
 
 function 编号卡组转字符串(卡组: 编号卡组类型): string {
   return (
