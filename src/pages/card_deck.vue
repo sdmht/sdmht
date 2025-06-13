@@ -68,7 +68,7 @@
     </template>
   </q-list>
   <q-dialog v-model="卡组弹窗">
-    <q-card class="bg-dark" style="min-width: 500px">
+    <q-card class="bg-dark" style="min-width: 80vw">
       <q-form @submit="创建卡组()" @reset="卡组.重置()">
         <q-card-section>
           <div class="text-h6">创建卡组</div>
@@ -88,6 +88,7 @@
             "
             map-options
             :rules="[(val) => !!val || '主神不能为空']"
+            behavior="dialog"
           >
             <template v-slot:option="scope">
               <q-item v-bind="scope.itemProps">
@@ -134,6 +135,8 @@
             map-options
             use-input
             input-debounce="0"
+            behavior="dialog"
+            use-chips
             @filter="
               (val, update) => {
                 update(() => {
@@ -182,6 +185,8 @@
             use-input
             counter
             input-debounce="0"
+            behavior="dialog"
+            use-chips
             @filter="
               (val, update) => {
                 update(() => {
@@ -239,6 +244,8 @@
             use-input
             counter
             input-debounce="0"
+            behavior="dialog"
+            use-chips
             @filter="
               (val, update) => {
                 update(() => {
