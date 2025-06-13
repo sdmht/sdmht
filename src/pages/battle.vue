@@ -439,7 +439,10 @@ onMounted(async () => {
   玩家.on('回合开始时', 渲染移动范围)
   玩家类.事件.on('行动点变化时', 渲染移动范围)
 
+  let 触摸开始时间: number
+
   事件层.on('pointerdown', (e) => {
+    触摸开始时间 = Date.now()
     if (状态.value == '布阵') {
       if (
         是否在区域中(e, 迷雾层.children[0]) &&
@@ -534,7 +537,11 @@ onMounted(async () => {
   事件层.on('pointerup', (e) => {
     const 坐标 = {
       screenX: e.screenX,
-      screenY: e.screenY + 获取触摸y轴偏移(选中的单位.value?.弹幕?.范围),
+      screenY: e.screenY,
+    }
+
+    if (Date.now() - 触摸开始时间 > 150) {
+      坐标.screenY += 获取触摸y轴偏移(选中的单位.value?.弹幕?.范围)
     }
 
     if (
