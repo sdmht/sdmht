@@ -31,7 +31,7 @@ function 编号卡组转字符串(卡组: 编号卡组类型): string {
   )
 }
 function 字符串转编号卡组(字符串: string): 编号卡组类型 {
-  const 匹配结果 = 字符串.match(/[a-zA-Z0-9=]+/)
+  const 匹配结果 = 字符串.match(/[a-zA-Z0-9=]+$/)
   if (!匹配结果) {
     const 错误消息 = '未识别到卡组码'
     Notify.create({
