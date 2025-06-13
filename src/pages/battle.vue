@@ -61,6 +61,11 @@ import { useRoute } from 'vue-router'
 const 历史弹窗 = ref(false)
 const 通知列表 = ref(行动队列类.通知列表)
 
+const isMobile =
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  )
+
 function 投降并刷新() {
   if (玩家类.游戏已开始) {
     行动队列类.行动队列.添加(['投降'])
@@ -285,6 +290,7 @@ onMounted(async () => {
   const 边框层 = new PIXI.Container()
   const 位宽 = 边 / 格
   const 缩放比例 = 位宽 / 600
+  const 手机端y轴偏移 = 位宽 * 0.75
 
   const 线宽 = 位宽 / 25
   边框层.filters = [
@@ -469,7 +475,11 @@ onMounted(async () => {
           }
         }
       } else if (
-        !是否在区域中(e, 迷雾层.children[1], { x: 0, y: -位宽 * 0.75 })
+        !是否在区域中(
+          e,
+          迷雾层.children[1],
+          isMobile ? { x: 0, y: -手机端y轴偏移 } : { x: 0, y: 0 }
+        )
       ) {
         选中的单位.value = undefined
         选择攻击目标模式 = false
@@ -478,7 +488,13 @@ onMounted(async () => {
     }
   })
   事件层.on('pointermove', async (e) => {
-    const 坐标 = { screenX: e.screenX, screenY: e.screenY - 位宽 * 0.75 }
+    const 坐标 = { screenX: e.screenX, screenY: e.screenY }
+    // 对手机进行坐标偏移
+
+    if (isMobile) {
+      坐标.screenY -= 手机端y轴偏移
+    }
+
     if (选中的单位.value !== undefined) {
       const 神 = 选中的单位.value
       if (状态.value == '布阵') {
@@ -507,7 +523,13 @@ onMounted(async () => {
     }
   })
   事件层.on('pointerup', (e) => {
-    const 坐标 = { screenX: e.screenX, screenY: e.screenY - 位宽 * 0.75 }
+    const 坐标 = { screenX: e.screenX, screenY: e.screenY }
+    // 对手机进行坐标偏移
+
+    if (isMobile) {
+      坐标.screenY -= 手机端y轴偏移
+    }
+
     if (
       状态.value == '布阵' &&
       选中的单位.value !== undefined &&
