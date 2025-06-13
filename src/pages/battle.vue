@@ -489,12 +489,7 @@ onMounted(async () => {
             }
           }
         }
-      } else if (
-        !是否在区域中(e, 迷雾层.children[1], {
-          x: 0,
-          y: 获取触摸y轴偏移(选中的单位.value?.弹幕?.范围),
-        })
-      ) {
+      } else if (!是否在区域中(e, 迷雾层.children[1])) {
         选中的单位.value = undefined
         选择攻击目标模式 = false
       }
