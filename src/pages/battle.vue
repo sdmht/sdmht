@@ -61,10 +61,7 @@ import { useRoute } from 'vue-router'
 const 历史弹窗 = ref(false)
 const 通知列表 = ref(行动队列类.通知列表)
 
-const isMobile =
-  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  )
+const 是否移动端 = /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent)
 
 function 投降并刷新() {
   if (玩家类.游戏已开始) {
@@ -290,7 +287,22 @@ onMounted(async () => {
   const 边框层 = new PIXI.Container()
   const 位宽 = 边 / 格
   const 缩放比例 = 位宽 / 600
-  const 手机端y轴偏移 = 位宽 * 0.75
+
+  function 获取触摸y轴偏移(攻击范围: string | undefined) {
+    if (!是否移动端) return 0
+
+    switch (攻击范围) {
+      case '单':
+      case '横':
+        return -位宽 * 0.75
+      case '圆':
+      case '竖':
+      case '十':
+        return -位宽 * 1.75
+      default:
+        return -位宽 * 0.75
+    }
+  }
 
   const 线宽 = 位宽 / 25
   边框层.filters = [
@@ -475,11 +487,10 @@ onMounted(async () => {
           }
         }
       } else if (
-        !是否在区域中(
-          e,
-          迷雾层.children[1],
-          isMobile ? { x: 0, y: -手机端y轴偏移 } : { x: 0, y: 0 }
-        )
+        !是否在区域中(e, 迷雾层.children[1], {
+          x: 0,
+          y: 获取触摸y轴偏移(选中的单位.value?.弹幕?.范围),
+        })
       ) {
         选中的单位.value = undefined
         选择攻击目标模式 = false
@@ -488,11 +499,9 @@ onMounted(async () => {
     }
   })
   事件层.on('pointermove', async (e) => {
-    const 坐标 = { screenX: e.screenX, screenY: e.screenY }
-    // 对手机进行坐标偏移
-
-    if (isMobile) {
-      坐标.screenY -= 手机端y轴偏移
+    const 坐标 = {
+      screenX: e.screenX,
+      screenY: e.screenY + 获取触摸y轴偏移(选中的单位.value?.弹幕?.范围),
     }
 
     if (选中的单位.value !== undefined) {
@@ -523,11 +532,9 @@ onMounted(async () => {
     }
   })
   事件层.on('pointerup', (e) => {
-    const 坐标 = { screenX: e.screenX, screenY: e.screenY }
-    // 对手机进行坐标偏移
-
-    if (isMobile) {
-      坐标.screenY -= 手机端y轴偏移
+    const 坐标 = {
+      screenX: e.screenX,
+      screenY: e.screenY + 获取触摸y轴偏移(选中的单位.value?.弹幕?.范围),
     }
 
     if (
