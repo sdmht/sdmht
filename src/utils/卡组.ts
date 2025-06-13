@@ -33,43 +33,23 @@ function 编号卡组转字符串(卡组: 编号卡组类型): string {
   )
 }
 function 字符串转编号卡组(字符串: string): 编号卡组类型 {
-  let 卡组
-  if (字符串.includes(分隔符)) {
-    const 切割下标 = 字符串.lastIndexOf(分隔符)
-    const 卡组名 = 字符串.substring(0, 切割下标)
-    const 卡组码 = 字符串.substring(切割下标 + 1)
-    const 数据 = JSON.parse(atob(卡组码)) as [
-      1 | 2 | 3,
-      number,
-      number[],
-      number[],
-      number[]
-    ]
-    卡组 = {
-      卡组名,
-      主神技能: 数据[0],
-      主神: 数据[1] + 10000,
-      附属神: 数据[2].map((x) => x + 20000),
-      神迹卡: 数据[3].map((x) => x + 30000),
-      弹幕卡: 数据[4].map((x) => x + 40000),
-    }
-  } else {
-    const 数据 = JSON.parse(atob(字符串)) as [
-      string,
-      1 | 2 | 3,
-      number,
-      number[],
-      number[],
-      number[]
-    ]
-    卡组 = {
-      卡组名: decodeURIComponent(数据[0]),
-      主神技能: 数据[1],
-      主神: 数据[2] + 10000,
-      附属神: 数据[3].map((x) => x + 20000),
-      神迹卡: 数据[4].map((x) => x + 30000),
-      弹幕卡: 数据[5].map((x) => x + 40000),
-    }
+  const 切割下标 = 字符串.lastIndexOf(分隔符)
+  const 卡组名 = 字符串.substring(0, 切割下标)
+  const 卡组码 = 字符串.substring(切割下标 + 1)
+  const 数据 = JSON.parse(atob(卡组码)) as [
+    1 | 2 | 3,
+    number,
+    number[],
+    number[],
+    number[]
+  ]
+  const 卡组 = {
+    卡组名,
+    主神技能: 数据[0],
+    主神: 数据[1] + 10000,
+    附属神: 数据[2].map((x) => x + 20000),
+    神迹卡: 数据[3].map((x) => x + 30000),
+    弹幕卡: 数据[4].map((x) => x + 40000),
   }
   const 错误列表: string[] = []
   if (卡组.附属神.length != 2) {
