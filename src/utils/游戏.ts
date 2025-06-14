@@ -43,6 +43,9 @@ class 随机类 {
     console.log('随机数种子', this.随机数种子)
     return this.随机数种子 / 233280.0
   }
+  static 随机编号() {
+    return Math.floor(this.随机数() * 2 ** 32) - 2 ** 31
+  }
   static 乱序<T>(列表: T[]): T[] {
     const 随机数 = Math.floor(this.随机数() * 100)
     const 乱序列表 = []
@@ -70,8 +73,7 @@ class 基类 extends 事件类 {
   id: number
   constructor() {
     super()
-    this.id = _.random(-2147483648, 2147483647)
-    //console.log(this.constructor.name, this.id)
+    this.id = 随机类.随机编号()
   }
 }
 class 目标类 extends 基类 {
