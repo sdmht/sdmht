@@ -39,7 +39,7 @@ class 随机类 {
    * @returns 0~1的随机数
    */
   static 随机数() {
-    this.随机数种子 = (this.随机数种子 * 9301 + 49297) % 233280
+    this.随机数种子 = (_.round(this.随机数种子, 10) * 9301 + 49297) % 233280
     console.log('随机数种子', this.随机数种子)
     return this.随机数种子 / 233280.0
   }
