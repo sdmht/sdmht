@@ -41,7 +41,7 @@ function 字符串转编号卡组(字符串: string): 编号卡组类型 {
     throw 错误消息
   }
   const 卡组码 = 匹配结果[0]
-  const 卡组名 = 字符串.substring(0, 匹配结果.index)
+  const 卡组名 = 字符串.substring(0, 匹配结果.index).trim()
   const 数据 = JSON.parse(atob(卡组码)) as [
     1 | 2 | 3,
     number,
