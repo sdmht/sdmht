@@ -155,6 +155,13 @@
             "
             :rules="[(val) => val.length == 2 || '附属神数量必须为2']"
           >
+            <template v-slot:selected-item="scope">
+              <img
+                width="100vh"
+                :src="`card/CardM_${scope.opt.美术资源}.webp`"
+                @click="scope.removeAtIndex(scope.index)"
+              />
+            </template>
             <template v-slot:option="scope">
               <q-item v-bind="scope.itemProps">
                 <q-item-section avatar>
@@ -209,6 +216,13 @@
                 '神迹卡+弹幕卡总数必须为20',
             ]"
           >
+            <template v-slot:selected-item="scope">
+              <img
+                width="100vh"
+                :src="`card/CardM_${scope.opt.美术资源}.webp`"
+                @click="scope.removeAtIndex(scope.index)"
+              />
+            </template>
             <template v-slot:option="scope">
               <q-item v-bind="scope.itemProps">
                 <q-item-section avatar>
@@ -270,6 +284,13 @@
                 '神迹卡+弹幕卡总数必须为20',
             ]"
           >
+            <template v-slot:selected-item="scope">
+              <img
+                width="100vh"
+                :src="`card/CardM_${scope.opt.美术资源}.webp`"
+                @click="scope.removeAtIndex(scope.index)"
+              />
+            </template>
             <template v-slot:option="scope">
               <q-item v-bind="scope.itemProps">
                 <q-item-section avatar>
