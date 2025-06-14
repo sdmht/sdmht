@@ -70,7 +70,8 @@ class 基类 extends 事件类 {
   id: number
   constructor() {
     super()
-    this.id = 随机类.随机数()
+    this.id = Math.floor(随机类.随机数() * 1000000000000000000)
+    //console.log(this.constructor.name, this.id)
   }
 }
 class 目标类 extends 基类 {
