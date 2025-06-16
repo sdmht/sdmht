@@ -1040,7 +1040,20 @@ onMounted(async () => {
 
   战斗画框.stage.addChild(回合栏)
 
+  const 选中的手牌 = ref<PXUI.ButtonContainer>()
   const 手牌栏 = new PIXI.Container<PXUI.ButtonContainer>()
+
+  事件层.on('pointermove', (e) => {
+    if (选中的手牌.value !== undefined) {
+      const 卡面 = 选中的手牌.value
+      卡面.scale.set(1)
+      const 卡面缩放 = Math.min((纵 * 0.6) / 卡面.height, 宽 / 10 / 卡面.width)
+      卡面.scale.set(卡面缩放 * 2)
+      卡面.x = e.screenX - 卡面.width / 2
+      卡面.y = e.screenY - 卡面.height / 2
+    }
+  })
+
   玩家.on(
     '手牌数量变化时',
     _.throttle(async () => {
@@ -1063,14 +1076,26 @@ onMounted(async () => {
           卡面.y = 原纵坐标
           _.set(卡面, '原横坐标', 原横坐标)
           if (已创建) return
+
           卡面.onDown.connect(() => {
             卡面.scale.set(卡面焦点缩放)
             卡面.x = (宽 - 卡面.width) / 2
             卡面.y = 0
             卡面.zIndex = 1
             手牌栏.sortChildren()
+            选中的手牌.value = 卡面
           })
+
+          卡面.on('pointermove', (e) => {
+            if (选中的手牌.value !== undefined) {
+              卡面.scale.set(卡面缩放 * 2)
+              卡面.x = e.screenX - 卡面.width / 2
+              卡面.y = e.screenY - 卡面.height / 2
+            }
+          })
+
           卡面.onUp.connect(async (b, e) => {
+            选中的手牌.value = undefined
             卡面.scale.set(卡面缩放)
             卡面.x = _.get(卡面, '原横坐标', 原横坐标)
             卡面.y = 原纵坐标
