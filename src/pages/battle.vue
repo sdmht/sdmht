@@ -940,7 +940,7 @@ onMounted(async () => {
     (消耗栏底框.width * 0.195) / 结束回合按钮.view.width
   )
   function 结束回合() {
-    if (玩家类.我方回合) {
+    if (玩家类.我方回合 && 行动队列类.行动队列.待渲染.length === 0) {
       选中的单位.value = undefined
       行动队列类.行动队列.添加(['回合结束'])
     }
