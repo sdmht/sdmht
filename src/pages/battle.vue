@@ -499,7 +499,7 @@ onMounted(async () => {
   事件层.on('pointermove', async (e) => {
     const 坐标 = {
       screenX: e.screenX,
-      screenY: e.screenY + 获取触摸y轴偏移(选中的单位.value?.弹幕?.范围),
+      screenY: e.screenY, //+ 获取触摸y轴偏移(选中的单位.value?.弹幕?.范围),
     }
 
     if (选中的单位.value !== undefined) {
@@ -529,15 +529,19 @@ onMounted(async () => {
       }
     }
   })
+
+  const 上一次选择位置 = { 行: 0, 列: 0 }
+
   事件层.on('pointerup', (e) => {
     const 坐标 = {
       screenX: e.screenX,
       screenY: e.screenY,
     }
 
-    if (Date.now() - 触摸开始时间 > 150) {
+    if (0) console.log(Date.now() - 触摸开始时间, 获取触摸y轴偏移)
+    /*     if (Date.now() - 触摸开始时间 > 150) {
       坐标.screenY += 获取触摸y轴偏移(选中的单位.value?.弹幕?.范围)
-    }
+    } */
 
     if (
       状态.value == '布阵' &&
@@ -564,14 +568,21 @@ onMounted(async () => {
     } else if (状态.value == '战斗') {
       if (是否在区域中(坐标, 迷雾层.children[1])) {
         if (选中的单位.value !== undefined && 选择攻击目标模式) {
-          攻击目标层.removeChild(...攻击目标层.children)
-          选择攻击目标模式 = false
           const 神 = 选中的单位.value
           const 位置 = 获得位置(坐标, 迷雾层.children[1])
-          行动队列类.行动队列.添加(['攻击', 神.id, 位置.行, 位置.列])
+          if (位置.行 == 上一次选择位置.行 && 位置.列 == 上一次选择位置.列) {
+            攻击目标层.removeChild(...攻击目标层.children)
+            选择攻击目标模式 = false
+            行动队列类.行动队列.添加(['攻击', 神.id, 位置.行, 位置.列])
+          } else {
+            上一次选择位置.行 = 位置.行
+            上一次选择位置.列 = 位置.列
+          }
         }
       } else {
         选择攻击目标模式 = false
+        上一次选择位置.行 = 0
+        上一次选择位置.列 = 0
       }
     }
   })
