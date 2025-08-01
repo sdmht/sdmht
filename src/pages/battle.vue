@@ -440,31 +440,66 @@ onMounted(async () => {
   玩家类.事件.on('行动点变化时', 渲染移动范围)
 
   let 触摸开始时间: number
+  const 上一次选择位置 = { 行: 0, 列: 0 }
+
+  // 抽取公共函数：处理选择单位逻辑
+  function 处理选择单位(
+    坐标: { screenX: number; screenY: number },
+    迷雾层子项: PIXI.Container<PIXI.DisplayObject>
+  ) {
+    if (!是否在区域中(坐标, 迷雾层子项)) return undefined
+
+    const { 行, 列 } = 获得位置(坐标, 迷雾层子项)
+    return 玩家
+      .我方(单位类)
+      .find((_神) => _神.位置.行 == 行 && _神.位置.列 == 列)
+  }
+
+  // 抽取公共函数：渲染攻击目标范围
+  async function 渲染攻击目标范围(神: 单位类, 位置: 位置类) {
+    攻击目标层.removeChild(...攻击目标层.children)
+
+    for (let _位置 of 神.获得攻击范围(位置)) {
+      let 选择攻击目标图 = await 加载子画面('pvp/attack 1.webp')
+      选择攻击目标图.x = 迷雾层.children[1].x + 位宽 * (_位置.列 - 1)
+      选择攻击目标图.y = 迷雾层.children[1].y + 位宽 * (_位置.行 - 1)
+      选择攻击目标图.width = 位宽
+      选择攻击目标图.height = 位宽
+      攻击目标层.addChild(选择攻击目标图)
+    }
+
+    if (是否移动端) {
+      let 攻击目标确认图 = await 加载子画面('pvp/queding 1.webp')
+      攻击目标确认图.x = 迷雾层.children[1].x + 位宽 * (位置.列 - 1)
+      攻击目标确认图.y = 迷雾层.children[1].y + 位宽 * (位置.行 - 1 + 0.25)
+      const 原始宽高比 = 攻击目标确认图.width / 攻击目标确认图.height
+      攻击目标确认图.width = 位宽
+      攻击目标确认图.height = 位宽 / 原始宽高比
+      攻击目标层.addChild(攻击目标确认图)
+    }
+  }
 
   事件层.on('pointerdown', (e) => {
     触摸开始时间 = Date.now()
+    const 坐标 = { screenX: e.screenX, screenY: e.screenY }
+
     if (状态.value == '布阵') {
-      if (
-        是否在区域中(e, 迷雾层.children[0]) &&
-        选中的单位.value === undefined
-      ) {
-        const { 行, 列 } = 获得位置(e, 迷雾层.children[0])
-        const 神 = 玩家
-          .我方(单位类)
-          .find((_神) => _神.位置.行 == 行 && _神.位置.列 == 列)
-        if (神 !== undefined) {
-          选中的单位.value = 神
-          播放音频('prebattle/抓起神明.mp3')
-        }
+      if (选中的单位.value !== undefined) return
+
+      const 神 = 处理选择单位(坐标, 迷雾层.children[0])
+      if (神 !== undefined) {
+        选中的单位.value = 神
+        播放音频('prebattle/抓起神明.mp3')
       }
     } else if (状态.value == '战斗') {
-      if (是否在区域中(e, 迷雾层.children[0])) {
-        const { 行, 列 } = 获得位置(e, 迷雾层.children[0])
-        const 神 = 玩家
-          .我方(单位类)
-          .find((_神) => _神.位置.行 == 行 && _神.位置.列 == 列)
+      // 检查是否点击我方单位
+      if (是否在区域中(坐标, 迷雾层.children[0])) {
+        const 神 = 处理选择单位(坐标, 迷雾层.children[0])
+
         if (神 !== undefined) {
           选中的单位.value = 神
+
+          // 检查是否可以装填弹幕
           if (
             待装填的弹幕卡.value &&
             神.可装填(待装填的弹幕卡.value) &&
@@ -481,7 +516,10 @@ onMounted(async () => {
           选中的单位.value !== undefined &&
           选中的单位.value.可移动()
         ) {
+          // 尝试移动单位
           const 神 = 选中的单位.value
+          const { 行, 列 } = 获得位置(坐标, 迷雾层.children[0])
+
           for (const 位置 of 神.获得移动范围()) {
             if (位置.行 == 行 && 位置.列 == 列) {
               行动队列类.行动队列.添加(['移动', 神.id, 行, 列])
@@ -489,28 +527,31 @@ onMounted(async () => {
             }
           }
         }
-      } else if (!是否在区域中(e, 迷雾层.children[1])) {
+      } else if (!是否在区域中(坐标, 迷雾层.children[1])) {
+        // 点击到其他区域，取消选择
         选中的单位.value = undefined
         选择攻击目标模式 = false
       }
+
       待装填的弹幕卡.value = undefined
     }
   })
+
   事件层.on('pointermove', async (e) => {
-    const 坐标 = {
-      screenX: e.screenX,
-      screenY: e.screenY, //+ 获取触摸y轴偏移(选中的单位.value?.弹幕?.范围),
-    }
+    const 坐标 = { screenX: e.screenX, screenY: e.screenY }
 
     if (选中的单位.value !== undefined) {
       const 神 = 选中的单位.value
+
       if (状态.value == '布阵') {
+        // 布阵阶段移动单位
         神.角色.x = 坐标.screenX - 迷雾层.children[0].x - 位宽 / 2
         神.角色.y = 坐标.screenY - 迷雾层.children[0].y - 位宽 / 2
         神.角色.zIndex = 神.角色.y
         神.角色.parent.sortChildren()
       }
-      攻击目标层.removeChild(...攻击目标层.children)
+
+      // 战斗阶段显示攻击范围
       if (
         状态.value == '战斗' &&
         选择攻击目标模式 &&
@@ -518,101 +559,68 @@ onMounted(async () => {
       ) {
         const { 行, 列 } = 获得位置(坐标, 迷雾层.children[1])
         const 位置 = 玩家.敌方(位置类).find((x) => x.行 == 行 && x.列 == 列)!
-        for (let _位置 of 神.获得攻击范围(位置)) {
-          let 选择攻击目标图 = await 加载子画面('pvp/attack 1.webp')
-          选择攻击目标图.x = 迷雾层.children[1].x + 位宽 * (_位置.列 - 1)
-          选择攻击目标图.y = 迷雾层.children[1].y + 位宽 * (_位置.行 - 1)
-          选择攻击目标图.width = 位宽
-          选择攻击目标图.height = 位宽
-          攻击目标层.addChild(选择攻击目标图)
-        }
-        if (是否移动端) {
-          let 攻击目标确认图 = await 加载子画面('pvp/queding 1.webp')
-          攻击目标确认图.x = 迷雾层.children[1].x + 位宽 * (位置.列 - 1)
-          攻击目标确认图.y = 迷雾层.children[1].y + 位宽 * (位置.行 - 1 + 0.25)
-          const 原始宽高比 = 攻击目标确认图.width / 攻击目标确认图.height
-          攻击目标确认图.width = 位宽
-          攻击目标确认图.height = 位宽 / 原始宽高比
-          攻击目标层.addChild(攻击目标确认图)
-        }
+        await 渲染攻击目标范围(神, 位置)
+      } else {
+        攻击目标层.removeChild(...攻击目标层.children)
       }
     }
   })
 
-  const 上一次选择位置 = { 行: 0, 列: 0 }
-
   事件层.on('pointerup', async (e) => {
-    const 坐标 = {
-      screenX: e.screenX,
-      screenY: e.screenY,
-    }
-
+    const 坐标 = { screenX: e.screenX, screenY: e.screenY }
     if (0) console.log(Date.now() - 触摸开始时间, 获取触摸y轴偏移)
-    /*     if (Date.now() - 触摸开始时间 > 150) {
-      坐标.screenY += 获取触摸y轴偏移(选中的单位.value?.弹幕?.范围)
-    } */
 
-    if (
-      状态.value == '布阵' &&
-      选中的单位.value !== undefined &&
-      是否在区域中(坐标, 迷雾层.children[0])
-    ) {
-      const 位置 = 获得位置(坐标, 迷雾层.children[0])
-      const 神 = 选中的单位.value
-      if (神.位置.行 == 位置.行 && 神.位置.列 == 位置.列) {
-        选中的单位.value = undefined
-        播放音频('prebattle/放下神明.mp3')
-      } else if (
-        !玩家
-          .我方(单位类)
-          .find((_神) => _神.位置.行 == 位置.行 && _神.位置.列 == 位置.列)
+    if (状态.value == '布阵') {
+      if (
+        选中的单位.value !== undefined &&
+        是否在区域中(坐标, 迷雾层.children[0])
       ) {
-        神.传送(
-          神.我方(位置类).find((x) => x.行 == 位置.行 && x.列 == 位置.列)!
-        )
-        选中的单位.value = undefined
-        播放音频('prebattle/放下神明.mp3')
+        const 位置 = 获得位置(坐标, 迷雾层.children[0])
+        const 神 = 选中的单位.value
+
+        if (神.位置.行 == 位置.行 && 神.位置.列 == 位置.列) {
+          选中的单位.value = undefined
+          播放音频('prebattle/放下神明.mp3')
+        } else if (
+          !玩家
+            .我方(单位类)
+            .find((_神) => _神.位置.行 == 位置.行 && _神.位置.列 == 位置.列)
+        ) {
+          神.传送(
+            神.我方(位置类).find((x) => x.行 == 位置.行 && x.列 == 位置.列)!
+          )
+          选中的单位.value = undefined
+          播放音频('prebattle/放下神明.mp3')
+        }
+
+        神.更新坐标(位宽)
       }
-      神.更新坐标(位宽)
     } else if (状态.value == '战斗') {
       if (是否在区域中(坐标, 迷雾层.children[1])) {
         if (选中的单位.value !== undefined && 选择攻击目标模式) {
           const 神 = 选中的单位.value
           const { 行, 列 } = 获得位置(坐标, 迷雾层.children[1])
           const 位置 = 玩家.敌方(位置类).find((x) => x.行 == 行 && x.列 == 列)!
-          攻击目标层.removeChild(...攻击目标层.children)
+
           if (
             !是否移动端 ||
             (位置.行 == 上一次选择位置.行 && 位置.列 == 上一次选择位置.列)
           ) {
+            // 执行攻击
+            攻击目标层.removeChild(...攻击目标层.children)
             选择攻击目标模式 = false
             上一次选择位置.行 = 0
             上一次选择位置.列 = 0
             行动队列类.行动队列.添加(['攻击', 神.id, 位置.行, 位置.列])
           } else {
+            // 更新选择位置
             上一次选择位置.行 = 位置.行
             上一次选择位置.列 = 位置.列
-            for (let _位置 of 神.获得攻击范围(位置)) {
-              let 选择攻击目标图 = await 加载子画面('pvp/attack 1.webp')
-              选择攻击目标图.x = 迷雾层.children[1].x + 位宽 * (_位置.列 - 1)
-              选择攻击目标图.y = 迷雾层.children[1].y + 位宽 * (_位置.行 - 1)
-              选择攻击目标图.width = 位宽
-              选择攻击目标图.height = 位宽
-              攻击目标层.addChild(选择攻击目标图)
-            }
-            if (是否移动端) {
-              let 攻击目标确认图 = await 加载子画面('pvp/queding 1.webp')
-              攻击目标确认图.x = 迷雾层.children[1].x + 位宽 * (位置.列 - 1)
-              攻击目标确认图.y =
-                迷雾层.children[1].y + 位宽 * (位置.行 - 1 + 0.25)
-              const 原始宽高比 = 攻击目标确认图.width / 攻击目标确认图.height
-              攻击目标确认图.width = 位宽
-              攻击目标确认图.height = 位宽 / 原始宽高比
-              攻击目标层.addChild(攻击目标确认图)
-            }
+            await 渲染攻击目标范围(神, 位置)
           }
         }
       } else {
+        // 点击到区域外，取消攻击模式
         选择攻击目标模式 = false
         上一次选择位置.行 = 0
         上一次选择位置.列 = 0
