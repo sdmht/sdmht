@@ -526,13 +526,22 @@ onMounted(async () => {
           选择攻击目标图.height = 位宽
           攻击目标层.addChild(选择攻击目标图)
         }
+        if (是否移动端) {
+          let 攻击目标确认图 = await 加载子画面('pvp/queding 1.webp')
+          攻击目标确认图.x = 迷雾层.children[1].x + 位宽 * (位置.列 - 1)
+          攻击目标确认图.y = 迷雾层.children[1].y + 位宽 * (位置.行 - 1 + 0.25)
+          const 原始宽高比 = 攻击目标确认图.width / 攻击目标确认图.height
+          攻击目标确认图.width = 位宽
+          攻击目标确认图.height = 位宽 / 原始宽高比
+          攻击目标层.addChild(攻击目标确认图)
+        }
       }
     }
   })
 
   const 上一次选择位置 = { 行: 0, 列: 0 }
 
-  事件层.on('pointerup', (e) => {
+  事件层.on('pointerup', async (e) => {
     const 坐标 = {
       screenX: e.screenX,
       screenY: e.screenY,
@@ -569,12 +578,13 @@ onMounted(async () => {
       if (是否在区域中(坐标, 迷雾层.children[1])) {
         if (选中的单位.value !== undefined && 选择攻击目标模式) {
           const 神 = 选中的单位.value
-          const 位置 = 获得位置(坐标, 迷雾层.children[1])
+          const { 行, 列 } = 获得位置(坐标, 迷雾层.children[1])
+          const 位置 = 玩家.敌方(位置类).find((x) => x.行 == 行 && x.列 == 列)!
+          攻击目标层.removeChild(...攻击目标层.children)
           if (
             !是否移动端 ||
             (位置.行 == 上一次选择位置.行 && 位置.列 == 上一次选择位置.列)
           ) {
-            攻击目标层.removeChild(...攻击目标层.children)
             选择攻击目标模式 = false
             上一次选择位置.行 = 0
             上一次选择位置.列 = 0
@@ -582,6 +592,24 @@ onMounted(async () => {
           } else {
             上一次选择位置.行 = 位置.行
             上一次选择位置.列 = 位置.列
+            for (let _位置 of 神.获得攻击范围(位置)) {
+              let 选择攻击目标图 = await 加载子画面('pvp/attack 1.webp')
+              选择攻击目标图.x = 迷雾层.children[1].x + 位宽 * (_位置.列 - 1)
+              选择攻击目标图.y = 迷雾层.children[1].y + 位宽 * (_位置.行 - 1)
+              选择攻击目标图.width = 位宽
+              选择攻击目标图.height = 位宽
+              攻击目标层.addChild(选择攻击目标图)
+            }
+            if (是否移动端) {
+              let 攻击目标确认图 = await 加载子画面('pvp/queding 1.webp')
+              攻击目标确认图.x = 迷雾层.children[1].x + 位宽 * (位置.列 - 1)
+              攻击目标确认图.y =
+                迷雾层.children[1].y + 位宽 * (位置.行 - 1 + 0.25)
+              const 原始宽高比 = 攻击目标确认图.width / 攻击目标确认图.height
+              攻击目标确认图.width = 位宽
+              攻击目标确认图.height = 位宽 / 原始宽高比
+              攻击目标层.addChild(攻击目标确认图)
+            }
           }
         }
       } else {
