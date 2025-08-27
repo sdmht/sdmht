@@ -54,7 +54,7 @@ module.exports = configure(function (ctx) {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
       // transpile: false,
-      publicPath: ctx.prod ? 'https://cdn.sdmht.star2000.work/' : '/',
+      publicPath: ctx.prod ? 'https://sdmht.star2000.work/' : '/',
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
       // (from node_modules, which are by default not transpiled).
