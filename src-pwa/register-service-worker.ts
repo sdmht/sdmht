@@ -1,5 +1,5 @@
-import { useMutation } from '@vue/apollo-composable'
-import gql from 'graphql-tag'
+// import { useMutation } from '@vue/apollo-composable'
+// import gql from 'graphql-tag'
 import { register } from 'register-service-worker'
 
 // The ready(), registered(), cached(), updatefound() and updated()
@@ -13,22 +13,22 @@ register(process.env.SERVICE_WORKER_FILE, {
 
   // registrationOptions: { scope: './' },
 
-  ready(registration) {
-    if (Notification.permission === 'granted') {
-      registration.pushManager.getSubscription().then(async (subscription) => {
-        if (!subscription) {
-          subscription = await registration.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: process.env.VAPID_PUBLIC_KEY,
-          })
-        }
-        const ps = JSON.parse(JSON.stringify(subscription))
-        useMutation(
-          gql`mutation addSubscription($ps: PushSubscription!){ addSubscription($ps) }`,
-          { variables: { ps } }
-        )
-      })
-    }
+  ready(/*registration*/) {
+    // if (Notification.permission === 'granted') {
+    //   registration.pushManager.getSubscription().then(async (subscription) => {
+    //     if (!subscription) {
+    //       subscription = await registration.pushManager.subscribe({
+    //         userVisibleOnly: true,
+    //         applicationServerKey: process.env.VAPID_PUBLIC_KEY,
+    //       })
+    //     }
+    //     const ps = JSON.parse(JSON.stringify(subscription))
+    //     useMutation(
+    //       gql`mutation addSubscription($ps: PushSubscription!){ addSubscription($ps) }`,
+    //       { variables: { ps } }
+    //     )
+    //   })
+    // }
     // console.log('Service worker is active.')
   },
 

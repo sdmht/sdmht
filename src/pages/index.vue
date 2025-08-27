@@ -46,32 +46,32 @@ import { 加载动画, 加载子画面 } from 'src/utils/加载动画'
 import { 播放场景背景音乐 } from 'src/utils/播放音频'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useQuasar } from 'quasar'
+// import { useQuasar } from 'quasar'
 
-const q = useQuasar()
+// const q = useQuasar()
 
-function 是否未授权通知() {
-  return Notification.permission === 'default'
-}
-function 请求授权通知() {
-  Notification.requestPermission().then((permission) => {
-    if (permission === 'granted') {
-      location.reload()
-    }
-  })
-}
-if (是否未授权通知()) {
-  q.dialog({
-    title: '请求授权通知',
-    message: '用来在其他玩家开始匹配时通知你',
-    persistent: true,
-    cancel: true,
-    seamless: true,
-    position: 'bottom',
-  }).onOk(() => {
-    请求授权通知()
-  })
-}
+// function 是否未授权通知() {
+//   return Notification.permission === 'default'
+// }
+// function 请求授权通知() {
+//   Notification.requestPermission().then((permission) => {
+//     if (permission === 'granted') {
+//       location.reload()
+//     }
+//   })
+// }
+// if (是否未授权通知()) {
+//   q.dialog({
+//     title: '请求授权通知',
+//     message: '用来在其他玩家开始匹配时通知你',
+//     persistent: true,
+//     cancel: true,
+//     seamless: true,
+//     position: 'bottom',
+//   }).onOk(() => {
+//     请求授权通知()
+//   })
+// }
 
 const 是否移动端 = /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent)
 
