@@ -10,7 +10,7 @@ import { createClient } from 'graphql-ws'
 export /* async */ function getClientOptions() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   /* {app, router, ...} options?: Partial<BootFileParams> ,*/
-  let domain = 'sdmht.star2000.work'
+  let domain = 'sdmht-origin.star2000.work'
   try {
     if (process.env.BACKEND) domain = process.env.BACKEND
   } catch {}

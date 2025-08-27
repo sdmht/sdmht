@@ -27,9 +27,30 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean }
   Int: { input: number; output: number }
   Float: { input: number; output: number }
+  DOMHighResTimeStamp: { input: any; output: any }
   JSON: { input: any; output: any }
   Time: { input: any; output: any }
   Void: { input: any; output: any }
+}
+
+export type Mutation = {
+  __typename?: 'Mutation'
+  addSubscription?: Maybe<Scalars['Void']['output']>
+}
+
+export type MutationAddSubscriptionArgs = {
+  subscription: PushSubscription
+}
+
+export type PushSubscription = {
+  endpoint: Scalars['String']['input']
+  expirationTime?: InputMaybe<Scalars['DOMHighResTimeStamp']['input']>
+  keys: PushSubscriptionKeys
+}
+
+export type PushSubscriptionKeys = {
+  auth: Scalars['String']['input']
+  p256dh: Scalars['String']['input']
 }
 
 export type Query = {

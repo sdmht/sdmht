@@ -4,7 +4,7 @@ const tls =
   process.env.BACKEND?.includes('localhost')
     ? ''
     : 's'
-const domain = process.env.BACKEND || 'sdmht.star2000.work'
+const domain = process.env.BACKEND || 'sdmht-origin.star2000.work'
 const config: CodegenConfig = {
   overwrite: true,
   errorsOnly: true,
