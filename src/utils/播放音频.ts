@@ -23,7 +23,9 @@ function 获得音频元素(id: string) {
   return 音频元素
 }
 function 播放语音(美术资源: number[], 类别: string) {
-  const 文件 = 获得资源(美术资源, (f, i) => f.match(`^character/${类别}_${i}(_[0-9]{2})?.mp3$`))
+  const 文件 = 获得资源(美术资源, (f, i) =>
+    f.match(`^character/${类别}_${i}(_[0-9]{2})?.mp3$`),
+  )
   if (文件) {
     const 音频元素 = 获得音频元素(类别)
     if (音频元素.src != 文件) {

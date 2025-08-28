@@ -41,7 +41,11 @@ class 对战场景 extends p.Scene {
   async create() {
     this.sound.add('背景音乐', { loop: true, volume: 0.1 }).play()
 
-    const 背景图 = await 加载子画面(this, '背景图', `background/BackgroundBattle_${背景编号}.webp`)
+    const 背景图 = await 加载子画面(
+      this,
+      '背景图',
+      `background/BackgroundBattle_${背景编号}.webp`,
+    )
     背景图.setScale(宽 / 背景图.width)
 
     const 边 = Math.min(高, 宽) * 0.5
@@ -123,7 +127,11 @@ onMounted(() => {
       mode: p.Scale.ScaleModes.FIT,
       autoCenter: p.Scale.Center.CENTER_BOTH,
     },
-    plugins: { scene: [{ key: 'SpinePlugin', plugin: window.SpinePlugin, mapping: 'spine' }] },
+    plugins: {
+      scene: [
+        { key: 'SpinePlugin', plugin: window.SpinePlugin, mapping: 'spine' },
+      ],
+    },
   })
 })
 onUnmounted(() => {

@@ -1,5 +1,10 @@
 import { Notify } from 'quasar'
-import { 主神信息列表, 弹幕卡信息列表, 神迹卡信息列表, 附属神信息列表 } from './信息'
+import {
+  主神信息列表,
+  弹幕卡信息列表,
+  神迹卡信息列表,
+  附属神信息列表,
+} from './信息'
 
 type 编号卡组类型 = {
   卡组名: string
@@ -37,7 +42,13 @@ function 字符串转编号卡组(字符串: string): 编号卡组类型 {
   }
   const 卡组码 = 匹配结果[0]
   const 卡组名 = 字符串.substring(0, 匹配结果.index).trim()
-  const 数据 = JSON.parse(atob(卡组码)) as [1 | 2 | 3, number, number[], number[], number[]]
+  const 数据 = JSON.parse(atob(卡组码)) as [
+    1 | 2 | 3,
+    number,
+    number[],
+    number[],
+    number[],
+  ]
   const 卡组 = {
     卡组名,
     主神技能: 数据[0],
@@ -54,30 +65,35 @@ function 字符串转编号卡组(字符串: string): 编号卡组类型 {
     错误列表.push('神迹卡+弹幕卡总数不为20')
   }
   if (
-    主神信息列表.findIndex((x) => parseInt(x.仅系统用) == 0 && parseInt(x.编号) === 卡组.主神) == -1
+    主神信息列表.findIndex(
+      (x) => parseInt(x.仅系统用) == 0 && parseInt(x.编号) === 卡组.主神,
+    ) == -1
   ) {
     错误列表.push(`不存在非系统用的编号为${卡组.主神}的主神`)
   }
   for (const 附属神 of 卡组.附属神) {
     if (
-      附属神信息列表.findIndex((x) => parseInt(x.仅系统用) == 0 && parseInt(x.编号) === 附属神) ==
-      -1
+      附属神信息列表.findIndex(
+        (x) => parseInt(x.仅系统用) == 0 && parseInt(x.编号) === 附属神,
+      ) == -1
     ) {
       错误列表.push(`不存在非系统用的编号为${附属神}的附属神`)
     }
   }
   for (const 神迹卡 of 卡组.神迹卡) {
     if (
-      神迹卡信息列表.findIndex((x) => parseInt(x.仅系统用) == 0 && parseInt(x.编号) === 神迹卡) ==
-      -1
+      神迹卡信息列表.findIndex(
+        (x) => parseInt(x.仅系统用) == 0 && parseInt(x.编号) === 神迹卡,
+      ) == -1
     ) {
       错误列表.push(`不存在非系统用的编号为${神迹卡}的神迹卡`)
     }
   }
   for (const 弹幕卡 of 卡组.弹幕卡) {
     if (
-      弹幕卡信息列表.findIndex((x) => parseInt(x.仅系统用) == 0 && parseInt(x.编号) === 弹幕卡) ==
-      -1
+      弹幕卡信息列表.findIndex(
+        (x) => parseInt(x.仅系统用) == 0 && parseInt(x.编号) === 弹幕卡,
+      ) == -1
     ) {
       错误列表.push(`不存在非系统用的编号为${弹幕卡}的弹幕卡`)
     }

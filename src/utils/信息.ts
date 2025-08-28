@@ -7,9 +7,13 @@ import 主神皮肤 from 'assets/data/ron_cfg_clothes_main.csv'
 import ron_cfg_clothes_sub from 'assets/data/ron_cfg_clothes_sub.csv'
 import ron_cfg_skill from 'assets/data/ron_cfg_skill.csv'
 
-const 卡信息 = ron_cfg_card_infor.sort((_a, _b) => parseInt(_b.编号) - parseInt(_a.编号))
+const 卡信息 = ron_cfg_card_infor.sort(
+  (_a, _b) => parseInt(_b.编号) - parseInt(_a.编号),
+)
 
-const 附属神皮肤 = ron_cfg_clothes_sub.sort((_a, _b) => parseInt(_b.编号) - parseInt(_a.编号))
+const 附属神皮肤 = ron_cfg_clothes_sub.sort(
+  (_a, _b) => parseInt(_b.编号) - parseInt(_a.编号),
+)
 
 const 主神信息列表 = ron_cfg_card_main
   .sort((_a, _b) => parseInt(_b.编号) - parseInt(_a.编号))
@@ -27,7 +31,9 @@ const 神迹卡信息列表 = ron_cfg_card_effect
   .sort((a, b) => parseInt(b.编号) - parseInt(a.编号))
   .sort((_a, _b) => parseInt(_a.仅系统用) - parseInt(_b.仅系统用))
 
-const 技能信息列表 = ron_cfg_skill.sort((a, b) => parseInt(b.技能ID) - parseInt(a.技能ID))
+const 技能信息列表 = ron_cfg_skill.sort(
+  (a, b) => parseInt(b.技能ID) - parseInt(a.技能ID),
+)
 
 function 获得卡信息(名称或编号: string | number) {
   const 类型 = typeof 名称或编号 == 'number' ? '编号' : '名称'

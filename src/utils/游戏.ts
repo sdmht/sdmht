@@ -19,10 +19,14 @@ class 目标类 extends 基类 {
     目标类.目标列表.push(this)
   }
   我方<T extends 目标类>(类: new (...args: never[]) => T) {
-    return 目标类.目标列表.filter((x) => x instanceof 类 && x.是否我方 == this.是否我方) as T[]
+    return 目标类.目标列表.filter(
+      (x) => x instanceof 类 && x.是否我方 == this.是否我方,
+    ) as T[]
   }
   敌方<T extends 目标类>(类: new (...args: never[]) => T) {
-    return 目标类.目标列表.filter((x) => x instanceof 类 && x.是否我方 != this.是否我方) as T[]
+    return 目标类.目标列表.filter(
+      (x) => x instanceof 类 && x.是否我方 != this.是否我方,
+    ) as T[]
   }
 }
 

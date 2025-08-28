@@ -4,7 +4,13 @@ declare module '*.csv' {
 }
 declare module 'assets/data/ron_cfg_bullet.csv' {
   const value: Record<
-    '编号' | '特效类型' | '发动时长' | '落下时间' | '受击时长' | '震屏类型' | '黑屏',
+    | '编号'
+    | '特效类型'
+    | '发动时长'
+    | '落下时间'
+    | '受击时长'
+    | '震屏类型'
+    | '黑屏',
     string
   >[]
   export default value

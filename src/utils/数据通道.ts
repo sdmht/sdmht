@@ -41,7 +41,9 @@ type 初始数据类型 = {
     编号: number
   }[]
 }
-type 数据同步类型 = { k: '初始数据'; v: 初始数据类型 } | { k: '行动'; v: 行动类型 }
+type 数据同步类型 =
+  | { k: '初始数据'; v: 初始数据类型 }
+  | { k: '行动'; v: 行动类型 }
 
 class 数据通道类 extends EventEmitter {
   override emit(name: string, ...args: unknown[]) {
@@ -165,7 +167,9 @@ class 数据通道类 extends EventEmitter {
     this.on('收到信令', (d) => 点对点通道.signal(d))
     点对点通道.on('signal', (d) => this.emit('发送信令', d))
     点对点通道.on('connect', () => this.emit('点对点连接成功'))
-    点对点通道.on('data', (d) => this.emit('收到数据', JSON.parse(d.toString())))
+    点对点通道.on('data', (d) =>
+      this.emit('收到数据', JSON.parse(d.toString())),
+    )
     watch(
       () => 点对点通道.connected,
       (connected) => (this.点对点已连接 = connected),
@@ -189,4 +193,3 @@ class 数据通道类 extends EventEmitter {
 
 export { 数据通道类 }
 export type { 初始数据类型, 数据同步类型, 行动类型 }
-

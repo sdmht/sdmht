@@ -15,7 +15,8 @@ export /* async */ function getClientOptions() {
   } catch {
     /* empty */
   }
-  const tls = domain.includes('127.0.0.') || domain.includes('localhost') ? '' : 's'
+  const tls =
+    domain.includes('127.0.0.') || domain.includes('localhost') ? '' : 's'
   const httpLink = createHttpLink({
     uri:
       // Change to your graphql endpoint.

@@ -1,5 +1,8 @@
 <template>
-  <div id="首页框" class="overflow-hidden full-height full-width flex justify-between bg-dark">
+  <div
+    id="首页框"
+    class="overflow-hidden full-height full-width flex justify-between bg-dark"
+  >
     <div class="text-white col">
       本站为神代梦华谭玩家收集原动画资源后自制复活的仿品，请勿用于商业行为
       <ol>
@@ -13,15 +16,23 @@
       </ol>
       <ol>
         反馈渠道
-        <li><a href="https://qm.qq.com/q/PWZyQvtFOU" target="_blank">QQ群：重制神代梦华谭</a></li>
         <li>
-          <a href="https://github.com/sdmht/sdmht/issues" target="_blank">源代码仓库议题</a>
+          <a href="https://qm.qq.com/q/PWZyQvtFOU" target="_blank"
+            >QQ群：重制神代梦华谭</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/sdmht/sdmht/issues" target="_blank"
+            >源代码仓库议题</a
+          >
         </li>
       </ol>
       <ol>
         参与开发（有电脑就能尝试指挥AI写代码，方法在仓库的自述里，没有代码功底一样能改，千里之行始于足下）
         <li>
-          <a href="https://github.com/sdmht/sdmht/" target="_blank">源代码仓库</a>
+          <a href="https://github.com/sdmht/sdmht/" target="_blank"
+            >源代码仓库</a
+          >
         </li>
       </ol>
     </div>
@@ -101,7 +112,11 @@ onMounted(() => {
     parent: '首页框',
     scene: 首页场景,
     scale: { mode: p.Scale.ScaleModes.FIT },
-    plugins: { scene: [{ key: 'SpinePlugin', plugin: window.SpinePlugin, mapping: 'spine' }] },
+    plugins: {
+      scene: [
+        { key: 'SpinePlugin', plugin: window.SpinePlugin, mapping: 'spine' },
+      ],
+    },
   })
 })
 onUnmounted(() => {
