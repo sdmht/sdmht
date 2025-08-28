@@ -13,7 +13,14 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
-const documents = {
+type Documents = {
+  '\n      subscription heartbeat($uid: String!) {\n        heartbeat(uid: $uid)\n      }\n    ': typeof types.HeartbeatDocument
+  '\n      subscription onlineCount {\n        onlineCount\n      }\n    ': typeof types.OnlineCountDocument
+  '\n        subscription matchOpponent(\n          $uid: String!\n          $size: Int!\n          $version: String!\n        ) {\n          matchOpponent(uid: $uid, size: $size, version: $version)\n        }\n      ': typeof types.MatchOpponentDocument
+  '\n                subscription sendData($to: String!, $data: JSON!) {\n                  sendData(to: $to, data: $data)\n                }\n              ': typeof types.SendDataDocument
+  '\n              subscription listenAlive($uid: String!) {\n                listenAlive(uid: $uid)\n              }\n            ': typeof types.ListenAliveDocument
+}
+const documents: Documents = {
   '\n      subscription heartbeat($uid: String!) {\n        heartbeat(uid: $uid)\n      }\n    ':
     types.HeartbeatDocument,
   '\n      subscription onlineCount {\n        onlineCount\n      }\n    ':

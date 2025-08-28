@@ -1,30 +1,32 @@
-import type { ApolloClientOptions } from '@apollo/client/core'
-import { createHttpLink } from '@apollo/client/link/http/index.js'
 import { InMemoryCache } from '@apollo/client/cache/index.js'
-import type { BootFileParams } from '@quasar/app-vite'
+import type { ApolloClientOptions } from '@apollo/client/core'
 import { split } from '@apollo/client/link/core'
-import { Kind, OperationTypeNode } from 'graphql'
-import { getMainDefinition } from '@apollo/client/utilities'
+import { createHttpLink } from '@apollo/client/link/http/index.js'
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
+import { getMainDefinition } from '@apollo/client/utilities'
+import { Kind, OperationTypeNode } from 'graphql'
 import { createClient } from 'graphql-ws'
 
-export /* async */ function getClientOptions(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  /* {app, router, ...} */ options?: Partial<BootFileParams>,
-) {
+export /* async */ function getClientOptions() {
+  /* {app, router, ...} options?: Partial<BootFileParams> ,*/
+  let domain = 'sdmht-origin.star2000.work'
+  try {
+    if (process.env.BACKEND) domain = process.env.BACKEND
+  } catch {
+    /* empty */
+  }
+  const tls = domain.includes('127.0.0.') || domain.includes('localhost') ? '' : 's'
   const httpLink = createHttpLink({
     uri:
-      process.env.GRAPHQL_URI ||
       // Change to your graphql endpoint.
-      'https://sdmht.star2000.work/api/',
+      `http${tls}://${domain}/api/`,
   })
 
   const subscriptionLink = new GraphQLWsLink(
     createClient({
       url:
-        process.env.GRAPHQL_URI_WS ||
         // Change to your graphql endpoint.
-        `wss://sdmht.star2000.work/api/`,
+        `ws${tls}://${domain}/api/`,
       // If you have authentication, you can utilize connectionParams:
       /*
       connectionParams: () => {

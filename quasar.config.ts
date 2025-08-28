@@ -2,6 +2,7 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
 import { defineConfig } from '#q-app/wrappers'
+import dotenv from 'dotenv'
 import { fileURLToPath } from 'node:url'
 import VitePluginListFiles from './mixins/vite-plugin-list-files'
 
@@ -54,7 +55,7 @@ export default defineConfig((/* ctx */) => {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: dotenv.config().parsed ?? {},
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
