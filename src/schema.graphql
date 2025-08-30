@@ -291,7 +291,6 @@ enum __TypeKind {
 }
 schema {
   query: Query
-  mutation: Mutation
   subscription: Subscription
 }
 
@@ -309,24 +308,7 @@ directive @defer(
   label: String
 ) on FRAGMENT_SPREAD | INLINE_FRAGMENT
 
-scalar DOMHighResTimeStamp
-
 scalar JSON
-
-type Mutation {
-  addSubscription(subscription: PushSubscription!): Void
-}
-
-input PushSubscription {
-  endpoint: String!
-  expirationTime: DOMHighResTimeStamp
-  keys: PushSubscriptionKeys!
-}
-
-input PushSubscriptionKeys {
-  auth: String!
-  p256dh: String!
-}
 
 type Query {
   time: Time!
