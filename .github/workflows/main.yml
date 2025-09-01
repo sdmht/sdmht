@@ -15,10 +15,18 @@ jobs:
         with:
           node-version: lts/*
       - env:
-          RSYNC_PASSWORD: ${{ secrets.RSYNC_PASSWORD }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          DEPLOY_PATH: /srv/http/${{ github.event.repository.name }}_${{ github.ref_name }}
         run: |
           yarn
           yarn build
           sudo apt install -y rsync
-          rsync -chrvz --exclude service-worker.js ./dist/pwa/ sdmht@sdmht-origin.star2000.work::sdmht
-          rsync -chrvz --delete-after ./dist/pwa/ sdmht@sdmht-origin.star2000.work::sdmht
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
+          rsync -e "ssh -p $SSH_PORT" -chrvz --exclude service-worker.js ./dist/pwa/ $SSH_USER@$SSH_HOST:$DEPLOY_PATH
+          rsync -e "ssh -p $SSH_PORT" -chrvz --delete-after ./dist/pwa/ $SSH_USER@$SSH_HOST:$DEPLOY_PATH
