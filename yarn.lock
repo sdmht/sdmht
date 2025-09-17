@@ -852,6 +852,11 @@
   resolved "https://registry.npmmirror.com/@babel/runtime/-/runtime-7.27.1.tgz#9fce313d12c9a77507f264de74626e87fd0dc541"
   integrity sha512-1x3D2xEk2fRo3PAhwQwu5UubzgiVWSXTBfWpVd2Mx2AzRqJuDJCsgaDVZ7HB5iGzDW1Hl1sWN2mFyKjmR9uAog==
 
+"@babel/runtime@^7.17.2":
+  version "7.28.4"
+  resolved "https://registry.npmmirror.com/@babel/runtime/-/runtime-7.28.4.tgz#a70226016fabe25c5783b2f22d3e1c9bc5ca3326"
+  integrity sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==
+
 "@babel/template@^7.18.10", "@babel/template@^7.20.7", "@babel/template@^7.27.1":
   version "7.27.2"
   resolved "https://registry.npmmirror.com/@babel/template/-/template-7.27.2.tgz#fa78ceed3c4e7b63ebf6cb39e5852fca45f6809d"
@@ -3728,6 +3733,11 @@ cookie@0.7.1:
   resolved "https://registry.npmmirror.com/cookie/-/cookie-0.7.1.tgz#2f73c42142d5d5cf71310a74fc4ae61670e5dbc9"
   integrity sha512-6DnInpx7SJ2AK3+CTUE/ZM0vWTUboZCegxhC2xiIydHR9jNuTAASBrfEpHhiGOZw/nX51bHt6YQl8jsGo4y/0w==
 
+copy-text-to-clipboard@^3.0.1:
+  version "3.2.1"
+  resolved "https://registry.npmmirror.com/copy-text-to-clipboard/-/copy-text-to-clipboard-3.2.1.tgz#01c3656d6c81a6aa713aa0a8d361214a1eeac6ae"
+  integrity sha512-3am6cw+WOicd0+HyzhC4kYS02wHJUiVQXmAADxfUARKsHBkWl1Vl3QQEiILlSs8YcPS/C0+y/urCNEYQk+byWA==
+
 copy-webpack-plugin@11.0.0:
   version "11.0.0"
   resolved "https://registry.npmmirror.com/copy-webpack-plugin/-/copy-webpack-plugin-11.0.0.tgz#96d4dbdb5f73d02dd72d0528d1958721ab72e04a"
@@ -3746,6 +3756,11 @@ core-js-compat@^3.40.0, core-js-compat@^3.6.5:
   integrity sha512-bQasjMfyDGyaeWKBIu33lHh9qlSR0MFE/Nmc6nMjf/iU9b3rSMdAYz1Baxrv4lPdGUsTqZudHA4jIGSJy0SWZQ==
   dependencies:
     browserslist "^4.24.4"
+
+core-js@^3.11.0:
+  version "3.45.1"
+  resolved "https://registry.npmmirror.com/core-js/-/core-js-3.45.1.tgz#5810e04a1b4e9bc5ddaa4dd12e702ff67300634d"
+  integrity sha512-L4NPsJlCfZsPeXukyzHFlg/i7IIVwHSItR0wg0FLNqYClJ4MQYTYLbC7EkjKYRLZF2iof2MUgN0EGy7MdQFChg==
 
 core-js@^3.31.1, core-js@^3.6.5:
   version "3.42.0"
@@ -6453,6 +6468,11 @@ multicast-dns@^7.2.5:
     dns-packet "^5.2.2"
     thunky "^1.0.2"
 
+mutation-observer@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmmirror.com/mutation-observer/-/mutation-observer-1.0.3.tgz#42e9222b101bca82e5ba9d5a7acf4a14c0f263d0"
+  integrity sha512-M/O/4rF2h776hV7qGMZUH3utZLO/jK7p8rnNgGkjKUw8zCGjRQPxB8z6+5l8+VjRUQ3dNYu4vjqXYLr+U8ZVNA==
+
 mute-stream@0.0.8:
   version "0.0.8"
   resolved "https://registry.npmmirror.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
@@ -8866,6 +8886,16 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npmmirror.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
+
+vconsole@^3.15.1:
+  version "3.15.1"
+  resolved "https://registry.npmmirror.com/vconsole/-/vconsole-3.15.1.tgz#569a8ab15f353259527bbcf004f02946b4482cff"
+  integrity sha512-KH8XLdrq9T5YHJO/ixrjivHfmF2PC2CdVoK6RWZB4yftMykYIaXY1mxZYAic70vADM54kpMQF+dYmvl5NRNy1g==
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+    copy-text-to-clipboard "^3.0.1"
+    core-js "^3.11.0"
+    mutation-observer "^1.0.3"
 
 vue-auto-routing@^1.0.1:
   version "1.0.1"
