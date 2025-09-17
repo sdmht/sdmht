@@ -161,7 +161,6 @@ module.exports = configure(function (ctx) {
         skipWaiting: true,
         maximumFileSizeToCacheInBytes: 2 ** 30,
         include: [
-          'index.html',
           'manifest.json',
           'prebattle/布阵_01.mp3',
           'prebattle/放下神明.mp3',
@@ -196,6 +195,13 @@ module.exports = configure(function (ctx) {
         ],
         navigateFallbackDenylist: [/\.webm$/, /^\/(admin|api|static|media)\//],
         runtimeCaching: [
+          {
+            urlPattern: /\/$/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'index-cache',
+            },
+          },
           {
             urlPattern: /.*/,
             handler: 'CacheFirst',
