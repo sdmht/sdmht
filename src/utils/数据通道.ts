@@ -154,7 +154,7 @@ class 数据通道类 extends EventEmitter {
   static 点对点连接配置 = {
     iceServers: [
       {
-        urls: ['stun:sdmht-origin.star2000.work:34078'],
+        urls: ['stun:sdmht.star2000.work:34078'],
       },
     ],
   }

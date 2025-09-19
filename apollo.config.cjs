@@ -1,8 +1,11 @@
 /* eslint-env node */
 // See https://www.apollographql.com/docs/devtools/apollo-config/
 const tls =
-  process.env.BACKEND?.includes('127.0.0.') || process.env.BACKEND?.includes('localhost') ? '' : 's'
-const domain = process.env.BACKEND || 'sdmht-origin.star2000.work'
+  process.env.BACKEND?.includes('127.0.0.') ||
+  process.env.BACKEND?.includes('localhost')
+    ? ''
+    : 's'
+const domain = process.env.BACKEND || 'sdmht.star2000.work'
 module.exports = {
   client: {
     service: {
