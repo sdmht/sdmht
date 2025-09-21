@@ -7,11 +7,32 @@
       本站为神代梦华谭玩家收集原动画资源后自制复活的仿品，请勿用于商业行为
       <ol>
         使用方式
-        <li v-if="!是否移动端">
-          用Edge浏览器，点地址栏右边收藏旁边的安装，然后回桌面打开神代梦华谭
+        <template v-if="是否苹果端">
+          <li>在Safari浏览器中打开此页面</li>
+          <li>点击导航栏中的“分享”按钮</li>
+          <li>点击“添加到主屏幕”</li>
+        </template>
+        <template v-else-if="是否移动端">
+          <li>如果没有看到安装弹窗，换Edge浏览器打开此页面</li>
+          <li>
+            点击弹窗中的安装，如果之前隐藏了安装引导弹窗，点菜单>添加至手机>安装（如果切到应用信息，权限管理>其他权限>桌面快捷方式>始终允许，再次安装）
+          </li>
+        </template>
+        <template v-else>
+          <li>如果没有看到安装弹窗，换Edge浏览器打开此页面</li>
+          <li>
+            点击弹窗中的安装，如果之前隐藏了安装引导弹窗，点地址栏右边收藏旁边的安装
+          </li>
+        </template>
+        <li>退出浏览器从桌面打开神代梦华谭</li>
+      </ol>
+      <ol>
+        相关视频
+        <li>
+          <a href="/PV.webm">鸾鸟剧情PV（超清120帧HDR重制版）</a>
         </li>
-        <li v-else>
-          用Edge浏览器，菜单>添加至手机>安装（如果切到应用信息，权限管理>其他权限>桌面快捷方式>始终允许，再次安装），然后回到桌面打开神代梦华谭
+        <li>
+          <a href="/OP.webm">开场OP</a>
         </li>
       </ol>
       <ol>
@@ -73,7 +94,8 @@ import { useRouter } from 'vue-router'
 //   })
 // }
 
-const 是否移动端 = /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent)
+const 是否苹果端 = /Macintosh|iPhone|iPad|iPod/i.test(navigator.userAgent)
+const 是否移动端 = /Mobile|Android/i.test(navigator.userAgent)
 
 let 首页框 = ref<HTMLDivElement>()
 
