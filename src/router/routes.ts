@@ -10,6 +10,9 @@ function card_deck() {
 function login() {
   return import(/* webpackChunkName: "login" */ 'pages/login.vue')
 }
+function video() {
+  return import(/* webpackChunkName: "video" */ 'pages/video.vue')
+}
 
 export default [
   {
@@ -31,5 +34,10 @@ export default [
     name: 'login',
     path: '/login',
     component: login,
+  },
+  {
+    name: 'video',
+    path: '/video',
+    component: video,
   },
 ]
