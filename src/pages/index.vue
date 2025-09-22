@@ -5,7 +5,7 @@
   >
     <div class="text-white col">
       本站为神代梦华谭玩家收集原动画资源后自制复活的仿品，请勿用于商业行为
-      <ol>
+      <ol v-if="是否未安装">
         使用方式
         <template v-if="是否苹果端">
           <li>在Safari浏览器中打开此页面</li>
@@ -15,14 +15,12 @@
         <template v-else-if="是否移动端">
           <li>如果没有看到安装弹窗，换Edge浏览器打开此页面</li>
           <li>
-            点击弹窗中的安装，如果之前隐藏了安装引导弹窗，点菜单>添加至手机>安装（如果切到应用信息，权限管理>其他权限>桌面快捷方式>始终允许，再次安装）
+            点击弹窗中的安装，或者点菜单>添加至手机>安装（如果切到应用信息，权限管理>其他权限>桌面快捷方式>始终允许，再次安装）
           </li>
         </template>
         <template v-else>
           <li>如果没有看到安装弹窗，换Edge浏览器打开此页面</li>
-          <li>
-            点击弹窗中的安装，如果之前隐藏了安装引导弹窗，点地址栏右边收藏旁边的安装
-          </li>
+          <li>点击弹窗中的安装，或者点地址栏右边收藏旁边的安装</li>
         </template>
         <li>退出浏览器从桌面打开神代梦华谭</li>
       </ol>
@@ -94,6 +92,7 @@ import { useRouter } from 'vue-router'
 //   })
 // }
 
+const 是否未安装 = window.matchMedia('(display-mode: browser)').matches
 const 是否苹果端 = /Macintosh|iPhone|iPad|iPod/i.test(navigator.userAgent)
 const 是否移动端 = /Mobile|Android/i.test(navigator.userAgent)
 
