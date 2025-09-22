@@ -29,16 +29,10 @@
       <ol>
         相关视频
         <li>
-          <q-btn
-            @click="$router.push({ name: 'video', query: { src: '/PV.webm' } })"
-            >鸾鸟剧情PV（超清120帧HDR重制版）</q-btn
-          >
+          <a href="/PV.webm">鸾鸟剧情PV（超清120帧HDR重制版）</a>
         </li>
         <li>
-          <q-btn
-            @click="$router.push({ name: 'video', query: { src: '/OP.webm' } })"
-            >开场OP</q-btn
-          >
+          <a href="/OP.webm">开场OP</a>
         </li>
       </ol>
       <ol>

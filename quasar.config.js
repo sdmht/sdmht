@@ -160,7 +160,7 @@ module.exports = configure(function (ctx) {
       workboxOptions: {
         skipWaiting: true,
         maximumFileSizeToCacheInBytes: 2 ** 30,
-        navigateFallbackDenylist: [/^\/(admin|api|static|media)\//],
+        navigateFallbackDenylist: [/\.webm$/, /^\/(admin|api|static|media)\//],
         runtimeCaching: [
           {
             urlPattern: /\.html$/,
