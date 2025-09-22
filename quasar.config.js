@@ -159,7 +159,7 @@ module.exports = configure(function (ctx) {
       /** @type {import('workbox-build').WebpackGenerateSWOptions} */
       workboxOptions: {
         skipWaiting: true,
-        maximumFileSizeToCacheInBytes: 2 ** 30,
+        maximumFileSizeToCacheInBytes: 2 ** 40,
         navigateFallbackDenylist: [/\.webm$/, /^\/(admin|api|static|media)\//],
         runtimeCaching: [
           {
