@@ -29,28 +29,28 @@ export /* async */ function getClientOptions() {
         `ws${tls}://${domain}/api/`,
       on: {
         connecting(...args) {
-          console.log('connecting', args)
+          console.log('connecting', ...args)
         },
         opened(...args) {
-          console.log('opened', args)
+          console.log('opened', ...args)
         },
         connected(...args) {
-          console.log('connected', args)
+          console.log('connected', ...args)
         },
         ping(...args) {
-          console.log('ping', args)
+          console.log('ping', ...args)
         },
         pong(...args) {
-          console.log('pong', args)
+          console.log('pong', ...args)
         },
         message(...args) {
-          console.log('message', args)
+          console.log('message', ...args)
         },
         closed(...args) {
-          console.log('closed', args)
+          console.log('closed', ...args)
         },
         error(...args) {
-          console.log('error', args)
+          console.log('error', ...args)
         },
       },
       // If you have authentication, you can utilize connectionParams:
