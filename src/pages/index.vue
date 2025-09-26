@@ -27,7 +27,7 @@
       <ol>
         相关视频
         <li>
-          <a href="/PV.webm">鸾鸟剧情PV（超清120帧HDR重制版）</a>
+          <a href="/PV.webm">鸾鸟剧情PV（高清60帧重制版）</a>
         </li>
         <li>
           <a href="/OP.webm">开场OP</a>
