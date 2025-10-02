@@ -30,38 +30,38 @@ def 按某键去重(path: str, key: str, idk: str = '编号') -> list[dict[str, 
     保存数据(path, data, idk)
 
 
-# 按某键去重('src/assets/data/ron_cfg_card_bullet.csv', '卡牌名称')
-# 按某键去重('src/assets/data/ron_cfg_card_effect.csv', '卡牌名称')
-# 按某键去重('src/assets/data/ron_cfg_card_infor.csv', '名称')
-# 按某键去重('src/assets/data/ron_cfg_card_sub.csv', '卡牌名称')
+# 按某键去重('assets/other/data/ron_cfg_card_bullet.csv', '卡牌名称')
+# 按某键去重('assets/other/data/ron_cfg_card_effect.csv', '卡牌名称')
+# 按某键去重('assets/other/data/ron_cfg_card_infor.csv', '名称')
+# 按某键去重('assets/other/data/ron_cfg_card_sub.csv', '卡牌名称')
 for i in [
     'ron_cfg_card_bullet.csv',
     'ron_cfg_card_effect.csv',
     'ron_cfg_card_infor.csv',
     'ron_cfg_card_sub.csv',
 ]:
-    p = f'src/assets/data/{i}'
+    p = f'assets/other/data/{i}'
     保存数据(p, 读取数据(p))
 使用过的技能编号集合 = set()
-主神数据 = 读取数据('src/assets/data/ron_cfg_card_main.csv')
+主神数据 = 读取数据('assets/other/data/ron_cfg_card_main.csv')
 for 主神 in 主神数据:
     for i in ['技能1', '技能2', '技能3']:
         使用过的技能编号集合.add(主神[i])
 
-附属神数据 = 读取数据('src/assets/data/ron_cfg_card_sub.csv')
+附属神数据 = 读取数据('assets/other/data/ron_cfg_card_sub.csv')
 for 附属神 in 附属神数据:
     使用过的技能编号集合.add(附属神['技能'])
 
-弹幕卡数据 = 读取数据('src/assets/data/ron_cfg_card_bullet.csv')
+弹幕卡数据 = 读取数据('assets/other/data/ron_cfg_card_bullet.csv')
 for 弹幕卡 in 弹幕卡数据:
     使用过的技能编号集合.add(弹幕卡['技能'])
 
-神迹卡数据 = 读取数据('src/assets/data/ron_cfg_card_effect.csv')
+神迹卡数据 = 读取数据('assets/other/data/ron_cfg_card_effect.csv')
 for 神迹卡 in 神迹卡数据:
     使用过的技能编号集合.add(神迹卡['技能'])
 
 
-技能数据路径 = 'src/assets/data/ron_cfg_skill.csv'
+技能数据路径 = 'assets/other/data/ron_cfg_skill.csv'
 技能编号名 = '技能ID'
 技能数据 = 读取数据(技能数据路径, 技能编号名)
 

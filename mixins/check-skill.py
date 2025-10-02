@@ -262,25 +262,25 @@ def 保存数据(path: str, data: list[dict[str, str]], idk: str = '编号') -> 
 }
 
 技能编号描述字典: dict[str, set[str]] = {}
-主神数据 = 读取数据('src/assets/data/ron_cfg_card_main.csv')
+主神数据 = 读取数据('assets/other/data/ron_cfg_card_main.csv')
 for 主神 in 主神数据:
     for i in ['技能1', '技能2', '技能3']:
         技能编号描述字典.setdefault(主神[i], set()).add(f"主神 {主神['编号']} : {主神['描述']}")
 
-附属神数据 = 读取数据('src/assets/data/ron_cfg_card_sub.csv')
+附属神数据 = 读取数据('assets/other/data/ron_cfg_card_sub.csv')
 for 附属神 in 附属神数据:
     技能编号描述字典.setdefault(附属神['技能'], set()).add(f"附属神 {附属神['编号']} : {附属神['描述']}")
 
-弹幕卡数据 = 读取数据('src/assets/data/ron_cfg_card_bullet.csv')
+弹幕卡数据 = 读取数据('assets/other/data/ron_cfg_card_bullet.csv')
 for 弹幕卡 in 弹幕卡数据:
     技能编号描述字典.setdefault(弹幕卡['技能'], set()).add(f"弹幕卡 {弹幕卡['编号']} : {弹幕卡['描述']}")
 
-神迹卡数据 = 读取数据('src/assets/data/ron_cfg_card_effect.csv')
+神迹卡数据 = 读取数据('assets/other/data/ron_cfg_card_effect.csv')
 for 神迹卡 in 神迹卡数据:
     技能编号描述字典.setdefault(神迹卡['技能'], set()).add(f"神迹卡 {神迹卡['编号']} : {神迹卡['描述']}")
 
 
-技能数据路径 = 'src/assets/data/ron_cfg_skill.csv'
+技能数据路径 = 'assets/other/data/ron_cfg_skill.csv'
 技能编号名 = '技能ID'
 技能数据 = 读取数据(技能数据路径, 技能编号名)
 
