@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Construct 3 解除客户端限制
 // @namespace    star2000
-// @version      1.2
+// @version      1.3
 // @description  模拟个人专业版许可证，以解除客户端里无需后端支持的部分功能限制，比如事件数、效果数、层数、字体数
 // @author       star2000
 // @match        https://account.construct.net/*
@@ -11,6 +11,8 @@
 // @license      AGPL-3.0-or-later
 // ==/UserScript==
 'use strict'
+
+if (!location.href.includes('account.construct.net')) return
 
 function uN(t) {
   return t.map((t) => String.fromCharCode(t)).join('')
@@ -77,41 +79,61 @@ async function genLicense() {
   return license
 }
 
+let userID
 const originalFetch = window.fetch
 window.fetch = async function (url, options) {
   if (url === 'token.json') {
-    return new Response(
-      JSON.stringify({
-        request: {
-          status: 'ok',
-        },
-        response: {
-          user: {
-            id: 1,
-            username: 'poor only',
-            highResAvatar: {
-              url: '/favicon.ico',
-            },
-          },
-          license: await genLicense(),
-          productType: 'Construct 3',
-        },
-      }),
-      {
+    if (userID) {
+      const response = await originalFetch(url, options)
+      const cj = await response.clone().json()
+      if (!cj.response.license || !cj.response.user) {
+        return response
+      }
+      cj.response.license = await genLicense()
+      return new Response(JSON.stringify(cj), {
         status: 200,
         statusText: 'OK',
         headers: new Headers({
           'Content-Type': 'application/json',
         }),
-      }
-    )
+      })
+    } else {
+      return new Response(
+        JSON.stringify({
+          request: {
+            status: 'ok',
+          },
+          response: {
+            user: {
+              id: 1,
+              username: 'poor only',
+              highResAvatar: {
+                url: '/favicon.ico',
+              },
+            },
+            license: await genLicense(),
+            productType: 'Construct 3',
+          },
+        }),
+        {
+          status: 200,
+          statusText: 'OK',
+          headers: new Headers({
+            'Content-Type': 'application/json',
+          }),
+        }
+      )
+    }
   }
   return await originalFetch(url, options)
 }
 
-window.addEventListener('load', function () {
-  if ('localforage' in window) {
-    localforage.setItem('login-data', {
+window.addEventListener('DOMContentLoaded', async function () {
+  const d = await localforage.getItem('login-data')
+  if (d) {
+    userID = d.userID
+  } else {
+    await localforage.setItem('login-data', {
       userID: 1,
       token: crypto.randomUUID(),
     })
