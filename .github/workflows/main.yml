@@ -4,7 +4,7 @@ on:
       - main
       - dev
     paths-ignore:
-      - "**.md"
+      - '**.md'
   workflow_dispatch:
 jobs:
   build:
@@ -17,6 +17,9 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: lts/*
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache
       - env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
