@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Construct 3 解除客户端限制
 // @namespace    star2000
-// @version      1.4
+// @version      1.5
 // @description  模拟个人专业版许可证，以解除客户端里无需后端支持的部分功能限制，比如事件数、效果数、层数、字体数
 // @author       star2000
 // @match        https://account.construct.net/*
@@ -133,7 +133,7 @@ window.fetch = async function (url, options) {
 
 window.addEventListener('DOMContentLoaded', async function () {
   const d = await localforage.getItem('login-data')
-  if (d) {
+  if (d && d.userID !== 1) {
     isLogin = true
   } else {
     await localforage.setItem('login-data', {
