@@ -1,5 +1,7 @@
+'use strict'
+
 const playwright = require('playwright')
-const readdirp = require('readdirp').readdirpPromise
+const { readdirpPromise: readdirp } = require('readdirp')
 const fs = require('fs/promises')
 const unzipper = require('unzipper')
 
@@ -7,11 +9,15 @@ const unzipper = require('unzipper')
   const browser = await playwright.chromium.launch()
   const page = await browser.newPage()
 
+  await page.addInitScript({
+    path: './c3-unlimited.user.js',
+  })
+
   await page.goto('https://editor.construct.net/')
   await (await page.waitForSelector('#welcomeTourDialog .noThanksLink')).click()
 
   // 接收文件
-  const syncFunctionHandle = await page.evaluateHandle(async () => {
+  const fileReceiver = await page.evaluateHandle(async () => {
     const handle = await navigator.storage.getDirectory()
     const projectFolder = await handle.getDirectoryHandle(
       'open-project-folder',
@@ -49,6 +55,7 @@ const unzipper = require('unzipper')
       ![/^\./, /\.uistate\.json$/].some((v) => v.test(f.basename)) &&
       ![
         'build.js',
+        'c3-unlimited.user.js',
         'package.json',
         'yarn.lock',
         'tsconfig.json',
@@ -60,7 +67,7 @@ const unzipper = require('unzipper')
     const content = new Uint8Array(await fs.readFile(path))
 
     console.log('导入文件', path)
-    await syncFunctionHandle.evaluate(
+    await fileReceiver.evaluate(
       async (fn, arg) => await fn(arg),
       [path, content]
     )
