@@ -25,6 +25,48 @@
 				}
 			],
 			"sid": 326182151503072
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-end-of-layout",
+					"objectClass": "System",
+					"sid": 510089468841409
+				}
+			],
+			"actions": [
+				{
+					"id": "unload-audio",
+					"objectClass": "背景音乐",
+					"sid": 710136467481535,
+					"parameters": {
+						"audio-file": "登录背景"
+					}
+				}
+			],
+			"sid": 575007370943884
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-clicked",
+					"objectClass": "剧情PV按钮",
+					"sid": 791657914516542
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 549188605556082,
+					"parameters": {
+						"layout": "PV"
+					}
+				}
+			],
+			"sid": 544702104613960
 		}
 	],
 	"sid": 548493074196662

@@ -15,6 +15,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Button",
+			"name": "按钮",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Sprite",
 			"name": "精灵",
 			"author": "Scirra",
@@ -40,7 +47,8 @@
 		"items": [
 			"PV",
 			"触控",
-			"背景音乐"
+			"背景音乐",
+			"剧情PV按钮"
 		],
 		"subfolders": [
 			{
@@ -236,9 +244,9 @@
 		"cordovaiOSScheme": "app",
 		"cordovaAndroidScheme": "https",
 		"exportFileStructure": "folders",
-		"uidAllocationMode": "increment"
+		"uidAllocationMode": "random"
 	},
 	"viewportWidth": 1920,
 	"viewportHeight": 1080,
-	"firstLayout": null
+	"firstLayout": "登录"
 }
