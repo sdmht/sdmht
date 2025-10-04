@@ -1,0 +1,14 @@
+{
+	"name": "触控",
+	"plugin-id": "Touch",
+	"sid": 353003082934234,
+	"singleglobal-inst": {
+		"type": "触控",
+		"properties": {
+			"use-mouse-input": true
+		},
+		"uid": 4,
+		"sid": 953492662532565,
+		"tags": ""
+	}
+}

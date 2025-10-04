@@ -1,0 +1,31 @@
+{
+	"name": "登录事件",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 816601398949153
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "背景音乐",
+					"sid": 592000987343895,
+					"parameters": {
+						"audio-file": "登录背景",
+						"loop": "looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 326182151503072
+		}
+	],
+	"sid": 548493074196662
+}

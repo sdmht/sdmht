@@ -1,0 +1,30 @@
+{
+	"name": "PV事件",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-tap-object",
+					"objectClass": "触控",
+					"sid": 391992050145552,
+					"parameters": {
+						"object": "PV"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 815782259048200,
+					"parameters": {
+						"layout": "登录"
+					}
+				}
+			],
+			"sid": 713933841143545
+		}
+	],
+	"sid": 896841305906605
+}

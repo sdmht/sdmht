@@ -1,5 +1,5 @@
 {
-	"name": "场景 1",
+	"name": "PV",
 	"layers": [
 		{
 			"name": "图层 0",
@@ -14,7 +14,7 @@
 						"secondary-source": "",
 						"secondary-format": "webm-vp9",
 						"autoplay": "yes",
-						"play-in-background": false,
+						"play-in-background": true,
 						"initially-visible": true
 					},
 					"uid": 2,
@@ -88,5 +88,5 @@
 	"vpX": 0.5,
 	"vpY": 0.5,
 	"projection": "perspective",
-	"eventSheet": "事件表 1"
+	"eventSheet": "PV事件"
 }

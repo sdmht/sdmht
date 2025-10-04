@@ -8,8 +8,22 @@
 	"usedAddons": [
 		{
 			"type": "plugin",
-			"id": "Multiplayer",
-			"name": "多人联机",
+			"id": "Audio",
+			"name": "音频",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Sprite",
+			"name": "精灵",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Touch",
+			"name": "触控",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -25,7 +39,9 @@
 	"objectTypes": {
 		"items": [
 			"PV",
-			"多人联机"
+			"触控",
+			"登录背景图",
+			"背景音乐"
 		],
 		"subfolders": []
 	},
@@ -38,13 +54,15 @@
 	},
 	"layouts": {
 		"items": [
-			"场景 1"
+			"PV",
+			"登录"
 		],
 		"subfolders": []
 	},
 	"eventSheets": {
 		"items": [
-			"事件表 1"
+			"PV事件",
+			"登录事件"
 		],
 		"subfolders": []
 	},
@@ -58,7 +76,16 @@
 			"subfolders": []
 		},
 		"music": {
-			"items": [],
+			"items": [
+				{
+					"name": "登录背景.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 235200915309620,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"video": {
@@ -155,12 +182,12 @@
 		"autoIncrementVersion": false,
 		"author": "star2000",
 		"authorEmail": "i@star2000.work",
-		"authorWebsite": "https://sdmht.star2000.work",
-		"appId": "work.star2000.sdmht",
+		"authorWebsite": "https://sdmht-dev.star2000.work",
+		"appId": "work.star2000.sdmht-dev",
 		"pixelRounding": false,
 		"zAxisScale": "normalized",
 		"fov": 0.7853981633974483,
-		"useLoaderLayout": true,
+		"useLoaderLayout": false,
 		"fullscreenMode": "letterbox-scale",
 		"fullscreenQuality": "high",
 		"viewportFit": "auto",
