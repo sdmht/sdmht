@@ -40,10 +40,19 @@
 		"items": [
 			"PV",
 			"触控",
-			"登录背景图",
 			"背景音乐"
 		],
-		"subfolders": []
+		"subfolders": [
+			{
+				"items": [
+					"图标",
+					"浮空城",
+					"背景图"
+				],
+				"subfolders": [],
+				"name": "登录"
+			}
+		]
 	},
 	"functionsName": "动作组",
 	"autosaveData": null,

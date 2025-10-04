@@ -1,7 +1,7 @@
 {
-	"name": "登录背景图",
+	"name": "浮空城",
 	"plugin-id": "Sprite",
-	"sid": 902382828699122,
+	"sid": 503087311810585,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -12,21 +12,21 @@
 			{
 				"frames": [
 					{
-						"width": 1920,
-						"height": 1080,
+						"width": 512,
+						"height": 512,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
-						"fileType": "image/png",
-						"imageSpriteId": 4902822,
+						"fileType": "image/webp",
+						"imageSpriteId": 5311284,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 488497576761561,
+				"sid": 929686758826016,
 				"name": "Default",
 				"isLooping": false,
 				"isPingPong": false,
