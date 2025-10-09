@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Construct 3 解除客户端限制
 // @namespace    star2000
-// @version      1.5
+// @version      1.6
 // @description  模拟个人专业版许可证，以解除客户端里无需后端支持的部分功能限制，比如事件数、效果数、层数、字体数
 // @author       star2000
 // @match        https://account.construct.net/*
@@ -107,6 +107,7 @@ window.fetch = async function (url, options) {
             status: 'ok',
           },
           response: {
+            newToken: crypto.randomUUID(),
             user: {
               id: 1,
               username: 'poor only',
