@@ -14,11 +14,11 @@
 				{
 					"id": "play",
 					"objectClass": "背景音乐",
-					"sid": 592000987343895,
+					"sid": 138693425086825,
 					"parameters": {
 						"audio-file": "登录背景",
 						"loop": "looping",
-						"volume": "0",
+						"volume": "-10",
 						"stereo-pan": "0",
 						"tag-optional": "\"\""
 					}

@@ -2,11 +2,15 @@
   "private": true,
   "scripts": {
     "postinstall": "playwright install chromium-headless-shell",
-    "build": "node build.js"
+    "build": "node build.js",
+    "start": "http-server dist -c-1 -a localhost -p 6478 -o"
   },
   "dependencies": {
     "playwright": "^1.55.1",
     "readdirp": "^4.1.2",
     "unzipper": "^0.12.3"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }

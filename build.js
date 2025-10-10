@@ -39,32 +39,13 @@ const unzipper = require('unzipper')
     }
   })
   // 导入文件
-  for (const file of await readdirp('.', {
+  for (const file of await readdirp('./src', {
     type: 'files',
-    directoryFilter: (f) =>
-      ![
-        '.git',
-        '.github',
-        'node_modules',
-        'ts-defs',
-        'dist',
-        'mixins',
-        'assets',
-      ].includes(f.basename),
-    fileFilter: (f) =>
-      ![/^\./, /\.uistate\.json$/].some((v) => v.test(f.basename)) &&
-      ![
-        'build.js',
-        'c3-unlimited.user.js',
-        'package.json',
-        'yarn.lock',
-        'tsconfig.json',
-        'README.md',
-        'LICENSE',
-      ].includes(f.basename),
+    directoryFilter: (f) => f.basename != 'ts-defs',
+    fileFilter: (f) => !(/\.uistate\.json$/.test(f.basename)),
   })) {
+    const content = new Uint8Array(await fs.readFile(file.fullPath))
     const path = file.path.replace(/\\/g, '/')
-    const content = new Uint8Array(await fs.readFile(path))
 
     console.log('导入文件', path)
     await fileReceiver.evaluate(
