@@ -6,7 +6,7 @@ const fs = require('fs/promises')
 const unzipper = require('unzipper')
 
 ;(async () => {
-  const browser = await playwright.chromium.launch()
+  const browser = await playwright.chromium.launch({ headless: false })
   const page = await browser.newPage()
 
   await page.addInitScript({
@@ -14,7 +14,7 @@ const unzipper = require('unzipper')
   })
 
   await page.goto('https://editor.construct.net/')
-  await (await page.waitForSelector('#welcomeTourDialog .noThanksLink')).click()
+  await page.locator('#welcomeTourDialog .noThanksLink').click()
 
   // 接收文件
   const fileReceiver = await page.evaluateHandle(async () => {
@@ -42,7 +42,7 @@ const unzipper = require('unzipper')
   for (const file of await readdirp('./src', {
     type: 'files',
     directoryFilter: (f) => f.basename != 'ts-defs',
-    fileFilter: (f) => !(/\.uistate\.json$/.test(f.basename)),
+    fileFilter: (f) => !/\.uistate\.json$/.test(f.basename),
   })) {
     const content = new Uint8Array(await fs.readFile(file.fullPath))
     const path = file.path.replace(/\\/g, '/')
@@ -61,22 +61,39 @@ const unzipper = require('unzipper')
   })
 
   console.log('打开项目')
-  await (await page.waitForSelector('#buttonOpen')).click()
-  await (await page.waitForSelector('#spMenuButtonOpen .fromFolder')).click()
-  await page.waitForSelector('#propertiesBar:not([hide])')
+  await page.locator('#buttonOpen').click()
+  await page.locator('#spMenuButtonOpen .fromFolder').click()
+  ;(async () => {
+    while (true) {
+      try {
+        await page.locator('#addonConfirmInstallDialog .okButton').click()
+      } catch {
+        break
+      }
+    }
+  })()
+  ;(async () => {
+    while (true) {
+      try {
+        await page.locator('#deprecatedFeaturesDialog .okButton').click()
+      } catch {
+        break
+      }
+    }
+  })()
+
+  await page.locator('#propertiesBar:not([hide])').waitFor()
   await page.waitForTimeout(3000)
   await page.keyboard.press('F6')
-  await (await page.waitForSelector("span:has-text('Web (HTML5)')")).click()
-  await page.click('.nextButton')
-  await (
-    await page.waitForSelector('#exportStandardOptionsDialog .nextButton')
-  ).click()
+  await page.locator("span:has-text('Web (HTML5)')").click()
+  await page.locator('.nextButton').click()
+  await page.locator('#exportStandardOptionsDialog .nextButton').click()
   console.log('导出项目')
-  await page.waitForSelector('#webExportReportDialog')
+  await page.locator('#webExportReportDialog').waitFor()
 
   const [download] = await Promise.all([
     page.waitForEvent('download'),
-    page.click('.downloadExportedProject'),
+    page.locator('.downloadExportedProject').click(),
   ])
   const downloadFile = await download.path()
   const zipFile = await unzipper.Open.file(downloadFile)
