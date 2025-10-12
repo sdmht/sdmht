@@ -159,9 +159,9 @@
 				{
 					"type": "道德天尊",
 					"properties": {
-						"json": "登录/道德天尊.json",
-						"atlas": "登录/道德天尊.atlas",
-						"png": "登录/道德天尊.webp",
+						"json": "道德天尊.json",
+						"atlas": "道德天尊.atlas",
+						"png": "道德天尊.webp",
 						"skin": "default",
 						"animation": "eye",
 						"skeleton": "",
