@@ -6,7 +6,7 @@ const fs = require('fs/promises')
 const unzipper = require('unzipper')
 
 ;(async () => {
-  const browser = await playwright.chromium.launch({ headless: false })
+  const browser = await playwright.chromium.launch()
   const page = await browser.newPage()
 
   await page.addInitScript({
