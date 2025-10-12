@@ -22,6 +22,14 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Gritsenko_Spine",
+			"name": "Spine骨骼",
+			"author": "Gritsenko and Mikal",
+			"bundled": true,
+			"version": "2.9.1"
+		},
+		{
+			"type": "plugin",
 			"id": "Sprite",
 			"name": "精灵",
 			"author": "Scirra",
@@ -55,7 +63,8 @@
 				"items": [
 					"图标",
 					"浮空城",
-					"背景图"
+					"背景图",
+					"道德天尊"
 				],
 				"subfolders": [],
 				"name": "登录"
@@ -176,33 +185,39 @@
 			"subfolders": []
 		},
 		"general": {
-			"items": [
+			"items": [],
+			"subfolders": [
 				{
-					"name": "登入界面_2.atlas",
-					"type": "application/octet-stream",
-					"sid": 443722618995916,
-					"file-info": {
-						"purpose": "none"
-					}
-				},
-				{
-					"name": "登入界面_2.webp",
-					"type": "image/webp",
-					"sid": 168740022840637,
-					"file-info": {
-						"purpose": "none"
-					}
-				},
-				{
-					"name": "登入界面_2.json",
-					"type": "application/json",
-					"sid": 617953504414890,
-					"file-info": {
-						"purpose": "none"
-					}
+					"items": [
+						{
+							"name": "道德天尊.atlas",
+							"type": "application/octet-stream",
+							"sid": 443722618995916,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "道德天尊.json",
+							"type": "application/json",
+							"sid": 617953504414890,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "道德天尊.webp",
+							"type": "image/webp",
+							"sid": 168740022840637,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "登录"
 				}
-			],
-			"subfolders": []
+			]
 		}
 	},
 	"timelines": {
