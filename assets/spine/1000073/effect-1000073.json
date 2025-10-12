@@ -1,43 +1,23 @@
 {
   "skeleton": {
-    "hash": "Ia3spnuBHch1SK5Oarb2dmr2zNs",
-    "spine": "3.8",
-    "width": 559.859619140625,
-    "height": 559.8594970703125
+    "hash": "arb2dmr2zNs",
+    "spine": "4.2.93",
+    "x": 0,
+    "y": 0,
+    "width": 559.86,
+    "height": 559.86
   },
   "bones": [
-    {
-      "name": "root",
-      "scaleX": 0.7099999785423279,
-      "scaleY": 0.7099999785423279,
-      "inheritRotation": true,
-      "inheritScale": true
-    },
-    {
-      "name": "effect",
-      "parent": "root",
-      "x": -840.9610595703125,
-      "y": -161.30380249023438,
-      "inheritRotation": true,
-      "inheritScale": true
-    },
-    {
-      "name": "attack",
-      "parent": "effect",
-      "x": 3.989990234375,
-      "y": -33.249969482421875,
-      "inheritRotation": true,
-      "inheritScale": true
-    },
+    { "name": "root", "scaleX": 0.71, "scaleY": 0.71 },
+    { "name": "effect", "parent": "root", "x": -840.96, "y": -161.3 },
+    { "name": "attack", "parent": "effect", "x": 3.99, "y": -33.25 },
     {
       "name": "shouji",
       "parent": "attack",
-      "x": 844.638916015625,
-      "y": 199.699462890625,
-      "scaleX": 3.032825231552124,
-      "scaleY": 3.032825231552124,
-      "inheritRotation": true,
-      "inheritScale": true
+      "x": 844.64,
+      "y": 199.7,
+      "scaleX": 3.03,
+      "scaleY": 3.03
     }
   ],
   "slots": [
@@ -45,144 +25,60 @@
       "name": "share/shouji_0001",
       "bone": "shouji",
       "color": "ff0002ff",
-      "attachment": "share/shouji_0003",
-      "blend": "normal"
+      "attachment": "share/shouji_0003"
     }
   ],
-  "ik": [],
-  "transform": [],
-  "path": [],
   "skins": [
     {
       "name": "default",
       "attachments": {
         "share/shouji_0001": {
           "share/shouji_0001": {
-            "type": "region",
-            "name": "share/shouji_0001",
-            "path": "share/shouji_0001",
-            "rotation": 0,
-            "x": 0,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
             "width": 260,
             "height": 260,
             "color": "ffffffff"
           },
           "share/shouji_0002": {
-            "type": "region",
-            "name": "share/shouji_0002",
-            "path": "share/shouji_0002",
-            "rotation": 0,
-            "x": 0,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
             "width": 260,
             "height": 260,
             "color": "ffffffff"
           },
           "share/shouji_0003": {
-            "type": "region",
-            "name": "share/shouji_0003",
-            "path": "share/shouji_0003",
-            "rotation": 0,
-            "x": 0,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
             "width": 260,
             "height": 260,
             "color": "ffffffff"
           },
           "share/shouji_0004": {
-            "type": "region",
-            "name": "share/shouji_0004",
-            "path": "share/shouji_0004",
-            "rotation": 0,
-            "x": 0,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
             "width": 260,
             "height": 260,
             "color": "ffffffff"
           },
           "share/shouji_0005": {
-            "type": "region",
-            "name": "share/shouji_0005",
-            "path": "share/shouji_0005",
-            "rotation": 0,
-            "x": 0,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
             "width": 260,
             "height": 260,
             "color": "ffffffff"
           },
           "share/shouji_0006": {
-            "type": "region",
-            "name": "share/shouji_0006",
-            "path": "share/shouji_0006",
-            "rotation": 0,
-            "x": 0,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
             "width": 260,
             "height": 260,
             "color": "ffffffff"
           },
           "share/shouji_0007": {
-            "type": "region",
-            "name": "share/shouji_0007",
-            "path": "share/shouji_0007",
-            "rotation": 0,
-            "x": 0,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
             "width": 260,
             "height": 260,
             "color": "ffffffff"
           },
           "share/shouji_0008": {
-            "type": "region",
-            "name": "share/shouji_0008",
-            "path": "share/shouji_0008",
-            "rotation": 0,
-            "x": 0,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
             "width": 260,
             "height": 260,
             "color": "ffffffff"
           },
           "share/shouji_0009": {
-            "type": "region",
-            "name": "share/shouji_0009",
-            "path": "share/shouji_0009",
-            "rotation": 0,
-            "x": 0,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
             "width": 260,
             "height": 260,
             "color": "ffffffff"
           },
           "share/shouji_0010": {
-            "type": "region",
-            "name": "share/shouji_0010",
-            "path": "share/shouji_0010",
-            "rotation": 0,
-            "x": 0,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
             "width": 260,
             "height": 260,
             "color": "ffffffff"
@@ -191,295 +87,63 @@
       }
     }
   ],
-  "events": {},
-  "eventsName": [],
   "animations": {
     "idle": {
       "slots": {
         "share/shouji_0001": {
-          "color": [
-            {
-              "time": 0,
-              "color": "00f2ffff",
-              "curve": "stepped"
-            },
-            {
-              "time": 0.10000000149011612,
-              "color": "00f2ffff"
-            },
-            {
-              "time": 0.13333334028720856,
-              "color": "00a0ffff"
-            }
-          ],
           "attachment": [
-            {
-              "time": 0,
-              "name": null
-            },
-            {
-              "time": 0.05545752868056297,
-              "name": "share/shouji_0001"
-            },
-            {
-              "time": 0.11091505736112595,
-              "name": "share/shouji_0002"
-            },
-            {
-              "time": 0.1666666716337204,
-              "name": "share/shouji_0003"
-            },
-            {
-              "time": 0.2218301147222519,
-              "name": "share/shouji_0004"
-            },
-            {
-              "time": 0.27728763222694397,
-              "name": "share/shouji_0005"
-            },
-            {
-              "time": 0.33274516463279724,
-              "name": "share/shouji_0006"
-            },
-            {
-              "time": 0.3882026970386505,
-              "name": "share/shouji_0007"
-            },
-            {
-              "time": 0.4436602294445038,
-              "name": "share/shouji_0008"
-            },
-            {
-              "time": 0.49911776185035706,
-              "name": "share/shouji_0009"
-            },
-            {
-              "time": 0.5545752644538879,
-              "name": "share/shouji_0010"
-            },
-            {
-              "time": 0.6100327968597412,
-              "name": null
-            },
-            {
-              "time": 0.6666666865348816,
-              "name": null
-            }
+            {},
+            { "time": 0.05546, "name": "share/shouji_0001" },
+            { "time": 0.11092, "name": "share/shouji_0002" },
+            { "time": 0.16667, "name": "share/shouji_0003" },
+            { "time": 0.22183, "name": "share/shouji_0004" },
+            { "time": 0.27729, "name": "share/shouji_0005" },
+            { "time": 0.33275, "name": "share/shouji_0006" },
+            { "time": 0.3882, "name": "share/shouji_0007" },
+            { "time": 0.44366, "name": "share/shouji_0008" },
+            { "time": 0.49912, "name": "share/shouji_0009" },
+            { "time": 0.55458, "name": "share/shouji_0010" },
+            { "time": 0.61003 },
+            { "time": 0.66667 }
+          ],
+          "rgba": [
+            { "color": "00f2ffff", "curve": "stepped" },
+            { "time": 0.1, "color": "00f2ffff" },
+            { "time": 0.13333, "color": "00a0ffff" }
           ]
         }
       },
       "bones": {
-        "root": {
-          "rotate": [
-            {
-              "time": 0,
-              "angle": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.6666666865348816,
-              "angle": 0
-            }
-          ],
-          "translate": [
-            {
-              "time": 0,
-              "x": 0,
-              "y": 0
-            }
-          ],
-          "scale": [
-            {
-              "time": 0,
-              "x": 1.041577935218811,
-              "y": 1.041577935218811
-            }
-          ],
-          "shear": [
-            {
-              "time": 0,
-              "x": 0,
-              "y": 0
-            }
-          ]
+        "attack": {
+          "rotate": [{ "curve": "stepped" }, { "time": 0.66667 }],
+          "translate": [{ "curve": "stepped" }, { "time": 0.66667 }],
+          "scale": [{ "curve": "stepped" }, { "time": 0.66667 }],
+          "shear": [{ "curve": "stepped" }, { "time": 0.66667 }]
         },
         "effect": {
-          "rotate": [
-            {
-              "time": 0,
-              "angle": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.6666666865348816,
-              "angle": 0
-            }
-          ],
-          "translate": [
-            {
-              "time": 0,
-              "x": 254.15960693359375,
-              "y": -47.03643798828125
-            }
-          ],
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.6666666865348816,
-              "x": 1,
-              "y": 1
-            }
-          ],
-          "shear": [
-            {
-              "time": 0,
-              "x": 0,
-              "y": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.6666666865348816,
-              "x": 0,
-              "y": 0
-            }
-          ]
+          "rotate": [{ "curve": "stepped" }, { "time": 0.66667 }],
+          "translate": [{ "x": 254.16, "y": -47.04 }],
+          "scale": [{ "curve": "stepped" }, { "time": 0.66667 }],
+          "shear": [{ "curve": "stepped" }, { "time": 0.66667 }]
+        },
+        "root": {
+          "rotate": [{ "curve": "stepped" }, { "time": 0.66667 }],
+          "translate": [{}],
+          "scale": [{ "x": 1.04, "y": 1.04 }],
+          "shear": [{}]
         },
         "shouji": {
-          "rotate": [
-            {
-              "time": 0,
-              "angle": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.6666666865348816,
-              "angle": 0
-            }
-          ],
+          "rotate": [{ "curve": "stepped" }, { "time": 0.66667 }],
           "translate": [
-            {
-              "time": 0,
-              "x": -236.09619140625,
-              "y": 51.823974609375,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.6666666865348816,
-              "x": -236.09619140625,
-              "y": 51.823974609375
-            }
+            { "x": -236.1, "y": 51.82, "curve": "stepped" },
+            { "time": 0.66667, "x": -236.1, "y": 51.82 }
           ],
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.6666666865348816,
-              "x": 1,
-              "y": 1
-            }
-          ],
-          "shear": [
-            {
-              "time": 0,
-              "x": 0,
-              "y": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.6666666865348816,
-              "x": 0,
-              "y": 0
-            }
-          ]
-        },
-        "attack": {
-          "rotate": [
-            {
-              "time": 0,
-              "angle": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.6666666865348816,
-              "angle": 0
-            }
-          ],
-          "translate": [
-            {
-              "time": 0,
-              "x": 0,
-              "y": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.6666666865348816,
-              "x": 0,
-              "y": 0
-            }
-          ],
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.6666666865348816,
-              "x": 1,
-              "y": 1
-            }
-          ],
-          "shear": [
-            {
-              "time": 0,
-              "x": 0,
-              "y": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.6666666865348816,
-              "x": 0,
-              "y": 0
-            }
-          ]
+          "scale": [{ "curve": "stepped" }, { "time": 0.66667 }],
+          "shear": [{ "curve": "stepped" }, { "time": 0.66667 }]
         }
       },
-      "ik": {},
-      "transform": {},
-      "paths": {},
-      "deform": {},
-      "drawOrder": [
-        {
-          "offsets": [],
-          "time": 0
-        },
-        {
-          "offsets": [],
-          "time": 0.6666666865348816
-        }
-      ]
+      "drawOrder": [{}, { "time": 0.66667 }]
     },
-    "pseudo_setup_pose": {
-      "bones": {},
-      "slots": {},
-      "ik": {},
-      "ffd": {},
-      "drawOrder": [
-        {
-          "offsets": [],
-          "time": 0
-        }
-      ]
-    }
+    "pseudo_setup_pose": { "drawOrder": [{}] }
   }
 }

@@ -1,131 +1,70 @@
 {
   "skeleton": {
-    "hash": "bzvtJsbvLSrW2A3VGa4uiqO3B1s",
-    "spine": "3.8",
-    "width": 670.2490234375,
-    "height": 730.4960327148438
+    "hash": "Ga4uiqO3B1s",
+    "spine": "4.2.93",
+    "x": 0,
+    "y": 0,
+    "width": 670.25,
+    "height": 730.5
   },
   "bones": [
-    {
-      "name": "root",
-      "inheritRotation": true,
-      "inheritScale": true
-    },
+    { "name": "root" },
     {
       "name": "kb0",
       "parent": "root",
-      "x": 1.6304779052734375,
-      "y": 1.5136642456054688,
-      "scaleX": 1.8827217817306519,
-      "scaleY": 1.8827217817306519,
-      "length": 35.000030517578125,
-      "inheritRotation": true,
-      "inheritScale": true
+      "length": 35.0,
+      "x": 1.63,
+      "y": 1.51,
+      "scaleX": 1.88,
+      "scaleY": 1.88
     }
   ],
   "slots": [
-    {
-      "name": "kb0",
-      "bone": "kb0",
-      "attachment": "kb6",
-      "blend": "additive"
-    }
+    { "name": "kb0", "bone": "kb0", "attachment": "kb6", "blend": "additive" }
   ],
-  "ik": [],
-  "transform": [],
-  "path": [],
   "skins": [
     {
       "name": "default",
       "attachments": {
         "kb0": {
           "kb0": {
-            "type": "region",
-            "name": "kb0",
-            "path": "kb0",
-            "rotation": 0,
-            "x": 1.52587890625e-5,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
+            "x": 1.5e-5,
             "width": 356,
             "height": 388,
             "color": "ffffffff"
           },
           "kb1": {
-            "type": "region",
-            "name": "kb1",
-            "path": "kb1",
-            "rotation": 0,
-            "x": 1.52587890625e-5,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
+            "x": 1.5e-5,
             "width": 356,
             "height": 388,
             "color": "ffffffff"
           },
           "kb2": {
-            "type": "region",
-            "name": "kb2",
-            "path": "kb2",
-            "rotation": 0,
-            "x": 1.52587890625e-5,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
+            "x": 1.5e-5,
             "width": 356,
             "height": 388,
             "color": "ffffffff"
           },
           "kb3": {
-            "type": "region",
-            "name": "kb3",
-            "path": "kb3",
-            "rotation": 0,
-            "x": 1.52587890625e-5,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
+            "x": 1.5e-5,
             "width": 356,
             "height": 388,
             "color": "ffffffff"
           },
           "kb4": {
-            "type": "region",
-            "name": "kb4",
-            "path": "kb4",
-            "rotation": 0,
-            "x": 1.52587890625e-5,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
+            "x": 1.5e-5,
             "width": 356,
             "height": 388,
             "color": "ffffffff"
           },
           "kb5": {
-            "type": "region",
-            "name": "kb5",
-            "path": "kb5",
-            "rotation": 0,
-            "x": 1.52587890625e-5,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
+            "x": 1.5e-5,
             "width": 356,
             "height": 388,
             "color": "ffffffff"
           },
           "kb6": {
-            "type": "region",
-            "name": "kb6",
-            "path": "kb6",
-            "rotation": 0,
-            "x": 1.52587890625e-5,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1,
+            "x": 1.5e-5,
             "width": 356,
             "height": 388,
             "color": "ffffffff"
@@ -134,170 +73,37 @@
       }
     }
   ],
-  "events": {},
-  "eventsName": [],
   "animations": {
     "idle": {
       "slots": {
         "kb0": {
           "attachment": [
-            {
-              "time": 0,
-              "name": "kb0"
-            },
-            {
-              "time": 0.08099371939897537,
-              "name": "kb1"
-            },
-            {
-              "time": 0.16198743879795074,
-              "name": "kb2"
-            },
-            {
-              "time": 0.24298115074634552,
-              "name": "kb3"
-            },
-            {
-              "time": 0.3239748775959015,
-              "name": "kb4"
-            },
-            {
-              "time": 0.40496858954429626,
-              "name": "kb5"
-            },
-            {
-              "time": 0.48596230149269104,
-              "name": "kb6"
-            },
-            {
-              "time": 0.5666666626930237,
-              "name": null
-            }
+            { "name": "kb0" },
+            { "time": 0.08099, "name": "kb1" },
+            { "time": 0.16199, "name": "kb2" },
+            { "time": 0.24298, "name": "kb3" },
+            { "time": 0.32397, "name": "kb4" },
+            { "time": 0.40497, "name": "kb5" },
+            { "time": 0.48596, "name": "kb6" },
+            { "time": 0.56667 }
           ]
         }
       },
       "bones": {
         "kb0": {
-          "rotate": [
-            {
-              "time": 0,
-              "angle": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.5666666626930237,
-              "angle": 0
-            }
-          ],
-          "translate": [
-            {
-              "time": 0,
-              "x": 0,
-              "y": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.5666666626930237,
-              "x": 0,
-              "y": 0
-            }
-          ],
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.5666666626930237,
-              "x": 1,
-              "y": 1
-            }
-          ],
-          "shear": [
-            {
-              "time": 0,
-              "x": 0,
-              "y": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.5666666626930237,
-              "x": 0,
-              "y": 0
-            }
-          ]
+          "rotate": [{ "curve": "stepped" }, { "time": 0.56667 }],
+          "translate": [{ "curve": "stepped" }, { "time": 0.56667 }],
+          "scale": [{ "curve": "stepped" }, { "time": 0.56667 }],
+          "shear": [{ "curve": "stepped" }, { "time": 0.56667 }]
         },
         "root": {
-          "rotate": [
-            {
-              "time": 0,
-              "angle": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.5666666626930237,
-              "angle": 0
-            }
-          ],
-          "translate": [
-            {
-              "time": 0,
-              "x": 0,
-              "y": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.5666666626930237,
-              "x": 0,
-              "y": 0
-            }
-          ],
-          "scale": [
-            {
-              "time": 0,
-              "x": 1,
-              "y": 1,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.5666666626930237,
-              "x": 1,
-              "y": 1
-            }
-          ],
-          "shear": [
-            {
-              "time": 0,
-              "x": 0,
-              "y": 0,
-              "curve": "stepped"
-            },
-            {
-              "time": 0.5666666626930237,
-              "x": 0,
-              "y": 0
-            }
-          ]
+          "rotate": [{ "curve": "stepped" }, { "time": 0.56667 }],
+          "translate": [{ "curve": "stepped" }, { "time": 0.56667 }],
+          "scale": [{ "curve": "stepped" }, { "time": 0.56667 }],
+          "shear": [{ "curve": "stepped" }, { "time": 0.56667 }]
         }
-      },
-      "ik": {},
-      "transform": {},
-      "paths": {},
-      "deform": {}
+      }
     },
-    "pseudo_setup_pose": {
-      "bones": {},
-      "slots": {},
-      "ik": {},
-      "ffd": {},
-      "drawOrder": [
-        {
-          "offsets": [],
-          "time": 0
-        }
-      ]
-    }
+    "pseudo_setup_pose": { "drawOrder": [{}] }
   }
 }
