@@ -124,7 +124,7 @@
       "name": "bone9",
       "parent": "bone3",
       "length": 20.07,
-      "x": 25.0,
+      "x": 25,
       "y": -0.99704,
       "rotation": -32.58,
       "color": "ff0004ff"
@@ -167,7 +167,7 @@
     {
       "name": "bone14",
       "parent": "yifu",
-      "length": 22.0,
+      "length": 22,
       "x": 39.6,
       "y": 23.56,
       "rotation": 1.13,
@@ -187,7 +187,7 @@
       "parent": "bone",
       "length": 69.96,
       "x": 66.12,
-      "y": 54.0,
+      "y": 54,
       "rotation": 152.18,
       "color": "9b9b9bff"
     },
@@ -203,7 +203,7 @@
     {
       "name": "bone18",
       "parent": "bone17",
-      "length": 32.0,
+      "length": 32,
       "x": 57.69,
       "y": 1.27,
       "rotation": -93.08,
@@ -221,7 +221,7 @@
     {
       "name": "bone20",
       "parent": "bone19",
-      "length": 57.0,
+      "length": 57,
       "x": 74.31,
       "y": 0.79288,
       "rotation": 3.61,
@@ -380,7 +380,7 @@
       "name": "bone38",
       "parent": "bone37",
       "length": 19.97,
-      "x": 34.0,
+      "x": 34,
       "y": -0.32228,
       "rotation": 11.07,
       "color": "9b9b9bff"
@@ -638,7 +638,7 @@
     {
       "name": "bone84",
       "parent": "bone83",
-      "length": 65.0,
+      "length": 65,
       "x": 79.06,
       "y": -0.82404,
       "rotation": -1.35,
@@ -1369,7 +1369,7 @@
         },
         "share/d5": {
           "share/d5": {
-            "x": 10.0,
+            "x": 10,
             "y": 20.29,
             "rotation": -1.0e-5,
             "scaleX": 2.33,
@@ -1591,7 +1591,7 @@
         "share/juqis_002": {
           "share/juqis_002": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1600,7 +1600,7 @@
         "share/juqis_004": {
           "share/juqis_004": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1609,7 +1609,7 @@
         "share/juqis_006": {
           "share/juqis_006": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1618,7 +1618,7 @@
         "share/juqis_008": {
           "share/juqis_008": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1627,7 +1627,7 @@
         "share/juqis_010": {
           "share/juqis_010": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1636,7 +1636,7 @@
         "share/juqis_012": {
           "share/juqis_012": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1645,7 +1645,7 @@
         "share/juqis_014": {
           "share/juqis_014": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1654,7 +1654,7 @@
         "share/juqis_016": {
           "share/juqis_016": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1663,7 +1663,7 @@
         "share/juqis_018": {
           "share/juqis_018": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1672,7 +1672,7 @@
         "share/juqis_020": {
           "share/juqis_020": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1681,7 +1681,7 @@
         "share/juqis_022": {
           "share/juqis_022": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1690,7 +1690,7 @@
         "share/juqis_024": {
           "share/juqis_024": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1699,7 +1699,7 @@
         "share/juqis_026": {
           "share/juqis_026": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1708,7 +1708,7 @@
         "share/juqis_028": {
           "share/juqis_028": {
             "x": -1.5e-5,
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 162,
             "height": 168,
             "color": "ffffffff"
@@ -1892,7 +1892,7 @@
         },
         "share/tf0": {
           "share/tf0": {
-            "rotation": 180.0,
+            "rotation": 180,
             "width": 224,
             "height": 224,
             "color": "ffffffff"
@@ -3932,7 +3932,7 @@
             { "value": -3.32, "curve": "stepped" },
             { "time": 0.16667, "value": -3.32, "curve": "stepped" },
             { "time": 0.23333, "value": -3.32 },
-            { "time": 0.3, "value": 2.0 },
+            { "time": 0.3, "value": 2 },
             { "time": 0.36667, "value": 4.66 },
             { "time": 0.43333, "value": 6.53 },
             { "time": 0.5, "value": 4.09 },
@@ -4006,7 +4006,7 @@
             { "time": 0.5, "value": 9.47 },
             { "time": 0.56667, "value": 3.56 },
             { "time": 0.63333, "value": 2.76 },
-            { "time": 0.7, "value": -2.0 },
+            { "time": 0.7, "value": -2 },
             { "time": 0.76667, "value": -6.02 },
             { "time": 0.83333, "value": -2.8 }
           ],
@@ -4865,10 +4865,10 @@
             { "time": 0.48198, "x": 50, "y": 22.47, "curve": "stepped" },
             { "time": 0.51702, "x": 50, "y": 30.24, "curve": "stepped" },
             { "time": 0.55205, "x": 50, "y": 36.29, "curve": "stepped" },
-            { "time": 0.58709, "x": 50.0, "y": 44.07, "curve": "stepped" },
-            { "time": 0.62212, "x": 50.0, "y": 47.53, "curve": "stepped" },
+            { "time": 0.58709, "x": 50, "y": 44.07, "curve": "stepped" },
+            { "time": 0.62212, "x": 50, "y": 47.53, "curve": "stepped" },
             { "time": 0.65716, "x": 50, "y": 38.88, "curve": "stepped" },
-            { "time": 0.69219, "x": 50.0, "y": 50.12, "curve": "stepped" },
+            { "time": 0.69219, "x": 50, "y": 50.12, "curve": "stepped" },
             { "time": 0.72723, "x": 49.14, "y": 19.01, "curve": "stepped" },
             { "time": 0.76227, "x": 49.14, "y": 21.6, "curve": "stepped" },
             { "time": 0.7973, "x": 49.14, "y": 31.97, "curve": "stepped" },
@@ -5093,20 +5093,20 @@
                 {
                   "time": 0.23333,
                   "vertices": [
-                    18.18, -24.34, -20.0, -19.07, -8.44, 2.31, 3.7, 0.97644
+                    18.18, -24.34, -20, -19.07, -8.44, 2.31, 3.7, 0.97644
                   ]
                 },
                 {
                   "time": 0.36667,
                   "vertices": [
-                    18.18, -24.34, -20.0, -19.07, -11.72, -2.3, 0.41594, -3.63
+                    18.18, -24.34, -20, -19.07, -11.72, -2.3, 0.41594, -3.63
                   ],
                   "curve": "stepped"
                 },
                 {
                   "time": 0.83333,
                   "vertices": [
-                    18.18, -24.34, -20.0, -19.07, -11.72, -2.3, 0.41594, -3.63
+                    18.18, -24.34, -20, -19.07, -11.72, -2.3, 0.41594, -3.63
                   ]
                 }
               ]
@@ -5205,14 +5205,12 @@
             "腕套-R": {
               "deform": [
                 {
-                  "vertices": [
-                    2.26, 6.83, 14.0, 2.18, 10.01, -7.92, -1.73, -3.27
-                  ]
+                  "vertices": [2.26, 6.83, 14, 2.18, 10.01, -7.92, -1.73, -3.27]
                 },
                 {
                   "time": 0.16667,
                   "vertices": [
-                    -0.10814, 3.35, 4.95, 0.85715, 2.81, -3.49, -2.25, -1.0
+                    -0.10814, 3.35, 4.95, 0.85715, 2.81, -3.49, -2.25, -1
                   ]
                 }
               ]
@@ -6716,7 +6714,7 @@
           "rotate": [
             {},
             { "time": 0.3, "value": -5.62 },
-            { "time": 0.8, "value": 7.0 },
+            { "time": 0.8, "value": 7 },
             { "time": 1 }
           ]
         },
@@ -7838,7 +7836,7 @@
             "youdabi": {
               "deform": [
                 {},
-                { "time": 0.1, "vertices": [-13.82, 12.0, -4.87, 12.72] }
+                { "time": 0.1, "vertices": [-13.82, 12, -4.87, 12.72] }
               ]
             }
           },
@@ -8496,7 +8494,7 @@
           "rotate": [
             {},
             { "time": 0.13333, "value": 3.58 },
-            { "time": 0.33333, "value": -13.0 },
+            { "time": 0.33333, "value": -13 },
             { "time": 0.5 }
           ],
           "translate": [
@@ -8576,7 +8574,7 @@
           "rotate": [
             { "value": -2.05 },
             { "time": 0.10037, "value": 2.72 },
-            { "time": 0.3513, "value": -12.0 },
+            { "time": 0.3513, "value": -12 },
             { "time": 0.5, "value": -2.05 }
           ],
           "translate": [{ "curve": "stepped" }, { "time": 0.5 }],
@@ -9536,8 +9534,8 @@
         "bone28": {
           "rotate": [{ "curve": "stepped" }, { "time": 0.66667 }],
           "translate": [
-            { "x": -0.05209, "y": 5.0, "curve": "stepped" },
-            { "time": 0.66667, "x": -0.05209, "y": 5.0 }
+            { "x": -0.05209, "y": 5, "curve": "stepped" },
+            { "time": 0.66667, "x": -0.05209, "y": 5 }
           ],
           "scale": [{ "curve": "stepped" }, { "time": 0.66667 }],
           "shear": [{ "curve": "stepped" }, { "time": 0.66667 }]
@@ -9801,7 +9799,7 @@
           "rotate": [
             {},
             { "time": 0.16667, "value": 3.58 },
-            { "time": 0.43333, "value": -13.0 },
+            { "time": 0.43333, "value": -13 },
             { "time": 0.66667 }
           ],
           "translate": [
@@ -9889,7 +9887,7 @@
           "rotate": [
             { "value": -2.05 },
             { "time": 0.13284, "value": 2.72 },
-            { "time": 0.46495, "value": -12.0 },
+            { "time": 0.46495, "value": -12 },
             { "time": 0.66667, "value": -2.05 }
           ],
           "translate": [{ "curve": "stepped" }, { "time": 0.66667 }],
@@ -11015,7 +11013,7 @@
           "rotate": [
             {},
             { "time": 0.16667, "value": 3.58 },
-            { "time": 0.46667, "value": -13.0 },
+            { "time": 0.46667, "value": -13 },
             { "time": 0.66667 }
           ],
           "translate": [
@@ -11103,7 +11101,7 @@
           "rotate": [
             { "value": -2.05 },
             { "time": 0.13284, "value": 2.72 },
-            { "time": 0.46495, "value": -12.0 },
+            { "time": 0.46495, "value": -12 },
             { "time": 0.66667, "value": -2.05 }
           ],
           "translate": [{ "curve": "stepped" }, { "time": 0.66667 }],
@@ -11268,11 +11266,8 @@
           "youdabi": {
             "youdabi": {
               "deform": [
-                {
-                  "vertices": [-13.82, 12.0, -4.87, 12.72],
-                  "curve": "stepped"
-                },
-                { "time": 0.66667, "vertices": [-13.82, 12.0, -4.87, 12.72] }
+                { "vertices": [-13.82, 12, -4.87, 12.72], "curve": "stepped" },
+                { "time": 0.66667, "vertices": [-13.82, 12, -4.87, 12.72] }
               ]
             }
           },
@@ -11696,7 +11691,7 @@
           "rotate": [{ "curve": "stepped" }, { "time": 0.1 }],
           "translate": [
             { "x": 3.97, "y": 3.25, "curve": "stepped" },
-            { "time": 0.1, "x": -0.05209, "y": 5.0 }
+            { "time": 0.1, "x": -0.05209, "y": 5 }
           ],
           "scale": [{ "curve": "stepped" }, { "time": 0.1 }],
           "shear": [{ "curve": "stepped" }, { "time": 0.1 }]
@@ -12081,7 +12076,7 @@
           "youdabi": {
             "youdabi": {
               "deform": [
-                { "vertices": [-13.82, 12.0, -4.87, 12.72] },
+                { "vertices": [-13.82, 12, -4.87, 12.72] },
                 { "time": 0.1, "vertices": [0.3167, 7.37, 6.44, 8.23] }
               ]
             }
