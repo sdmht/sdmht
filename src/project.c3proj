@@ -186,16 +186,7 @@
 			"subfolders": []
 		},
 		"general": {
-			"items": [
-				{
-					"name": "道德天尊.webp",
-					"type": "image/webp",
-					"sid": 168740022840637,
-					"file-info": {
-						"purpose": "none"
-					}
-				}
-			],
+			"items": [],
 			"subfolders": [
 				{
 					"items": [
@@ -203,6 +194,14 @@
 							"name": "道德天尊.atlas",
 							"type": "application/octet-stream",
 							"sid": 443722618995916,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "道德天尊.webp",
+							"type": "image/webp",
+							"sid": 168740022840637,
 							"file-info": {
 								"purpose": "none"
 							}

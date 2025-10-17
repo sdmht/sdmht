@@ -159,8 +159,8 @@
 				{
 					"type": "道德天尊",
 					"properties": {
-						"spine-atlas-file": 443722618995916,
-						"spine-skeleton-file": 617953504414890,
+						"spine-atlas-file": "登录/道德天尊.atlas",
+						"spine-skeleton-file": "登录/道德天尊.json",
 						"spine-loader-scale": 1,
 						"spine-skin": "",
 						"spine-animation": "eye_off",
