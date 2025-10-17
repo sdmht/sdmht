@@ -159,51 +159,44 @@
 				{
 					"type": "道德天尊",
 					"properties": {
-						"json": "道德天尊.json",
-						"atlas": "道德天尊.atlas",
-						"png": "道德天尊.webp",
-						"skin": "default",
-						"animation": "eye",
-						"skeleton": "",
-						"scale": 1,
-						"pre-mult-alpha": false,
-						"collisions": true,
-						"default-mix": 0,
-						"render-quality": 1,
-						"keep-aspect-ratio": false,
-						"debug": false,
-						"bbox-override": false,
-						"bbox-offset-x": -64,
-						"bbox-offset-y": -64,
-						"bbox-size-x": 128,
-						"bbox-size-y": 128
+						"spine-atlas-file": 443722618995916,
+						"spine-skeleton-file": 617953504414890,
+						"spine-loader-scale": 1,
+						"spine-skin": "",
+						"spine-animation": "eye_off",
+						"spine-bounds-provider": "setup",
+						"spine-bounds-provider-move": false,
+						"spine-bounds-offset-x": 0,
+						"spine-bounds-offset-y": 0,
+						"spine-bounds-offset-angle": 0,
+						"spine-scale-x": 0.505879203609948,
+						"spine-scale-y": 0.5058792036099481
 					},
-					"uid": 720751,
-					"sid": 693610813823854,
+					"uid": 753005,
+					"sid": 805382778965061,
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
 					"instanceFolderItem": {
-						"sid": 693610813823854,
+						"sid": 805382778965061,
 						"expanded": true
 					},
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1420.5,
-						"y": 634.5,
-						"width": 1099,
-						"height": 1265,
-						"originX": 0.5,
-						"originY": 0.5,
+						"x": 1315,
+						"y": 370,
+						"width": 1121.7804110978796,
+						"height": 1245.8555602895779,
+						"originX": 0.4498335759016062,
+						"originY": 0.2968235333412945,
 						"color": [
 							1,
 							1,
 							1,
 							1
 						],
-						"angle": 0,
-						"zElevation": 0
+						"angle": 0
 					}
 				}
 			],

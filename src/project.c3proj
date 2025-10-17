@@ -1,6 +1,6 @@
 {
 	"projectFormatVersion": 1,
-	"savedWithRelease": 44902,
+	"savedWithRelease": 45700,
 	"name": "神代梦华谭",
 	"runtime": "c3",
 	"useWorker": "auto",
@@ -22,11 +22,12 @@
 		},
 		{
 			"type": "plugin",
-			"id": "Gritsenko_Spine",
-			"name": "Spine骨骼",
-			"author": "Gritsenko and Mikal",
+			"id": "EsotericSoftware_SpineConstruct3",
+			"name": "Spine",
+			"author": "Esoteric Software",
 			"bundled": true,
-			"version": "2.9.1"
+			"version": "1.0.0.1",
+			"sdkVersion": 2
 		},
 		{
 			"type": "plugin",
@@ -53,10 +54,9 @@
 	"uniqueId": "i1f6xtnlaes",
 	"objectTypes": {
 		"items": [
-			"PV",
 			"触控",
 			"背景音乐",
-			"剧情PV按钮"
+			"PV"
 		],
 		"subfolders": [
 			{
@@ -64,7 +64,8 @@
 					"图标",
 					"浮空城",
 					"背景图",
-					"道德天尊"
+					"道德天尊",
+					"剧情PV按钮"
 				],
 				"subfolders": [],
 				"name": "登录"
@@ -187,22 +188,6 @@
 		"general": {
 			"items": [
 				{
-					"name": "道德天尊.atlas",
-					"type": "application/octet-stream",
-					"sid": 443722618995916,
-					"file-info": {
-						"purpose": "none"
-					}
-				},
-				{
-					"name": "道德天尊.json",
-					"type": "application/json",
-					"sid": 617953504414890,
-					"file-info": {
-						"purpose": "none"
-					}
-				},
-				{
 					"name": "道德天尊.webp",
 					"type": "image/webp",
 					"sid": 168740022840637,
@@ -211,7 +196,30 @@
 					}
 				}
 			],
-			"subfolders": []
+			"subfolders": [
+				{
+					"items": [
+						{
+							"name": "道德天尊.atlas",
+							"type": "application/octet-stream",
+							"sid": 443722618995916,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "道德天尊.json",
+							"type": "application/json",
+							"sid": 617953504414890,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "登录"
+				}
+			]
 		}
 	},
 	"timelines": {
@@ -263,8 +271,8 @@
 		],
 		"orientations": "landscape",
 		"webgpu": "auto",
+		"multitexturing": "auto",
 		"gpuPreference": "high-performance",
-		"scriptsType": "module",
 		"framerateMode": "vsync",
 		"sampling": "trilinear",
 		"downscaling": "medium",
@@ -275,10 +283,11 @@
 		"maxSpriteSheetSize": 2048,
 		"loaderStyle": "progress-logo",
 		"preloadSounds": true,
+		"uidAllocationMode": "random",
 		"cordovaiOSScheme": "app",
 		"cordovaAndroidScheme": "https",
 		"exportFileStructure": "folders",
-		"uidAllocationMode": "random"
+		"scriptsType": "module"
 	},
 	"viewportWidth": 1920,
 	"viewportHeight": 1080,

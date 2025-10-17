@@ -10,7 +10,7 @@
 
 1. 用[Git](https://git-scm.com/downloads)克隆仓库到本地 `git clone -b dev --depth=1 https://github.com/sdmht/sdmht`
 2. [安装用户脚本管理插件](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao)，然后[安装 Construct3 解限脚本](https://github.com/sdmht/sdmht/raw/refs/heads/dev/c3-unlimited.user.js)
-3. [打开 Construct3 编辑器](https://editor.construct.net)
+3. [打开 Construct3 编辑器](https://editor.construct.net/beta)
 4. 点击展开`打开文件`，点击`项目文件夹`，选择仓库目录下的`src`目录，点击`打开`，注意保存
 
 ## 关于提交

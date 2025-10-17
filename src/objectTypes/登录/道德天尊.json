@@ -1,23 +1,10 @@
 {
 	"name": "道德天尊",
-	"plugin-id": "Gritsenko_Spine",
-	"sid": 102823335431016,
+	"plugin-id": "EsotericSoftware_SpineConstruct3",
+	"sid": 675647370921804,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
 	"behaviorTypes": [],
-	"effectTypes": [],
-	"image": {
-		"width": 250,
-		"height": 250,
-		"originX": 0.5,
-		"originY": 0.5,
-		"originalSource": "",
-		"exportFormat": "lossless",
-		"exportQuality": 0.8,
-		"fileType": "image/png",
-		"imageSpriteId": 9112335,
-		"useCollisionPoly": true,
-		"tag": ""
-	}
+	"effectTypes": []
 }

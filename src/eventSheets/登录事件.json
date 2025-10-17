@@ -67,6 +67,50 @@
 				}
 			],
 			"sid": 544702104613960
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-skeleton-loaded",
+					"objectClass": "道德天尊",
+					"sid": 640120662498575
+				},
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 117154907876839,
+					"parameters": {
+						"interval-seconds": "8"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "add-animation",
+					"objectClass": "道德天尊",
+					"sid": 393078638354509,
+					"parameters": {
+						"track": "0",
+						"animation": "\"eye_on\"",
+						"loop": false,
+						"delay": "0"
+					}
+				},
+				{
+					"id": "add-animation",
+					"objectClass": "道德天尊",
+					"sid": 307669004064494,
+					"parameters": {
+						"track": "0",
+						"animation": "\"eye\"",
+						"loop": true,
+						"delay": "0"
+					}
+				}
+			],
+			"sid": 148975416786768,
+			"isOrBlock": true
 		}
 	],
 	"sid": 548493074196662
