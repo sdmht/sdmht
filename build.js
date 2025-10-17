@@ -13,7 +13,7 @@ const unzipper = require('unzipper')
     path: './c3-unlimited.user.js',
   })
 
-  await page.goto('https://editor.construct.net/')
+  await page.goto('https://editor.construct.net/beta')
   await page.locator('#welcomeTourDialog .noThanksLink').click()
 
   // 接收文件
