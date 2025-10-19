@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name         Construct 3 解除客户端限制
 // @namespace    star2000
-// @version      1.8
+// @version      1.9
 // @description  模拟个人专业版许可证，以解除客户端里无需后端支持的部分功能限制，比如事件数、效果数、层数、字体数
 // @author       star2000
-// @match        https://account*.construct.net/*
-// @match        https://editor.construct.net/*
+// @match        https://*.construct.net/*
 // @run-at       document-start
 // @icon         https://editor.construct.net/media/icon-512.png
 // @grant        none
