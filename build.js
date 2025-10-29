@@ -41,8 +41,13 @@ const DEBUG = process.argv.includes('--debug')
       await file.close()
     }
   })
+
   // 导入文件
-  async function importFile(file) {
+  for (file in await readdirp('./src', {
+    type: 'files',
+    directoryFilter: (f) => f.basename != 'ts-defs',
+    fileFilter: (f) => !/\.uistate\.json$/.test(f.basename),
+  })) {
     const content = new Uint8Array(await fs.readFile(file.fullPath))
     const path = file.path.replace(/\\/g, '/')
 
@@ -52,12 +57,6 @@ const DEBUG = process.argv.includes('--debug')
       [path, content]
     )
   }
-  const files = await readdirp('./src', {
-    type: 'files',
-    directoryFilter: (f) => f.basename != 'ts-defs',
-    fileFilter: (f) => !/\.uistate\.json$/.test(f.basename),
-  })
-  await Promise.all(files.map(importFile))
 
   await page.evaluate(async () => {
     window.showDirectoryPicker = async ({ id }) => {
