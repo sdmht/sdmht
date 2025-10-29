@@ -8,6 +8,7 @@ const unzipper = require('unzipper')
 ;(async () => {
   const browser = await playwright.chromium.launch()
   const page = await browser.newPage()
+  page.setDefaultTimeout(0)
 
   await page.addInitScript({
     path: './c3-unlimited.user.js',
@@ -39,11 +40,7 @@ const unzipper = require('unzipper')
     }
   })
   // 导入文件
-  for (const file of await readdirp('./src', {
-    type: 'files',
-    directoryFilter: (f) => f.basename != 'ts-defs',
-    fileFilter: (f) => !/\.uistate\.json$/.test(f.basename),
-  })) {
+  async function importFile(file) {
     const content = new Uint8Array(await fs.readFile(file.fullPath))
     const path = file.path.replace(/\\/g, '/')
 
@@ -53,6 +50,13 @@ const unzipper = require('unzipper')
       [path, content]
     )
   }
+  const files = await readdirp('./src', {
+    type: 'files',
+    directoryFilter: (f) => f.basename != 'ts-defs',
+    fileFilter: (f) => !/\.uistate\.json$/.test(f.basename),
+  })
+  await Promise.all(files.map(importFile))
+
   await page.evaluate(async () => {
     window.showDirectoryPicker = async ({ id }) => {
       const handle = await navigator.storage.getDirectory()
