@@ -57,7 +57,9 @@ const DEBUG = process.argv.includes('--debug')
     directoryFilter: (f) => f.basename != 'ts-defs',
     fileFilter: (f) => !/\.uistate\.json$/.test(f.basename),
   })
-  await Promise.all(files.map(importFile))
+  for (const file of files) {
+    await importFile(file)
+  }
 
   await page.evaluate(async () => {
     window.showDirectoryPicker = async ({ id }) => {
