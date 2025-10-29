@@ -43,7 +43,7 @@ const DEBUG = process.argv.includes('--debug')
   })
 
   // 导入文件
-  for (file in await readdirp('./src', {
+  for (file of await readdirp('./src', {
     type: 'files',
     directoryFilter: (f) => f.basename != 'ts-defs',
     fileFilter: (f) => !/\.uistate\.json$/.test(f.basename),
