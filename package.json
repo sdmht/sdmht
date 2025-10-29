@@ -3,6 +3,8 @@
   "scripts": {
     "postinstall": "playwright install chromium-headless-shell",
     "build": "node build.js",
+    "predebug": "playwright install chromium",
+    "debug": "node build.js --debug",
     "start": "http-server dist -c-1 -a localhost -p 6478 -o"
   },
   "dependencies": {

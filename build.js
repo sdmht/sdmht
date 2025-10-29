@@ -5,10 +5,12 @@ const { readdirpPromise: readdirp } = require('readdirp')
 const fs = require('fs/promises')
 const unzipper = require('unzipper')
 
+const DEBUG = process.argv.includes('--debug')
+
 ;(async () => {
-  const browser = await playwright.chromium.launch()
+  const browser = await playwright.chromium.launch({ headless: !DEBUG })
   const page = await browser.newPage()
-  page.setDefaultTimeout(0)
+  if (DEBUG) page.setDefaultTimeout(0)
 
   await page.addInitScript({
     path: './c3-unlimited.user.js',
@@ -87,8 +89,13 @@ const unzipper = require('unzipper')
   })()
 
   await page.locator('#propertiesBar:not([hide])').waitFor()
-  await page.waitForTimeout(3000)
-  await page.keyboard.press('F6')
+  while (true) {
+    await page.keyboard.press('F6')
+    if (await page.locator('#exportSelectPlatformDialog').count()) break
+    console.log('等待加载完成')
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+  }
+
   await page.locator("span:has-text('Web (HTML5)')").click()
   await page.locator('.nextButton').click()
   await page.locator('#exportStandardOptionsDialog .nextButton').click()
