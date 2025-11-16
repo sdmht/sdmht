@@ -1,6 +1,6 @@
 {
 	"projectFormatVersion": 1,
-	"savedWithRelease": 45900,
+	"savedWithRelease": 46100,
 	"name": "神代梦华谭",
 	"runtime": "c3",
 	"useWorker": "auto",
@@ -31,6 +31,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Mouse",
+			"name": "鼠标",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Sprite",
 			"name": "精灵",
 			"author": "Scirra",
@@ -56,7 +63,8 @@
 		"items": [
 			"触控",
 			"背景音乐",
-			"PV"
+			"PV",
+			"鼠标"
 		],
 		"subfolders": [
 			{
@@ -14976,97 +14984,572 @@
 							"items": [],
 							"subfolders": [
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10001.atlas",
+											"type": "application/octet-stream",
+											"sid": 572886968655322,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10001.webp",
+											"type": "image/webp",
+											"sid": 101048366732424,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10001.json",
+											"type": "application/json",
+											"sid": 466768129186228,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10001"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10002.atlas",
+											"type": "application/octet-stream",
+											"sid": 962358463603727,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10002.json",
+											"type": "application/json",
+											"sid": 272473150012720,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10002.webp",
+											"type": "image/webp",
+											"sid": 468786192198303,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10002"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10003.atlas",
+											"type": "application/octet-stream",
+											"sid": 870949569162307,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10003.webp",
+											"type": "image/webp",
+											"sid": 390225394422626,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10003.json",
+											"type": "application/json",
+											"sid": 349409357487115,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10003"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10004.atlas",
+											"type": "application/octet-stream",
+											"sid": 818949785155265,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10004.webp",
+											"type": "image/webp",
+											"sid": 337561033576881,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10004.json",
+											"type": "application/json",
+											"sid": 261226924838545,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10004"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10005.atlas",
+											"type": "application/octet-stream",
+											"sid": 584580680226270,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10005.webp",
+											"type": "image/webp",
+											"sid": 910304390378527,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10005.json",
+											"type": "application/json",
+											"sid": 714087465689415,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10005"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10006.webp",
+											"type": "image/webp",
+											"sid": 822748877394330,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10006.atlas",
+											"type": "application/octet-stream",
+											"sid": 469501288757888,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10006.json",
+											"type": "application/json",
+											"sid": 830350522584686,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10006"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10007.atlas",
+											"type": "application/octet-stream",
+											"sid": 513385716679462,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10007.webp",
+											"type": "image/webp",
+											"sid": 630454869554982,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10007.json",
+											"type": "application/json",
+											"sid": 292657574421392,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10007"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10008.atlas",
+											"type": "application/octet-stream",
+											"sid": 314467051945961,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10008.webp",
+											"type": "image/webp",
+											"sid": 144083818243244,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10008.json",
+											"type": "application/json",
+											"sid": 909613491641217,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10008"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10101.atlas",
+											"type": "application/octet-stream",
+											"sid": 167348547305393,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10101.webp",
+											"type": "image/webp",
+											"sid": 511438073047688,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10101.json",
+											"type": "application/json",
+											"sid": 967927673307089,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10101"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10102.atlas",
+											"type": "application/octet-stream",
+											"sid": 421830442095647,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10102.webp",
+											"type": "image/webp",
+											"sid": 886086436323058,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10102.json",
+											"type": "application/json",
+											"sid": 902316527766724,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10102"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10103.atlas",
+											"type": "application/octet-stream",
+											"sid": 504925491016501,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10103.webp",
+											"type": "image/webp",
+											"sid": 608296716447879,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10103.json",
+											"type": "application/json",
+											"sid": 728180594588615,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10103"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10104.atlas",
+											"type": "application/octet-stream",
+											"sid": 674896679908018,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10104.webp",
+											"type": "image/webp",
+											"sid": 550436488462734,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10104.json",
+											"type": "application/json",
+											"sid": 713907259997516,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10104"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10105.atlas",
+											"type": "application/octet-stream",
+											"sid": 757447870225669,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10105.json",
+											"type": "application/json",
+											"sid": 578185313177026,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10105.webp",
+											"type": "image/webp",
+											"sid": 772037625853933,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10105"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10107.atlas",
+											"type": "application/octet-stream",
+											"sid": 745271731358563,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10107.webp",
+											"type": "image/webp",
+											"sid": 127632371881037,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10107.json",
+											"type": "application/json",
+											"sid": 643940904597077,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10107"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10108.atlas",
+											"type": "application/octet-stream",
+											"sid": 279117265986363,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10108.webp",
+											"type": "image/webp",
+											"sid": 180971939253736,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10108.json",
+											"type": "application/json",
+											"sid": 457587939618362,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10108"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10109.json",
+											"type": "application/json",
+											"sid": 841879203214373,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10109.atlas",
+											"type": "application/octet-stream",
+											"sid": 409940005936844,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10109.webp",
+											"type": "image/webp",
+											"sid": 239878794953394,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10109"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10201.webp",
+											"type": "image/webp",
+											"sid": 377847741392006,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10201.atlas",
+											"type": "application/octet-stream",
+											"sid": 304972455740370,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10201.json",
+											"type": "application/json",
+											"sid": 800603438768147,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10201"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10203.json",
+											"type": "application/json",
+											"sid": 111945466059481,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10203.atlas",
+											"type": "application/octet-stream",
+											"sid": 877888457766661,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10203.webp",
+											"type": "image/webp",
+											"sid": 171936669603775,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10203"
 								},
 								{
-									"items": [],
+									"items": [
+										{
+											"name": "10204.atlas",
+											"type": "application/octet-stream",
+											"sid": 228660189605106,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10204.webp",
+											"type": "image/webp",
+											"sid": 543340741716118,
+											"file-info": {
+												"purpose": "none"
+											}
+										},
+										{
+											"name": "10204.json",
+											"type": "application/json",
+											"sid": 664832398884625,
+											"file-info": {
+												"purpose": "none"
+											}
+										}
+									],
 									"subfolders": [],
 									"name": "10204"
 								}
