@@ -164,6 +164,7 @@
 						"spine-loader-scale": 1,
 						"spine-skin": "",
 						"spine-animation": "eye_off",
+						"spine-debug-skeleton": false,
 						"spine-bounds-provider": "setup",
 						"spine-bounds-provider-move": false,
 						"spine-bounds-offset-x": 0,

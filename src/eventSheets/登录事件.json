@@ -16,7 +16,9 @@
 					"objectClass": "背景音乐",
 					"sid": 138693425086825,
 					"parameters": {
-						"audio-file": "登录背景",
+						"audio-file": {
+							"path": "登录背景"
+						},
 						"loop": "looping",
 						"volume": "-10",
 						"stereo-pan": "0",
@@ -41,7 +43,9 @@
 					"objectClass": "背景音乐",
 					"sid": 710136467481535,
 					"parameters": {
-						"audio-file": "登录背景"
+						"audio-file": {
+							"path": "登录背景"
+						}
 					}
 				}
 			],
@@ -111,6 +115,24 @@
 			],
 			"sid": 148975416786768,
 			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-update-ready-sw",
+					"objectClass": "浏览器",
+					"sid": 154727384758465
+				}
+			],
+			"actions": [
+				{
+					"id": "reload",
+					"objectClass": "浏览器",
+					"sid": 855625073381053
+				}
+			],
+			"sid": 499450686486339
 		}
 	],
 	"sid": 548493074196662
