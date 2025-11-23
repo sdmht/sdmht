@@ -5,12 +5,12 @@ const { readdirpPromise: readdirp } = require('readdirp')
 const fs = require('fs/promises')
 const unzipper = require('unzipper')
 
-const DEBUG = process.argv.includes('--debug')
+const { PWDEBUG } = process.env
 
 ;(async () => {
-  const browser = await playwright.chromium.launch({ headless: !DEBUG })
+  const browser = await playwright.chromium.launch({ headless: !PWDEBUG })
   const page = await browser.newPage()
-  if (DEBUG) page.setDefaultTimeout(0)
+  if (PWDEBUG) page.setDefaultTimeout(0)
 
   await page.addInitScript({
     path: './c3-unlimited.user.js',

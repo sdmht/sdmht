@@ -4,7 +4,7 @@
     "postinstall": "playwright install chromium-headless-shell",
     "build": "node build.js",
     "predebug": "playwright install chromium",
-    "debug": "node build.js --debug",
+    "debug": "cross-env PWDEBUG=console node build.js",
     "start": "http-server dist -c-1 -a localhost -p 6478 -o"
   },
   "dependencies": {
@@ -13,6 +13,7 @@
     "unzipper": "^0.12.3"
   },
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "http-server": "^14.1.1"
   }
 }
