@@ -1,6 +1,6 @@
 {
 	"projectFormatVersion": 1,
-	"savedWithRelease": 46100,
+	"savedWithRelease": 46300,
 	"name": "神代梦华谭",
 	"runtime": "c3",
 	"useWorker": "auto",
@@ -38,13 +38,6 @@
 		},
 		{
 			"type": "plugin",
-			"id": "Mouse",
-			"name": "鼠标",
-			"author": "Scirra",
-			"bundled": false
-		},
-		{
-			"type": "plugin",
 			"id": "Sprite",
 			"name": "精灵",
 			"author": "Scirra",
@@ -71,7 +64,6 @@
 			"触控",
 			"背景音乐",
 			"PV",
-			"鼠标",
 			"浏览器"
 		],
 		"subfolders": [
@@ -98,14 +90,16 @@
 	"layouts": {
 		"items": [
 			"PV",
-			"登录"
+			"登录",
+			"卡组列表"
 		],
 		"subfolders": []
 	},
 	"eventSheets": {
 		"items": [
 			"PV事件",
-			"登录事件"
+			"登录事件",
+			"卡组列表事件"
 		],
 		"subfolders": []
 	},
