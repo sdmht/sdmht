@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Construct 3 解除客户端限制
 // @namespace    star2000
-// @version      2.2
+// @version      2.3
 // @description  模拟个人专业版许可证，以解除客户端里无需后端支持的部分功能限制，比如事件数、效果数、层数、字体数
 // @author       star2000
 // @match        https://*.construct.net/*
@@ -12,42 +12,35 @@
 // ==/UserScript==
 'use strict'
 
+const userId = 1,
+  userName = 'poor only',
+  licenseType = 'personal'
+
+function stringToArrayBuffer(t) {
+  return new TextEncoder('utf-8').encode(t).buffer
+}
+let shuffle = (t) => ''
+function customSHA(t) {
+  return window.isSecureContext
+    ? crypto.subtle.digest('SHA-256', t).then(shuffle)
+    : Promise.reject(new Error('web crypto only available on secure origins'))
+}
+function generateHash(t) {
+  return 'string' == typeof t && (t = stringToArrayBuffer(t)), customSHA(t)
+}
 if (location.href.includes('account')) {
-  function uN(t) {
-    return t.map((t) => String.fromCharCode(t)).join('')
-  }
-  function K9(t) {
-    return 'string' == typeof t
-  }
-  function zt(t) {
-    if (!K9(t)) throw new TypeError('expected string')
-  }
-  function vei(t) {
-    return zt(t), new TextEncoder('utf-8').encode(t).buffer
-  }
-  Crypto = {}
-  const ya = '00'
-  Crypto.Kni = function (t) {
+  shuffle = function (t) {
     let i = ''
     const e = new DataView(t)
     for (let t = 0; t < e.byteLength; ++t) {
       const s = e.getUint8(t).toString(16)
-      i += (ya + s).slice(-ya.length)
+      i += ('00' + s).slice(-2)
     }
     return i
   }
-  Crypto.qni = function (t) {
-    return 'string' == typeof t && (t = vei(t)), Crypto.Xni(t)
-  }
-  Crypto.Xni = function (t) {
-    return window.isSecureContext
-      ? crypto.subtle.digest('SHA-256', t).then(Crypto.Kni)
-      : Promise.reject(new Error('web crypto only available on secure origins'))
-  }
-
   async function genLicense() {
     const license = {}
-    license.type = 'personal'
+    license.type = licenseType
     license.scriptingEnabled = true
     license.verificationDate = new Date().toISOString()
 
@@ -57,12 +50,8 @@ if (location.href.includes('account')) {
       r = Date.now(),
       h = Math.floor(3024e5)
     if (n < r - h || n > r + h) return !1
-    let o = uN([
-        97, 118, 88, 84, 82, 51, 66, 77, 55, 75, 112, 117, 88, 66, 51, 115,
-      ]),
-      a = uN([
-        99, 74, 70, 74, 101, 72, 119, 68, 89, 72, 108, 55, 108, 112, 77, 103,
-      ])
+    let o = 'avXTR3BM7KpuXB3s',
+      a = 'cJFJeHwDYHl7lpMg'
     s.length > 4 && (o += [...e].reduce((t, i) => t + ('5' === i ? 1 : 0), 0)),
       [...e].reduce((t, i) => t + ('0' === i ? 1 : 0), 0) > 6 &&
         ((a += o.substring(0, 3)), (o = '_' + o))
@@ -73,7 +62,7 @@ if (location.href.includes('account')) {
     }
     l % 3 == 0 && (a = a.substring(0, 5))
     const u = (o + 'A' + e + 'A' + s + 'Α' + a).normalize(),
-      c = await Crypto.qni(u)
+      c = await generateHash(u)
     license.verificationHash = c.toLowerCase()
     return license
   }
@@ -108,8 +97,8 @@ if (location.href.includes('account')) {
             response: {
               newToken: crypto.randomUUID(),
               user: {
-                id: 1,
-                username: 'poor only',
+                id: userId,
+                username: userName,
                 highResAvatar: {
                   url: '/favicon.ico',
                 },
@@ -133,11 +122,11 @@ if (location.href.includes('account')) {
 
   window.addEventListener('DOMContentLoaded', async function () {
     const d = await localforage.getItem('login-data')
-    if (d && d.userID !== 1) {
+    if (d && d.userID !== userId) {
       isLogin = true
     } else {
       await localforage.setItem('login-data', {
-        userID: 1,
+        userID: userId,
         token: crypto.randomUUID(),
       })
     }
@@ -148,17 +137,11 @@ if (
   location.href.includes('editor.construct.net') &&
   location.href.endsWith('/')
 ) {
-  const ma = '0123456789abcdef',
-    license = 'personal',
-    validMS = 7 * 24 * 60 * 60 * 1000
-
   function randomInt(t) {
     return Math.floor(Math.random() * t)
   }
-  function stringToArrayBuffer(t) {
-    return new TextEncoder('utf-8').encode(t).buffer
-  }
-  function shuffle(t) {
+  const ma = '0123456789abcdef'
+  shuffle = function (t) {
     let i = ''
     const e = new Uint8Array(t)
     for (let t = 0; t < e.length; ++t) {
@@ -168,16 +151,8 @@ if (
     }
     return i
   }
-  function customSHA(t) {
-    return window.isSecureContext
-      ? crypto.subtle.digest('SHA-256', t).then(shuffle)
-      : Promise.reject(new Error('web crypto only available on secure origins'))
-  }
-  function generateHash(t) {
-    return 'string' == typeof t && (t = stringToArrayBuffer(t)), customSHA(t)
-  }
-
-  async function generateLoginRecord(userName, userId) {
+  const validMS = 7 * 24 * 60 * 60 * 1000
+  async function generateLoginRecord() {
     const mainScript = document.querySelector('script[src*="main"]')
     if (!mainScript) return
     const mainJsResp = await fetch(mainScript.src)
@@ -211,7 +186,7 @@ if (
         '.' +
         '.' +
         s +
-        license +
+        licenseType +
         n +
         Math.floor(now / 14 + expirationTime / 14 - s) +
         salt,
@@ -226,7 +201,7 @@ if (
       now,
       userId,
       n,
-      license,
+      licenseType,
       r,
       expirationTime,
       Infinity,
@@ -241,6 +216,6 @@ if (
       await new Promise((resolve) => setTimeout(resolve, 100))
     }
     await localforage.removeItem(',')
-    await localforage.setItem('.', await generateLoginRecord('poor only', 1))
+    await localforage.setItem('.', await generateLoginRecord())
   })
 }
