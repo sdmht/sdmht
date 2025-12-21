@@ -12,7 +12,7 @@
 ```sh
 Set-ExecutionPolicy rem -s c;iwr -useb https://ghfast.top/https://raw.githubusercontent.com/star2000/scoop/master/install.ps1 | iex
 scoop install git
-git clone -b dev --depth=1 https://github.com/sdmht/sdmht
+git clone -b dev --depth=1 https://ghfast.top/https://github.com/sdmht/sdmht
 ```
 2. [安装用户脚本管理插件](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao)，然后[安装 Construct3 解限脚本](https://github.com/sdmht/sdmht/raw/refs/heads/dev/c3-unlimited.user.js)
 3. [打开 Construct3 编辑器](https://editor.construct.net/beta)
