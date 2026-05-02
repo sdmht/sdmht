@@ -6,17 +6,25 @@
 
 ## 关于开发
 
-如果买了 Construct3 个人版，跳过步骤 2
+### 1、下载项目
 
-1. 打开文件管理器找个放源码的合适位置，鼠标右击选`在终端中打开`，然后执行以下命令
+打开文件管理器找个放源码的合适位置，鼠标右击选`在终端中打开`，然后执行以下命令
+
 ```sh
-Set-ExecutionPolicy rem -s c;iwr -useb https://ghfast.top/https://raw.githubusercontent.com/star2000/scoop/master/install.ps1 | iex
-scoop install git
+if (!(gcm git -ea SilentlyContinue)){
+    Set-ExecutionPolicy rem -s c;iwr -useb https://ghfast.top/https://raw.githubusercontent.com/star2000/scoop/master/install.ps1 | iex
+    scoop install git
+}
 git clone -b dev --depth=1 https://ghfast.top/https://github.com/sdmht/sdmht
 ```
-2. [安装用户脚本管理插件](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao)，然后[安装 Construct3 解限脚本](https://github.com/sdmht/sdmht/raw/refs/heads/dev/c3-unlimited.user.js)
-3. [打开 Construct3 编辑器](https://editor.construct.net/beta)
-4. 点击展开`打开文件`，点击`项目文件夹`，选择仓库目录下的`src`目录，点击`打开`，注意保存
+
+### 2、编辑器解限
+
+[安装用户脚本管理插件](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao)，然后[安装 Construct3 解限脚本](https://ghfast.top/https://raw.githubusercontent.com/sdmht/sdmht/refs/heads/dev/c3-unlimited.user.js)
+
+### 3、打开项目
+
+[打开 Construct3 编辑器](https://editor.construct.net/beta)，然后点击展开`打开文件`，点击`项目文件夹`，选择仓库目录下的`src`目录，点击`打开`
 
 ## 关于提交
 
