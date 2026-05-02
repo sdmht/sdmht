@@ -1,6 +1,6 @@
 {
 	"projectFormatVersion": 1,
-	"savedWithRelease": 46300,
+	"savedWithRelease": 48300,
 	"name": "神代梦华谭",
 	"runtime": "c3",
 	"useWorker": "auto",
@@ -33,7 +33,7 @@
 			"name": "Spine",
 			"author": "Esoteric Software",
 			"bundled": true,
-			"version": "1.0.0.1",
+			"version": "4.3.0",
 			"sdkVersion": 2
 		},
 		{
@@ -15577,6 +15577,10 @@
 		"items": [],
 		"subfolders": []
 	},
+	"models3d": {
+		"items": [],
+		"subfolders": []
+	},
 	"properties": {
 		"description": "区区关服拦不住我重写一个",
 		"version": "1.0.0.0",
@@ -15586,7 +15590,7 @@
 		"authorWebsite": "https://sdmht-dev.star2000.work",
 		"appId": "work.star2000.sdmht-dev",
 		"pixelRounding": false,
-		"zAxisScale": "normalized",
+		"zAxisScale": "regular",
 		"fov": 0.7853981633974483,
 		"useLoaderLayout": false,
 		"fullscreenMode": "letterbox-scale",
@@ -15616,6 +15620,7 @@
 		"multitexturing": "auto",
 		"gpuPreference": "high-performance",
 		"framerateMode": "vsync",
+		"fixedFramerate": 30,
 		"sampling": "trilinear",
 		"downscaling": "medium",
 		"renderingMode": "auto",
