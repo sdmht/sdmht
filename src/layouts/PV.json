@@ -22,10 +22,6 @@
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 559904561345599,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -41,7 +37,7 @@
 							1,
 							1
 						],
-						"zElevation": 0
+						"z": 0
 					}
 				}
 			],
@@ -63,6 +59,7 @@
 				1
 			],
 			"isTransparent": false,
+			"sampling": "auto",
 			"parallaxX": 1,
 			"parallaxY": 1,
 			"scaleRate": 1,
@@ -75,16 +72,13 @@
 			"global": false
 		}
 	],
-	"scene-graphs-folder-root": {
-		"items": [],
-		"subfolders": []
-	},
 	"sid": 474619227480313,
 	"nonworld-instances": [],
 	"effectTypes": [],
 	"width": 1920,
 	"height": 1080,
 	"unboundedScrolling": false,
+	"sampling": "auto",
 	"vpX": 0.5,
 	"vpY": 0.5,
 	"projection": "perspective",

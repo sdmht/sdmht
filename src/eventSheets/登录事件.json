@@ -95,10 +95,11 @@
 					"objectClass": "道德天尊",
 					"sid": 393078638354509,
 					"parameters": {
-						"track": "0",
+						"track-index": "0",
 						"animation": "\"eye_on\"",
 						"loop": false,
-						"delay": "0"
+						"delay": "0",
+						"additive": "disabled"
 					}
 				},
 				{
@@ -106,10 +107,11 @@
 					"objectClass": "道德天尊",
 					"sid": 307669004064494,
 					"parameters": {
-						"track": "0",
+						"track-index": "0",
 						"animation": "\"eye\"",
 						"loop": true,
-						"delay": "0"
+						"delay": "0",
+						"additive": "disabled"
 					}
 				}
 			],

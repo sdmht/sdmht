@@ -20,10 +20,6 @@
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 743833100137840,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -39,8 +35,8 @@
 							1,
 							1
 						],
-						"angle": 0,
-						"zElevation": 0
+						"z": 0,
+						"angle": 0
 					}
 				},
 				{
@@ -57,10 +53,6 @@
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 317069301225031,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -76,8 +68,8 @@
 							1,
 							1
 						],
-						"angle": 0,
-						"zElevation": 0
+						"z": 0,
+						"angle": 0
 					}
 				},
 				{
@@ -94,10 +86,6 @@
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 843280524541093,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -113,8 +101,8 @@
 							1,
 							1
 						],
-						"angle": 0,
-						"zElevation": 0
+						"z": 0,
+						"angle": 0
 					}
 				},
 				{
@@ -135,10 +123,6 @@
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 819003256634892,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -165,23 +149,20 @@
 						"spine-skin": "",
 						"spine-animation": "eye_off",
 						"spine-debug-skeleton": false,
+						"spine-enable-collision": false,
 						"spine-bounds-provider": "setup",
 						"spine-bounds-provider-move": false,
 						"spine-bounds-offset-x": 0,
 						"spine-bounds-offset-y": 0,
 						"spine-bounds-offset-angle": 0,
-						"spine-scale-x": 0.505879203609948,
-						"spine-scale-y": 0.5058792036099481
+						"spine-offset-scale-x": 1,
+						"spine-offset-scale-y": 1
 					},
 					"uid": 753005,
 					"sid": 805382778965061,
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 805382778965061,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -197,6 +178,7 @@
 							1,
 							1
 						],
+						"z": 0,
 						"angle": 0
 					}
 				}
@@ -219,6 +201,7 @@
 				1
 			],
 			"isTransparent": false,
+			"sampling": "auto",
 			"parallaxX": 1,
 			"parallaxY": 1,
 			"scaleRate": 1,
@@ -231,37 +214,13 @@
 			"global": false
 		}
 	],
-	"scene-graphs-folder-root": {
-		"items": [
-			{
-				"sid": 743833100137840,
-				"expanded": true
-			},
-			{
-				"sid": 317069301225031,
-				"expanded": true
-			},
-			{
-				"sid": 843280524541093,
-				"expanded": true
-			},
-			{
-				"sid": 819003256634892,
-				"expanded": true
-			},
-			{
-				"sid": 805382778965061,
-				"expanded": true
-			}
-		],
-		"subfolders": []
-	},
 	"sid": 925811504241298,
 	"nonworld-instances": [],
 	"effectTypes": [],
 	"width": 1920,
 	"height": 1080,
 	"unboundedScrolling": false,
+	"sampling": "auto",
 	"vpX": 0.5,
 	"vpY": 0.5,
 	"projection": "perspective",
