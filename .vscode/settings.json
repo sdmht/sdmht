@@ -3,7 +3,6 @@
   "editor.guides.bracketPairs": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
   "typescript.tsdk": "node_modules/typescript/lib",
   "[properties][ignore][dotenv]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"

@@ -191,7 +191,17 @@ module.exports = configure(function (ctx) {
         name: '神代梦华谭',
         short_name: '神代梦华谭',
         description: '区区关服拦不住我重写一个',
-        display_override: ['window-control-overlay', 'minimal-ui'],
+        start_url: './',
+        display_override: ['window-controls-overlay', 'minimal-ui'],
+        lang: 'zh',
+        related_applications: [
+          {
+            platform: 'windows',
+            url: 'https://apps.microsoft.com/detail/9P2MQ5C547KT',
+            id: '9P2MQ5C547KT',
+          },
+        ],
+        categories: ['games'],
         display: 'standalone',
         orientation: 'landscape',
         background_color: '#000000',
