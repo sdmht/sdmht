@@ -26,7 +26,7 @@ function customSHA(t) {
     : Promise.reject(new Error('web crypto only available on secure origins'))
 }
 function generateHash(t) {
-  return 'string' == typeof t && (t = stringToArrayBuffer(t)), customSHA(t)
+  return ('string' == typeof t && (t = stringToArrayBuffer(t)), customSHA(t))
 }
 if (location.href.includes('account')) {
   shuffle = function (t) {
@@ -52,9 +52,10 @@ if (location.href.includes('account')) {
     if (n < r - h || n > r + h) return !1
     let o = 'avXTR3BM7KpuXB3s',
       a = 'cJFJeHwDYHl7lpMg'
-    s.length > 4 && (o += [...e].reduce((t, i) => t + ('5' === i ? 1 : 0), 0)),
+    ;(s.length > 4 &&
+      (o += [...e].reduce((t, i) => t + ('5' === i ? 1 : 0), 0)),
       [...e].reduce((t, i) => t + ('0' === i ? 1 : 0), 0) > 6 &&
-        ((a += o.substring(0, 3)), (o = '_' + o))
+        ((a += o.substring(0, 3)), (o = '_' + o)))
     let l = 0
     for (const t of e) {
       const i = Number(t)
@@ -113,7 +114,7 @@ if (location.href.includes('account')) {
             headers: new Headers({
               'Content-Type': 'application/json',
             }),
-          }
+          },
         )
       }
     }
@@ -159,10 +160,10 @@ if (
     const mainJsText = await mainJsResp.text()
     const releaseRangeEnd = mainJsText.lastIndexOf('.URL=')
     const releaseRangeStart = mainJsText.lastIndexOf('{}', releaseRangeEnd)
-    const release = parseInt(
+    const release = Number(
       mainJsText
         .substring(releaseRangeStart, releaseRangeEnd)
-        .match(/\d{3,}/)[0]
+        .match(/[e\d]{3,}/)[0],
     )
     const saltRangeEnd = mainJsText.lastIndexOf('localforage.setItem("."')
     const saltRangeStart = mainJsText.lastIndexOf('+', saltRangeEnd)
