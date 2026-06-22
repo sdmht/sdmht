@@ -1,0 +1,18 @@
+diff --git a/node_modules/playwright-core/lib/coreBundle.js b/node_modules/playwright-core/lib/coreBundle.js
+index 1d36a37..a98897c 100644
+--- a/node_modules/playwright-core/lib/coreBundle.js
++++ b/node_modules/playwright-core/lib/coreBundle.js
+@@ -29199,7 +29199,12 @@ Run "${buildPlaywrightCLICommand(sdkLanguage, "install " + name)}"` : "";
+         const customHostOverride = downloadHostEnv && getFromENV(downloadHostEnv) || getFromENV("PLAYWRIGHT_DOWNLOAD_HOST");
+         if (customHostOverride)
+           mirrors = [customHostOverride];
+-        return mirrors.map((mirror) => `${mirror}/${downloadPath}`);
++        return mirrors.map((mirror) => {
++          let path = downloadPath
++          if (!(mirror.includes('playwright')))
++            path = path.substring(path.indexOf(descriptor.browserVersion))
++          return `${mirror}/${path}`
++        });
+       }
+       async _downloadExecutable(descriptor, force, executablePath) {
+         const downloadURLs = this._downloadURLs(descriptor);
