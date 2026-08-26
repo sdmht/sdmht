@@ -1717,6 +1717,9 @@ class 单位类 extends 目标类 {
   阵营!: number
   类型!: string
   莫非王土 = false
+  离场中 = false
+  离场排队 = false
+  本链已复活 = false
   get 移动消耗() {
     return this.本回合移动次数 ? 0 : 1
   }
@@ -1897,22 +1900,38 @@ class 单位类 extends 目标类 {
       this.emit('移动力变化时')
     })
     this.on('离场', () => {
-      this.emit('离场前')
-      let _莫非王土 = false
-      if (this.莫非王土) {
-        this.莫非王土 = false
-        _莫非王土 = true
-      } else {
-        _.remove(目标类.目标列表, (v) => v.id === this.id)
+      if (this.离场中) {
+        this.离场排队 = true
+        return
       }
-      this.emit('离场时')
-      行动队列类.发送通知({
-        message: `${this.是否我方 ? '我方' : '敌方'}${this.类型}${
-          this.卡牌名称
-        }离场`,
-        color: 'negative',
-      })
-      if (!_莫非王土) this.emit('完全离场')
+      this.离场中 = true
+      let _迭代 = 0
+      do {
+        this.离场排队 = false
+        if (++_迭代 > 16) {
+          console.warn('[离场] 循环超过 16 次，强制中断:', this.卡牌名称)
+          break
+        }
+        this.emit('离场前')
+        let _莫非王土 = false
+        if (!this.本链已复活 && this.莫非王土) {
+          this.莫非王土 = false
+          _莫非王土 = true
+          this.本链已复活 = true
+        } else {
+          _.remove(目标类.目标列表, (v) => v.id === this.id)
+        }
+        this.emit('离场时')
+        行动队列类.发送通知({
+          message: `${this.是否我方 ? '我方' : '敌方'}${this.类型}${
+            this.卡牌名称
+          }离场`,
+          color: 'negative',
+        })
+        if (!_莫非王土) this.emit('完全离场')
+      } while (this.离场排队)
+      this.离场中 = false
+      this.本链已复活 = false
     })
     this.on('角色销毁', () => {
       _.remove(目标类.目标列表, (v) => v.id === this.id)
