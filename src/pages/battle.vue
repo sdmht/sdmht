@@ -405,7 +405,23 @@ onMounted(async () => {
     移动力: number
   }> = []
   let 正在展示技能 = false
-  const 正在展示的技能Key = new Set<string>()
+  // 用于 UI 层：同一个角色在队列中的连续动画只保留一个（最后一个）
+  // 不拦截不同携带者之间的交错，也不拦截同一角色不同技能交替显示（只要队列中不是连续即可）
+  function 入队并折叠同角色连续(信息: {
+    携带者编号: number
+    [k: string]: unknown
+  }) {
+    // 若队尾条目来自同一角色（"连续"），则直接用新条目替换旧条目，达到只显示一个的效果
+    if (
+      技能展示队列.length > 0 &&
+      技能展示队列[技能展示队列.length - 1].携带者编号 === 信息.携带者编号
+    ) {
+      技能展示队列[技能展示队列.length - 1] =
+        信息 as (typeof 技能展示队列)[number]
+    } else {
+      技能展示队列.push(信息 as (typeof 技能展示队列)[number])
+    }
+  }
   // 神威动画播放中标记
   let 神威播放中 = false
   let 神威完成等待者: Array<() => void> = []
@@ -435,13 +451,8 @@ onMounted(async () => {
     攻击力: number
     移动力: number
   }) {
-    // 去重：同一携带者的同一技能不重复显示
-    const key = `${技能信息.携带者编号}_${技能信息.技能名称}`
-    if (正在展示的技能Key.has(key)) return
-    正在展示的技能Key.add(key)
-
-    // 加入队列
-    技能展示队列.push(技能信息)
+    // 入队并折叠同角色的连续动画：若队尾已是同一角色则替换，否则追加
+    入队并折叠同角色连续(技能信息)
     if (正在展示技能) return
     正在展示技能 = true
 
@@ -455,7 +466,6 @@ onMounted(async () => {
 
     while (技能展示队列.length > 0) {
       const 当前技能 = 技能展示队列.shift()!
-      const 当前key = `${当前技能.携带者编号}_${当前技能.技能名称}`
       try {
         // 等待神威动画播放完毕
         await 等待神威完成()
@@ -468,7 +478,6 @@ onMounted(async () => {
         const 设计宽 = Math.min(宽, 高 * 1.295)
         const 设计高 = 设计宽 / 1.295
         const 设计X = (宽 - 设计宽) / 2
-        const 设计Y = (高 - 设计高) / 2
 
         // 1. 暗色遮罩（变暗效果，全屏）
         const 变暗遮罩 = new PIXI.Graphics()
@@ -620,7 +629,6 @@ onMounted(async () => {
 
         const 顶部显示高 = 顶部区域高 * 缩放比
         const 拉伸显示高 = 拉伸区域高 * 拉伸倍数 * 缩放比
-        const 底部显示高 = 底部区域高 * 缩放比
 
         const 总X = 信息栏X
         const 总Y = 信息栏Y
@@ -859,14 +867,10 @@ onMounted(async () => {
         // 清除展示层并重置透明度
         技能展示层.removeChild(...技能展示层.children)
         技能展示层.alpha = 1
-        // 释放去重锁
-        正在展示的技能Key.delete(当前key)
       } catch (e) {
         // 出错时清空展示层并重置透明度
         技能展示层.removeChild(...技能展示层.children)
         技能展示层.alpha = 1
-        // 释放去重锁
-        正在展示的技能Key.delete(当前key)
       }
     }
     正在展示技能 = false

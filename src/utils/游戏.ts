@@ -2169,6 +2169,7 @@ class 单位类 extends 目标类 {
       message: `装填弹幕：${弹幕卡.卡牌名称}`,
       caption: 弹幕卡.描述,
       color: this.是否我方 ? 'blue' : 'red',
+      显示气泡: true,
     })
     return true
   }
@@ -2927,10 +2928,12 @@ class 神迹卡类 extends 牌类 {
         message: `使用神迹：${this.卡牌名称}`,
         caption: this.描述,
         color: this.是否我方 ? 'blue' : 'red',
+        显示气泡: true,
       })
       行动队列类.发送通知({
         message: '秘术发动：争议',
         color: 'negative',
+        显示气泡: true,
       })
     } else {
       if (this.类型 == '秘术卡') {
@@ -2975,6 +2978,7 @@ class 神迹卡类 extends 牌类 {
           message: `使用神迹：${this.卡牌名称}`,
           caption: this.描述,
           color: this.是否我方 ? 'blue' : 'red',
+          显示气泡: true,
         })
         this.技能 = new 技能类(this.技能编号, this.玩家.主神)
         this.技能.once('触发时', () => {
