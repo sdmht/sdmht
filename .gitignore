@@ -148,3 +148,4 @@ dist
 
 /*.ps1
 /.deploy_ignore
+.trae/rules/git-commit-message.md

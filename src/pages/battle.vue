@@ -38,6 +38,7 @@ import {
   播放攻击语音,
   播放攻击音效,
   播放神威语音,
+  播放技能语音,
   播放角色背景音乐,
   播放音频,
 } from 'src/utils/播放音频'
@@ -385,6 +386,509 @@ onMounted(async () => {
   战斗画框.stage.addChild(神威动画层)
   const 攻击动画层 = new PIXI.Container()
   战斗画框.stage.addChild(攻击动画层)
+  const 技能展示层 = new PIXI.Container()
+  技能展示层.sortableChildren = true
+  技能展示层.zIndex = 999
+  战斗画框.stage.addChild(技能展示层)
+
+  // 技能展示队列
+  let 技能展示队列: Array<{
+    技能名称: string
+    技能描述: string
+    携带者编号: number
+    美术资源: number[]
+    是否我方: boolean
+    卡牌名称: string
+    携带者类型: string
+    生命值: number
+    攻击力: number
+    移动力: number
+  }> = []
+  let 正在展示技能 = false
+  const 正在展示的技能Key = new Set<string>()
+  // 神威动画播放中标记
+  let 神威播放中 = false
+  let 神威完成等待者: Array<() => void> = []
+
+  function 等待神威完成() {
+    if (!神威播放中) return Promise.resolve()
+    return new Promise<void>((resolve) => {
+      神威完成等待者.push(resolve)
+    })
+  }
+
+  function 神威完成() {
+    神威播放中 = false
+    const 等待者 = 神威完成等待者.splice(0)
+    等待者.forEach((r) => r())
+  }
+
+  async function 显示技能UI(技能信息: {
+    技能名称: string
+    技能描述: string
+    携带者编号: number
+    美术资源: number[]
+    是否我方: boolean
+    卡牌名称: string
+    携带者类型: string
+    生命值: number
+    攻击力: number
+    移动力: number
+  }) {
+    // 去重：同一携带者的同一技能不重复显示
+    const key = `${技能信息.携带者编号}_${技能信息.技能名称}`
+    if (正在展示的技能Key.has(key)) return
+    正在展示的技能Key.add(key)
+
+    // 加入队列
+    技能展示队列.push(技能信息)
+    if (正在展示技能) return
+    正在展示技能 = true
+
+    // 加载Action_bg背景（仅首次）
+    let 动作背景纹理: PIXI.Texture | null = null
+    try {
+      动作背景纹理 = await PIXI.Assets.load('pvp/shader/Action_bg.webp')
+    } catch {
+      // 忽略
+    }
+
+    while (技能展示队列.length > 0) {
+      const 当前技能 = 技能展示队列.shift()!
+      const 当前key = `${当前技能.携带者编号}_${当前技能.技能名称}`
+      try {
+        // 等待神威动画播放完毕
+        await 等待神威完成()
+
+        // 等待一小段时间，确保动画不重叠
+        await 等待(0.3)
+
+        // 移动端适配：以1040×803设计比例（≈1.295:1）等比缩放整个技能展示UI，
+        // 窄屏（竖屏）时设计区域按宽度收缩并在屏幕上居中，PC端与原值完全一致
+        const 设计宽 = Math.min(宽, 高 * 1.295)
+        const 设计高 = 设计宽 / 1.295
+        const 设计X = (宽 - 设计宽) / 2
+        const 设计Y = (高 - 设计高) / 2
+
+        // 1. 暗色遮罩（变暗效果，全屏）
+        const 变暗遮罩 = new PIXI.Graphics()
+        变暗遮罩.beginFill(0x000000, 0.7)
+        变暗遮罩.drawRect(0, 0, 宽, 高)
+        变暗遮罩.endFill()
+        变暗遮罩.zIndex = 0
+        技能展示层.addChild(变暗遮罩)
+
+        // 2. Action_bg 背景图（缩小并下移），记录渲染区域供立绘相对定位
+        // 宽度优先：竖屏铺满120%屏宽（左右各溢出屏幕10%，等比缩放）；
+        // 横屏/PC保持原设计大小（0.522倍满屏，不超过设计宽度）
+        let 背景X = 设计X
+        let 背景显示宽 = 设计宽 * 0.522
+        let 背景显示高 = 设计高 * 0.522
+        const 背景Y = 高 * 0.25
+        if (动作背景纹理) {
+          const 动作背景 = new PIXI.Sprite(动作背景纹理)
+          const 纹理宽 = 动作背景.texture.width
+          const 纹理高 = 动作背景.texture.height
+          const 缩放X = 宽 < 高 ? (宽 * 1.5) / 纹理宽 : (宽 / 纹理宽) * 0.522
+          const 缩放Y = 宽 < 高 ? 缩放X : (高 / 纹理高) * 0.522
+          // 敌方水平翻转
+          动作背景.scale.set(当前技能.是否我方 ? 缩放X : -缩放X, 缩放Y)
+          // 向下偏移
+          动作背景.y = 背景Y
+          背景显示宽 = 动作背景.texture.width * 缩放X
+          背景显示高 = 动作背景.texture.height * 缩放Y
+          // 向屏幕中心收拢（水平方向移动剩余边距的50%）
+          const 背景边距 = 宽 - 背景显示宽
+          背景X = 当前技能.是否我方
+            ? 背景边距 * 0.5
+            : 宽 - 背景显示宽 - 背景边距 * 0.5
+          if (当前技能.是否我方) {
+            // 我方：左对齐+向中心收拢
+            动作背景.x = 背景X
+          } else {
+            // 敌方：右对齐+向中心收拢（翻转后 x 为图像右边缘）
+            动作背景.x = 背景X + 背景显示宽
+          }
+          动作背景.zIndex = 1
+          技能展示层.addChild(动作背景)
+        }
+
+        // 3. 角色半身立绘（相对立绘背景定位：宽度为背景宽的65%，居中于背景，随背景宽度缩放）
+        let 角色立绘: PIXI.Sprite | null = null
+        let 立绘宽度 = 0
+        let 立绘高度 = 0
+        const 立绘路径 = 获得资源(
+          当前技能.美术资源,
+          (f, i) => f === `character/CharacterStand_${i}.webp`
+        )
+        if (立绘路径) {
+          try {
+            角色立绘 = await 加载子画面(立绘路径)
+            const 目标宽度 = 背景显示宽 * 0.65
+            const 缩放比 = 目标宽度 / 角色立绘.width
+            立绘宽度 = 角色立绘.width * 缩放比
+            立绘高度 = 角色立绘.height * 缩放比
+            const 立绘Y = 背景Y + (背景显示高 - 立绘高度) / 2
+            角色立绘.scale.set(缩放比)
+            角色立绘.x = 背景X + (背景显示宽 - 立绘宽度) / 2
+            角色立绘.y = 立绘Y
+            if (!当前技能.是否我方) {
+              角色立绘.scale.x = -缩放比
+              角色立绘.x = 背景X + (背景显示宽 + 立绘宽度) / 2
+            }
+            角色立绘.zIndex = 2
+            技能展示层.addChild(角色立绘)
+          } catch {
+            角色立绘 = null
+          }
+        }
+
+        // 3b. 立绘上的技能名称 + 描述
+        if (角色立绘) {
+          const 文字最大宽度 = 立绘宽度 * 0.75
+          const 立绘中心X = 当前技能.是否我方
+            ? 角色立绘.x + 立绘宽度 / 2
+            : 角色立绘.x - 立绘宽度 / 2
+          const 立绘中心Y = 角色立绘.y + 立绘高度 / 2
+          const 文字左边X = 立绘中心X - 文字最大宽度 / 2
+          const 技能名称Y = 立绘中心Y - 立绘高度 * 0.05
+
+          const 技能名称文字 = new PIXI.Text(当前技能.技能名称, {
+            fill: 0xffeecc,
+            fontSize: 背景显示高 * 0.048, // 随背景缩放（PC端803高≈20px）
+            fontWeight: 'bold',
+            stroke: 0x332200,
+            strokeThickness: 背景显示高 * 0.0077,
+            wordWrap: true,
+            breakWords: true,
+            wordWrapWidth: 文字最大宽度,
+            align: 'left',
+          })
+          技能名称文字.anchor.set(0, 0.5)
+          技能名称文字.x = 文字左边X
+          技能名称文字.y = 技能名称Y
+          技能名称文字.zIndex = 3
+          技能展示层.addChild(技能名称文字)
+
+          const 技能描述文字 = new PIXI.Text(当前技能.技能描述, {
+            fill: 0xffeecc,
+            fontSize: 背景显示高 * 0.042, // 随背景缩放（PC端803高≈18px）
+            stroke: 0x332200,
+            strokeThickness: 背景显示高 * 0.0057,
+            wordWrap: true,
+            breakWords: true,
+            wordWrapWidth: 文字最大宽度,
+            align: 'left',
+          })
+          技能描述文字.anchor.set(0, 0)
+          技能描述文字.x = 文字左边X
+          技能描述文字.y =
+            技能名称Y + 技能名称文字.height / 2 + 背景显示高 * 0.0077
+          技能描述文字.zIndex = 3
+          技能展示层.addChild(技能描述文字)
+        }
+
+        // 4. 顶部信息栏（我方/敌方底图 + 头像 + 名称 + 属性图标）
+        // 竖屏：底图铺满95%屏宽；横屏/PC：保持原设计大小（未拉伸高=基准*0.4，基准=0.8*设计宽/4.14）
+        // 信息栏边界=底图实际渲染边界，内部元素基于信息栏基准（未拉伸高/0.4）缩放
+        const 信息栏Y = 高 * 0.05
+
+        // 4a. 信息栏底图（1/2到2/3处拉伸，其余正常）
+        const 底图资源名 = 当前技能.是否我方
+          ? 'pvp/jifang juese.webp'
+          : 'pvp/difang juese.webp'
+        const 底图纹理 = await PIXI.Assets.load(底图资源名)
+        const 原始宽 = 底图纹理.width
+        const 原始高 = 底图纹理.height
+        const 顶部区域高 = (原始高 * 6) / 10
+        const 拉伸起始Y = (原始高 * 6) / 10
+        const 拉伸结束Y = (原始高 * 7) / 10
+        const 拉伸区域高 = 拉伸结束Y - 拉伸起始Y
+        const 底部区域高 = 原始高 - 拉伸结束Y
+        const 拉伸倍数 = 11
+
+        // 竖屏：底图铺满95%屏宽；横屏/PC：保持原设计大小（底图宽≈0.5*设计宽）
+        const 缩放比 =
+          宽 < 高
+            ? (宽 * 0.95) / 原始宽
+            : ((设计宽 * 0.8) / 4.14 / 原始高) * 0.4
+        // 信息栏边界 = 底图实际渲染边界（信息栏高度 = 底图拉伸后总高）
+        const 信息栏宽度 = 原始宽 * 缩放比
+        // 元素基准：底图未拉伸高 = 基准*0.4，故 基准 = 未拉伸高/0.4
+        const 信息栏基准 = (原始高 * 缩放比) / 0.4
+        const 信息栏X = (宽 - 信息栏宽度) / 2
+
+        const 顶部显示高 = 顶部区域高 * 缩放比
+        const 拉伸显示高 = 拉伸区域高 * 拉伸倍数 * 缩放比
+        const 底部显示高 = 底部区域高 * 缩放比
+
+        const 总X = 信息栏X
+        const 总Y = 信息栏Y
+
+        // 上1/2 正常
+        const 顶纹理 = new PIXI.Texture(
+          底图纹理,
+          new PIXI.Rectangle(0, 0, 原始宽, 顶部区域高)
+        )
+        const 顶部精灵 = new PIXI.Sprite(顶纹理)
+        顶部精灵.scale.set(缩放比)
+        顶部精灵.x = 总X
+        顶部精灵.y = 总Y
+        顶部精灵.zIndex = 3
+        技能展示层.addChild(顶部精灵)
+
+        // 1/2 到 2/3 区域拉伸
+        const 中纹理 = new PIXI.Texture(
+          底图纹理,
+          new PIXI.Rectangle(0, 拉伸起始Y, 原始宽, 拉伸区域高)
+        )
+        const 中部精灵 = new PIXI.Sprite(中纹理)
+        中部精灵.scale.set(缩放比, 缩放比 * 拉伸倍数)
+        中部精灵.x = 总X
+        中部精灵.y = 总Y + 顶部显示高
+        中部精灵.zIndex = 3
+        技能展示层.addChild(中部精灵)
+
+        // 2/3 到底部 正常
+        const 底纹理 = new PIXI.Texture(
+          底图纹理,
+          new PIXI.Rectangle(0, 拉伸结束Y, 原始宽, 底部区域高)
+        )
+        const 底部精灵 = new PIXI.Sprite(底纹理)
+        底部精灵.scale.set(缩放比)
+        底部精灵.x = 总X
+        底部精灵.y = 总Y + 顶部显示高 + 拉伸显示高
+        底部精灵.zIndex = 3
+        技能展示层.addChild(底部精灵)
+
+        // 4b. 头像（对准底图左侧头像框区域：横向约3.5%~24%底图宽）
+        const 头像左X = 信息栏X + 信息栏基准 * 0.055
+        const 头像纹理路径 = 获得资源(
+          当前技能.美术资源,
+          (f, i) => f === `character/CharacterHeadL_${i}.webp`
+        )
+        // 头像铺满头像框内部宽度（框约0.205底图宽）
+        const 头像区域宽 = 信息栏基准 * 0.8
+        if (头像纹理路径) {
+          try {
+            const 头像纹理 = await PIXI.Assets.load(头像纹理路径)
+            const 头像精灵 = new PIXI.Sprite(头像纹理)
+            const 原头像缩放 =
+              (头像区域宽 * 0.78) / Math.max(头像纹理.width, 头像纹理.height)
+            // 头像框相对于中心缩小到95%（中心位置保持不变）
+            const 头像缩放 = 原头像缩放 * 0.95
+            const 原显示宽 = 头像纹理.width * 原头像缩放
+            const 原显示高 = 头像纹理.height * 原头像缩放
+            const 新显示宽 = 头像纹理.width * 头像缩放
+            const 新显示高 = 头像纹理.height * 头像缩放
+            const 头像中心X = 头像左X + 原显示宽 / 2
+            // 头像顶部与底图显示区顶部对齐，略微下移
+            const 头像中心Y = 信息栏Y + 原显示高 / 2 + 信息栏基准 * 0.04
+            头像精灵.scale.set(头像缩放)
+            头像精灵.x = 头像中心X - 新显示宽 / 2
+            头像精灵.y = 头像中心Y - 新显示高 / 2
+            if (!当前技能.是否我方) {
+              头像精灵.scale.x = -头像缩放
+              头像精灵.x = 头像中心X + 新显示宽 / 2
+            }
+            头像精灵.zIndex = 2 // 放在信息栏底图（zIndex=3）下层
+            技能展示层.addChild(头像精灵)
+          } catch {
+            // 忽略
+          }
+        }
+
+        // 4c. 角色名（头像底部叠加，缩小到85%并向上移动）
+        const 名字底图纹理 = await PIXI.Assets.load('pvp/juese mingcheng.webp')
+        const 名字底图 = new PIXI.Sprite(名字底图纹理)
+        const 名字缩放 = ((头像区域宽 * 0.95) / 名字底图纹理.width) * 0.85
+        名字底图.scale.set(名字缩放)
+        const 名字显示宽 = 名字底图纹理.width * 名字缩放
+        // 名字底图与头像水平居中对齐（多出部分均分），贴头像框底部
+        const 名字X = 头像左X + (头像区域宽 * 0.78 - 名字显示宽) / 2
+        const 名字Y = 信息栏Y + 信息栏基准 * 0.57
+        名字底图.x = 名字X
+        名字底图.y = 名字Y
+        if (!当前技能.是否我方) {
+          名字底图.scale.x = -名字缩放
+          名字底图.x = 名字X + 名字显示宽
+        }
+        名字底图.zIndex = 5
+        技能展示层.addChild(名字底图)
+
+        const 名字文字 = new PIXI.Text(当前技能.卡牌名称, {
+          fill: 0xffffff,
+          fontSize: 信息栏基准 * 0.07,
+          stroke: 0x000000,
+          strokeThickness: 设计高 * 0.0025,
+        })
+        名字文字.anchor.set(0.5, 0.5)
+        名字文字.x = 名字X + 名字显示宽 / 2
+        名字文字.y = 名字Y + 名字底图.height * 0.45
+        名字文字.zIndex = 6
+        技能展示层.addChild(名字文字)
+
+        // 4d. 属性图标 + 数值（生命/攻击/移动）
+        const 属性区域X = 信息栏X + 信息栏基准 * 1.421
+        const 属性Y = 信息栏Y + 信息栏基准 * 0.03
+        const 图标大小 = 信息栏基准 * 0.28 * 0.7 // 图标缩小80%
+        const 属性间距 = 信息栏基准 * 0.298
+
+        // 生命图标 + 数值
+        const 生命图标纹理 = await PIXI.Assets.load(
+          'pvp/juese icon shengming.webp'
+        )
+        const 生命图标 = new PIXI.Sprite(生命图标纹理)
+        const 生命缩放 =
+          图标大小 / Math.max(生命图标纹理.width, 生命图标纹理.height)
+        生命图标.scale.set(生命缩放)
+        生命图标.x = 属性区域X
+        生命图标.y = 属性Y
+        生命图标.zIndex = 4
+        技能展示层.addChild(生命图标)
+
+        const 命数值 = new PIXI.Text(`${当前技能.生命值}`, {
+          fill: 0x90ee90, // 浅绿
+          fontSize: 信息栏基准 * 0.1,
+          stroke: 0x332200,
+          strokeThickness: 设计高 * 0.004,
+        })
+        命数值.x = 属性区域X + 图标大小 - 信息栏基准 * 0.0157
+        命数值.y = 属性Y + 图标大小 * 0.35
+        命数值.zIndex = 4
+        技能展示层.addChild(命数值)
+
+        // 攻击图标 + 数值
+        const 攻击图标纹理 = await PIXI.Assets.load(
+          'pvp/juese icon gongji.webp'
+        )
+        const 攻击图标 = new PIXI.Sprite(攻击图标纹理)
+        攻击图标.scale.set(生命缩放)
+        攻击图标.x = 属性区域X + 属性间距
+        攻击图标.y = 属性Y
+        攻击图标.zIndex = 4
+        技能展示层.addChild(攻击图标)
+
+        const 攻数值 = new PIXI.Text(`${当前技能.攻击力}`, {
+          fill: 0xff9999, // 浅红
+          fontSize: 信息栏基准 * 0.1,
+          stroke: 0x332200,
+          strokeThickness: 设计高 * 0.004,
+        })
+        攻数值.x = 属性区域X + 属性间距 + 图标大小 - 信息栏基准 * 0.0157
+        攻数值.y = 属性Y + 图标大小 * 0.35
+        攻数值.zIndex = 4
+        技能展示层.addChild(攻数值)
+
+        // 移动图标 + 数值
+        const 移动图标纹理 = await PIXI.Assets.load(
+          'pvp/juese icon yidong.webp'
+        )
+        const 移动图标 = new PIXI.Sprite(移动图标纹理)
+        移动图标.scale.set(生命缩放)
+        移动图标.x = 属性区域X + 属性间距 * 2
+        移动图标.y = 属性Y
+        移动图标.zIndex = 4
+        技能展示层.addChild(移动图标)
+
+        const 移数值 = new PIXI.Text(`${当前技能.移动力}`, {
+          fill: 0xadd8e6, // 浅蓝
+          fontSize: 信息栏基准 * 0.1,
+          stroke: 0x332200,
+          strokeThickness: 设计高 * 0.004,
+        })
+        移数值.x = 属性区域X + 属性间距 * 2 + 图标大小 - 信息栏基准 * 0.0157
+        移数值.y = 属性Y + 图标大小 * 0.35
+        移数值.zIndex = 4
+        技能展示层.addChild(移数值)
+
+        // 4e. 信息栏内的技能描述（与立绘上同格式）
+        const 信息栏文字X = 属性区域X - 信息栏基准 * 0.6955
+        const 信息栏字号 = 信息栏基准 * 0.08
+        // 按字号相对比例约束换行宽度（基准：803高下30px≈高*0.037），且不超出信息栏右边界
+        const 信息栏可用宽 =
+          信息栏X + 信息栏宽度 - 信息栏文字X - 信息栏基准 * 0.0994
+        const 信息栏文字宽 = Math.min(
+          信息栏可用宽 * (信息栏字号 / (设计高 * 0.037)) * 1.3,
+          信息栏可用宽
+        )
+        const 信息栏描述Y = 信息栏Y + 信息栏基准 * 0.25
+
+        const 信息栏技能描述 = new PIXI.Text(当前技能.技能描述, {
+          fill: 0xffeecc,
+          fontSize: 信息栏字号,
+          stroke: 0x332200,
+          strokeThickness: 设计高 * 0.004,
+          wordWrap: true,
+          breakWords: true,
+          wordWrapWidth: 信息栏文字宽,
+          align: 'left',
+        })
+        信息栏技能描述.anchor.set(0, 0)
+        信息栏技能描述.x = 信息栏文字X
+        信息栏技能描述.y = 信息栏描述Y
+        信息栏技能描述.zIndex = 6
+        技能展示层.addChild(信息栏技能描述)
+
+        // 播放技能语音
+        try {
+          播放技能语音(当前技能.美术资源)
+        } catch {
+          // 忽略语音错误
+        }
+
+        // 显示1.5秒后淡出
+        await 等待(1.5)
+
+        // 淡出动画
+        const 淡出时间 = 0.3
+        const 开始时间 = Date.now()
+        await new Promise<void>((resolve) => {
+          function 淡出动画() {
+            const 进度 = (Date.now() - 开始时间) / (淡出时间 * 1000)
+            if (进度 >= 1) {
+              resolve()
+            } else {
+              技能展示层.alpha = 1 - 进度
+              requestAnimationFrame(淡出动画)
+            }
+          }
+          淡出动画()
+        })
+
+        // 清除展示层并重置透明度
+        技能展示层.removeChild(...技能展示层.children)
+        技能展示层.alpha = 1
+        // 释放去重锁
+        正在展示的技能Key.delete(当前key)
+      } catch (e) {
+        // 出错时清空展示层并重置透明度
+        技能展示层.removeChild(...技能展示层.children)
+        技能展示层.alpha = 1
+        // 释放去重锁
+        正在展示的技能Key.delete(当前key)
+      }
+    }
+    正在展示技能 = false
+  }
+
+  玩家类.事件.on(
+    '技能触发时',
+    (参数: {
+      技能名称: string
+      技能描述: string
+      携带者编号: number
+      美术资源: number[]
+      是否我方: boolean
+      卡牌名称: string
+      携带者类型: string
+      生命值: number
+      攻击力: number
+      移动力: number
+    }) => {
+      显示技能UI(参数)
+    }
+  )
 
   const 我方主神 = 玩家.主神
   玩家.主神.获得角色(位宽).then((角色) => 角色层.children[0].addChild(角色))
@@ -693,6 +1197,8 @@ onMounted(async () => {
           const re = 是否我方 ? 1 : -1
           const 主神 = 是否我方 ? 玩家.主神 : 玩家.敌方玩家.主神
           主神.emit('发动神威')
+          // 标记神威播放中，暂停技能UI显示
+          神威播放中 = true
           const 神威背光 = await PIXI.Texture.fromURL(
             获得资源(主神.美术资源, (f, i) => f === `flash/FlashBG_${i}.webp`)!
           )
@@ -753,6 +1259,8 @@ onMounted(async () => {
             神威动画.spineData.findAnimation('newAnimation')?.duration || 3
           )
           神威动画层.removeChild(...神威动画层.children)
+          // 神威动画完成，恢复技能UI显示
+          神威完成()
           行动队列类.行动队列.完成渲染()
           return
         }

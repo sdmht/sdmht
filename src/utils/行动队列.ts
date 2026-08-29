@@ -45,22 +45,26 @@ class 行动队列类 extends EventEmitter {
     message,
     color,
     caption,
+    显示气泡 = false,
   }: {
     message: string
     caption?: string
     color: string
+    显示气泡?: boolean
   }) {
     行动队列类.通知列表.unshift({
       消息: message,
       说明: caption,
       颜色: color,
     })
-    Notify.create({
-      message: message,
-      caption: caption,
-      color: color,
-      timeout: 666,
-    })
+    if (显示气泡) {
+      Notify.create({
+        message: message,
+        caption: caption,
+        color: color,
+        timeout: 666,
+      })
+    }
   }
 }
 export { 行动队列类 }
