@@ -4,7 +4,6 @@ import { EventEmitter } from 'events'
 import { Notify } from 'quasar'
 import SimplePeer from 'simple-peer'
 import { graphql } from 'src/gen'
-import { watch } from 'vue'
 import { 我方编号 } from './在线'
 import { 等待 } from './等待'
 import { 位置类型 } from './类型'
@@ -41,9 +40,10 @@ type 初始数据类型 = {
     编号: number
   }[]
 }
+type 行动数据类型 = { 序号: number; 行动: 行动类型 }
 type 数据同步类型 =
   | { k: '初始数据'; v: 初始数据类型 }
-  | { k: '行动'; v: 行动类型 }
+  | { k: '行动'; v: 行动数据类型 }
 
 class 数据通道类 extends EventEmitter {
   emit(name: string, ...args: unknown[]) {
@@ -58,6 +58,8 @@ class 数据通道类 extends EventEmitter {
   }
 
   连接成功 = false
+  // 本局发送行动的递增序号，供对端还原接收顺序
+  行动序号 = 0
 
   开始匹配(格: number) {
     const 服务端通道 = useSubscription(
@@ -166,22 +168,35 @@ class 数据通道类 extends EventEmitter {
     })
     this.on('收到信令', (d) => 点对点通道.signal(d))
     点对点通道.on('signal', (d) => this.emit('发送信令', d))
-    点对点通道.on('connect', () => this.emit('点对点连接成功'))
+    点对点通道.on('connect', () => {
+      // 在事件回调里同步设置状态，避免 watch 异步触发造成的竞态窗口
+      this.点对点已连接 = true
+      this.emit('点对点连接成功')
+    })
+    点对点通道.on('close', () => {
+      // 断开后自动降级为服务器中转
+      this.点对点已连接 = false
+    })
     点对点通道.on('data', (d) =>
       this.emit('收到数据', JSON.parse(d.toString()))
     )
-    watch(
-      () => 点对点通道.connected,
-      (connected) => (this.点对点已连接 = connected)
-    )
     this.on('发送数据', (d) => {
-      点对点通道.send(JSON.stringify(d))
+      try {
+        点对点通道.send(JSON.stringify(d))
+      } catch {
+        // 点对点通道已失效，降级为服务器中转，保证行动不丢失
+        this.点对点已连接 = false
+        this.emit('发送信令', d)
+      }
     })
     this.on('销毁', () => {
       点对点通道.destroy()
     })
   }
 
+  发送行动(行动: 行动类型) {
+    this.发送数据({ k: '行动', v: { 序号: this.行动序号++, 行动 } })
+  }
   发送数据(d: 数据同步类型) {
     if (this.点对点已连接) {
       this.emit('发送数据', d)
@@ -191,4 +206,4 @@ class 数据通道类 extends EventEmitter {
   }
 }
 
-export { 初始数据类型, 数据同步类型, 数据通道类, 行动类型 }
+export { 初始数据类型, 数据同步类型, 行动数据类型, 数据通道类, 行动类型 }
