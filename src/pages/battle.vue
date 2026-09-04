@@ -561,13 +561,25 @@ onMounted(async () => {
         let 角色立绘: PIXI.Sprite | null = null
         let 立绘宽度 = 0
         let 立绘高度 = 0
-        const 立绘路径 = 获得资源(
+        // 有专属站立立绘则用之；没有专属立绘（或加载失败）时回退到默认立绘
+        const 专属立绘路径 = 获得资源(
           当前技能.美术资源,
           (f, i) => f === `character/CharacterStand_${i}.webp`
         )
-        if (立绘路径) {
+        for (const 候选立绘路径 of [
+          专属立绘路径,
+          'pvp/field/CharacterStand.webp',
+        ]) {
+          if (!候选立绘路径) continue
           try {
-            角色立绘 = await 加载子画面(立绘路径)
+            角色立绘 = await 加载子画面(候选立绘路径)
+            break
+          } catch {
+            角色立绘 = null
+          }
+        }
+        if (角色立绘) {
+          try {
             // 基础目标尺寸：按背景宽×0.65推导
             const 目标宽度 = 背景显示宽 * 0.65
             let 缩放比 = 目标宽度 / 角色立绘.width

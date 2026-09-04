@@ -285,6 +285,7 @@ class 技能类 extends 基类 {
   单场最大使用次数: number
   效果值: number[] = []
   附带技能: number[] = []
+  来源卡片 = false
   get 目标同父技能(): boolean {
     return (
       this.父技能 != undefined &&
@@ -422,11 +423,18 @@ class 技能类 extends 基类 {
   get 监听选择id(): number {
     return this.父技能 && this.目标同父技能 ? this.父技能.监听选择id : this.编号
   }
-  constructor(编号: number, 携带者: 单位类, 父技能?: 技能类, 神威?: boolean) {
+  constructor(
+    编号: number,
+    携带者: 单位类,
+    父技能?: 技能类,
+    神威?: boolean,
+    来源卡片 = false
+  ) {
     super()
     this.编号 = 编号
     this.携带者 = 携带者
     this.父技能 = 父技能
+    this.来源卡片 = 来源卡片
     const 信息 = 获得技能信息(编号)
     this.消耗 = 信息.消耗
     this.目标类型 = 技能类.技能目标类型[信息.目标类型]
@@ -1393,7 +1401,7 @@ class 技能类 extends 基类 {
     this.携带者.技能列表.push(this)
     this.父技能?.子技能列表.push(this)
     this.附带技能.forEach((v) => {
-      new 技能类(v, this.携带者, this, 神威)
+      new 技能类(v, this.携带者, this, 神威, this.来源卡片)
     })
   }
   是否禁止触发() {
@@ -1416,8 +1424,7 @@ class 技能类 extends 基类 {
         if (this.是否禁止触发()) return
         this.本回合使用次数++
         this.使用次数++
-        this.emit('触发', 参数)
-        // 所有技能都记录历史（不显示气泡）
+        // 所有技能都记录历史（不显示气泡），先于效果执行记录，保证日志顺序为先触发后生效
         行动队列类.发送通知({
           message: `触发技能：${this.技能名称}，携带者：${this.携带者.类型}${
             this.携带者.卡牌名称
@@ -1427,8 +1434,9 @@ class 技能类 extends 基类 {
           caption: this.技能描述,
           color: this.携带者.是否我方 ? 'blue' : 'red',
         })
-        // 非神威技能额外触发UI事件
-        if (this.编号 < 30000 || this.编号 > 50000) {
+        this.emit('触发', 参数)
+        // 非卡牌技能额外触发UI事件（神迹卡/弹幕卡自身的效果不弹立绘，避免与出卡动画重复）
+        if (!this.来源卡片) {
           玩家类.事件.emit('技能触发时', {
             技能名称: this.技能名称,
             技能描述: this.技能描述,
@@ -2004,7 +2012,8 @@ class 单位类 extends 目标类 {
     this.on('替换弹幕', (参数: { 弹幕卡编号: number }) => {
       const 弹幕卡 = new 弹幕卡类(this.玩家, 参数.弹幕卡编号)
       this.弹幕 = 弹幕卡
-      if (弹幕卡.技能编号) new 技能类(弹幕卡.技能编号, this)
+      if (弹幕卡.技能编号)
+        new 技能类(弹幕卡.技能编号, this, undefined, undefined, true)
       弹幕卡.已使用 = true
       this.emit('吟唱时间变化时')
     })
@@ -2158,7 +2167,7 @@ class 单位类 extends 目标类 {
   装填弹幕(弹幕卡: 弹幕卡类) {
     this.玩家.emit('使用弹幕卡时')
     this.弹幕 = 弹幕卡
-    if (弹幕卡.技能编号) new 技能类(弹幕卡.技能编号, this)
+    if (弹幕卡.技能编号) new 技能类(弹幕卡.技能编号, this, undefined, undefined, true)
     if (弹幕卡.是否暴露自身) {
       this.位置.解除迷雾()
     }
@@ -2980,7 +2989,7 @@ class 神迹卡类 extends 牌类 {
           color: this.是否我方 ? 'blue' : 'red',
           显示气泡: true,
         })
-        this.技能 = new 技能类(this.技能编号, this.玩家.主神)
+        this.技能 = new 技能类(this.技能编号, this.玩家.主神, undefined, undefined, true)
         this.技能.once('触发时', () => {
           this.玩家.emit('使用神迹卡时', { 神迹卡: this })
         })
