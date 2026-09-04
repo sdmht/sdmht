@@ -286,6 +286,8 @@ class 技能类 extends 基类 {
   效果值: number[] = []
   附带技能: number[] = []
   来源卡片 = false
+  // 卡牌使用技能对应的神迹卡，用于读取出卡前已选择好的目标
+  神迹卡?: 神迹卡类
   get 目标同父技能(): boolean {
     return (
       this.父技能 != undefined &&
@@ -428,13 +430,18 @@ class 技能类 extends 基类 {
     携带者: 单位类,
     父技能?: 技能类,
     神威?: boolean,
-    来源卡片 = false
+    来源卡片 = false,
+    神迹卡?: 神迹卡类,
+    仅查询目标 = false
   ) {
     super()
     this.编号 = 编号
     this.携带者 = 携带者
     this.父技能 = 父技能
     this.来源卡片 = 来源卡片
+    if (神迹卡) {
+      this.神迹卡 = 神迹卡
+    }
     const 信息 = 获得技能信息(编号)
     this.消耗 = 信息.消耗
     this.目标类型 = 技能类.技能目标类型[信息.目标类型]
@@ -450,9 +457,11 @@ class 技能类 extends 基类 {
     this.触发辅助 = 信息.触发辅助
     this.选择范围 = 信息.选择范围
     this.对敌我方 = 信息.对敌我方
-    this.携带者.玩家.on('回合开始时', () => {
-      this.本回合使用次数 = 0
-    })
+    if (!仅查询目标) {
+      this.携带者.玩家.on('回合开始时', () => {
+        this.本回合使用次数 = 0
+      })
+    }
     this.回合最大使用次数 = 信息.回合最大使用次数
     this.单场最大使用次数 = 信息.单场最大使用次数
     if (信息.附带技能) {
@@ -488,31 +497,17 @@ class 技能类 extends 基类 {
       if (this.选择规则 === '选择') {
         const 待选择的目标列表 = this.目标列表
         let 选中的目标索引: number | null = null
-        if (this.携带者.是否我方 && !this.目标同父技能) {
-          选中的目标索引 = await new Promise<number>((resolve) => {
-            Dialog.create({
-              title: '选择',
-              options: {
-                model: '0',
-                items: 待选择的目标列表.map((v, i) => ({
-                  value: `${i}`,
-                  label:
-                    v instanceof 位置类
-                      ? `第${v.行}行，第${v.列}列`
-                      : v instanceof 单位类
-                      ? `${v.类型}${v.卡牌名称}，第${v.位置.行}，第行${v.位置.列}列`
-                      : `${Object.getPrototypeOf(v).constructor.name}${v.id}`,
-                })),
-              },
-              cancel: false,
-              persistent: true,
-            }).onOk((v) => {
-              resolve(v)
-            })
-          })
+        if (this.来源卡片 && this.神迹卡 && this.神迹卡.本次使用选择 != null) {
+          // 出卡前已在本地选好目标，选择随“使用神迹”行动同步到两端，直接采用
+          选中的目标索引 = this.神迹卡.本次使用选择
+        } else if (this.携带者.是否我方 && !this.目标同父技能) {
+          选中的目标索引 = await 弹窗选择目标(待选择的目标列表)
+          if (选中的目标索引 === null) {
+            return
+          }
           行动队列类.行动队列.添加(['选择', this.编号, 选中的目标索引])
         } else {
-          选中的目标索引 = await new Promise<number>((resolve) => {
+          选中的目标索引 = await new Promise<number | null>((resolve) => {
             const handler = (是否我方: boolean, 行动: 行动类型) => {
               if (行动[0] == '选择' && 行动[1] == this.监听选择id) {
                 行动队列类.行动队列.removeListener('结算', handler)
@@ -521,6 +516,9 @@ class 技能类 extends 基类 {
             }
             行动队列类.行动队列.on('结算', handler)
           })
+          if (选中的目标索引 === null) {
+            return
+          }
         }
         const 选中的目标 = 待选择的目标列表[选中的目标索引] as 目标类
         this._目标列表缓存 =
@@ -1223,14 +1221,15 @@ class 技能类 extends 基类 {
         this.emit('触发时')
       })
     })
-    switch (this.何时触发) {
-      case '发动时':
-        if (神威) {
-          this.携带者.on('发动神威', () => {
+    if (!仅查询目标) {
+      switch (this.何时触发) {
+        case '发动时':
+          if (神威) {
+            this.携带者.on('发动神威', () => {
+              this.触发()
+            })
+          } else {
             this.触发()
-          })
-        } else {
-          this.触发()
         }
         break
       case '被攻击时':
@@ -1364,45 +1363,48 @@ class 技能类 extends 基类 {
             this.触发()
         })
         break
+      }
     }
-    switch (this.效果描述) {
-      case '攻击消耗选择范围点行动点':
-        this.携带者.回合首次攻击消耗 = this.选择范围
-        break
-      case '生命值无法降低到1点以下':
-        this.目标列表.forEach((v) => {
-          if (v instanceof 单位类) {
-            v.永生 = true
-          }
-        })
-        break
-      case '自身受到的伤害降低效果值点':
-        this.目标列表.forEach((v) => {
-          if (v instanceof 单位类) {
-            v.忍耐 = this.效果值[0]
-          }
-        })
-        break
-      case '攻击不可解除迷雾':
-        this.目标列表.forEach((v) => {
-          if (v instanceof 单位类) {
-            v.攻击可解除迷雾 = false
-          }
-        })
-        break
-      case '无效化对手的神迹卡':
-        this.目标列表.forEach((v) => {
-          if (v instanceof 玩家类) {
-            v.无效化下次使用的神迹卡 = true
-          }
-        })
-        break
+    if (!仅查询目标) {
+      switch (this.效果描述) {
+        case '攻击消耗选择范围点行动点':
+          this.携带者.回合首次攻击消耗 = this.选择范围
+          break
+        case '生命值无法降低到1点以下':
+          this.目标列表.forEach((v) => {
+            if (v instanceof 单位类) {
+              v.永生 = true
+            }
+          })
+          break
+        case '自身受到的伤害降低效果值点':
+          this.目标列表.forEach((v) => {
+            if (v instanceof 单位类) {
+              v.忍耐 = this.效果值[0]
+            }
+          })
+          break
+        case '攻击不可解除迷雾':
+          this.目标列表.forEach((v) => {
+            if (v instanceof 单位类) {
+              v.攻击可解除迷雾 = false
+            }
+          })
+          break
+        case '无效化对手的神迹卡':
+          this.目标列表.forEach((v) => {
+            if (v instanceof 玩家类) {
+              v.无效化下次使用的神迹卡 = true
+            }
+          })
+          break
+      }
+      this.携带者.技能列表.push(this)
+      this.父技能?.子技能列表.push(this)
+      this.附带技能.forEach((v) => {
+        new 技能类(v, this.携带者, this, 神威, this.来源卡片, this.神迹卡)
+      })
     }
-    this.携带者.技能列表.push(this)
-    this.父技能?.子技能列表.push(this)
-    this.附带技能.forEach((v) => {
-      new 技能类(v, this.携带者, this, 神威, this.来源卡片)
-    })
   }
   是否禁止触发() {
     return (
@@ -2882,6 +2884,10 @@ class 弹幕卡类 extends 牌类 {
 class 神迹卡类 extends 牌类 {
   技能编号: number
   技能!: 技能类
+  // 出卡前选定的技能目标索引，随“使用神迹”行动同步给对端
+  本次使用选择?: number
+  // 出卡前选定的装填单位索引，随“使用神迹”行动同步给对端
+  本次装填选择?: number
   get 消耗() {
     return Math.max(0, this._消耗 + this.玩家.回合首次神迹卡消耗变化值)
   }
@@ -2929,7 +2935,36 @@ class 神迹卡类 extends 牌类 {
     this.玩家.回合首次神迹卡消耗变化值 = 0
     this.已使用 = true
   }
+  /** 神迹卡使用前需要选定的目标候选；无需选择时返回 undefined */
+  使用前目标候选(): 目标类[] | undefined {
+    if (this.类型 != '神迹卡') {
+      return undefined
+    }
+    const 预览技能 = new 技能类(
+      this.技能编号,
+      this.玩家.主神,
+      undefined,
+      undefined,
+      true,
+      this,
+      true
+    )
+    if (预览技能.选择规则 !== '选择') {
+      return undefined
+    }
+    return 预览技能.目标列表
+  }
+  /** 秘术卡使用前需要选定的装填单位候选 */
+  使用前装填候选(): 单位类[] {
+    return this.类型 == '秘术卡'
+      ? this.我方(单位类).filter((v) => v.可否装填)
+      : []
+  }
   async 使用() {
+    if (!this.已使用) {
+      // 出卡前取消了这张卡的使用时不会入队，不会走到这里
+      return
+    }
     let 秘术装填单位: 单位类 | undefined
     if (this.玩家.无效化下次使用的神迹卡) {
       this.玩家.无效化下次使用的神迹卡 = false
@@ -2948,26 +2983,17 @@ class 神迹卡类 extends 牌类 {
       if (this.类型 == '秘术卡') {
         const 我方单位列表 = this.我方(单位类).filter((v) => v.可否装填)
         let 选中的单位索引: number | null = null
-        if (this.是否我方) {
-          选中的单位索引 = await new Promise<number>((resolve) => {
-            Dialog.create({
-              title: '选择',
-              options: {
-                model: '0',
-                items: 我方单位列表.map((v, i) => ({
-                  value: `${i}`,
-                  label: `${v.类型}${v.卡牌名称}，第${v.位置.行}，第行${v.位置.列}列`,
-                })),
-              },
-              cancel: false,
-              persistent: true,
-            }).onOk((v) => {
-              resolve(v)
-            })
-          })
+        if (this.本次装填选择 != null) {
+          // 出卡前已选好装填单位，选择随“使用神迹”行动同步到两端，直接采用
+          选中的单位索引 = this.本次装填选择
+        } else if (this.是否我方) {
+          选中的单位索引 = await 弹窗选择目标(我方单位列表, true)
+          if (选中的单位索引 === null) {
+            return
+          }
           行动队列类.行动队列.添加(['选择', this.id, 选中的单位索引])
         } else {
-          选中的单位索引 = await new Promise<number>((resolve) => {
+          选中的单位索引 = await new Promise<number | null>((resolve) => {
             const handler = (是否我方: boolean, 行动: 行动类型) => {
               if (行动[0] == '选择' && 行动[1] == this.id) {
                 行动队列类.行动队列.removeListener('结算', handler)
@@ -2976,6 +3002,9 @@ class 神迹卡类 extends 牌类 {
             }
             行动队列类.行动队列.on('结算', handler)
           })
+          if (选中的单位索引 === null) {
+            return
+          }
         }
         秘术装填单位 = 我方单位列表[选中的单位索引]
       }
@@ -2989,7 +3018,14 @@ class 神迹卡类 extends 牌类 {
           color: this.是否我方 ? 'blue' : 'red',
           显示气泡: true,
         })
-        this.技能 = new 技能类(this.技能编号, this.玩家.主神, undefined, undefined, true)
+        this.技能 = new 技能类(
+          this.技能编号,
+          this.玩家.主神,
+          undefined,
+          undefined,
+          true,
+          this
+        )
         this.技能.once('触发时', () => {
           this.玩家.emit('使用神迹卡时', { 神迹卡: this })
         })
@@ -2997,6 +3033,42 @@ class 神迹卡类 extends 牌类 {
     }
     this.玩家.emit('手牌数量变化时')
   }
+}
+/**
+ * 选择目标弹窗。允许取消时返回 null，不允许取消时取消不可用、不会返回 null。
+ */
+export function 弹窗选择目标(
+  目标列表: 目标类[],
+  允许取消 = false,
+  标题 = '选择'
+): Promise<number | null> {
+  return new Promise((resolve) => {
+    const 弹窗 = Dialog.create({
+      title: 标题,
+      options: {
+        model: '0',
+        items: 目标列表.map((v, i) => ({
+          value: `${i}`,
+          label:
+            v instanceof 位置类
+              ? `第${v.行}行，第${v.列}列`
+              : v instanceof 单位类
+              ? `${v.类型}${v.卡牌名称}，第${v.位置.行}行，第${v.位置.列}列`
+              : `${Object.getPrototypeOf(v).constructor.name}${v.id}`,
+        })),
+      },
+      cancel: 允许取消 ? '取消' : false,
+      persistent: true,
+    })
+    弹窗.onOk((v) => {
+      resolve(v)
+    })
+    if (允许取消) {
+      弹窗.onCancel(() => {
+        resolve(null)
+      })
+    }
+  })
 }
 let 游戏开始前执行的函数: [(...args: unknown[]) => void, number, boolean][] = []
 function 游戏开始前执行(

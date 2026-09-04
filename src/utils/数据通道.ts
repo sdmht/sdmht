@@ -15,7 +15,7 @@ type 行动类型 =
   | ['回合结束']
   | ['祈愿']
   | ['装填弹幕', number, number]
-  | ['使用神迹', number]
+  | ['使用神迹', number, number?, number?]
   | ['选择', number, number]
   | ['投降']
 
