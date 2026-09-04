@@ -80,8 +80,12 @@ function 播放技能语音(美术资源: number[]) {
 function 播放攻击音效(美术资源: number[]) {
   return 播放语音(美术资源, 'SoundAtk')
 }
+// 当前正在播放的场地BGM（场景背景音乐），角色BGM播完后需要恢复它
+let 场地音乐文件 = ''
 async function 播放场景背景音乐(url: string) {
   const 音频元素 = 获得音频元素('bgm')
+  场地音乐文件 = url
+  音频元素.onended = null
   音频元素.src = url
   音频元素.loop = true
   音频元素.volume = 0.15
@@ -102,8 +106,21 @@ async function 播放角色背景音乐(美术资源: number[]) {
   const 文件 = 获得资源(美术资源, (f, i) => f === `bgm/BGM_character_${i}.mp3`)
   if (文件 && !音频元素.src.endsWith(文件)) {
     音频元素.src = 文件
-    音频元素.loop = true
+    音频元素.loop = false
     音频元素.volume = 0.1
+    音频元素.onended = () => {
+      // 角色BGM播放完毕，恢复场地BGM；若期间已被其他BGM接管则忽略
+      const 当前音频 = 获得音频元素('bgm')
+      if (当前音频.src.endsWith(文件) && 场地音乐文件) {
+        当前音频.src = 场地音乐文件
+        当前音频.loop = true
+        当前音频.volume = 0.15
+        当前音频.onended = null
+        当前音频.play().catch(() => {
+          //
+        })
+      }
+    }
     await 音频元素.play()
   }
 }

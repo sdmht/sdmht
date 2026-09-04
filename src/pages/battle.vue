@@ -992,6 +992,8 @@ onMounted(async () => {
       移动力: number
     }) => {
       显示技能UI(参数)
+      // 任意单位发动技能时，随技能播放其专属BGM
+      播放角色背景音乐(参数.美术资源)
     }
   )
 
@@ -1479,7 +1481,6 @@ onMounted(async () => {
     if (状态.value == '战斗' && 玩家类.我方回合 !== false) {
       if (选中的单位.value !== undefined) {
         const 神 = 选中的单位.value
-        播放角色背景音乐(神.美术资源)
         播放待机语音(神.美术资源)
         if (神.id == 玩家.主神.id) {
           主神技能按钮.view.visible = true
