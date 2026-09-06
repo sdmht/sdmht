@@ -1,11 +1,10 @@
 import * as PXUI from '@pixi/ui'
-import { useTimeoutFn } from '@vueuse/core'
 import 静态文件列表 from 'assets/index.json'
 import EventEmitter from 'events'
 import _ from 'lodash'
 import * as PXSP from 'pixi-spine'
 import * as PIXI from 'pixi.js'
-import { Dialog, Notify } from 'quasar'
+import { Dialog } from 'quasar'
 import { nextTick } from 'vue'
 import {
   主神皮肤,
@@ -29,6 +28,7 @@ import {
 import { 初始数据类型, 行动类型 } from './数据通道'
 import { 获得资源 } from './美术资源'
 import { 行动队列类 } from './行动队列'
+import { 等待 } from './等待'
 
 EventEmitter.defaultMaxListeners = 0
 
@@ -120,17 +120,19 @@ class 事件类 extends EventEmitter {
 }
 class 基类 extends 事件类 {
   id: number
-  constructor() {
+  // 个别对象（如位置）传确定性 id，不消耗编号流；
+  // 其余一律从编号流取，保证两端同种子的对象 id 一致。
+  constructor(自定义id?: number) {
     super()
-    this.id = 随机类.随机编号()
+    this.id = 自定义id ?? 随机类.随机编号()
   }
 }
 class 目标类 extends 基类 {
   static 目标列表: 目标类[] = []
   是否我方: boolean
   效果列表: 效果类[] = []
-  constructor(是否我方: boolean) {
-    super()
+  constructor(是否我方: boolean, 自定义id?: number) {
+    super(自定义id)
     this.是否我方 = 是否我方
     目标类.目标列表.push(this)
   }
@@ -146,6 +148,22 @@ class 目标类 extends 基类 {
   }
 }
 
+/** 演出闸门：非卡牌技能触发后，等它的技能立绘面板播完再结算效果。
+ *  需要时先让出当前同步调用栈——触发()中会在 emit('触发') 返回后才挂上立绘展示。
+ *  战斗页每播完一张面板就按 FIFO 放行一个等待中的效果，
+ *  实现“每张面板播完立即结算它的效果，结算完再播下一张”。
+ *  无界面环境（立绘未在播放）时立即放行，不影响非战斗场景的纯逻辑执行。 */
+async function 等技能演出播完(需要等: boolean) {
+  if (!需要等) return
+  // 先让出当前同步调用栈——触发()中会在 emit('触发') 返回后才挂上立绘展示
+  await 等待(0)
+  if (行动队列类.行动队列.技能展示中) {
+    // 只等待自己那张面板放行即可（FIFO），无需等队列全部播完
+    await new Promise<void>((resolve) => {
+      行动队列类.行动队列.技能展示完成等待者.push(resolve)
+    })
+  }
+}
 class 技能类 extends 基类 {
   static 技能何时触发: Record<string, string> = {
     '0': '发动时',
@@ -526,6 +544,8 @@ class 技能类 extends 基类 {
     }
     this.on('触发', async (参数: Record<string, unknown>) => {
       this._目标列表缓存 = undefined
+      // 非卡牌技能：先播完技能立绘面板再结算效果（神迹卡/弹幕卡效果由出卡演出垫后）
+      await 等技能演出播完(!this.来源卡片)
       switch (this.目标类型) {
         case '攻击命中的单位':
           this._目标列表 = 参数.攻击命中的单位列表 as 单位类[]
@@ -1683,7 +1703,13 @@ class 位置类 extends 目标类 {
   迷雾不可被解除 = false
 
   constructor(玩家: 玩家类, 行: number, 列: number) {
-    super(玩家.是否我方)
+    // 位置不占用编号随机流，用确定性 id：
+    // 对端重建在影子计算中执行并回滚编号流，若位置用随机 id，其“影子 id”会被之后
+    // 真实创建的新对象（新卡/新单位等）复播撞号，导致按 id 反查行动对象时取错。
+    super(
+      玩家.是否我方,
+      (玩家.是否我方 ? 1 : 2) * 1000000 + 行 * 100 + 列
+    )
     this.玩家 = 玩家
     this.行 = 行
     this.列 = 列
@@ -2541,24 +2567,12 @@ class 主神类 extends 单位类 {
       this.emit('变化时')
     })
     this.on('完全离场时', () => {
-      if (!玩家类.游戏结束)
-        if (this.是否我方) {
-          Notify.create({
-            message: '我方主神死亡，战斗失败，5秒后刷新页面',
-            type: 'negative',
-          })
-          播放音频('prefab/pvp/失败_01.mp3')
-        } else {
-          Notify.create({
-            message: '对方主神死亡，战斗胜利，5秒后刷新页面',
-            type: 'positive',
-          })
-          播放音频('prefab/pvp/胜利_01.mp3')
-        }
+      // 只登记败方并置为游戏结束。胜负宣告等全部动画/结算播完后再由战场页统一处理，
+      // 避免结算画面打断还在播放的动画（如神威、技能立绘、受击特效等）。
+      if (!玩家类.游戏结束) {
+        玩家类.战败方是否我方 = this.是否我方
+      }
       玩家类.游戏结束 = true
-      useTimeoutFn(() => {
-        location.reload()
-      }, 5000)
     })
     this.emit('创建时')
   }
@@ -3154,6 +3168,9 @@ class 玩家类 extends 目标类 {
   static 我方回合?: boolean
   static 倒计时 = Date.now() + 1000 * 60
   static 游戏结束 = false
+  // 首个主神完全离场的一方视为败方；undefined 表示胜负未分。
+  // 由战场页在所有动画播完后依据此字段宣告胜败
+  static 战败方是否我方?: boolean
   static 重置倒计时() {
     this.倒计时 = Date.now() + 1000 * 60
   }
@@ -3161,6 +3178,8 @@ class 玩家类 extends 目标类 {
   敌方玩家!: 玩家类
   // 在构造函数的两个分支中赋值，其中一个分支包在闭包里，类型分析无法识别
   主神!: 主神类
+  // 开局本地随机生成，随初始数据发给对端，两端比大小定先后手
+  抢先值 = Math.random()
   格 = 4
   我方先手?: boolean
   回合数 = 0
@@ -3304,6 +3323,7 @@ class 玩家类 extends 目标类 {
         // 位置、单位、手牌都按对端数据还原，id随后被对端同步来的id覆盖。
         // 双方卡组规模不同，格子数和对象数也不同，这里的随机消耗必须整段屏蔽，
         // 否则两端随机流推进次数不同，开局就错位。
+        this.抢先值 = 卡组.抢先值
         const 位置 = this.我方(位置类).find(
           (x) => x.行 == 卡组.主神.位置.行 && x.列 == 卡组.主神.位置.列
         )!

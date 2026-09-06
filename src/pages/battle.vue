@@ -75,11 +75,15 @@ function 投降并刷新() {
 const q = useQuasar()
 
 let 强制结束回合: ReturnType<typeof setInterval> | undefined
+let 检查游戏结束: ReturnType<typeof setInterval> | undefined
+// 胜负是否已宣告（等全部动画播完后由战场页统一宣告，避免打断动画）
+let 已宣布战果 = false
 onUnmounted(() => {
   if (玩家类.游戏已开始) {
     行动队列类.行动队列.添加(['投降'])
   }
   clearInterval(强制结束回合)
+  clearInterval(检查游戏结束)
   location.reload()
 })
 
@@ -440,6 +444,24 @@ onMounted(async () => {
     等待者.forEach((r) => r())
   }
 
+  // 是否有尚未播完的行动动画/技能立绘展示。
+  // 此期间禁止新增输入，回合倒计时冻结不计数，且不宣告游戏结束。
+  function 有结算动画进行中() {
+    return (
+      行动队列类.行动队列.渲染中 !== undefined ||
+      行动队列类.行动队列.待渲染.length > 0 ||
+      神威播放中 ||
+      正在展示技能
+    )
+  }
+
+  // 等当前行动引发的技能立绘展示全部播完，再结算/播放下一条行动
+  async function 等待技能展示结束() {
+    while (正在展示技能 || 技能展示队列.length > 0) {
+      await 等待(0.05)
+    }
+  }
+
   // 简易补间：按时长（秒）与缓动函数逐帧更新
   function 补间(
     时长: number,
@@ -474,6 +496,8 @@ onMounted(async () => {
     入队并折叠同角色连续(技能信息)
     if (正在展示技能) return
     正在展示技能 = true
+    // 同步到逻辑层闸门：技能效果需等立绘面板播完再结算
+    行动队列类.行动队列.技能展示中 = true
 
     // 加载Action_bg背景（仅首次）
     let 动作背景纹理: PIXI.Texture | null = null
@@ -968,13 +992,64 @@ onMounted(async () => {
         // 清除展示层并重置透明度
         技能展示层.removeChild(...技能展示层.children)
         技能展示层.alpha = 1
+        // 本张立绘面板播完：立即放行它对应的技能效果结算，再播下一张
+        行动队列类.行动队列.通知技能面板播完()
       } catch (e) {
         // 出错时清空展示层并重置透明度
         技能展示层.removeChild(...技能展示层.children)
         技能展示层.alpha = 1
+        // 面板出错也放行对应效果，避免效果被永久挂起
+        行动队列类.行动队列.通知技能面板播完()
       }
     }
     正在展示技能 = false
+    行动队列类.行动队列.技能展示中 = false
+    // 收尾兜底：队列全部播完后，放行剩余等待者
+    // （同一单位连续技能折叠成一张面板等场景，一张面板可能对应多个等待者）
+    行动队列类.行动队列.通知技能展示完成()
+  }
+
+  // 出卡演出：先用神迹卡卡面短暂亮相，再结算卡牌效果（先演完再结算）。
+  // 找不到卡面贴图时直接跳过演出，避免阻塞出卡。
+  async function 演出神迹卡(神迹卡: 神迹卡类) {
+    const 图路径 = 获得资源(
+      ['L', 'M', 'S'],
+      (f, i) => f === `card/Card${i}_${神迹卡.美术资源}.webp`
+    )
+    if (!图路径) return
+    let 卡图: PIXI.Sprite
+    try {
+      卡图 = await 加载子画面(图路径)
+    } catch {
+      return
+    }
+    try {
+      const 目标高 = 高 * 0.4
+      const 缩放 = Math.min(目标高 / 卡图.height, 宽 / 卡图.width)
+      卡图.scale.set(缩放)
+      卡图.anchor.set(0.5)
+      const 中央X = 宽 / 2
+      const 中央Y = 高 * 0.42
+      卡图.alpha = 0
+      卡图.x = 中央X
+      卡图.y = 中央Y + 目标高
+      技能展示层.addChild(卡图)
+      // 从手牌方向升入屏幕中央亮相
+      await 补间(0.28, (t) => 1 - Math.pow(1 - t, 3), (p) => {
+        卡图.alpha = Math.min(p / 0.15, 1)
+        卡图.y = 中央Y + 目标高 * (1 - p)
+      })
+      await 等待(0.5)
+      // 淡出消失
+      await 补间(0.3, (t) => t * t, (p) => {
+        卡图.alpha = 1 - p
+        卡图.y = 中央Y - 目标高 * 0.12 * p
+      })
+    } finally {
+      if (卡图.parent === 技能展示层) {
+        技能展示层.removeChild(卡图)
+      }
+    }
   }
 
   玩家类.事件.on(
@@ -1103,6 +1178,8 @@ onMounted(async () => {
         播放音频('prebattle/抓起神明.mp3')
       }
     } else if (状态.value == '战斗') {
+      // 行动动画/结算播完前禁止新增任何输入
+      if (有结算动画进行中()) return
       // 检查是否点击我方单位
       if (是否在区域中(坐标, 迷雾层.children[0])) {
         const 神 = 处理选择单位(坐标, 迷雾层.children[0])
@@ -1207,6 +1284,8 @@ onMounted(async () => {
         神.更新坐标(位宽)
       }
     } else if (状态.value == '战斗') {
+      // 行动动画/结算播完前禁止新增任何输入
+      if (有结算动画进行中()) return
       if (是否在区域中(坐标, 迷雾层.children[1])) {
         if (选中的单位.value !== undefined && 选择攻击目标模式) {
           const 神 = 选中的单位.value
@@ -1249,18 +1328,29 @@ onMounted(async () => {
   主神技能按钮.view.x =
     攻击按钮组背景.x + 攻击按钮组背景.width - 主神技能按钮.view.width
   主神技能按钮.onPress.connect(() => {
-    if (玩家.主神.神威.可触发() && 行动队列类.行动队列.待渲染.length === 0) {
+    if (玩家.主神.神威.可触发() && !有结算动画进行中()) {
       行动队列类.行动队列.添加(['神威'])
     }
   })
+  // 影子计算会回滚编号流，导致之后真实创建的新对象可能与更早登记的影子对象 id 相同。
+  // 行动反查时若用 id 找到最早那个同 id 对象，会取到错误类型的对象。按「id + 期望类型 +
+  // 最近登记」选取，避免取到影子对象。
+  const 取出同id目标 = (id: number, 判定: (x: 目标类) => boolean) =>
+    [...目标类.目标列表.filter((x) => x.id == id && 判定(x))].reverse()[0]
   行动队列类.行动队列.on('结算', (是否我方: boolean, 行动: 行动类型) => {
     玩家类.重置倒计时()
     if (行动[0] == '攻击') {
-      const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
-      单位.攻击消耗结算()
+      const 单位 = 取出同id目标(
+        行动[1],
+        (x) => x instanceof 单位类
+      ) as 单位类 | undefined
+      单位?.攻击消耗结算()
     } else if (行动[0] == '移动') {
-      const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
-      单位.移动消耗结算()
+      const 单位 = 取出同id目标(
+        行动[1],
+        (x) => x instanceof 单位类
+      ) as 单位类 | undefined
+      单位?.移动消耗结算()
     } else if (行动[0] == '祈愿') {
       if (是否我方) {
         玩家.祈愿消耗结算()
@@ -1268,9 +1358,17 @@ onMounted(async () => {
         玩家.敌方玩家.祈愿消耗结算()
       }
     } else if (行动[0] == '装填弹幕') {
-      const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
-      const 弹幕卡 = 目标类.目标列表.find((x) => x.id == 行动[2]) as 弹幕卡类
-      单位.装填消耗结算(弹幕卡)
+      const 单位 = 取出同id目标(
+        行动[1],
+        (x) => x instanceof 单位类
+      ) as 单位类 | undefined
+      const 弹幕卡 = 取出同id目标(
+        行动[2],
+        (x) => x instanceof 弹幕卡类
+      ) as 弹幕卡类 | undefined
+      if (单位 && 弹幕卡) {
+        单位.装填消耗结算(弹幕卡)
+      }
     } else if (行动[0] == '神威') {
       if (是否我方) {
         玩家.主神.神威.消耗结算()
@@ -1278,7 +1376,26 @@ onMounted(async () => {
         玩家.敌方玩家.主神.神威.消耗结算()
       }
     } else if (行动[0] == '使用神迹') {
-      const 神迹卡 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 神迹卡类
+      const 同id列表 = 目标类.目标列表.filter((x) => x.id == 行动[1])
+      const 神迹卡 = 取出同id目标(
+        行动[1],
+        (x) => x instanceof 神迹卡类
+      ) as 神迹卡类 | undefined
+      if (同id列表.length > 1) {
+        console.warn(
+          '【神迹】撞号(结算)',
+          是否我方 ? '本地' : '远端',
+          JSON.stringify(行动),
+          '同id对象',
+          同id列表.map((x) => x.constructor.name),
+          '选用',
+          神迹卡?.卡牌名称
+        )
+      }
+      if (!神迹卡) {
+        console.warn('【神迹】结算未找到对应卡', JSON.stringify(行动))
+        return
+      }
       神迹卡.消耗结算()
       // 出卡前已选定的目标/装填单位随行动同步，双端在渲染技能时直接采用
       神迹卡.本次使用选择 = 行动[2]
@@ -1295,10 +1412,17 @@ onMounted(async () => {
     async (是否我方: boolean, ...行动: 行动类型) => {
       try {
         if (行动[0] == '使用神迹') {
-          const 神迹卡 = 目标类.目标列表.find(
-            (x) => x.id == 行动[1]
-          ) as 神迹卡类
-          神迹卡.使用()
+          const 神迹卡 = 取出同id目标(
+            行动[1],
+            (x) => x instanceof 神迹卡类
+          ) as 神迹卡类 | undefined
+          if (神迹卡) {
+            // 先演出（卡面亮相）再结算卡牌效果，避免伤害/迷雾先于出卡演出发生
+            await 演出神迹卡(神迹卡)
+            神迹卡.使用()
+          } else {
+            console.warn('【神迹】渲染未找到对应卡', JSON.stringify(行动))
+          }
         }
         if (行动[0] == '回合结束') {
           if (是否我方) {
@@ -1375,6 +1499,8 @@ onMounted(async () => {
           神威动画层.removeChild(...神威动画层.children)
           // 神威动画完成，恢复技能UI显示
           神威完成()
+          // 神威/触发的技能立绘面板全部播完（效果结算完）再放行下一条行动
+          await 等待技能展示结束()
           行动队列类.行动队列.完成渲染()
           return
         }
@@ -1384,15 +1510,27 @@ onMounted(async () => {
         } else {
           _d = 0
         }
+        // 收集本次行动仍在播放的特效，全部播完前不进入下一条行动的结算
+        const 攻击特效完成: Promise<void>[] = []
         if (行动[0] == '装填弹幕') {
           播放音频('prefab/pvp/storing.mp3')
-          const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
-          const 弹幕卡 = 目标类.目标列表.find(
-            (x) => x.id == 行动[2]
-          ) as 弹幕卡类
-          单位.装填弹幕(弹幕卡)
+          const 单位 = 取出同id目标(
+            行动[1],
+            (x) => x instanceof 单位类
+          ) as 单位类 | undefined
+          const 弹幕卡 = 取出同id目标(
+            行动[2],
+            (x) => x instanceof 弹幕卡类
+          ) as 弹幕卡类 | undefined
+          if (单位 && 弹幕卡) {
+            单位.装填弹幕(弹幕卡)
+          }
         } else if (行动[0] == '攻击') {
-          const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
+          const 单位 = 取出同id目标(
+            行动[1],
+            (x) => x instanceof 单位类
+          ) as 单位类 | undefined
+          if (单位) {
           const 位置 = 单位
             .敌方(位置类)
             .find((x) => x.行 == 行动[2] && x.列 == 行动[3])!
@@ -1413,11 +1551,13 @@ onMounted(async () => {
               攻击动画.scale.set(缩放比例)
               攻击动画.state.setAnimation(0, 'idle', false)
               攻击动画层.addChild(攻击动画)
-              等待(
-                攻击动画.spineData.findAnimation('idle')?.duration || 0
-              ).then(() => {
-                攻击动画层.removeChild(攻击动画)
-              })
+              攻击特效完成.push(
+                等待(
+                  攻击动画.spineData.findAnimation('idle')?.duration || 0
+                ).then(() => {
+                  攻击动画层.removeChild(攻击动画)
+                })
+              )
             }
           }
           // 待做
@@ -1426,10 +1566,19 @@ onMounted(async () => {
           // 打击3.mp3 圣盾
           // 打击4.mp3 无护甲
           播放音频(`prefab/pvp/打击${_.random(1, 4)}.mp3`)
+          // 受击特效先完整播完，再进行攻击结算（动画播完再结算，避免动画被结算打断）
+          await Promise.all(攻击特效完成)
           单位.攻击(攻击范围)
+          } else {
+            console.warn('【行动】攻击未找到对应单位', JSON.stringify(行动))
+          }
         } else if (行动[0] == '移动') {
           if (是否我方) 播放音频('prefab/pvp/角色移动.mp3')
-          const 单位 = 目标类.目标列表.find((x) => x.id == 行动[1]) as 单位类
+          const 单位 = 取出同id目标(
+            行动[1],
+            (x) => x instanceof 单位类
+          ) as 单位类 | undefined
+          if (单位) {
           const 位置 = 单位
             .我方(位置类)
             .find((x) => x.行 == 行动[2] && x.列 == 行动[3])!
@@ -1443,6 +1592,9 @@ onMounted(async () => {
             0
           )
           单位.更新坐标(位宽)
+          } else {
+            console.warn('【行动】移动未找到对应单位', JSON.stringify(行动))
+          }
         } else if (行动[0] == '祈愿') {
           播放音频('prefab/pvp/祈愿发动.mp3')
           if (是否我方) {
@@ -1451,6 +1603,9 @@ onMounted(async () => {
             玩家.敌方玩家.祈愿()
           }
         }
+        // 本行动引发的技能立绘展示全部播完，再结算/播放下一条行动
+        await Promise.all(攻击特效完成)
+        await 等待技能展示结束()
         行动队列类.行动队列.完成渲染()
       } catch (e) {
         q.notify({ message: `渲染报错：${e}`, type: 'negative' })
@@ -1464,7 +1619,11 @@ onMounted(async () => {
   攻击按钮.view.y =
     攻击按钮组背景.y + 攻击按钮组背景.height - 攻击按钮.view.height
   攻击按钮.onPress.connect(() => {
-    if (选中的单位.value !== undefined && 选中的单位.value.可攻击()) {
+    if (
+      选中的单位.value !== undefined &&
+      选中的单位.value.可攻击() &&
+      !有结算动画进行中()
+    ) {
       选择攻击目标模式 = true
     }
   })
@@ -1530,6 +1689,7 @@ onMounted(async () => {
           id: v.id,
           编号: v.编号,
         })),
+        抢先值: 玩家.抢先值,
       },
     })
     行动队列类.行动队列.on('添加', (行动) => {
@@ -1542,18 +1702,30 @@ onMounted(async () => {
       行动队列类.行动队列.接收(d.v)
     } else if (d.k == '初始数据') {
       行动队列类.行动队列.重置远程排序() // 新一局开始，清空上一局的排序状态
+      // 演出闸门复位：新一局从零开始，清除上一局残留的“立绘展示中”标志与等待者
+      行动队列类.行动队列.技能展示中 = false
+      行动队列类.行动队列.技能展示完成等待者.splice(0)
+      // 新一局开始重置胜负状态（行动队列是跨局单例，静态字段可能残留上一局的值）
+      玩家类.游戏结束 = false
+      玩家类.战败方是否我方 = undefined
+      已宣布战果 = false
       // 两端用同一对主神id推出同一随机种子，此后战斗随机流必须在两端严格同步推进
       随机类.设定种子(玩家.主神.id + d.v.主神.id)
       敌方玩家 = new 玩家类(false, d.v)
       玩家.敌方玩家 = 敌方玩家
       敌方玩家.敌方玩家 = 玩家
 
-      // id 极小概率撞号，此时由匹配发起方先手。
-      // 否则两端会同时判定“对方先手”，互相等待谁也动不了。
-      const 我方先手 =
-        玩家.主神.id !== 敌方玩家.主神.id
-          ? 玩家.主神.id > 敌方玩家.主神.id
-          : 数据通道.发起者
+      // 先后手由双方各自随机生成的抢先值比大小决定，与谁发起匹配无关。
+      // 后两级只在抢先值、主神id撞号这种几乎不可能发生的情况下兜底，
+      // 用来避免两端同时判定“对方先手”而互相等待。
+      let 我方先手: boolean
+      if (玩家.抢先值 !== 敌方玩家.抢先值) {
+        我方先手 = 玩家.抢先值 > 敌方玩家.抢先值
+      } else if (玩家.主神.id !== 敌方玩家.主神.id) {
+        我方先手 = 玩家.主神.id > 敌方玩家.主神.id
+      } else {
+        我方先手 = 数据通道.发起者
+      }
       if (我方先手) {
         玩家.回合开始()
       } else {
@@ -1605,7 +1777,11 @@ onMounted(async () => {
   }
   const 祈愿按钮 = new PXUI.Button(await 加载子画面('pvp/qiyuan.webp'))
   祈愿按钮.onPress.connect(() => {
-    if (玩家类.我方回合 !== false && 玩家.可祈愿()) {
+    if (
+      玩家类.我方回合 !== false &&
+      玩家.可祈愿() &&
+      !有结算动画进行中()
+    ) {
       行动队列类.行动队列.添加(['祈愿'])
     }
   })
@@ -1630,7 +1806,7 @@ onMounted(async () => {
     (消耗栏底框.width * 0.195) / 结束回合按钮.view.width
   )
   function 结束回合() {
-    if (玩家类.我方回合 && 行动队列类.行动队列.待渲染.length === 0) {
+    if (玩家类.我方回合 && !有结算动画进行中()) {
       选中的单位.value = undefined
       行动队列类.行动队列.添加(['回合结束'])
     }
@@ -1696,10 +1872,18 @@ onMounted(async () => {
   倒计时潜行.visible = false
   倒计时潜行.x = 消耗栏底框.x + 消耗栏底框.width - 倒计时潜行.width
   倒计时潜行.y = 消耗栏底框.y + 消耗栏底框.height - 倒计时潜行.height
+  let 上一帧时间 = Date.now()
   强制结束回合 = setInterval(() => {
     if (玩家类.我方回合 === undefined) {
+      上一帧时间 = Date.now()
       return
     }
+    const 现在 = Date.now()
+    if (有结算动画进行中()) {
+      // 行动动画/结算期间回合倒计时冻结：把这段流逝时间补回截止时间，动画耗时不计入限时
+      玩家类.倒计时 += 现在 - 上一帧时间
+    }
+    上一帧时间 = 现在
     const 倒计时 = (玩家类.倒计时 - Date.now()) / 1000
     if (倒计时 > 0) {
       if (倒计时 < 3) {
@@ -1722,11 +1906,41 @@ onMounted(async () => {
         倒计时潜行.visible = false
         倒计时结束.visible = false
       }
-    } else {
+    } else if (!有结算动画进行中()) {
+      // 动画播放期间不强制结束回合，动画播完且确实超时才结算
       结束回合()
       玩家类.重置倒计时()
     }
   }, 20)
+  // 胜负宣告：等全部动画/结算播完后再宣告胜败并安排刷新页面，避免打断动画
+  let 胜负稳定计时 = 0
+  检查游戏结束 = setInterval(() => {
+    if (!玩家类.游戏结束 || 已宣布战果) return
+    if (有结算动画进行中()) {
+      胜负稳定计时 = 0
+      return
+    }
+    胜负稳定计时 += 200
+    // 留一小段稳定空档，防止异步结算/后续动画还没进场就抢先宣告
+    if (胜负稳定计时 < 1000) return
+    已宣布战果 = true
+    if (玩家类.战败方是否我方 === true) {
+      q.notify({
+        message: '我方主神死亡，战斗失败，5秒后刷新页面',
+        type: 'negative',
+      })
+      播放音频('prefab/pvp/失败_01.mp3')
+    } else {
+      q.notify({
+        message: '对方主神死亡，战斗胜利，5秒后刷新页面',
+        type: 'positive',
+      })
+      播放音频('prefab/pvp/胜利_01.mp3')
+    }
+    useTimeoutFn(() => {
+      location.reload()
+    }, 5000)
+  }, 200)
   回合栏.addChild(倒计时结束)
   回合栏.addChild(倒计时潜行)
 
@@ -1792,6 +2006,8 @@ onMounted(async () => {
             卡面.x = _.get(卡面, '原横坐标', 原横坐标)
             卡面.y = 原纵坐标
             卡面.zIndex = 0
+            // 手牌卡（神迹/弹幕）允许在动画期间拖出，行动先入队按序串行播放；
+            // 攻击/移动/祈愿等战斗操作仍受 有结算动画进行中() 锁约束
             if (
               e &&
               e.screenY < 原纵坐标 &&
