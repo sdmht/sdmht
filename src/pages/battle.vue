@@ -1555,6 +1555,8 @@ onMounted(async () => {
     }
   })
   数据通道.on('对方掉线', () => {
+    // 已因胜利/失败结束游戏时，不再提示对方掉线（主神阵亡已安排刷新）
+    if (玩家类.游戏结束) return
     q.notify({ message: '对方掉线了，5秒后将刷新页面', type: 'warning' })
     useTimeoutFn(() => {
       location.reload()
