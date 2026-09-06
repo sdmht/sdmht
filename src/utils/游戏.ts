@@ -32,21 +32,68 @@ import { 行动队列类 } from './行动队列'
 
 EventEmitter.defaultMaxListeners = 0
 
+function 归一化种子(种子: number) {
+  return Math.abs(Math.round(种子)) % 233280
+}
+function 推进种子(种子: number) {
+  return Math.abs(_.round((种子 * 9301 + 49297) % 233280))
+}
+/** [0, 233280) 的真随机种子，两端各自独立，用于开局前生成本方对象id */
+function 本地随机种子() {
+  return 归一化种子(Math.random() * 233280)
+}
 class 随机类 {
-  static 随机数种子 = _.random(true)
+  /**
+   * 战斗随机流。两端必须严格同步推进，任何只在一端发生的消耗都会让两端随机结果
+   * 永久错位，表现为迷雾位置、随机传送落点、随机获得的卡、血量等对不上。
+   */
+  // 必须是真随机：本地玩家的主神id要在开局前生成，若两端撞成同一个值，
+  // 先后手判断会同时为假，双方都认为是对手的回合而互等
+  static 随机数种子 = 本地随机种子()
+  /**
+   * 编号随机流，只用于生成对象id，与战斗随机流分开。
+   * 开局双方卡组规模不同，各自创建对端对象的次数也不同，若共用一条流会直接错位；
+   * 抽牌堆又按id排序，编号流错位会让两端抽到不同的牌。
+   */
+  static 编号种子 = 本地随机种子()
+
+  /** 开局由双方主神id共同确定，保证两端起点完全一致 */
+  static 设定种子(种子: number) {
+    this.随机数种子 = 归一化种子(种子)
+    this.编号种子 = 归一化种子(种子 + 12345)
+  }
   /**
    * @returns 0~1的随机数
    */
   static 随机数() {
-    this.随机数种子 = Math.abs(
-      _.round((this.随机数种子 * 9301 + 49297) % 233280)
-    )
-    const 随机数 = _.round(this.随机数种子 / 233280.0, 10)
-    console.log('随机数种子', this.随机数种子, '随机数', 随机数)
-    return 随机数
+    this.随机数种子 = 推进种子(this.随机数种子)
+    return _.round(this.随机数种子 / 233280.0, 10)
   }
   static 随机编号() {
-    return Math.floor(this.随机数() * 2 ** 32) - 2 ** 31
+    // 组合两次推进，把id取值从233280种扩大到约5.4e10种。
+    // 否则一局几十个对象时，两端各自生成的id有约1%概率撞号，
+    // 撞号后 目标列表.find(x => x.id == ...) 会取到错误的对象。
+    const 高位 = 推进种子(this.编号种子)
+    const 低位 = 推进种子(高位)
+    this.编号种子 = 低位
+    return (
+      Math.floor(((高位 * 233280 + 低位) / (233280 * 233280)) * 2 ** 32) -
+      2 ** 31
+    )
+  }
+  /**
+   * 执行一段不影响战局的计算（出卡前预览可选目标、按对端数据重建对象等）。
+   * 期间消耗的随机数不会推进随机流，避免单端操作把两端随机流拉开。
+   */
+  static 影子计算<T>(计算: () => T): T {
+    const 战斗种子 = this.随机数种子
+    const 编号种子 = this.编号种子
+    try {
+      return 计算()
+    } finally {
+      this.随机数种子 = 战斗种子
+      this.编号种子 = 编号种子
+    }
   }
   static 乱序<T>(列表: T[]): T[] {
     const 随机数 = Math.floor(this.随机数() * 100)
@@ -2938,19 +2985,22 @@ class 神迹卡类 extends 牌类 {
     if (this.类型 != '神迹卡') {
       return undefined
     }
-    const 预览技能 = new 技能类(
-      this.技能编号,
-      this.玩家.主神,
-      undefined,
-      undefined,
-      true,
-      this,
-      true
-    )
-    if (预览技能.选择规则 !== '选择') {
-      return undefined
-    }
-    return 预览技能.目标列表
+    // 预览只在出卡方本地发生，若消耗随机流会让两端错位
+    return 随机类.影子计算(() => {
+      const 预览技能 = new 技能类(
+        this.技能编号,
+        this.玩家.主神,
+        undefined,
+        undefined,
+        true,
+        this,
+        true
+      )
+      if (预览技能.选择规则 !== '选择') {
+        return undefined
+      }
+      return 预览技能.目标列表
+    })
   }
   /** 秘术卡使用前需要选定的装填单位候选 */
   使用前装填候选(): 单位类[] {
@@ -3080,6 +3130,16 @@ function 游戏开始前执行(
     游戏开始前执行的函数.push([函数, 优先级, 是否我方])
   }
 }
+/**
+ * 目标所属玩家的主神id。“是否我方”在两端是相反的本地视角，
+ * 而主神id由开局数据同步过，可作为跨端一致的归属标识。
+ */
+function 获得归属主神id(目标: 目标类): number | undefined {
+  if (目标 instanceof 玩家类) {
+    return 目标.主神?.id
+  }
+  return (目标 as { 玩家?: 玩家类 }).玩家?.主神?.id
+}
 function 游戏开始前(先手是否我方: boolean) {
   游戏开始前执行的函数.sort((x, y) => x[1] - y[1])
   游戏开始前执行的函数 = _.sortBy(游戏开始前执行的函数, (x) =>
@@ -3099,7 +3159,8 @@ class 玩家类 extends 目标类 {
   }
   行动点 = 10
   敌方玩家!: 玩家类
-  主神: 主神类
+  // 在构造函数的两个分支中赋值，其中一个分支包在闭包里，类型分析无法识别
+  主神!: 主神类
   格 = 4
   我方先手?: boolean
   回合数 = 0
@@ -3217,51 +3278,61 @@ class 玩家类 extends 目标类 {
         color: 玩家类.我方回合 ? 'blue' : 'red',
       })
     })
-    this.格 = Math.max(Math.ceil(Math.sqrt(卡组.附属神.length + 1)), 4)
-    _.range(this.格).forEach((行) => {
-      _.range(this.格).forEach((列) => {
-        new 位置类(this, 行 + 1, 列 + 1)
+    const 建立战场 = () => {
+      this.格 = Math.max(Math.ceil(Math.sqrt(卡组.附属神.length + 1)), 4)
+      _.range(this.格).forEach((行) => {
+        _.range(this.格).forEach((列) => {
+          new 位置类(this, 行 + 1, 列 + 1)
+        })
       })
-    })
-    if ('主神技能' in 卡组) {
-      let 随机无单位位置: 位置类 | undefined
-      随机无单位位置 = 随机类.抽样(this.我方(位置类).filter((x) => !x.单位))!
-      this.主神 = new 主神类(this, 卡组.主神, 卡组.主神技能, 随机无单位位置)
+      if ('主神技能' in 卡组) {
+        let 随机无单位位置: 位置类 | undefined
+        随机无单位位置 = 随机类.抽样(this.我方(位置类).filter((x) => !x.单位))!
+        this.主神 = new 主神类(this, 卡组.主神, 卡组.主神技能, 随机无单位位置)
 
-      卡组.附属神.forEach((编号) => {
-        随机无单位位置 = 随机类.抽样(this.我方(位置类).filter((x) => !x.单位))
-        if (随机无单位位置) new 附属神类(this, 编号, 随机无单位位置)
-      })
-      卡组.弹幕卡.forEach((编号) => {
-        new 弹幕卡类(this, 编号)
-      })
-      卡组.神迹卡.forEach((编号) => {
-        new 神迹卡类(this, 编号)
-      })
-    } else {
-      const 位置 = this.我方(位置类).find(
-        (x) => x.行 == 卡组.主神.位置.行 && x.列 == 卡组.主神.位置.列
-      )!
-      this.主神 = new 主神类(this, 卡组.主神.编号, 卡组.主神.技能, 位置)
-      this.主神.id = 卡组.主神.id
-
-      卡组.附属神.forEach((v) => {
+        卡组.附属神.forEach((编号) => {
+          随机无单位位置 = 随机类.抽样(this.我方(位置类).filter((x) => !x.单位))
+          if (随机无单位位置) new 附属神类(this, 编号, 随机无单位位置)
+        })
+        卡组.弹幕卡.forEach((编号) => {
+          new 弹幕卡类(this, 编号)
+        })
+        卡组.神迹卡.forEach((编号) => {
+          new 神迹卡类(this, 编号)
+        })
+      } else {
+        // 位置、单位、手牌都按对端数据还原，id随后被对端同步来的id覆盖。
+        // 双方卡组规模不同，格子数和对象数也不同，这里的随机消耗必须整段屏蔽，
+        // 否则两端随机流推进次数不同，开局就错位。
         const 位置 = this.我方(位置类).find(
-          (x) => x.行 == v.位置.行 && x.列 == v.位置.列
+          (x) => x.行 == 卡组.主神.位置.行 && x.列 == 卡组.主神.位置.列
         )!
-        const 附属神 = new 附属神类(this, v.编号, 位置)
-        附属神.id = v.id
-      })
+        this.主神 = new 主神类(this, 卡组.主神.编号, 卡组.主神.技能, 位置)
+        this.主神.id = 卡组.主神.id
 
-      卡组.弹幕卡.forEach((v) => {
-        const 弹幕卡 = new 弹幕卡类(this, v.编号)
-        弹幕卡.id = v.id
-      })
+        卡组.附属神.forEach((v) => {
+          const 位置 = this.我方(位置类).find(
+            (x) => x.行 == v.位置.行 && x.列 == v.位置.列
+          )!
+          const 附属神 = new 附属神类(this, v.编号, 位置)
+          附属神.id = v.id
+        })
 
-      卡组.神迹卡.forEach((v) => {
-        const 神迹卡 = new 神迹卡类(this, v.编号)
-        神迹卡.id = v.id
-      })
+        卡组.弹幕卡.forEach((v) => {
+          const 弹幕卡 = new 弹幕卡类(this, v.编号)
+          弹幕卡.id = v.id
+        })
+
+        卡组.神迹卡.forEach((v) => {
+          const 神迹卡 = new 神迹卡类(this, v.编号)
+          神迹卡.id = v.id
+        })
+      }
+    }
+    if ('主神技能' in 卡组) {
+      建立战场()
+    } else {
+      随机类.影子计算(建立战场)
     }
     this.on('行动点变化', (参数: { 变化值: number }) => {
       this.行动点 = Math.min(10, Math.max(0, this.行动点 + 参数.变化值))
@@ -3281,9 +3352,13 @@ class 玩家类 extends 目标类 {
     let 行动点 = 10
     if (!玩家类.游戏已开始) {
       this.我方先手 = true
-      目标类.目标列表 = _.sortBy(目标类.目标列表, (x) =>
-        x.是否我方 == this.是否我方 ? -1 : 1
-      )
+      // “是否我方”是本地视角，两端相反，用它排序会得到两组相反的全局顺序，
+      // 进而让随机目标、手牌/牌堆顺序在两端不同。改用先手方主神id作为跨端一致的基准。
+      const 先手主神id = this.主神.id
+      目标类.目标列表 = _.sortBy(目标类.目标列表, [
+        (x: 目标类) => (获得归属主神id(x) === 先手主神id ? -1 : 1),
+        (x: 目标类) => (x instanceof 玩家类 ? -1 : 1),
+      ])
       玩家类.游戏已开始 = true
       行动点 -= 3
       this.emit('祈愿倒计时变化', { 变化值: -1 })

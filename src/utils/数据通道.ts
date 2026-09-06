@@ -60,6 +60,8 @@ class 数据通道类 extends EventEmitter {
   连接成功 = false
   // 本局发送行动的递增序号，供对端还原接收顺序
   行动序号 = 0
+  // 匹配时由服务器指定，两端必有一端为true，可用于打破两端对称的判断
+  发起者 = false
 
   开始匹配(格: number) {
     const 服务端通道 = useSubscription(
@@ -93,14 +95,13 @@ class 数据通道类 extends EventEmitter {
       匹配通知()
     })
 
-    let 发起者 = false
     let 对方编号 = ''
 
     服务端通道.onResult((param) => {
       const d = param.data?.matchOpponent
       if (typeof d === 'string') {
         if (d === '') {
-          发起者 = true
+          this.发起者 = true
         } else if (!对方编号) {
           对方编号 = d
           this.on('发送信令', (data) => {
@@ -113,7 +114,7 @@ class 数据通道类 extends EventEmitter {
               { to: 对方编号, data: data }
             )
           })
-          this.开始点对点连接(发起者)
+          this.开始点对点连接(this.发起者)
           const 通知连接成功 = () => {
             if (!this.连接成功) {
               this.连接成功 = true
