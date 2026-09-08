@@ -217,6 +217,7 @@ function 生成本局资源清单(): string[] {
   for (const 路径 of [
     'pvp/field/shengdun.webp',
     'pvp/field/aomi.webp',
+    'pvp/field/mishu_card.webp',
     'pvp/field/fengzu.png',
     'pvp/field/fengren.png',
     'pvp/field/leiyin.webp',
@@ -1122,10 +1123,16 @@ onMounted(async () => {
   // 出卡演出：先用神迹卡卡面短暂亮相，再结算卡牌效果（先演完再结算）。
   // 找不到卡面贴图时直接跳过演出，避免阻塞出卡。
   async function 演出神迹卡(神迹卡: 神迹卡类) {
-    const 图路径 = 获得资源(
-      ['L', 'M', 'S'],
-      (f, i) => f === `card/Card${i}_${神迹卡.美术资源}.webp`
-    )
+    // 秘术卡的牌面属于隐藏信息：对手打出秘术时，只展示通用的“秘术”出卡图，
+    // 不把具体是哪张秘术（真实卡面）泄露给观看方。
+    const 图路径 = !神迹卡.是否我方 && 神迹卡.类型 == '秘术卡'
+      ? (静态文件列表.includes('pvp/field/mishu_card.webp')
+          ? 'pvp/field/mishu_card.webp'
+          : undefined)
+      : 获得资源(
+          ['L', 'M', 'S'],
+          (f, i) => f === `card/Card${i}_${神迹卡.美术资源}.webp`
+        )
     if (!图路径) return
     let 卡图: PIXI.Sprite
     try {
