@@ -332,6 +332,13 @@
         </q-card-section>
         <q-card-actions>
           <q-btn
+            label="随机组卡"
+            icon="cached"
+            color="secondary"
+            flat
+            @click="随机组卡()"
+          />
+          <q-btn
             label="重置"
             type="reset"
             color="primary"
@@ -522,6 +529,37 @@ class 卡组选择类 {
   }
 }
 const 卡组 = new 卡组选择类()
+
+function 随机组卡() {
+  const 卡组名 = 卡组.卡组名.value
+  卡组.重置()
+  // 还原被搜索筛选的选项列表
+  更新可选神迹卡列表(神迹卡列表)
+  更新可选弹幕卡列表(弹幕卡列表)
+  // 随机主神（含随机选择其技能形态）
+  卡组.主神.value = 主神列表[Math.floor(Math.random() * 主神列表.length)]
+  // 随机两个不同的附属神
+  卡组.附属神.value = _.sampleSize(附属神列表, 2).map((x) => x.编号)
+  // 从神迹卡/弹幕卡池中随机抽取20张，尊重品质2/3卡牌可同名携带2张的规则
+  const 神迹卡池 = 可选神迹卡列表.value
+  const 弹幕卡池 = 可选弹幕卡列表.value
+  if (神迹卡池.length + 弹幕卡池.length < 20) {
+    q.notify({ type: 'negative', message: '可用卡牌不足20张，无法随机组卡' })
+    return
+  }
+  const 随机序号 = _.shuffle(
+    [...Array(神迹卡池.length + 弹幕卡池.length).keys()]
+  ).slice(0, 20)
+  卡组.神迹卡.value = 随机序号
+    .filter((x) => x < 神迹卡池.length)
+    .map((x) => 神迹卡池[x])
+  卡组.弹幕卡.value = 随机序号
+    .filter((x) => x >= 神迹卡池.length)
+    .map((x) => 弹幕卡池[x - 神迹卡池.length])
+  // 保留用户已输入的卡组名，为空时自动填写，方便直接保存
+  卡组.卡组名.value = 卡组名 || '随机卡组'
+  q.notify({ type: 'positive', message: '已生成随机卡组，请检查后保存' })
+}
 
 function 保存卡组() {
   localStorage.setItem('卡组列表', JSON.stringify(编号卡组列表.value))

@@ -6,6 +6,27 @@
     <q-btn @click="历史弹窗 = true">历史</q-btn>
   </q-btn-group>
   <div ref="战斗框" class="overflow-hidden full-height full-width"></div>
+  <!-- 开局前资源预下载遮罩：匹配成功、双方阵容确定后先把本局动画要用的资源下载全，
+       避免对局演出一边进行一边才去下载资源而把动画卡住 -->
+  <div
+    v-if="资源下载中"
+    class="fixed column items-center justify-center"
+    style="inset: 0; z-index: 2000; background: rgba(0, 0, 0, 0.72)"
+  >
+    <div class="text-white text-subtitle1 q-mb-md">正在准备对局资源…</div>
+    <div class="row items-center no-wrap">
+      <q-linear-progress
+        rounded
+        size="18px"
+        :value="资源下载进度"
+        color="amber"
+        style="width: 240px"
+      />
+      <div class="text-white q-ml-sm text-body1" style="min-width: 52px">
+        {{ Math.round(资源下载进度 * 100) }}%
+      </div>
+    </div>
+  </div>
   <q-dialog v-model="历史弹窗">
     <q-card class="text-white" style="min-width: 500px">
       <q-card-section
@@ -142,6 +163,95 @@ const 我方卡组 = 字符串转编号卡组(路由.query['卡组'] as string)
 const 玩家 = new 玩家类(true, 我方卡组)
 let 敌方玩家: 玩家类
 const 格 = 玩家.格
+
+// 匹配成功后、对局开始前，先把本局会用到的资源下载完并显示进度条。
+// 单位专属资源（骨骼动画/普攻/神威特效/站立立绘/头像）大多属于敌方，只有收到
+// 对方初始数据后才知道是哪些文件，此前没法预载，这正是演出中途卡下载的根源。
+const 资源下载中 = ref(false)
+const 资源下载进度 = ref(0)
+
+// 收集本局需要的资源文件：双方 6 个单位 + 双方卡组全部牌面 + 战场通用素材。
+// 只收录静态资源清单中真实存在的文件，避免请求 404 造成加载失败/卡顿。
+function 生成本局资源清单(): string[] {
+  const 文件集合 = new Set<string>()
+  const 添加 = (路径: string) => {
+    if (静态文件列表.includes(路径)) {
+      文件集合.add(路径)
+    }
+  }
+  const 收集单位 = (单位: 单位类) => {
+    for (const 编号 of 单位.美术资源) {
+      for (const 路径 of [
+        `spine/${编号}/${编号}.json`,
+        `spine/${编号}/${编号}.webp`,
+        `spine/${编号}/${编号}.atlas`,
+        `spine/${编号}/effect-${编号}.json`,
+        `spine/${编号}/effect-${编号}.webp`,
+        `spine/${编号}/effect-${编号}.atlas`,
+        `spine/flash/${编号}/${编号}.json`,
+        `spine/flash/${编号}/${编号}.webp`,
+        `spine/flash/${编号}/${编号}.atlas`,
+        `flash/FlashBG_${编号}.webp`,
+        `character/CharacterStand_${编号}.webp`,
+        `character/CharacterHeadL_${编号}.webp`,
+      ]) {
+        添加(路径)
+      }
+    }
+  }
+  const 收集牌 = (牌: { 美术资源: number }) => {
+    for (const 尺寸 of ['L', 'M', 'S']) {
+      添加(`card/Card${尺寸}_${牌.美术资源}.webp`)
+    }
+  }
+  // 敌方的单位/卡面是最容易中途才下载的资源，先收集它们
+  收集单位(敌方玩家.主神)
+  for (const 神 of 敌方玩家.我方(附属神类)) 收集单位(神)
+  ;[
+    ...敌方玩家.我方(神迹卡类),
+    ...敌方玩家.我方(弹幕卡类),
+  ].forEach(收集牌)
+  收集单位(玩家.主神)
+  for (const 神 of 玩家.我方(附属神类)) 收集单位(神)
+  ;[...玩家.我方(神迹卡类), ...玩家.我方(弹幕卡类)].forEach(收集牌)
+  for (const 路径 of [
+    'pvp/field/shengdun.webp',
+    'pvp/field/aomi.webp',
+    'pvp/field/fengzu.png',
+    'pvp/field/fengren.png',
+    'pvp/field/leiyin.webp',
+    'pvp/field/CharacterStand.webp',
+    'pvp/shader/Action_bg.webp',
+    'pvp/jifang juese.webp',
+    'pvp/difang juese.webp',
+    'pvp/juese mingcheng.webp',
+    'pvp/juese icon shengming.webp',
+    'pvp/juese icon gongji.webp',
+    'pvp/juese icon yidong.webp',
+    'pvp/attack 1.webp',
+    'pvp/queding 1.webp',
+  ]) {
+    添加(路径)
+  }
+  return [...文件集合]
+}
+
+// 小批并发下载，每完成一批按文件数推进一次进度，尽量让进度条平滑且总时长可控。
+// 失败的文件跳过（allSettled 不抛错），动画侧本身对这些资源也有各自兜底。
+// 每批设超时护栏：个别文件万一挂起不至于让整局一直卡在下载界面。
+async function 预下载对局资源() {
+  const 全部资源 = 生成本局资源清单()
+  const 每批数量 = 12
+  资源下载进度.value = 0
+  for (let 起点 = 0; 起点 < 全部资源.length; 起点 += 每批数量) {
+    const 一批 = 全部资源.slice(起点, 起点 + 每批数量)
+    const 本批下载 = Promise.allSettled(
+      一批.map((路径) => PIXI.Assets.load(路径))
+    )
+    await Promise.race([本批下载, 等待(15)])
+    资源下载进度.value = Math.min(1, (起点 + 一批.length) / 全部资源.length)
+  }
+}
 
 function 获得位置(
   坐标: { screenX: number; screenY: number },
@@ -1085,7 +1195,10 @@ onMounted(async () => {
   })
 
   战斗画框.ticker.add(() => {
-    行动队列类.行动队列.渲染()
+    // 开局资源预下载期间暂停播放下一条行动，待下载完成后再从头播放
+    if (!资源下载中.value) {
+      行动队列类.行动队列.渲染()
+    }
   })
 
   const 事件层 = new PIXI.Sprite()
@@ -1697,7 +1810,7 @@ onMounted(async () => {
     })
     状态.value = '战斗'
   })
-  数据通道.on('收到数据', (d: 数据同步类型) => {
+  数据通道.on('收到数据', async (d: 数据同步类型) => {
     if (d.k == '行动') {
       行动队列类.行动队列.接收(d.v)
     } else if (d.k == '初始数据') {
@@ -1726,6 +1839,16 @@ onMounted(async () => {
       } else {
         我方先手 = 数据通道.发起者
       }
+
+      // 双方阵容已确定：开局前先把本局动画要用到的资源（骨骼动画/立绘/头像/卡面等）
+      // 下载完并展示进度条，避免对局演出一边进行一边才去下载而卡住。
+      资源下载中.value = true
+      try {
+        await 预下载对局资源()
+      } finally {
+        资源下载中.value = false
+      }
+
       if (我方先手) {
         玩家.回合开始()
       } else {
