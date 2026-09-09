@@ -184,11 +184,40 @@ class 数据通道类 extends EventEmitter {
   }
   点对点已连接 = false
   开始点对点连接(发起者: boolean) {
-    const 点对点通道 = new SimplePeer({
-      initiator: 发起者,
-      config: 数据通道类.点对点连接配置,
-    })
+    // 浏览器/WebView 可能完全不支持 WebRTC（没有 RTCPeerConnection），
+    // 此时 new SimplePeer() 会直接抛 “No WebRTC support: Not a supported browser”，
+    // 必须捕获并让整局退化为全程服务器中转（走 发送数据() 里的降级路径），
+    // 而不是让这个异常中断匹配成功的对局。
+    let 点对点通道: SimplePeer.Instance | undefined
+    try {
+      点对点通道 = new SimplePeer({
+        initiator: 发起者,
+        config: 数据通道类.点对点连接配置,
+      })
+    } catch (原因) {
+      console.warn('[数据通道] 当前环境不支持 WebRTC，本局全程使用服务器中转：', 原因)
+      this.点对点已连接 = false
+    }
+    if (点对点通道) {
+      点对点通道.on('signal', (d) => this.转发给对方?.(d))
+      点对点通道.on('connect', () => {
+        // 在事件回调里同步设置状态，避免 watch 异步触发造成的竞态窗口
+        this.点对点已连接 = true
+        this.emit('点对点连接成功')
+      })
+      点对点通道.on('close', () => {
+        // 断开后自动降级为服务器中转
+        this.点对点已连接 = false
+      })
+      点对点通道.on('data', (d) =>
+        this.emit('收到数据', JSON.parse(d.toString()))
+      )
+    }
     this.on('收到信令', (d) => {
+      if (!点对点通道) {
+        // 本端没有 P2P 连接：对端尝试建立直连的信令无需处理，等待服务器中继数据即可
+        return
+      }
       if (是合法信令(d)) {
         点对点通道.signal(d)
       } else {
@@ -196,20 +225,12 @@ class 数据通道类 extends EventEmitter {
         console.warn('[数据通道] 忽略非法信令：', d)
       }
     })
-    点对点通道.on('signal', (d) => this.转发给对方?.(d))
-    点对点通道.on('connect', () => {
-      // 在事件回调里同步设置状态，避免 watch 异步触发造成的竞态窗口
-      this.点对点已连接 = true
-      this.emit('点对点连接成功')
-    })
-    点对点通道.on('close', () => {
-      // 断开后自动降级为服务器中转
-      this.点对点已连接 = false
-    })
-    点对点通道.on('data', (d) =>
-      this.emit('收到数据', JSON.parse(d.toString()))
-    )
     this.on('发送数据', (d) => {
+      if (!点对点通道) {
+        // 没有 P2P 连接：直接服务器中转
+        this.转发给对方?.(d)
+        return
+      }
       try {
         点对点通道.send(JSON.stringify(d))
       } catch {
@@ -219,7 +240,7 @@ class 数据通道类 extends EventEmitter {
       }
     })
     this.on('销毁', () => {
-      点对点通道.destroy()
+      点对点通道?.destroy()
     })
   }
 

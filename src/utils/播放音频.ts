@@ -30,11 +30,31 @@ const loadMp3 = {
 }
 extensions.add(loadMp3)
 
+// 浏览器自动播放策略：没有用户手势时 play() 会以 NotAllowedError 拒绝。
+// 统一吞掉拒绝（避免控制台刷 “Uncaught (in promise)”），并把被拦下的音频
+// 记下来，等用户第一次真实交互（点击/触摸/按键）时再补播。
+const 待恢复播放: HTMLAudioElement[] = []
+let 已挂手势监听 = false
+function 播放(音频元素: HTMLAudioElement) {
+  音频元素.play().catch(() => {
+    待恢复播放.push(音频元素)
+    if (已挂手势监听) return
+    已挂手势监听 = true
+    const 补播 = () => {
+      while (待恢复播放.length) {
+        待恢复播放.shift()?.play().catch(() => undefined)
+      }
+    }
+    useEventListener(document.body, 'pointerdown', 补播)
+    useEventListener(document.body, 'keydown', 补播)
+  })
+}
+
 function 播放音频(文件: string) {
   const 音频元素 = document.createElement('audio')
   音频元素.src = 文件
   音频元素.volume = 0.25
-  音频元素.play()
+  播放(音频元素)
   return 音频元素
 }
 function 播放神威语音(美术资源: number[]) {
@@ -61,7 +81,7 @@ function 播放语音(美术资源: number[], 类别: string) {
     if (音频元素.src != 文件) {
       音频元素.src = 文件
       音频元素.volume = 0.25
-      音频元素.play()
+      播放(音频元素)
     }
   }
 }
@@ -82,26 +102,17 @@ function 播放攻击音效(美术资源: number[]) {
 }
 // 当前正在播放的场地BGM（场景背景音乐），角色BGM播完后需要恢复它
 let 场地音乐文件 = ''
-async function 播放场景背景音乐(url: string) {
+function 播放场景背景音乐(url: string) {
   const 音频元素 = 获得音频元素('bgm')
   场地音乐文件 = url
   音频元素.onended = null
   音频元素.src = url
   音频元素.loop = true
   音频元素.volume = 0.15
-  useEventListener(
-    document.body,
-    'click',
-    () => {
-      if (音频元素.paused) {
-        音频元素.play()
-      }
-    },
-    { once: true }
-  )
-  await 音频元素.play()
+  // 首次播放若被自动播放策略拦截，会进入待恢复队列，等用户首次手势时补播
+  播放(音频元素)
 }
-async function 播放角色背景音乐(美术资源: number[]) {
+function 播放角色背景音乐(美术资源: number[]) {
   const 音频元素 = 获得音频元素('bgm')
   const 文件 = 获得资源(美术资源, (f, i) => f === `bgm/BGM_character_${i}.mp3`)
   if (文件 && !音频元素.src.endsWith(文件)) {
@@ -116,12 +127,11 @@ async function 播放角色背景音乐(美术资源: number[]) {
         当前音频.loop = true
         当前音频.volume = 0.15
         当前音频.onended = null
-        当前音频.play().catch(() => {
-          //
-        })
+        播放(当前音频)
       }
     }
-    await 音频元素.play()
+    // 被自动播放策略拦截时进入待恢复队列，随用户首次手势补播
+    播放(音频元素)
   }
 }
 
