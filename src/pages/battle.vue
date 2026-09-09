@@ -7,25 +7,34 @@
   </q-btn-group>
   <div ref="战斗框" class="overflow-hidden full-height full-width"></div>
   <!-- 开局前资源预下载遮罩：匹配成功、双方阵容确定后先把本局动画要用的资源下载全，
-       避免对局演出一边进行一边才去下载资源而把动画卡住 -->
+       避免对局演出一边进行一边才去下载资源而把动画卡住。
+       自己加载完后还要等对方也加载完成（双方互发“就绪”）才开始第一回合 -->
   <div
     v-if="资源下载中"
     class="fixed column items-center justify-center"
     style="inset: 0; z-index: 2000; background: rgba(0, 0, 0, 0.72)"
   >
-    <div class="text-white text-subtitle1 q-mb-md">正在准备对局资源…</div>
-    <div class="row items-center no-wrap">
-      <q-linear-progress
-        rounded
-        size="18px"
-        :value="资源下载进度"
-        color="amber"
-        style="width: 240px"
-      />
-      <div class="text-white q-ml-sm text-body1" style="min-width: 52px">
-        {{ Math.round(资源下载进度 * 100) }}%
+    <template v-if="等待对方加载">
+      <div class="text-white text-subtitle1 q-mb-md">
+        本局资源已就绪，等待对方加载…
       </div>
-    </div>
+      <q-spinner-dots color="amber" size="40px" />
+    </template>
+    <template v-else>
+      <div class="text-white text-subtitle1 q-mb-md">正在准备对局资源…</div>
+      <div class="row items-center no-wrap">
+        <q-linear-progress
+          rounded
+          size="18px"
+          :value="资源下载进度"
+          color="amber"
+          style="width: 240px"
+        />
+        <div class="text-white q-ml-sm text-body1" style="min-width: 52px">
+          {{ Math.round(资源下载进度 * 100) }}%
+        </div>
+      </div>
+    </template>
   </div>
   <q-dialog v-model="历史弹窗">
     <q-card class="text-white" style="min-width: 500px">
@@ -42,6 +51,7 @@
   </q-dialog>
 </template>
 <script setup lang="ts">
+import { ColorMatrixFilter } from '@pixi/filter-color-matrix'
 import { GlowFilter } from '@pixi/filter-glow'
 import * as PXUI from '@pixi/ui'
 import { useTimeoutFn } from '@vueuse/core'
@@ -169,6 +179,30 @@ const 格 = 玩家.格
 // 对方初始数据后才知道是哪些文件，此前没法预载，这正是演出中途卡下载的根源。
 const 资源下载中 = ref(false)
 const 资源下载进度 = ref(0)
+// 开局前互相等待加载完成的状态：自己下载完发“就绪”，收到对方“就绪”后一起开第一回合
+const 等待对方加载 = ref(false)
+let 我方加载完成 = false
+let 对方已就绪 = false
+let 开局已触发 = false
+let 等待对方超时: ReturnType<typeof setTimeout> | undefined
+let 我方先手 = false
+// 双方都加载完本局资源后才开始第一回合，避免先手在对手还在加载时就行动，
+// 让对手错过开局出卡/布阵动画。带兜底：对方长时间没就绪时超时照常开局，防止互等卡死。
+function 开局() {
+  if (开局已触发 || !我方加载完成 || !对方已就绪) return
+  开局已触发 = true
+  资源下载中.value = false
+  等待对方加载.value = false
+  if (等待对方超时 !== undefined) {
+    clearTimeout(等待对方超时)
+    等待对方超时 = undefined
+  }
+  if (我方先手) {
+    玩家.回合开始()
+  } else {
+    敌方玩家.回合开始()
+  }
+}
 
 // 收集本局需要的资源文件：双方 6 个单位 + 双方卡组全部牌面 + 战场通用素材。
 // 只收录静态资源清单中真实存在的文件，避免请求 404 造成加载失败/卡顿。
@@ -519,6 +553,8 @@ onMounted(async () => {
     生命值: number
     攻击力: number
     移动力: number
+    // 为 true 时按“单位离场”演出显示：立绘+立绘背景整体加黑白滤镜，不显示技能文本与顶部信息栏
+    是否离场演出?: boolean
   }> = []
   let 正在展示技能 = false
   // 用于 UI 层：同一个角色在队列中的连续动画只保留一个（最后一个）
@@ -527,10 +563,14 @@ onMounted(async () => {
     携带者编号: number
     [k: string]: unknown
   }) {
-    // 若队尾条目来自同一角色（"连续"），则直接用新条目替换旧条目，达到只显示一个的效果
+    // 技能展示：若队尾条目来自同一角色且同为普通技能面板（"连续"），直接用新条目替换
+    // 旧条目，达到只显示一个的效果；离场演出一律独立入队不折叠（离场只有一次且不同单位
+    // 可能同编号），普通技能面板也不与离场演出互相折叠，避免吞掉其中一种演出
     if (
+      !信息.是否离场演出 &&
       技能展示队列.length > 0 &&
-      技能展示队列[技能展示队列.length - 1].携带者编号 === 信息.携带者编号
+      技能展示队列[技能展示队列.length - 1].携带者编号 === 信息.携带者编号 &&
+      !技能展示队列[技能展示队列.length - 1].是否离场演出
     ) {
       技能展示队列[技能展示队列.length - 1] =
         信息 as (typeof 技能展示队列)[number]
@@ -602,6 +642,7 @@ onMounted(async () => {
     生命值: number
     攻击力: number
     移动力: number
+    是否离场演出?: boolean
   }) {
     // 入队并折叠同角色的连续动画：若队尾已是同一角色则替换，否则追加
     入队并折叠同角色连续(技能信息)
@@ -626,6 +667,14 @@ onMounted(async () => {
 
         // 等待一小段时间，确保动画不重叠
         await 等待(0.3)
+
+        // 单位离场演出：与技能立绘同款“立绘+立绘背景”整幅演出，整体加黑白滤镜，
+        // 不显示技能名称/描述与顶部信息栏。离场面板没有对应的技能效果等待放行，
+        // 因此本张播完不调用“通知技能面板播完”，直接继续队列里的下一张。
+        if (当前技能.是否离场演出) {
+          await 播放离场展示(当前技能)
+          continue
+        }
 
         // 移动端适配：以1040×803设计比例（≈1.295:1）等比缩放整个技能展示UI，
         // 窄屏（竖屏）时设计区域按宽度收缩并在屏幕上居中，PC端与原值完全一致
@@ -1120,6 +1169,410 @@ onMounted(async () => {
     行动队列类.行动队列.通知技能展示完成()
   }
 
+  // 离场立绘面板：与技能立绘同款布局与运动（Action_bg 背景 + 角色半身立绘整幅滑入、
+  // 停留再离场），但整幅（背景+立绘）加黑白滤镜，且不显示技能名称/描述与顶部信息栏。
+  // 由显示技能UI的队列循环按需调用；离场面板没有对应的技能效果等待放行，播完即返回，
+  // 不会调用“通知技能面板播完”，避免破坏技能效果与面板的 FIFO 配对。
+  async function 播放离场展示(当前单位: (typeof 技能展示队列)[number]) {
+    try {
+      // 移动端适配：布局参数与技能立绘完全一致
+      const 设计宽 = Math.min(宽, 高 * 1.295)
+      const 设计高 = 设计宽 / 1.295
+      const 设计X = (宽 - 设计宽) / 2
+
+      // 1. 暗色遮罩（变暗效果，全屏）
+      const 变暗遮罩 = new PIXI.Graphics()
+      变暗遮罩.beginFill(0x000000, 0.7)
+      变暗遮罩.drawRect(0, 0, 宽, 高)
+      变暗遮罩.endFill()
+      变暗遮罩.zIndex = 0
+      技能展示层.addChild(变暗遮罩)
+
+      // 1b. 整幅动画容器（背景+立绘整体移动），整体套黑白滤镜
+      const 技能动画容器 = new PIXI.Container()
+      技能动画容器.sortableChildren = true
+      技能动画容器.zIndex = 1
+      技能展示层.addChild(技能动画容器)
+      try {
+        const 黑白滤镜 = new ColorMatrixFilter()
+        黑白滤镜.desaturate()
+        技能动画容器.filters = [黑白滤镜]
+      } catch {
+        // 滤镜不可用时忽略，仍展示离场立绘
+      }
+
+      // 2. Action_bg 背景图（尺寸与定位规则同技能立绘）
+      let 动作背景纹理: PIXI.Texture | null = null
+      try {
+        动作背景纹理 = await PIXI.Assets.load('pvp/shader/Action_bg.webp')
+      } catch {
+        // 忽略
+      }
+      let 动作背景精灵: PIXI.Sprite | null = null
+      let 背景X = 设计X
+      let 背景显示宽 = 设计宽 * 0.522
+      let 背景显示高 = 设计高 * 0.522
+      const 背景Y = 高 * 0.25
+      const 底部界限 = 高 * 0.76
+      const 允许背景高 = 底部界限 - 背景Y
+      if (动作背景纹理) {
+        const 动作背景 = new PIXI.Sprite(动作背景纹理)
+        动作背景精灵 = 动作背景
+        const 纹理宽 = 动作背景.texture.width
+        const 纹理高 = 动作背景.texture.height
+        const 高度缩放上限 = 允许背景高 / 纹理高
+        const 缩放X =
+          宽 < 高
+            ? Math.min((宽 * 1.5) / 纹理宽, 高度缩放上限)
+            : Math.min((宽 / 纹理宽) * 0.522, 高度缩放上限)
+        const 缩放Y =
+          宽 < 高 ? 缩放X : Math.min((高 / 纹理高) * 0.522, 高度缩放上限)
+        动作背景.scale.set(当前单位.是否我方 ? 缩放X : -缩放X, 缩放Y)
+        动作背景.y = 背景Y
+        背景显示宽 = 动作背景.texture.width * 缩放X
+        背景显示高 = 动作背景.texture.height * 缩放Y
+        const 背景边距 = 宽 - 背景显示宽
+        背景X = 当前单位.是否我方
+          ? 背景边距 * 0.5
+          : 宽 - 背景显示宽 - 背景边距 * 0.5
+        if (当前单位.是否我方) {
+          // 我方：左对齐+向中心收拢
+          动作背景.x = 背景X
+        } else {
+          // 敌方：右对齐+向中心收拢（翻转后 x 为图像右边缘）
+          动作背景.x = 背景X + 背景显示宽
+        }
+        动作背景.zIndex = 1
+        技能动画容器.addChild(动作背景)
+      }
+
+      // 3. 角色半身立绘（专属立绘→默认立绘回退，尺寸约束同技能立绘）
+      let 角色立绘: PIXI.Sprite | null = null
+      let 立绘宽度 = 0
+      let 立绘高度 = 0
+      const 专属立绘路径 = 获得资源(
+        当前单位.美术资源,
+        (f, i) => f === `character/CharacterStand_${i}.webp`
+      )
+      for (const 候选立绘路径 of [
+        专属立绘路径,
+        'pvp/field/CharacterStand.webp',
+      ]) {
+        if (!候选立绘路径) continue
+        try {
+          角色立绘 = await 加载子画面(候选立绘路径)
+          break
+        } catch {
+          角色立绘 = null
+        }
+      }
+      if (角色立绘) {
+        try {
+          // 基础目标尺寸：按背景宽×0.65推导
+          const 目标宽度 = 背景显示宽 * 0.65
+          let 缩放比 = 目标宽度 / 角色立绘.width
+          立绘宽度 = 角色立绘.width * 缩放比
+          立绘高度 = 角色立绘.height * 缩放比
+          // 立绘底部（含入场下移）不得超过屏高的80%
+          const 入场纵轴偏移 = 高 * 0.04
+          const 最大允许立绘底部 = 高 * 0.8
+          const 绝对最大立绘高 = Math.max(
+            (最大允许立绘底部 - 入场纵轴偏移 - 背景Y) * 2 - 背景显示高,
+            0
+          )
+          if (立绘高度 > 绝对最大立绘高) {
+            缩放比 = (绝对最大立绘高 * 0.98) / 角色立绘.height
+            立绘宽度 = 角色立绘.width * 缩放比
+            立绘高度 = 角色立绘.height * 缩放比
+          }
+          角色立绘.scale.set(缩放比)
+          角色立绘.x = 背景X + (背景显示宽 - 立绘宽度) / 2
+          角色立绘.y = 背景Y + (背景显示高 - 立绘高度) / 2
+          if (!当前单位.是否我方) {
+            角色立绘.scale.x = -缩放比
+            角色立绘.x = 背景X + (背景显示宽 + 立绘宽度) / 2
+          }
+          角色立绘.zIndex = 2
+          技能动画容器.addChild(角色立绘)
+        } catch {
+          角色立绘 = null
+        }
+      }
+
+      // 动画轨迹参数：我方从最左端入场、向右离场，敌方相反；纵轴中线偏下→偏上小幅漂移
+      const 动画边距 = 60
+      const 入场起点X = 当前单位.是否我方
+        ? -(背景X + 背景显示宽) - 动画边距
+        : 宽 - 背景X + 动画边距
+      const 出场终点X = 当前单位.是否我方
+        ? 宽 - 背景X + 动画边距
+        : -(背景X + 背景显示宽) - 动画边距
+      const 纵轴幅度 = 高 * 0.04
+      技能动画容器.x = 入场起点X
+      技能动画容器.y = 纵轴幅度
+
+      // 入场：快到慢减速停在屏幕中心；停留后破碎消散（无立绘/切碎失败时整幅滑出离场）
+      const 缓出 = (t: number) => 1 - Math.pow(1 - t, 3) // 快到慢
+      const 缓入 = (t: number) => t * t * t // 慢到快
+      await 补间(0.5, 缓出, (p) => {
+        技能动画容器.x = 入场起点X * (1 - p)
+        技能动画容器.y = 纵轴幅度 * (1 - p)
+      })
+      // 在屏幕中心停留
+      await 等待(1.2)
+      // 出场：有立绘时粉末消散——消融波自下而上扫过，化成细粉向上轻飘渐隐；
+      // 没有立绘或离屏切碎失败时退回原来的整幅向另一侧慢到快滑出
+      const 粉末消散成功 = 角色立绘
+        ? await 播放立绘粉末消散(
+            技能动画容器,
+            角色立绘,
+            立绘宽度,
+            立绘高度,
+            动作背景精灵
+          )
+        : false
+      if (!粉末消散成功) {
+        await 补间(0.45, 缓入, (p) => {
+          技能动画容器.x = 出场终点X * p
+          技能动画容器.y = -纵轴幅度 * p
+        })
+      }
+      // 淡出剩余元素（遮罩与容器）
+      const 淡出时间 = 0.3
+      const 开始时间 = Date.now()
+      await new Promise<void>((resolve) => {
+        function 淡出动画() {
+          const 进度 = (Date.now() - 开始时间) / (淡出时间 * 1000)
+          if (进度 >= 1) {
+            resolve()
+          } else {
+            技能展示层.alpha = 1 - 进度
+            requestAnimationFrame(淡出动画)
+          }
+        }
+        淡出动画()
+      })
+      // 清除展示层并重置透明度
+      技能展示层.removeChild(...技能展示层.children)
+      技能展示层.alpha = 1
+    } catch {
+      // 出错时清空展示层并重置透明度，避免卡住后续演出
+      技能展示层.removeChild(...技能展示层.children)
+      技能展示层.alpha = 1
+    }
+  }
+
+  // 立绘粉末消散：把角色立绘按当前镜像/缩放快照成离屏纹理并切成细密颗粒，
+  // 演出时“消融波”自下而上扫过整幅，被扫到的颗粒化作粉末向上轻飘并渐隐，
+  // 形成从下往上逐渐粉末状消失的效果，背景同步淡出。
+  // 颗粒加在带黑白滤镜的整幅容器里，保持黑白观感；返回是否成功完成演出，
+  // 失败（如无法离屏渲染）时由调用方回退为整幅滑出，避免卡住队列。
+  async function 播放立绘粉末消散(
+    容器: PIXI.Container,
+    立绘: PIXI.Sprite,
+    立绘宽度: number,
+    立绘高度: number,
+    背景: PIXI.Sprite | null
+  ): Promise<boolean> {
+    const 碎片精灵们: PIXI.Sprite[] = []
+    const 带精灵们: PIXI.Sprite[] = []
+    let 快照纹理: PIXI.RenderTexture | null = null
+    try {
+      const 渲染器 = 战斗画框.renderer
+      if (!渲染器) return false
+
+      // 1. 把立绘渲染成 1:1 的离屏快照。快照统一按“正方向”离屏渲染（取缩放绝对值），
+      //    敌方镜像通过在切块阶段反转列序还原——避免把负缩放精灵整只渲进离屏纹理，
+      //    某些后端/机型上这一步会失败，导致敌方离场整段回退成滑出。
+      const 镜像 = 立绘.scale.x < 0
+      const 逻辑宽 = Math.max(1, Math.ceil(立绘宽度))
+      const 逻辑高 = Math.max(1, Math.ceil(立绘高度))
+      // 快照分辨率跟随屏幕分辨率，高 DPI 屏上碎片不至于发糊（上限 2 倍控制显存）
+      const 分辨率 = Math.min(2, 渲染器.resolution || 1)
+      快照纹理 = PIXI.RenderTexture.create({
+        width: 逻辑宽,
+        height: 逻辑高,
+        resolution: 分辨率,
+      })
+      const 快照 = new PIXI.Sprite(立绘.texture)
+      快照.anchor.set(0.5)
+      快照.scale.set(Math.abs(立绘.scale.x), Math.abs(立绘.scale.y))
+      快照.position.set(立绘宽度 / 2, 立绘高度 / 2)
+      渲染器.render(快照, { renderTexture: 快照纹理 })
+
+      // 2. 一份“正方向”快照同时派生两层素材：
+      //    a) 细密“横向色带”：拼出仍然实心的整幅立绘，消融前沿扫过哪条、哪条就让位消失；
+      //    b) “粉末颗粒”：平时完全隐藏，只有贴着消融前沿那短短一小段才显现并向上逸散。
+      //    这样一开始仍是完整清晰的立绘，只有正在消失的边缘才化成粉末。
+      const 目标块边长 = 18
+      const 列数 = Math.min(36, Math.max(6, Math.round(立绘宽度 / 目标块边长)))
+      const 行数 = Math.min(
+        Math.floor(1400 / 列数), // 颗粒总数上限，避免低端机渲染过多精灵掉帧
+        Math.max(10, Math.round(立绘高度 / 目标块边长))
+      )
+      const 块宽逻辑 = 逻辑宽 / 列数
+      const 块高逻辑 = 逻辑高 / 行数
+      // 切块纹理坐标按“像素”（texel）算，碎块精灵再除以分辨率还原到屏幕尺寸
+      const 块宽像素 = 块宽逻辑 * 分辨率
+      const 块高像素 = 块高逻辑 * 分辨率
+      const 像素缩比 = 1 / 分辨率
+      const 显示左 = 镜像 ? 立绘.x - 立绘宽度 : 立绘.x
+      const 显示顶 = 立绘.y
+      const 最大尺寸 = Math.max(立绘宽度, 立绘高度)
+      const 过渡带行数 = 4 // 正在“化作粉末”的过渡带宽度（以颗粒行为单位）
+
+      // 2a. 实心横向色带：每条约 8px 高，上下各多含 1px 重叠防止接缝透出背景
+      const 带数 = Math.min(120, Math.max(20, Math.round(逻辑高 / 8)))
+      const 段高逻辑 = 逻辑高 / 带数
+      const 段高像素 = 段高逻辑 * 分辨率
+      const 带纹理像素宽 = 逻辑宽 * 分辨率
+      const 带列表: { 精灵: PIXI.Sprite; 距底段: number }[] = []
+      for (let 带 = 0; 带 < 带数; 带++) {
+        // 每条色带都登记到带精灵们，供出错时的统一清理
+        const 带顶像素 = Math.max(0, 带 * 段高像素 - 分辨率)
+        const 条纹理 = new PIXI.Texture(
+          快照纹理.baseTexture,
+          new PIXI.Rectangle(
+            0,
+            带顶像素,
+            带纹理像素宽,
+            Math.min(段高像素 + 2 * 分辨率, 逻辑高 * 分辨率 - 带顶像素)
+          )
+        )
+        const 带精灵 = new PIXI.Sprite(条纹理)
+        带精灵.anchor.set(0.5)
+        // 镜像侧以整幅中轴为轴翻转每条色带，还原敌方立绘的左右镜像
+        带精灵.scale.x = 镜像 ? -像素缩比 : 像素缩比
+        带精灵.scale.y = 像素缩比
+        带精灵.x = 显示左 + 立绘宽度 / 2
+        带精灵.y = 显示顶 + (带 + 0.5) * 段高逻辑
+        带精灵.zIndex = 2
+        容器.addChild(带精灵)
+        带精灵们.push(带精灵)
+        带列表.push({ 精灵: 带精灵, 距底段: 带数 - 带 })
+      }
+
+      // 2b. 粉末颗粒（初始全部隐藏，出场时立绘仍由色带呈现完整原图）
+      type 碎块 = {
+        精灵: PIXI.Sprite
+        x0: number
+        y0: number
+        行位置: number // 距底部的反向行号（底部=0，含 ±1 行抖动，避免整行同时消失）
+        浮升: number // 化作粉末后向上轻飘的高度
+        摆荡x: number // 上飘时的小幅水平漂移
+        旋转速: number // 上飘时的轻微旋转弧度
+      }
+      const 碎块列表: 碎块[] = []
+      for (let 行 = 0; 行 < 行数; 行++) {
+        for (let 列 = 0; 列 < 列数; 列++) {
+          const 块纹理 = new PIXI.Texture(
+            快照纹理.baseTexture,
+            new PIXI.Rectangle(列 * 块宽像素, 行 * 块高像素, 块宽像素, 块高像素)
+          )
+          const 精灵 = new PIXI.Sprite(块纹理)
+          精灵.anchor.set(0.5)
+          精灵.scale.set(像素缩比)
+          // 镜像侧把切块按相反列序摆回，等效还原敌方立绘的左右翻转
+          const 显示列 = 镜像 ? 列数 - 1 - 列 : 列
+          精灵.x = 显示左 + 显示列 * 块宽逻辑 + 块宽逻辑 / 2
+          精灵.y = 显示顶 + 行 * 块高逻辑 + 块高逻辑 / 2
+          精灵.zIndex = 3
+          精灵.visible = false // 只有贴近消融前沿时才显现
+          容器.addChild(精灵)
+          碎片精灵们.push(精灵)
+          碎块列表.push({
+            精灵,
+            x0: 精灵.x,
+            y0: 精灵.y,
+            行位置: 行数 - 1 - 行 + (Math.random() - 0.5) * 2, // 反序存储，底部先被消融波扫到
+            浮升: (0.04 + Math.random() * 0.1) * 最大尺寸,
+            摆荡x: (Math.random() - 0.5) * 最大尺寸 * 0.14,
+            旋转速: (Math.random() - 0.5) * 1.4,
+          })
+        }
+      }
+
+      // 3. 换成“色带 + 颗粒”两套素材：移除原立绘，由色带完整接替画面
+      if (立绘.parent) 立绘.parent.removeChild(立绘)
+      立绘.destroy()
+
+      // 4. 背景同步淡出，与粉末消散并行
+      const 背景淡出 = 背景
+        ? 补间(0.9, (t) => t, (p) => {
+            背景.alpha = 1 - p
+          })
+        : Promise.resolve()
+
+      // 5. 演出主循环：消融前沿匀速自下而上推进，扫到哪条色带哪条让位消失，
+      //    让位瞬间由紧贴前沿的颗粒以粉末形态短暂接替并上飘渐隐
+      const 时长 = 1.1
+      const 起点 = performance.now()
+      await Promise.all([
+        背景淡出,
+        new Promise<void>((resolve) => {
+          function 逐帧(now: number) {
+            const u = Math.min(1, (now - 起点) / (时长 * 1000))
+            // 消融前沿：以颗粒“行”为单位从底部(0)一路扫到顶部(行数+过渡带)
+            const 波前 = u * (行数 + 过渡带行数)
+            // 换算成色带“段”单位：色带比颗粒更细，让位更平滑
+            const 前沿段 = 波前 * (带数 / 行数)
+            for (const 带 of 带列表) {
+              // 前沿已越过某条色带，该段整体化粉让位（下方只余正在散去的粉末）
+              带.精灵.visible = 前沿段 < 带.距底段
+            }
+            for (const 块 of 碎块列表) {
+              const 落后 = 波前 - 块.行位置
+              if (落后 <= 0) {
+                // 消融波还没到：立绘仍由色带完整呈现，颗粒不显示
+                块.精灵.visible = false
+                continue
+              }
+              // 只有消融前沿后方一小段内的颗粒化为粉末，上飘缩放渐隐后消失
+              const 化粉 = Math.min(1, 落后 / 过渡带行数)
+              块.精灵.visible = true
+              块.精灵.x = 块.x0 + 块.摆荡x * 化粉
+              块.精灵.y = 块.y0 - 块.浮升 * 化粉
+              块.精灵.rotation = 块.旋转速 * 化粉
+              块.精灵.scale.set(像素缩比 * (1 - 0.3 * 化粉))
+              块.精灵.alpha = 1 - 化粉
+            }
+            if (u >= 1) {
+              resolve()
+            } else {
+              requestAnimationFrame(逐帧)
+            }
+          }
+          逐帧(起点)
+        }),
+      ])
+
+      // 6. 清理色带、颗粒与快照（不留残影）
+      for (const 精灵 of 带精灵们) {
+        if (精灵.parent) 精灵.parent.removeChild(精灵)
+        精灵.destroy({ texture: true })
+      }
+      for (const 精灵 of 碎片精灵们) {
+        if (精灵.parent) 精灵.parent.removeChild(精灵)
+        精灵.destroy({ texture: true })
+      }
+      快照.destroy()
+      快照纹理.destroy(true)
+      return true
+    } catch {
+      // 清理已产生的色带、颗粒与快照，交回调用方走整幅滑出的回退路径
+      for (const 精灵 of 带精灵们) {
+        if (精灵.parent) 精灵.parent.removeChild(精灵)
+        精灵.destroy({ texture: true })
+      }
+      for (const 精灵 of 碎片精灵们) {
+        if (精灵.parent) 精灵.parent.removeChild(精灵)
+        精灵.destroy({ texture: true })
+      }
+      if (快照纹理) 快照纹理.destroy(true)
+      return false
+    }
+  }
+
   // 出卡演出：先用神迹卡卡面短暂亮相，再结算卡牌效果（先演完再结算）。
   // 找不到卡面贴图时直接跳过演出，避免阻塞出卡。
   async function 演出神迹卡(神迹卡: 神迹卡类) {
@@ -1200,6 +1653,33 @@ onMounted(async () => {
       .addChild(await 参数.单位.获得角色(位宽))
       .sortChildren()
   })
+
+  // 单位真正离开棋盘（完全离场，不会被复活/替换拦下）时，登记一帧离场立绘演出：
+  // 与技能展示同款“立绘+立绘背景”整幅动画，整体黑白滤镜、不显示技能文本与顶部信息栏。
+  // 单位自身 emit('完全离场时') 会以“单位完全离场时”转发到玩家总线，这里统一监听即可。
+  玩家类.事件.on(
+    '单位完全离场时',
+    (参数: { 单位: 单位类; 玩家: 玩家类 }) => {
+      登记离场演出(参数.单位)
+    }
+  )
+  // 离场演出与技能立绘共用同一个队列与“正在展示技能”闸门，
+  // 保证它在正确的时机插入演出序列且不与逻辑结算放行冲突。
+  function 登记离场演出(单位: 单位类) {
+    显示技能UI({
+      技能名称: '',
+      技能描述: '',
+      携带者编号: 单位.编号,
+      美术资源: 单位.美术资源,
+      是否我方: 单位.是否我方,
+      卡牌名称: 单位.卡牌名称,
+      携带者类型: 单位.类型,
+      生命值: 单位.生命值,
+      攻击力: 单位.攻击力,
+      移动力: 单位.移动力,
+      是否离场演出: true,
+    })
+  }
 
   战斗画框.ticker.add(() => {
     // 开局资源预下载期间暂停播放下一条行动，待下载完成后再从头播放
@@ -1838,29 +2318,37 @@ onMounted(async () => {
       // 先后手由双方各自随机生成的抢先值比大小决定，与谁发起匹配无关。
       // 后两级只在抢先值、主神id撞号这种几乎不可能发生的情况下兜底，
       // 用来避免两端同时判定“对方先手”而互相等待。
-      let 我方先手: boolean
-      if (玩家.抢先值 !== 敌方玩家.抢先值) {
-        我方先手 = 玩家.抢先值 > 敌方玩家.抢先值
-      } else if (玩家.主神.id !== 敌方玩家.主神.id) {
-        我方先手 = 玩家.主神.id > 敌方玩家.主神.id
-      } else {
-        我方先手 = 数据通道.发起者
-      }
+      我方先手 =
+        玩家.抢先值 !== 敌方玩家.抢先值
+          ? 玩家.抢先值 > 敌方玩家.抢先值
+          : 玩家.主神.id !== 敌方玩家.主神.id
+            ? 玩家.主神.id > 敌方玩家.主神.id
+            : 数据通道.发起者
 
       // 双方阵容已确定：开局前先把本局动画要用到的资源（骨骼动画/立绘/头像/卡面等）
       // 下载完并展示进度条，避免对局演出一边进行一边才去下载而卡住。
       资源下载中.value = true
+      等待对方加载.value = false
       try {
         await 预下载对局资源()
       } finally {
-        资源下载中.value = false
+        // 自己加载完成：通知对方“就绪”，进入等待对方加载完成的阶段
+        等待对方加载.value = true
+        数据通道.发送数据({ k: '就绪' })
+        我方加载完成 = true
+        if (等待对方超时 === undefined) {
+          // 兜底：对方“就绪”消息丢失或加载极慢时，超时后也照常开局，避免两端互等卡死
+          等待对方超时 = setTimeout(() => {
+            对方已就绪 = true
+            开局()
+          }, 60000)
+        }
+        开局()
       }
-
-      if (我方先手) {
-        玩家.回合开始()
-      } else {
-        敌方玩家.回合开始()
-      }
+    } else if (d.k == '就绪') {
+      // 对方资源也加载完成：双端就绪，双方一起开始第一回合
+      对方已就绪 = true
+      开局()
     }
   })
   数据通道.on('对方掉线', () => {

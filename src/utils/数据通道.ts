@@ -47,6 +47,8 @@ type 行动数据类型 = { 序号: number; 行动: 行动类型 }
 type 数据同步类型 =
   | { k: '初始数据'; v: 初始数据类型 }
   | { k: '行动'; v: 行动数据类型 }
+  // 本局资源加载完成后互相通知的“就绪”信号，双端都就绪才开始第一回合
+  | { k: '就绪' }
 
 class 数据通道类 extends EventEmitter {
   emit(name: string, ...args: unknown[]) {
