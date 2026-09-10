@@ -149,3 +149,6 @@ dist
 /*.ps1
 /.deploy_ignore
 .trae/rules/git-commit-message.md
+
+# 本地后端仓库（Huan-meng/sdmht-server 的克隆，不纳入前端版本控制）
+/sdmht-server/

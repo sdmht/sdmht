@@ -4,6 +4,7 @@ import { EventEmitter } from 'events'
 import { Notify } from 'quasar'
 import SimplePeer from 'simple-peer'
 import { graphql } from 'src/gen'
+import { effectScope } from 'vue'
 import { 我方编号 } from './在线'
 import { 等待 } from './等待'
 import { 位置类型 } from './类型'
@@ -85,18 +86,27 @@ class 数据通道类 extends EventEmitter {
   转发给对方: ((消息: unknown) => void) | undefined
 
   开始匹配(格: number) {
-    const 服务端通道 = useSubscription(
-      graphql(`
-        subscription matchOpponent(
-          $uid: String!
-          $size: Int!
-          $version: String!
-        ) {
-          matchOpponent(uid: $uid, size: $size, version: $version)
-        }
-      `),
-      { uid: 我方编号, size: 格, version: packageInfo.version }
-    )
+    // useSubscription 必须在活动的 effect scope 内调用，否则会告警且订阅不会随作用域停止。
+    // 匹配由按钮点击触发（不在组件 setup 中），这里自建独立作用域承载本局所有订阅，
+    // 销毁时统一 stop，等价于原来逐条订阅手动 stop。
+    const 订阅作用域 = effectScope(true)
+    this.on('销毁', () => {
+      订阅作用域.stop()
+    })
+    const 服务端通道 = 订阅作用域.run(() =>
+      useSubscription(
+        graphql(`
+          subscription matchOpponent(
+            $uid: String!
+            $size: Int!
+            $version: String!
+          ) {
+            matchOpponent(uid: $uid, size: $size, version: $version)
+          }
+        `),
+        { uid: 我方编号, size: 格, version: packageInfo.version }
+      )
+    )!
     const 匹配通知 = Notify.create({
       group: false,
       message: '匹配中',
@@ -130,13 +140,15 @@ class 数据通道类 extends EventEmitter {
           // 无 k=信令”的裸对象，包信封会让它们无法识别。辨识责任由发送端字段完备性承担。
           this.转发给对方 = (消息) => {
             if (!对方编号) return
-            useSubscription(
-              graphql(`
-                subscription sendData($to: String!, $data: JSON!) {
-                  sendData(to: $to, data: $data)
-                }
-              `),
-              { to: 对方编号, data: 消息 }
+            订阅作用域.run(() =>
+              useSubscription(
+                graphql(`
+                  subscription sendData($to: String!, $data: JSON!) {
+                    sendData(to: $to, data: $data)
+                  }
+                `),
+                { to: 对方编号, data: 消息 }
+              )
             )
           }
           this.开始点对点连接(this.发起者)
@@ -148,14 +160,16 @@ class 数据通道类 extends EventEmitter {
           }
           this.on('点对点连接成功', 通知连接成功)
           等待(3).then(通知连接成功)
-          const 掉线监听 = useSubscription(
-            graphql(`
-              subscription listenAlive($uid: String!) {
-                listenAlive(uid: $uid)
-              }
-            `),
-            { uid: 对方编号 }
-          )
+          const 掉线监听 = 订阅作用域.run(() =>
+            useSubscription(
+              graphql(`
+                subscription listenAlive($uid: String!) {
+                  listenAlive(uid: $uid)
+                }
+              `),
+              { uid: 对方编号 }
+            )
+          )!
           this.on('销毁', () => {
             掉线监听.stop()
           })

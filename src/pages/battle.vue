@@ -60,7 +60,12 @@ import _ from 'lodash'
 import * as PIXI from 'pixi.js'
 import { Dialog, useQuasar } from 'quasar'
 import { 创建画框 } from 'src/utils/创建画框'
-import { 加载动画, 加载子画面, 加载普攻动画 } from 'src/utils/加载动画'
+import {
+  加载动画,
+  加载子画面,
+  加载普攻动画,
+  注册资源包,
+} from 'src/utils/加载动画'
 import { 字符串转编号卡组 } from 'src/utils/卡组'
 import { 获得按钮 } from 'src/utils/按钮'
 import {
@@ -408,9 +413,12 @@ let bundles: PIXI.AssetsBundle[] = [
   },
 ]
 
+// 资源包在首次进入战场时注册一次即可：Assets 可能已被首页或单位构造隐式初始化，
+// 用 addBundle 注册而不是 Assets.init，可避免“AssetManager already initialized”告警。
+// 不要用 loadBundle 强制加载：包内混有 mp3，而 PIXI Assets 没有音频解析器（音频由 howler 播放）。
+注册资源包(bundles)
+
 onMounted(async () => {
-  await PIXI.Assets.init({ manifest: { bundles } })
-  await PIXI.Assets.loadBundle('布阵')
   if (!战斗框.value) return
   播放场景背景音乐('prebattle/布阵_01.mp3')
   战斗画框 = 创建画框()
@@ -1906,7 +1914,6 @@ onMounted(async () => {
     }
   })
 
-  await PIXI.Assets.loadBundle('战斗')
   let 攻击按钮组 = new PIXI.Container()
   const 主神技能按钮 = new PXUI.Button(await 加载子画面('pvp/shenwei.webp'))
   let 攻击按钮组背景 = await 加载子画面('pvp/di.webp')
@@ -2256,7 +2263,6 @@ onMounted(async () => {
   watch(选中的单位, 更新按钮组)
   玩家类.事件.on('回合开始时', 更新按钮组)
 
-  await PIXI.Assets.loadBundle('匹配')
   const 数据通道 = new 数据通道类()
 
   数据通道.on('连接成功', () => {
