@@ -163,7 +163,7 @@
             <template v-slot:selected-item="scope">
               <img
                 width="100vh"
-                :src="`card/CardM_${scope.opt.美术资源}.webp`"
+                :src="卡图(scope.opt.美术资源, 'M')"
                 @click="scope.removeAtIndex(scope.index)"
               />
             </template>
@@ -226,7 +226,7 @@
             <template v-slot:selected-item="scope">
               <img
                 width="100vh"
-                :src="`card/CardM_${scope.opt.美术资源}.webp`"
+                :src="卡图(scope.opt.美术资源, 'M')"
                 @click="scope.removeAtIndex(scope.index)"
               />
             </template>
@@ -235,7 +235,7 @@
                 <q-item-section avatar>
                   <img
                     height="80px"
-                    :src="`card/CardL_${scope.opt.美术资源}.webp`"
+                    :src="卡图(scope.opt.美术资源, 'L')"
                   />
                 </q-item-section>
                 <q-item-label>
@@ -296,7 +296,7 @@
             <template v-slot:selected-item="scope">
               <img
                 width="100vh"
-                :src="`card/CardM_${scope.opt.美术资源}.webp`"
+                :src="卡图(scope.opt.美术资源, 'M')"
                 @click="scope.removeAtIndex(scope.index)"
               />
             </template>
@@ -305,7 +305,7 @@
                 <q-item-section avatar>
                   <img
                     height="80px"
-                    :src="`card/CardL_${scope.opt.美术资源}.webp`"
+                    :src="卡图(scope.opt.美术资源, 'L')"
                   />
                 </q-item-section>
                 <q-item-section>
@@ -381,6 +381,7 @@ import {
   编号卡组类型,
   编号卡组转字符串,
 } from 'src/utils/卡组'
+import { 卡图 } from 'src/utils/美术资源'
 import { 播放场景背景音乐 } from 'src/utils/播放音频'
 import { 暗色模式 } from 'src/utils/暗色模式'
 import { onMounted, ref } from 'vue'
