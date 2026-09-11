@@ -114,6 +114,8 @@ let 强制结束回合: ReturnType<typeof setInterval> | undefined
 let 检查游戏结束: ReturnType<typeof setInterval> | undefined
 // 胜负是否已宣告（等全部动画播完后由战场页统一宣告，避免打断动画）
 let 已宣布战果 = false
+// 对方是否已投降（投降后对方会刷新断连，此时不应再提示对方掉线）
+let 对方已投降 = false
 onUnmounted(() => {
   if (玩家类.游戏已开始) {
     行动队列类.行动队列.添加(['投降'])
@@ -1996,6 +1998,7 @@ onMounted(async () => {
       神迹卡.本次使用选择 = 行动[2]
       神迹卡.本次装填选择 = 行动[3]
     } else if (行动[0] == '投降' && !是否我方) {
+      对方已投降 = true
       q.notify({ message: '对方投降，5秒后将刷新页面', type: 'positive' })
       useTimeoutFn(() => {
         location.reload()
@@ -2305,6 +2308,7 @@ onMounted(async () => {
       玩家类.游戏结束 = false
       玩家类.战败方是否我方 = undefined
       已宣布战果 = false
+      对方已投降 = false
       // 两端用同一对主神id推出同一随机种子，此后战斗随机流必须在两端严格同步推进
       随机类.设定种子(玩家.主神.id + d.v.主神.id)
       敌方玩家 = new 玩家类(false, d.v)
@@ -2348,8 +2352,8 @@ onMounted(async () => {
     }
   })
   数据通道.on('对方掉线', () => {
-    // 已因胜利/失败结束游戏时，不再提示对方掉线（主神阵亡已安排刷新）
-    if (玩家类.游戏结束) return
+    // 已因胜利/失败结束游戏，或对方已投降时，不再提示对方掉线（投降断连属正常流程）
+    if (玩家类.游戏结束 || 对方已投降) return
     q.notify({ message: '对方掉线了，5秒后将刷新页面', type: 'warning' })
     useTimeoutFn(() => {
       location.reload()
